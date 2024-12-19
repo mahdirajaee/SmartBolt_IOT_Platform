@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Bolt Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .dashboard-header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .metric-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .metric-box:hover {
+            transform: translateY(-5px);
+        }
+        .add-box-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="dashboard-header">
+        <div class="container">
+            <h1>Smart Bolt Dashboard</h1>
+            <div class="row">
+                <div class="col">
+                    <h4>Total Sectors: <span id="sectorCount">4</span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" id="metricsContainer">
+            <!-- Default metric boxes -->
+            <div class="col-md-4">
+                <div class="metric-box">
+                    <h3>Pipe Pressure</h3>
+                    <h2 class="text-primary">2.4 bar</h2>
+                    <p>Sector 1</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric-box">
+                    <h3>Temperature</h3>
+                    <h2 class="text-danger">24°C</h2>
+                    <p>Sector 1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary add-box-btn" onclick="addNewBox()">+</button>
+
+    <script>
+        function addNewBox() {
+            const container = document.getElementById('metricsContainer');
+            const newBox = document.createElement('div');
+            newBox.className = 'col-md-4';
+            newBox.innerHTML = `
+                <div class="metric-box">
+                    <h3>New Metric</h3>
+                    <h2 class="text-success">--</h2>
+                    <p>New Sector</p>
+                </div>
+            `;
+            container.appendChild(newBox);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html></div>
