@@ -1,5 +1,5 @@
-from simulation.sensor_simulator import SensorSimulator
-from config import *
+from Simulation.sensor_simulator import SensorSimulator
+from Config import *
 
 if __name__ == "__main__":
     try:
