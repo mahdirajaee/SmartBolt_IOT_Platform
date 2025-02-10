@@ -1,27 +1,26 @@
 import time
 import random
-import json
-from mqtt.MyMQTT import MyMQTT
-from config import *
+import sys
+import os
+
+# Ensure the 'MQTT' module is accessible
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from MQTT.MYMQTT import MYMQTT  # Corrected import
 
 class SensorSimulator:
-    def __init__(self, device_id, broker, port):
+    def __init__(self, device_id, broker, port, topic):
         self.device_id = device_id
-        # Use MyMQTT for publishing sensor data
-        self.mqtt_client = MyMQTT(clientID=device_id, broker=broker, port=port, notifier=self)
-
-    def start(self):
-        """Start the MQTT client."""
-        self.mqtt_client.start()
-        print(f"{self.device_id} started publishing sensor data.")
+        self.client = MYMQTT("SensorSimulator")
+        self.client.start(broker, port)
+        self.topic = topic  # This must be initialized
 
     def stop(self):
-        """Stop the MQTT client."""
-        self.mqtt_client.stop()
         print(f"{self.device_id} stopped publishing sensor data.")
+        self.client.stop()
 
     def notify(self, topic, message):
-        """Handle any messages received (if subscribing)."""
+        """Handle messages received if subscribing."""
         print(f"Received message on topic {topic}: {message}")
 
     def simulate_sensors(self):
@@ -39,9 +38,6 @@ class SensorSimulator:
                 "timestamp": time.time()
             }
 
-            # Publish to respective topics
-            self.mqtt_client.myPublish(MQTT_TOPIC_TEMPERATURE, payload)
-            self.mqtt_client.myPublish(MQTT_TOPIC_PRESSURE, payload)
-
-            print(f"Published: {json.dumps(payload)}")
-            time.sleep(PUBLISH_INTERVAL)
+            # Publish data to MQTT broker
+            self.client.myPublish(self.topic, payload)
+            time.sleep(2)  # Simulate data sending every 2 seconds
