@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gas Pipeline Monitoring Dashboard with Post Processing</title>
+  <title>Pipeline Monitoring Dashboard with Post Processing</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Chart.js Annotation Plugin (loaded for threshold lines etc.) -->
+  <!-- Chart.js Annotation Plugin -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
   <style>
     /* ========= Global Reset & Base ========= */
@@ -65,6 +65,11 @@
     #devicesTab .device-list li:hover, #devicesTab .device-list li.active { background: rgba(255, 255, 255, 0.2); }
     /* Post Processing Tab */
     #postProcessingTab { padding: 10px; }
+    /* Forecasting Settings Panel */
+    #forecastSettings {
+      padding: 10px; background: rgba(255,255,255,0.1); margin-bottom: 10px; border-radius: 5px;
+    }
+    #forecastSettings label { margin-right: 5px; }
     /* Warnings Tab */
     #warningsTab { padding: 10px; }
     #warningsTab h3 { font-size: 18px; margin-bottom: 8px; }
@@ -124,16 +129,6 @@
       width: 100% !important;
       height: 400px !important;
     }
-    /* Bolt Health Forecast Card (New) */
-    #boltHealthCard {
-      grid-column: span 2;
-      padding: 30px;
-      min-height: 450px;
-    }
-    #boltHealthChart {
-      width: 100% !important;
-      height: 400px !important;
-    }
     /* Post Processing View */
     #postProcessingView header { margin-bottom: 10px; }
     #postProcessingSector { font-size: 18px; margin-bottom: 10px; text-align: center; }
@@ -144,7 +139,7 @@
       margin-bottom: 15px; padding: 10px 15px; transition: background 0.3s, transform 0.3s; position: relative;
     }
     #tempWarningCard { border-color: red; }
-    #humWarningCard { border-color: orange; }
+    #pressureWarningCard { border-color: orange; }
     .warning-card:hover { background: rgba(0, 0, 0, 0.6); transform: scale(1.02); }
     .warning-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
     .warning-header h3 { margin: 0; font-size: 18px; flex-grow: 1; padding-left: 10px; }
@@ -176,7 +171,7 @@
     @media (max-width: 768px) {
       .main-content { margin-left: 0; }
       .charts { grid-template-columns: 1fr; }
-      #weeklyForecastCard, #boltHealthCard { grid-column: span 1; }
+      #weeklyForecastCard { grid-column: span 1; }
     }
   </style>
 </head>
@@ -215,7 +210,7 @@
         <div>
           <h3>Warning Summary</h3>
           <p><span style="color:red; font-weight:bold;">Temperature:</span> <span id="sidebarTempWarnings">0</span> occurrences</p>
-          <p><span style="color:orange; font-weight:bold;">Humidity:</span> <span id="sidebarHumWarnings">0</span> occurrences</p>
+          <p><span style="color:orange; font-weight:bold;">Pressure:</span> <span id="sidebarPressureWarnings">0</span> occurrences</p>
         </div>
       </div>
       <!-- Historical Data Tab (Sidebar) -->
@@ -238,7 +233,7 @@
           <p>Sensor Bolts Installed: <strong id="boltsCount">--</strong></p>
           <p>Status: <strong id="sensorStatus" style="color: #4CAF50;">Online</strong></p>
           <p>Temperature: <strong id="temperatureValue">--</strong> °C</p>
-          <p>Humidity: <strong id="humidityValue">--</strong> %</p>
+          <p>Pressure: <strong id="pressureValue">--</strong> kPa</p>
         </div>
       </section>
       <section class="charts">
@@ -247,8 +242,8 @@
           <canvas id="temperatureChart"></canvas>
         </div>
         <div class="chart-card">
-          <h3>Humidity Over Time</h3>
-          <canvas id="humidityChart"></canvas>
+          <h3>Pressure Over Time</h3>
+          <canvas id="pressureChart"></canvas>
         </div>
       </section>
     </div>
@@ -274,18 +269,18 @@
           </div>
         </div>
       </div>
-      <div class="warning-card" id="humWarningCard">
+      <div class="warning-card" id="pressureWarningCard">
         <div class="warning-header">
           <span class="warning-icon">⚠️</span>
-          <h3>Humidity Threshold Exceeded</h3>
+          <h3>Pressure Threshold Exceeded</h3>
           <button class="toggle-details">Details</button>
         </div>
         <div class="warning-details" style="display:none;">
-          <p>Exceeded <span id="humWarningCount">0</span> time(s).</p>
-          <p class="notification-status" id="humNotificationStatus">Telegram: Not Sent</p>
+          <p>Exceeded <span id="pressureWarningCount">0</span> time(s).</p>
+          <p class="notification-status" id="pressureNotificationStatus">Telegram: Not Sent</p>
           <div style="margin-top:5px;">
-            <button class="acknowledge-warning" data-type="Humidity">Acknowledge</button>
-            <button class="resend-telegram" data-type="Humidity">Resend Telegram</button>
+            <button class="acknowledge-warning" data-type="Pressure">Acknowledge</button>
+            <button class="resend-telegram" data-type="Pressure">Resend Telegram</button>
           </div>
         </div>
       </div>
@@ -315,6 +310,14 @@
         <div class="user-profile">A</div>
       </header>
       <h3 id="postProcessingSector" style="text-align:center; margin-bottom:10px;">Post Processing for: N/A</h3>
+      <!-- Forecasting Settings Panel -->
+      <div id="forecastSettings">
+        <label for="dataWindow">Data Window (readings):</label>
+        <input type="number" id="dataWindow" value="10" min="1" max="100" style="width: 60px;" />
+        <label for="forecastHorizon">Forecast Horizon (predictions):</label>
+        <input type="number" id="forecastHorizon" value="5" min="1" max="100" style="width: 60px;" />
+        <button id="applyForecastSettings">Apply</button>
+      </div>
       <section class="dashboard-cards" id="postProcessingCards">
         <div class="card" id="anomalyCard">
           <h3>Anomaly Detection</h3>
@@ -345,11 +348,6 @@
           <h3>Weekly Forecast</h3>
           <canvas id="weeklyForecastChart"></canvas>
         </div>
-        <!-- New Bolt Health Forecast Card -->
-        <div class="card" id="boltHealthCard">
-          <h3>Bolt Health Forecast</h3>
-          <canvas id="boltHealthChart"></canvas>
-        </div>
       </section>
     </div>
     <!-- Historical Data View -->
@@ -372,7 +370,7 @@
         <button id="downloadDataBtn" style="padding: 5px 10px; border-radius: 4px; border: none; background-color: #4caf50; color: #fff; cursor: pointer;">Download Data</button>
       </div>
       <div class="chart-card">
-        <h3>Historical Temperature & Humidity</h3>
+        <h3>Historical Temperature & Pressure</h3>
         <canvas id="historicalDataChart"></canvas>
       </div>
     </div>
@@ -390,12 +388,12 @@
           if (state.currentSectorId) { currentSector = sectors.find(sec => sec.id === state.currentSectorId) || sectors[0]; }
           simulationTime = state.simulationTime || 0;
           tempWarningCount = state.tempWarningCount || 0;
-          humWarningCount = state.humWarningCount || 0;
+          pressureWarningCount = state.pressureWarningCount || 0;
           warningLogs = state.warningLogs || [];
           sectorCache = state.sectorCache || {};
           sectors.forEach(sec => { 
             if (!sectorCache[sec.id]) { 
-              sectorCache[sec.id] = { labels: [], timestamps: [], temperatures: [], humidities: [] }; 
+              sectorCache[sec.id] = { labels: [], timestamps: [], temperatures: [], pressures: [] }; 
             } else if (!sectorCache[sec.id].timestamps) {
               sectorCache[sec.id].timestamps = [];
             }
@@ -409,29 +407,35 @@
       }
     }
     function saveState() {
-      const state = { sectors, currentSectorId: currentSector.id, simulationTime, tempWarningCount, humWarningCount, warningLogs, sectorCache };
+      const state = { sectors, currentSectorId: currentSector ? currentSector.id : null, simulationTime, tempWarningCount, pressureWarningCount, warningLogs, sectorCache };
       localStorage.setItem('dashboardState', JSON.stringify(state));
     }
     /***********************
      * GLOBAL VARIABLES & SECTOR SETUP
      ***********************/
-    let sectors = [ { id: 'sector1', name: 'Sector 1', bolts: 3, baseTemp: 25, baseHumidity: 55, boltsHealth: Array(3).fill(100), avgDegradationRate: 0 } ];
+    let sectors = [ { id: 'sector1', name: 'Sector 1', bolts: 3, baseTemp: 25, basePressure: 100, boltsHealth: Array(3).fill(100), avgDegradationRate: 0 } ];
     let currentSector = sectors[0];
     let simulationTime = 0;
     let thresholdTemp = 28; // °C
-    let thresholdHumidity = 65; // %
-    let tempWarningCount = 0, humWarningCount = 0;
-    let prevTempAbove = false, prevHumAbove = false;
+    let thresholdPressure = 105; // kPa
+    let tempWarningCount = 0, pressureWarningCount = 0;
+    let prevTempAbove = false, prevPressureAbove = false;
+    // Alert control: send a high-priority alert after 3 consecutive threshold breaches.
+    const thresholdAlertCount = 3;
+    let tempAlertSent = false, pressureAlertSent = false;
     let warningLogs = [];
     const maxPoints = 20;
     let sectorCache = {};
     sectors.forEach(sec => {
       if (!sectorCache[sec.id]) {
-        sectorCache[sec.id] = { labels: [], timestamps: [], temperatures: [], humidities: [] };
+        sectorCache[sec.id] = { labels: [], timestamps: [], temperatures: [], pressures: [] };
       } else if (!sectorCache[sec.id].timestamps) {
         sectorCache[sec.id].timestamps = [];
       }
     });
+    // Forecasting parameters (number of recent readings and prediction horizon)
+    let forecastDataWindow = 10;
+    let forecastHorizon = 5;
     loadState();
     /***********************
      * PARTICLE ANIMATION
@@ -455,8 +459,8 @@
       ctx.clearRect(0,0,canvas.width, canvas.height);
       particles.forEach(p => {
         p.x += p.vx; p.y += p.vy;
-        if (p.x<0 || p.x>canvas.width) p.vx = -p.vx;
-        if (p.y<0 || p.y>canvas.height) p.vy = -p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx = -p.vx;
+        if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
         ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
@@ -466,16 +470,13 @@
     }
     animateParticles();
     /***********************
-     * CHART SETUP: IMPROVED VISUALIZATION WITH SHORT-TERM PREDICTION DATASETS
+     * CHART SETUP: TEMPERATURE & PRESSURE CHARTS
      ***********************/
+    // Temperature Chart
     const tempCtx = document.getElementById('temperatureChart').getContext('2d');
     const tempGradient = tempCtx.createLinearGradient(0,0,0,400);
     tempGradient.addColorStop(0, 'rgba(255, 99, 132, 0.5)');
     tempGradient.addColorStop(1, 'rgba(255, 159, 64, 0.1)');
-    const humidityCtx = document.getElementById('humidityChart').getContext('2d');
-    const humGradient = humidityCtx.createLinearGradient(0,0,0,400);
-    humGradient.addColorStop(0, 'rgba(54, 162, 235, 0.5)');
-    humGradient.addColorStop(1, 'rgba(75, 192, 192, 0.1)');
     const temperatureChart = new Chart(tempCtx, {
       type: 'line',
       data: {
@@ -533,15 +534,20 @@
         }
       }
     });
-    const humidityChart = new Chart(humidityCtx, {
+    // Pressure Chart
+    const pressureCtx = document.getElementById('pressureChart').getContext('2d');
+    const pressureGradient = pressureCtx.createLinearGradient(0,0,0,400);
+    pressureGradient.addColorStop(0, 'rgba(54, 162, 235, 0.5)');
+    pressureGradient.addColorStop(1, 'rgba(75, 192, 192, 0.1)');
+    const pressureChart = new Chart(pressureCtx, {
       type: 'line',
       data: {
         labels: [],
         datasets: [
           {
-            label: 'Humidity (%)',
+            label: 'Pressure (kPa)',
             data: [],
-            backgroundColor: humGradient,
+            backgroundColor: pressureGradient,
             borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 2,
             tension: 0.4,
@@ -572,11 +578,11 @@
             annotations: {
               thresholdLine: {
                 type: 'line',
-                yMin: thresholdHumidity,
-                yMax: thresholdHumidity,
+                yMin: thresholdPressure,
+                yMax: thresholdPressure,
                 borderColor: 'orange',
                 borderWidth: 2,
-                label: { enabled: true, content: 'Humidity Threshold', backgroundColor: 'rgba(255,165,0,0.7)' }
+                label: { enabled: true, content: 'Pressure Threshold', backgroundColor: 'rgba(255,165,0,0.7)' }
               }
             }
           },
@@ -585,7 +591,7 @@
         scales: {
           x: { display: true, title: { display: true, text: 'Time', color: '#fff' },
                grid: { color: 'rgba(255,255,255,0.2)' }, ticks: { color: '#fff' } },
-          y: { display: true, title: { display: true, text: 'Humidity (%)', color: '#fff' },
+          y: { display: true, title: { display: true, text: 'Pressure (kPa)', color: '#fff' },
                grid: { color: 'rgba(255,255,255,0.2)' }, ticks: { color: '#fff' } }
         }
       }
@@ -625,7 +631,7 @@
             fill: true
           },
           {
-            label: 'Humidity Forecast (%)',
+            label: 'Pressure Forecast (kPa)',
             data: [],
             borderColor: 'rgba(54, 162, 235, 1)',
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -647,40 +653,6 @@
       }
     });
     /***********************
-     * BOLT HEALTH FORECAST CHART (POST PROCESSING)
-     ***********************/
-    const boltHealthCtx = document.getElementById('boltHealthChart').getContext('2d');
-    let boltHealthChart = new Chart(boltHealthCtx, {
-      type: 'bar',
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'Current Health (%)',
-            data: [],
-            backgroundColor: 'rgba(75, 192, 192, 0.6)'
-          },
-          {
-            label: 'Predicted Health (1 Week)',
-            data: [],
-            backgroundColor: 'rgba(255, 159, 64, 0.6)'
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          x: { title: { display: true, text: 'Bolt', color: '#fff' },
-               ticks: { color: '#fff' },
-               grid: { display: false } },
-          y: { beginAtZero: true, max: 100, title: { display: true, text: 'Health (%)', color: '#fff' },
-               ticks: { color: '#fff' },
-               grid: { color: 'rgba(255,255,255,0.2)' } }
-        },
-        plugins: { legend: { labels: { color: '#fff' } } }
-      }
-    });
-    /***********************
      * HISTORICAL DATA CHART SETUP
      ***********************/
     const historicalCtx = document.getElementById('historicalDataChart').getContext('2d');
@@ -699,7 +671,7 @@
             pointRadius: 2
           },
           {
-            label: 'Humidity (%)',
+            label: 'Pressure (kPa)',
             data: [],
             borderColor: 'rgba(54, 162, 235, 1)',
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -758,7 +730,7 @@
       return {
         labels: indices.map(i => cache.labels[i]),
         temperatures: indices.map(i => cache.temperatures[i]),
-        humidities: indices.map(i => cache.humidities[i]),
+        pressures: indices.map(i => cache.pressures[i]),
         timestamps: indices.map(i => cache.timestamps[i])
       };
     }
@@ -767,20 +739,20 @@
       const data = getFilteredHistoricalData(filter);
       historicalChart.data.labels = data.labels;
       historicalChart.data.datasets[0].data = data.temperatures;
-      historicalChart.data.datasets[1].data = data.humidities;
+      historicalChart.data.datasets[1].data = data.pressures;
       historicalChart.update();
     }
     document.getElementById('downloadDataBtn').addEventListener('click', function() {
       const filter = document.getElementById('filterSelect').value;
       const data = getFilteredHistoricalData(filter);
-      let csvContent = "data:text/csv;charset=utf-8,Timestamp,Time,Temperature,Humidity\n";
+      let csvContent = "data:text/csv;charset=utf-8,Timestamp,Time,Temperature,Pressure\n";
       for (let i = 0; i < data.timestamps.length; i++) {
         const ts = data.timestamps[i];
         const timeString = data.labels[i];
         const temp = data.temperatures[i];
-        const hum = data.humidities[i];
+        const pressure = data.pressures[i];
         const dateStr = new Date(ts).toLocaleString();
-        csvContent += `${dateStr},${timeString},${temp},${hum}\n`;
+        csvContent += `${dateStr},${timeString},${temp},${pressure}\n`;
       }
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
@@ -795,7 +767,7 @@
     /***********************
      * PREDICTION HELPER FUNCTIONS
      ***********************/
-    function computePredictions(arr, N = 5, K = 5) {
+    function computePredictions(arr, N, K) {
       if (arr.length < 2) { const lastVal = Number(arr[arr.length - 1] || 0); return Array(K).fill(lastVal); }
       const data = arr.slice(-N).map(Number);
       const n = data.length;
@@ -824,27 +796,26 @@
     /***********************
      * REAL-TIME SENSOR SIMULATION WITH REAL-LIFE ANOMALIES
      ***********************/
+    // Adjusted to generate data every 2 seconds.
     function generateSensorData() {
       simulationTime += 1;
       const baseTemp = currentSector.baseTemp;
-      const baseHumidity = currentSector.baseHumidity;
+      const basePressure = currentSector.basePressure;
       // Regular variation based on sine/cosine functions
       let temperature = baseTemp + Math.sin(simulationTime/10)*2 + ((Math.random()-0.5)*0.2);
-      let humidity = baseHumidity + Math.cos(simulationTime/15)*3 + ((Math.random()-0.5)*0.2);
+      let pressure = basePressure + Math.cos(simulationTime/15)*2 + ((Math.random()-0.5)*0.5);
       
       // Introduce a small chance of an anomaly (data passing threshold)
       const anomalyChance = 0.05; // 5% chance
       if (Math.random() < anomalyChance) {
-        // Spike temperature by a random value between 3 and 8 degrees
         temperature += Math.random()*5 + 3;
       }
       if (Math.random() < anomalyChance) {
-        // Spike humidity by a random value between 5 and 15 percent
-        humidity += Math.random()*10 + 5;
+        pressure += Math.random()*5 + 3;
       }
       
-      temperature = temperature.toFixed(2);
-      humidity = humidity.toFixed(2);
+      temperature = Number(temperature).toFixed(2);
+      pressure = Number(pressure).toFixed(2);
       
       const now = new Date();
       const currentTime = now.toLocaleTimeString();
@@ -852,86 +823,69 @@
       
       // Update dashboard display
       document.getElementById('temperatureValue').textContent = temperature;
-      document.getElementById('humidityValue').textContent = humidity;
+      document.getElementById('pressureValue').textContent = pressure;
       document.getElementById('sensorStatus').textContent = "Online";
       
-      // Threshold checks
-      if (temperature > thresholdTemp && !prevTempAbove) {
-        tempWarningCount++; prevTempAbove = true;
+      // Temperature threshold check and alert mechanism
+      if (Number(temperature) > thresholdTemp && !prevTempAbove) {
+        tempWarningCount++;
+        prevTempAbove = true;
         document.getElementById('tempWarningCount').textContent = tempWarningCount;
         document.getElementById('sidebarTempWarnings').textContent = tempWarningCount;
         addWarningLog('Temperature', temperature);
-        sendTelegramNotification('Temperature', temperature, currentTime);
-      } else if (temperature <= thresholdTemp) { prevTempAbove = false; }
+        if (tempWarningCount >= thresholdAlertCount && !tempAlertSent) {
+          sendTelegramNotification('Temperature', temperature, currentTime, true);
+          tempAlertSent = true;
+        }
+      } else if (Number(temperature) <= thresholdTemp) {
+        prevTempAbove = false;
+        tempWarningCount = 0;
+        tempAlertSent = false;
+      }
       
-      if (humidity > thresholdHumidity && !prevHumAbove) {
-        humWarningCount++; prevHumAbove = true;
-        document.getElementById('humWarningCount').textContent = humWarningCount;
-        document.getElementById('sidebarHumWarnings').textContent = humWarningCount;
-        addWarningLog('Humidity', humidity);
-        sendTelegramNotification('Humidity', humidity, currentTime);
-      } else if (humidity <= thresholdHumidity) { prevHumAbove = false; }
+      // Pressure threshold check and alert mechanism
+      if (Number(pressure) > thresholdPressure && !prevPressureAbove) {
+        pressureWarningCount++;
+        prevPressureAbove = true;
+        document.getElementById('pressureWarningCount').textContent = pressureWarningCount;
+        document.getElementById('sidebarPressureWarnings').textContent = pressureWarningCount;
+        addWarningLog('Pressure', pressure);
+        if (pressureWarningCount >= thresholdAlertCount && !pressureAlertSent) {
+          sendTelegramNotification('Pressure', pressure, currentTime, true);
+          pressureAlertSent = true;
+        }
+      } else if (Number(pressure) <= thresholdPressure) {
+        prevPressureAbove = false;
+        pressureWarningCount = 0;
+        pressureAlertSent = false;
+      }
       
-      // Update sensor cache (store labels, timestamps, temperatures, and humidities)
+      // Update sensor cache
       const cache = sectorCache[currentSector.id];
       cache.labels.push(currentTime);
       cache.timestamps.push(timestamp);
       cache.temperatures.push(temperature);
-      cache.humidities.push(humidity);
+      cache.pressures.push(pressure);
       
       const displayLabels = cache.labels.slice(-maxPoints);
       const displayTemps = cache.temperatures.slice(-maxPoints);
-      const displayHum = cache.humidities.slice(-maxPoints);
+      const displayPressures = cache.pressures.slice(-maxPoints);
       temperatureChart.data.labels = displayLabels;
       temperatureChart.data.datasets[0].data = displayTemps;
-      humidityChart.data.labels = displayLabels;
-      humidityChart.data.datasets[0].data = displayHum;
+      pressureChart.data.labels = displayLabels;
+      pressureChart.data.datasets[0].data = displayPressures;
       
-      const tempPredictions = computePredictions(cache.temperatures, 5, 5);
-      const humPredictions = computePredictions(cache.humidities, 5, 5);
+      // Use global forecast settings instead of fixed values.
+      const tempPredictions = computePredictions(cache.temperatures, forecastDataWindow, forecastHorizon);
+      const pressurePredictions = computePredictions(cache.pressures, forecastDataWindow, forecastHorizon);
       temperatureChart.data.datasets[1].data = tempPredictions;
-      humidityChart.data.datasets[1].data = humPredictions;
+      pressureChart.data.datasets[1].data = pressurePredictions;
       
       temperatureChart.update();
-      humidityChart.update();
-      
-      // Update bolt health data
-      const boltsCount = currentSector.bolts;
-      if (!currentSector.boltsHealth) { currentSector.boltsHealth = Array(boltsCount).fill(100); }
-      let totalDegradation = 0;
-      for (let i = 0; i < boltsCount; i++) {
-        let oldHealth = currentSector.boltsHealth[i];
-        let degradation = 0;
-        if (Number(temperature) > thresholdTemp) {
-          degradation += (Number(temperature) - thresholdTemp) * 0.0001;
-        }
-        if (Number(humidity) > thresholdHumidity) {
-          degradation += (Number(humidity) - thresholdHumidity) * 0.0001;
-        }
-        if (Number(temperature) < thresholdTemp && Number(humidity) < thresholdHumidity) {
-          degradation -= 0.00005;
-        }
-        let newHealth = oldHealth - degradation;
-        newHealth = Math.max(0, Math.min(100, newHealth));
-        currentSector.boltsHealth[i] = newHealth;
-        totalDegradation += degradation;
-      }
-      currentSector.avgDegradationRate = 0.9 * (currentSector.avgDegradationRate || 0) + 0.1 * (totalDegradation / boltsCount);
-      
-      // Update bolt health chart
-      const boltLabels = [];
-      for (let i = 1; i <= boltsCount; i++) { boltLabels.push("Bolt " + i); }
-      boltHealthChart.data.labels = boltLabels;
-      boltHealthChart.data.datasets[0].data = currentSector.boltsHealth.map(h => Number(h.toFixed(2)));
-      const forecastTime = 604800;
-      const predictedHealth = currentSector.boltsHealth.map(h => {
-        const predicted = h - (currentSector.avgDegradationRate * forecastTime);
-        return Number(Math.max(0, Math.min(100, predicted)).toFixed(2));
-      });
-      boltHealthChart.data.datasets[1].data = predictedHealth;
-      boltHealthChart.update();
+      pressureChart.update();
     }
-    setInterval(generateSensorData, 1000);
+    // Now, sensor data is generated every 2 seconds.
+    setInterval(generateSensorData, 2000);
     /***********************
      * POST PROCESSING FUNCTIONS
      ***********************/
@@ -954,10 +908,10 @@
       return avg.toFixed(2);
     }
     function classifySeverity(count) { return (count >= 3) ? "Critical" : "Warning"; }
-    function energyRecommendation(temp, hum) {
+    function energyRecommendation(temp, pressure) {
       let rec = "";
       rec += (Number(temp) > thresholdTemp) ? "Temperature is high; consider reducing gas flow. " : "Temperature is optimal. ";
-      rec += (Number(hum) > thresholdHumidity) ? "Humidity is high; check for condensation." : "Humidity levels are normal.";
+      rec += (Number(pressure) > thresholdPressure) ? "Pressure is high; check for pipeline integrity." : "Pressure is within safe limits.";
       return rec;
     }
     function calculateCorrelation(arrX, arrY) {
@@ -977,9 +931,9 @@
     function updatePostProcessing() {
       const cache = sectorCache[currentSector.id];
       const tempAnomalies = detectAnomalies(cache.temperatures);
-      const humAnomalies = detectAnomalies(cache.humidities);
+      const pressureAnomalies = detectAnomalies(cache.pressures);
       let anomalyHTML = "";
-      if (tempAnomalies.length === 0 && humAnomalies.length === 0) {
+      if (tempAnomalies.length === 0 && pressureAnomalies.length === 0) {
         anomalyHTML = "<p>No anomalies detected in the last 10 readings.</p>";
       } else {
         if (tempAnomalies.length > 0) {
@@ -987,38 +941,38 @@
           tempAnomalies.forEach(a => { anomalyHTML += `<li>Value: ${a.value} °C (Z: ${a.z})</li>`; });
           anomalyHTML += "</ul>";
         }
-        if (humAnomalies.length > 0) {
-          anomalyHTML += "<p><strong>Humidity anomalies:</strong></p><ul>";
-          humAnomalies.forEach(a => { anomalyHTML += `<li>Value: ${a.value} % (Z: ${a.z})</li>`; });
+        if (pressureAnomalies.length > 0) {
+          anomalyHTML += "<p><strong>Pressure anomalies:</strong></p><ul>";
+          pressureAnomalies.forEach(a => { anomalyHTML += `<li>Value: ${a.value} kPa (Z: ${a.z})</li>`; });
           anomalyHTML += "</ul>";
         }
       }
       document.getElementById('anomalyContent').innerHTML = anomalyHTML;
       const tempAvg = getRollingAverage(cache.temperatures);
-      const humAvg = getRollingAverage(cache.humidities);
+      const pressureAvg = getRollingAverage(cache.pressures);
       let trendHTML = `<p>Rolling Average Temperature (last 10 readings): ${tempAvg || "N/A"} °C</p>`;
-      trendHTML += `<p>Rolling Average Humidity (last 10 readings): ${humAvg || "N/A"} %</p>`;
+      trendHTML += `<p>Rolling Average Pressure (last 10 readings): ${pressureAvg || "N/A"} kPa</p>`;
       document.getElementById('trendContent').innerHTML = trendHTML;
       const latestTemp = Number(cache.temperatures[cache.temperatures.length - 1] || 0);
-      const latestHum = Number(cache.humidities[cache.humidities.length - 1] || 0);
+      const latestPressure = Number(cache.pressures[cache.pressures.length - 1] || 0);
       const tempSeverity = classifySeverity(tempWarningCount);
-      const humSeverity = classifySeverity(humWarningCount);
+      const pressureSeverity = classifySeverity(pressureWarningCount);
       let severityHTML = `<p>Temperature Severity: <strong>${tempSeverity}</strong></p>`;
-      severityHTML += `<p>Humidity Severity: <strong>${humSeverity}</strong></p>`;
+      severityHTML += `<p>Pressure Severity: <strong>${pressureSeverity}</strong></p>`;
       document.getElementById('severityContent').innerHTML = severityHTML;
-      const recommendation = energyRecommendation(latestTemp, latestHum);
+      const recommendation = energyRecommendation(latestTemp, latestPressure);
       document.getElementById('energyContent').innerHTML = `<p>${recommendation}</p>`;
-      if (cache.temperatures.length >= 10 && cache.humidities.length >= 10) {
+      if (cache.temperatures.length >= 10 && cache.pressures.length >= 10) {
         const temps = cache.temperatures.slice(-10).map(Number);
-        const hums = cache.humidities.slice(-10).map(Number);
-        const corr = calculateCorrelation(temps, hums);
+        const pressures = cache.pressures.slice(-10).map(Number);
+        const corr = calculateCorrelation(temps, pressures);
         document.getElementById('correlationContent').innerHTML = `<p>Pearson correlation coefficient: <strong>${corr}</strong></p>`;
       } else {
         document.getElementById('correlationContent').innerHTML = "<p>Not enough data to compute correlation.</p>";
       }
       let efficiencyScore = 100;
       if (latestTemp > thresholdTemp) { efficiencyScore -= (latestTemp - thresholdTemp) * 5; }
-      if (latestHum > thresholdHumidity) { efficiencyScore -= (latestHum - thresholdHumidity) * 3; }
+      if (latestPressure > thresholdPressure) { efficiencyScore -= (latestPressure - thresholdPressure) * 3; }
       efficiencyScore = Math.max(0, Math.min(100, efficiencyScore));
       energyGaugeChart.data.datasets[0].data = [efficiencyScore, 100 - efficiencyScore];
       energyGaugeChart.options.plugins.title.text = `Score: ${efficiencyScore}`;
@@ -1031,6 +985,7 @@
     function updateBoltsList() {
       const boltsList = document.getElementById('boltsList');
       boltsList.innerHTML = "";
+      if (!currentSector) return;
       for (let i = 1; i <= currentSector.bolts; i++) {
         const li = document.createElement('li');
         li.textContent = "Bolt " + i;
@@ -1038,16 +993,69 @@
       }
     }
     updateBoltsList();
+    // Enhanced updateSectorsList: Each sector list item includes Edit and Delete controls.
     function updateSectorsList() {
       const sectorsList = document.getElementById('sectorsList');
       sectorsList.innerHTML = "";
       sectors.forEach(sec => {
         const li = document.createElement('li');
         li.setAttribute('data-id', sec.id);
-        li.textContent = sec.name + " (" + sec.bolts + " bolts)";
-        if (sec.id === currentSector.id) li.classList.add('active');
+        li.innerHTML = sec.name + " (" + sec.bolts + " bolts)";
+        if (currentSector && sec.id === currentSector.id) li.classList.add('active');
+  
+        // Edit button to update the number of bolts, base temperature and base pressure
+        const editBtn = document.createElement('button');
+        editBtn.textContent = "Edit";
+        editBtn.classList.add('edit-sector');
+        editBtn.style.marginLeft = "10px";
+        editBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          let newBoltCount = prompt("Enter new number of bolts (max 4):", sec.bolts);
+          newBoltCount = parseInt(newBoltCount);
+          if (isNaN(newBoltCount) || newBoltCount < 1) { alert("Please enter a valid number (1-4)"); return; }
+          if (newBoltCount > 4) { alert("Maximum bolts allowed is 4."); newBoltCount = 4; }
+          let newBaseTemp = prompt("Enter new base temperature (°C):", sec.baseTemp);
+          newBaseTemp = parseFloat(newBaseTemp);
+          if (isNaN(newBaseTemp)) { alert("Please enter a valid temperature."); return; }
+          let newBasePressure = prompt("Enter new base pressure (kPa):", sec.basePressure);
+          newBasePressure = parseFloat(newBasePressure);
+          if (isNaN(newBasePressure)) { alert("Please enter a valid pressure."); return; }
+  
+          sec.bolts = newBoltCount;
+          sec.baseTemp = newBaseTemp;
+          sec.basePressure = newBasePressure;
+          sec.boltsHealth = Array(newBoltCount).fill(100);
+          updateBoltsList();
+          updateSectorsList();
+          saveState();
+        });
+  
+        // Delete button to remove a sector
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = "Delete";
+        deleteBtn.classList.add('delete-sector');
+        deleteBtn.style.marginLeft = "5px";
+        deleteBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (confirm("Are you sure you want to delete " + sec.name + "?")) {
+            sectors = sectors.filter(s => s.id !== sec.id);
+            delete sectorCache[sec.id];
+            if (currentSector && currentSector.id === sec.id) {
+              currentSector = sectors.length > 0 ? sectors[0] : null;
+            }
+            updateSectorsList();
+            updateBoltsList();
+            saveState();
+          }
+        });
+  
+        li.appendChild(editBtn);
+        li.appendChild(deleteBtn);
         sectorsList.appendChild(li);
       });
+      if (sectors.length === 0) {
+        sectorsList.innerHTML = "<p>No sectors available. Please add a sector.</p>";
+      }
     }
     updateSectorsList();
     /***********************
@@ -1066,25 +1074,27 @@
           temperatureChart.data.labels = cache.labels.slice(-maxPoints);
           temperatureChart.data.datasets[0].data = cache.temperatures.slice(-maxPoints);
           temperatureChart.update();
-          humidityChart.data.labels = cache.labels.slice(-maxPoints);
-          humidityChart.data.datasets[0].data = cache.humidities.slice(-maxPoints);
-          humidityChart.update();
+          pressureChart.data.labels = cache.labels.slice(-maxPoints);
+          pressureChart.data.datasets[0].data = cache.pressures.slice(-maxPoints);
+          pressureChart.update();
           document.getElementById('sectorName').textContent = "Pipeline Sector: " + currentSector.name;
           document.getElementById('boltsCount').textContent = currentSector.bolts;
           if (cache.temperatures.length > 0) {
             document.getElementById('temperatureValue').textContent = cache.temperatures[cache.temperatures.length - 1];
-            document.getElementById('humidityValue').textContent = cache.humidities[cache.humidities.length - 1];
+            document.getElementById('pressureValue').textContent = cache.pressures[cache.pressures.length - 1];
           } else {
             document.getElementById('temperatureValue').textContent = '--';
-            document.getElementById('humidityValue').textContent = '--';
+            document.getElementById('pressureValue').textContent = '--';
           }
-          tempWarningCount = 0; humWarningCount = 0;
+          tempWarningCount = 0; pressureWarningCount = 0;
           document.getElementById('tempWarningCount').textContent = tempWarningCount;
-          document.getElementById('humWarningCount').textContent = humWarningCount;
+          document.getElementById('pressureWarningCount').textContent = pressureWarningCount;
           document.getElementById('sidebarTempWarnings').textContent = tempWarningCount;
-          document.getElementById('sidebarHumWarnings').textContent = humWarningCount;
+          document.getElementById('sidebarPressureWarnings').textContent = pressureWarningCount;
           updateBoltsList();
-          document.getElementById('postProcessingSector').textContent = "Post Processing for: " + currentSector.name;
+          if (currentSector) {
+            document.getElementById('postProcessingSector').textContent = "Post Processing for: " + currentSector.name;
+          }
           saveState();
         }
       }
@@ -1129,11 +1139,29 @@
       if (isNaN(count) || count < 1) { alert("Please enter a valid number (1-4)"); return; }
       if (count > 4) { alert("Maximum bolts allowed is 4."); count = 4; }
       const newSectorId = "sector" + (sectors.length + 1);
-      const newSector = { id: newSectorId, name: "Sector " + (sectors.length + 1), bolts: count, baseTemp: 25, baseHumidity: 55, boltsHealth: Array(count).fill(100), avgDegradationRate: 0 };
+      const newSector = { id: newSectorId, name: "Sector " + (sectors.length + 1), bolts: count, baseTemp: 25, basePressure: 100, boltsHealth: Array(count).fill(100), avgDegradationRate: 0 };
       sectors.push(newSector);
-      sectorCache[newSectorId] = { labels: [], timestamps: [], temperatures: [], humidities: [] };
+      sectorCache[newSectorId] = { labels: [], timestamps: [], temperatures: [], pressures: [] };
       updateSectorsList();
       saveState();
+    });
+    /***********************
+     * FORECASTING SETTINGS HANDLER
+     ***********************/
+    document.getElementById('applyForecastSettings').addEventListener('click', function() {
+      const newWindow = parseInt(document.getElementById('dataWindow').value);
+      const newHorizon = parseInt(document.getElementById('forecastHorizon').value);
+      if (isNaN(newWindow) || newWindow < 1) {
+        alert("Please enter a valid data window value.");
+        return;
+      }
+      if (isNaN(newHorizon) || newHorizon < 1) {
+        alert("Please enter a valid forecast horizon value.");
+        return;
+      }
+      forecastDataWindow = newWindow;
+      forecastHorizon = newHorizon;
+      alert("Forecasting settings updated:\nData Window: " + forecastDataWindow + " readings\nForecast Horizon: " + forecastHorizon + " predictions");
     });
     /***********************
      * TOGGLE WARNING DETAILS HANDLER
@@ -1151,7 +1179,7 @@
      ***********************/
     function addWarningLog(type, value) {
       const currentTime = new Date().toLocaleTimeString();
-      const count = (type === 'Temperature') ? tempWarningCount : humWarningCount;
+      const count = (type === 'Temperature') ? tempWarningCount : pressureWarningCount;
       const severity = classifySeverity(count);
       const logEntry = { id: Date.now() + Math.random(), time: currentTime, type, value, severity, acknowledged: false, telegramSent: true };
       warningLogs.unshift(logEntry);
@@ -1180,10 +1208,17 @@
         tbody.appendChild(tr);
       });
     }
-    function sendTelegramNotification(type, value, time) {
-      console.log(`Telegram notification sent for ${type} at ${time} with value ${value}`);
-      if (type === "Temperature") { document.getElementById('tempNotificationStatus').textContent = "Telegram: Sent at " + time; }
-      else if (type === "Humidity") { document.getElementById('humNotificationStatus').textContent = "Telegram: Sent at " + time; }
+    // Modified sendTelegramNotification to accept an extra flag "isAlert" for high-priority alarms.
+    function sendTelegramNotification(type, value, time, isAlert = false) {
+      if (isAlert) {
+        console.log(`ALERT: Telegram notification sent for ${type} at ${time} with value ${value}`);
+        if (type === "Temperature") { document.getElementById('tempNotificationStatus').textContent = "ALERT: Telegram sent at " + time; }
+        else if (type === "Pressure") { document.getElementById('pressureNotificationStatus').textContent = "ALERT: Telegram sent at " + time; }
+      } else {
+        console.log(`Telegram notification sent for ${type} at ${time} with value ${value}`);
+        if (type === "Temperature") { document.getElementById('tempNotificationStatus').textContent = "Telegram: Sent at " + time; }
+        else if (type === "Pressure") { document.getElementById('pressureNotificationStatus').textContent = "Telegram: Sent at " + time; }
+      }
       saveState();
     }
     document.getElementById('warningLogBody').addEventListener('click', function(e) {
@@ -1207,7 +1242,7 @@
       button.addEventListener('click', function(e) { e.stopPropagation(); const type = this.getAttribute('data-type'); alert(`${type} warning acknowledged.`); });
     });
     document.querySelectorAll('.resend-telegram').forEach(button => {
-      button.addEventListener('click', function(e) { e.stopPropagation(); const type = this.getAttribute('data-type'); sendTelegramNotification(type, (type === "Temperature" ? document.getElementById('temperatureValue').textContent : document.getElementById('humidityValue').textContent), new Date().toLocaleTimeString()); });
+      button.addEventListener('click', function(e) { e.stopPropagation(); const type = this.getAttribute('data-type'); sendTelegramNotification(type, (type === "Temperature" ? document.getElementById('temperatureValue').textContent : document.getElementById('pressureValue').textContent), new Date().toLocaleTimeString()); });
     });
     setInterval(saveState, 5000);
     /***********************
@@ -1216,16 +1251,18 @@
     (function initUI() {
       updateSectorsList();
       updateBoltsList();
-      const cache = sectorCache[currentSector.id];
-      temperatureChart.data.labels = cache.labels.slice(-maxPoints);
-      temperatureChart.data.datasets[0].data = cache.temperatures.slice(-maxPoints);
-      temperatureChart.update();
-      humidityChart.data.labels = cache.labels.slice(-maxPoints);
-      humidityChart.data.datasets[0].data = cache.humidities.slice(-maxPoints);
-      humidityChart.update();
-      document.getElementById('sectorName').textContent = "Pipeline Sector: " + currentSector.name;
-      document.getElementById('boltsCount').textContent = currentSector.bolts;
-      document.getElementById('postProcessingSector').textContent = "Post Processing for: " + currentSector.name;
+      if (currentSector) {
+        const cache = sectorCache[currentSector.id];
+        temperatureChart.data.labels = cache.labels.slice(-maxPoints);
+        temperatureChart.data.datasets[0].data = cache.temperatures.slice(-maxPoints);
+        temperatureChart.update();
+        pressureChart.data.labels = cache.labels.slice(-maxPoints);
+        pressureChart.data.datasets[0].data = cache.pressures.slice(-maxPoints);
+        pressureChart.update();
+        document.getElementById('sectorName').textContent = "Pipeline Sector: " + currentSector.name;
+        document.getElementById('boltsCount').textContent = currentSector.bolts;
+        document.getElementById('postProcessingSector').textContent = "Post Processing for: " + currentSector.name;
+      }
       updateWarningLogTable();
     })();
     /***********************
@@ -1233,42 +1270,21 @@
      ***********************/
     function updateWeeklyForecast() {
       const cache = sectorCache[currentSector.id];
-      let tempForecast = [], humForecast = [];
-      if (cache.temperatures.length >= 24 && cache.humidities.length >= 24) {
+      let tempForecast = [], pressureForecast = [];
+      if (cache.temperatures.length >= 24 && cache.pressures.length >= 24) {
         tempForecast = computeWeeklyForecast(cache.temperatures, 24, 7);
-        humForecast = computeWeeklyForecast(cache.humidities, 24, 7);
+        pressureForecast = computeWeeklyForecast(cache.pressures, 24, 7);
       } else {
         const currentTemp = Number(cache.temperatures[cache.temperatures.length - 1] || 0);
-        const currentHum = Number(cache.humidities[cache.humidities.length - 1] || 0);
+        const currentPressure = Number(cache.pressures[cache.pressures.length - 1] || 0);
         tempForecast = Array(7).fill(currentTemp);
-        humForecast = Array(7).fill(currentHum);
+        pressureForecast = Array(7).fill(currentPressure);
       }
       weeklyForecastChart.data.datasets[0].data = tempForecast;
-      weeklyForecastChart.data.datasets[1].data = humForecast;
+      weeklyForecastChart.data.datasets[1].data = pressureForecast;
       weeklyForecastChart.update();
     }
     setInterval(updateWeeklyForecast, 5000);
-    /***********************
-     * BOLT HEALTH FORECAST UPDATE FUNCTION (Post Processing)
-     ***********************/
-    function updateBoltHealthForecast() {
-      const boltsCount = currentSector.bolts;
-      if (!currentSector.boltsHealth) { currentSector.boltsHealth = Array(boltsCount).fill(100); }
-      const forecastTime = 604800;
-      const avgDeg = currentSector.avgDegradationRate || 0;
-      const currentHealth = currentSector.boltsHealth.map(h => Number(h.toFixed(2)));
-      const predictedHealth = currentHealth.map(h => {
-        let predicted = h - (avgDeg * forecastTime);
-        return Number(Math.max(0, Math.min(100, predicted)).toFixed(2));
-      });
-      const boltLabels = [];
-      for (let i = 1; i <= boltsCount; i++) { boltLabels.push("Bolt " + i); }
-      boltHealthChart.data.labels = boltLabels;
-      boltHealthChart.data.datasets[0].data = currentHealth;
-      boltHealthChart.data.datasets[1].data = predictedHealth;
-      boltHealthChart.update();
-    }
-    setInterval(updateBoltHealthForecast, 5000);
   </script>
 </body>
 </html>
