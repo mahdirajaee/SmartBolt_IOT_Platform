@@ -5,7 +5,7 @@ import datetime
 import bcrypt
 import os
 
-SECRET_KEY = "your_secret_key"
+SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
 
 users_db = {}  # In-memory user storage (replace with database in production)
 
@@ -77,5 +77,8 @@ class AccountManager:
 
 
 if __name__ == "__main__":
-    cherrypy.config.update({"server.socket_host": "0.0.0.0", "server.socket_port": 8081})
+    cherrypy.config.update({
+        \"server.socket_host\": \"0.0.0.0\",
+        \"server.socket_port\": int(os.getenv('PORT', 8081))
+    })
     cherrypy.quickstart(AccountManager(), "/")
