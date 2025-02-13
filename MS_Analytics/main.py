@@ -30,10 +30,9 @@ class AnalyticsService:
 
     @staticmethod
     def detect_anomalies(values):
-        """Detect anomalies using Z-score (outliers)."""
+        """Detect anomalies using Z-score."""
         if len(values) < 10:
             return []
-
         arr = np.array(values[-10:])
         mean = np.mean(arr)
         std_dev = np.std(arr)
@@ -88,12 +87,10 @@ class AnalyticsService:
         """Predict future values using linear regression."""
         if len(arr) < 2:
             return [arr[-1]] * n_future if arr else [0] * n_future
-
         x = np.arange(len(arr[-n_past:]))
         y = np.array(arr[-n_past:])
         coeffs = np.polyfit(x, y, 1)
         trend_line = np.poly1d(coeffs)
-
         return [round(trend_line(i), 2) for i in range(len(arr), len(arr) + n_future)]
 
 
@@ -136,11 +133,8 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT Broker:", MQTT_BROKER)
     client.subscribe(MQTT_TOPIC_SENSOR)
 
-
 def on_message(client, userdata, msg):
     """Handle incoming sensor data from MQTT."""
-    global sensor_data
-
     try:
         payload = json.loads(msg.payload.decode())
         timestamp = time.time()
@@ -192,7 +186,6 @@ class AnalyticsAPI:
         }
 
 
-# Start analytics processing thread
 threading.Thread(target=process_sensor_data, daemon=True).start()
 
 # Start CherryPy REST API
