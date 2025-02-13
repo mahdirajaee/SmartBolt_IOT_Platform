@@ -5,26 +5,47 @@ import paho.mqtt.client as mqtt
 import time
 import threading
 import os
+import logging
+from influxdb_client import InfluxDBClient, Point, WritePrecision
+from ws4py.server.cherrypyserver import WebSocketPlugin, WebSocketTool
+from ws4py.websocket import WebSocket
 
-# MQTT Configuration
+# ================ Configuration ================
 MQTT_BROKER = os.getenv("MQTT_BROKER", "localhost")
 MQTT_PORT = int(os.getenv("MQTT_PORT", 1883))
-MQTT_TOPIC_SENSOR = os.getenv('MQTT_TOPIC_SENSOR', '/sensor/data')
-MQTT_TOPIC_ANALYTICS = os.getenv('MQTT_TOPIC_ANALYTICS', '/analytics/results')
+MQTT_TOPIC_SENSOR = os.getenv("MQTT_TOPIC_SENSOR", "/sensor/data")
+MQTT_TOPIC_ANALYTICS = os.getenv("MQTT_TOPIC_ANALYTICS", "/analytics/results")
+MQTT_TOPIC_ACTUATOR = os.getenv("MQTT_TOPIC_ACTUATOR", "/actuator/valve")
 
-# Sensor Data Storage
+INFLUXDB_URL = os.getenv("INFLUXDB_URL", "http://localhost:8086")
+INFLUXDB_TOKEN = os.getenv("INFLUXDB_TOKEN", "my-secret-token")
+INFLUXDB_ORG = os.getenv("INFLUXDB_ORG", "my-org")
+INFLUXDB_BUCKET = os.getenv("INFLUXDB_BUCKET", "sensor_data")
+
+THRESHOLD_TEMP = float(os.getenv("THRESHOLD_TEMP", 28))  # Celsius
+THRESHOLD_PRESSURE = float(os.getenv("THRESHOLD_PRESSURE", 250))  # Pascal
+MAX_DATA_POINTS = 100
+PROCESS_INTERVAL = int(os.getenv("PROCESS_INTERVAL", 5))
+
+# Initialize InfluxDB Client
+influx_client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
+write_api = influx_client.write_api(write_options=WritePrecision.NS)
+
+# ================ Logging Setup ================
+logging.basicConfig(format="%(asctime)s - %(levelname)s - %(message)s", level=logging.INFO)
+
+def log_event(event_type, details):
+    """Log structured events."""
+    logging.info(json.dumps({"event": event_type, "details": details}))
+
+# ================ Data Storage ================
 sensor_data = {
     "timestamps": [],
     "temperature": [],
     "pressure": [],
 }
 
-# Threshold Values
-THRESHOLD_TEMP = float(os.getenv('THRESHOLD_TEMP', 28))  # Celsius
-THRESHOLD_PRESSURE = float(os.getenv('THRESHOLD_PRESSURE', 250))  # Pascal
-MAX_DATA_POINTS = 100  # Limit data stored
-
-
+# ================ Analytics Service ================
 class AnalyticsService:
     """Handles post-processing analytics functions."""
 
@@ -36,21 +57,15 @@ class AnalyticsService:
         arr = np.array(values[-10:])
         mean = np.mean(arr)
         std_dev = np.std(arr)
-
-        anomalies = []
-        for i, val in enumerate(arr):
-            z_score = abs((val - mean) / std_dev) if std_dev else 0
-            if z_score > 2:
-                anomalies.append({"index": i, "value": val, "z_score": round(z_score, 2)})
-
-        return anomalies
+        return [
+            {"index": i, "value": val, "z_score": round(abs((val - mean) / std_dev), 2)}
+            for i, val in enumerate(arr) if std_dev and abs((val - mean) / std_dev) > 2
+        ]
 
     @staticmethod
     def rolling_average(values):
         """Compute rolling average of last 10 values."""
-        if len(values) < 10:
-            return None
-        return round(np.mean(values[-10:]), 2)
+        return round(np.mean(values[-10:]), 2) if len(values) >= 10 else None
 
     @staticmethod
     def classify_severity(count):
@@ -60,27 +75,23 @@ class AnalyticsService:
     @staticmethod
     def energy_recommendation(temp, pressure):
         """Generate energy efficiency recommendations."""
-        recommendation = []
+        recommendations = []
         if temp > THRESHOLD_TEMP:
-            recommendation.append("Temperature high: Consider adjusting cooling system.")
+            recommendations.append("Temperature high: Consider adjusting cooling system.")
         else:
-            recommendation.append("Temperature optimal.")
-
+            recommendations.append("Temperature optimal.")
         if pressure > THRESHOLD_PRESSURE:
-            recommendation.append("Pressure high: Consider opening valve.")
+            recommendations.append("Pressure high: Consider opening valve.")
         else:
-            recommendation.append("Pressure normal.")
-
-        return " ".join(recommendation)
+            recommendations.append("Pressure normal.")
+        return " ".join(recommendations)
 
     @staticmethod
     def calculate_correlation(arr_x, arr_y):
         """Calculate Pearson correlation coefficient between temperature and pressure."""
         if len(arr_x) < 10 or len(arr_y) < 10:
             return None
-
-        corr = np.corrcoef(arr_x[-10:], arr_y[-10:])[0, 1]
-        return round(corr, 2)
+        return round(np.corrcoef(arr_x[-10:], arr_y[-10:])[0, 1], 2)
 
     @staticmethod
     def compute_predictions(arr, n_past=10, n_future=5):
@@ -93,44 +104,9 @@ class AnalyticsService:
         trend_line = np.poly1d(coeffs)
         return [round(trend_line(i), 2) for i in range(len(arr), len(arr) + n_future)]
 
-
-def process_sensor_data():
-    """Analyze incoming sensor data and publish results."""
-    global sensor_data
-
-    while True:
-        if len(sensor_data["temperature"]) > 0 and len(sensor_data["pressure"]) > 0:
-            analytics = {}
-
-            # Extract latest values
-            latest_temp = sensor_data["temperature"][-1]
-            latest_pressure = sensor_data["pressure"][-1]
-
-            # Perform analytics
-            analytics["anomalies_temp"] = AnalyticsService.detect_anomalies(sensor_data["temperature"])
-            analytics["anomalies_pressure"] = AnalyticsService.detect_anomalies(sensor_data["pressure"])
-            analytics["rolling_avg_temp"] = AnalyticsService.rolling_average(sensor_data["temperature"])
-            analytics["rolling_avg_pressure"] = AnalyticsService.rolling_average(sensor_data["pressure"])
-            analytics["severity_temp"] = AnalyticsService.classify_severity(len(analytics["anomalies_temp"]))
-            analytics["severity_pressure"] = AnalyticsService.classify_severity(len(analytics["anomalies_pressure"]))
-            analytics["energy_recommendation"] = AnalyticsService.energy_recommendation(latest_temp, latest_pressure)
-            analytics["correlation_temp_pressure"] = AnalyticsService.calculate_correlation(
-                sensor_data["temperature"], sensor_data["pressure"]
-            )
-            analytics["temperature_forecast"] = AnalyticsService.compute_predictions(sensor_data["temperature"])
-            analytics["pressure_forecast"] = AnalyticsService.compute_predictions(sensor_data["pressure"])
-
-            # Publish analytics to MQTT
-            mqtt_client.publish(MQTT_TOPIC_ANALYTICS, json.dumps(analytics))
-
-            print("Published analytics:", analytics)
-
-        time.sleep(5)  # Process every 5 seconds
-
-
-# MQTT Callbacks
+# ================ MQTT Handling ================
 def on_connect(client, userdata, flags, rc):
-    print("Connected to MQTT Broker:", MQTT_BROKER)
+    log_event("MQTT Connected", f"Broker: {MQTT_BROKER}")
     client.subscribe(MQTT_TOPIC_SENSOR)
 
 def on_message(client, userdata, msg):
@@ -141,21 +117,29 @@ def on_message(client, userdata, msg):
         temperature = float(payload.get("temperature", 0))
         pressure = float(payload.get("pressure", 0))
 
-        # Store latest sensor values
-        sensor_data["timestamps"].append(timestamp)
-        sensor_data["temperature"].append(temperature)
-        sensor_data["pressure"].append(pressure)
-
-        # Maintain data limit
-        if len(sensor_data["temperature"]) > MAX_DATA_POINTS:
-            for key in sensor_data:
-                sensor_data[key].pop(0)
-
-        print(f"Received Data: Temp={temperature}°C, Pressure={pressure}Pa")
-
+        threading.Thread(target=store_sensor_data, args=(timestamp, temperature, pressure), daemon=True).start()
     except Exception as e:
-        print("Error processing MQTT message:", e)
+        log_event("MQTT Message Error", str(e))
 
+def store_sensor_data(timestamp, temperature, pressure):
+    """Store sensor data in memory and InfluxDB."""
+    sensor_data["timestamps"].append(timestamp)
+    sensor_data["temperature"].append(temperature)
+    sensor_data["pressure"].append(pressure)
+
+    # Maintain Data Limit
+    if len(sensor_data["temperature"]) > MAX_DATA_POINTS:
+        for key in sensor_data:
+            sensor_data[key].pop(0)
+
+    # Store in InfluxDB
+    point = (
+        Point("sensor_readings")
+        .field("temperature", temperature)
+        .field("pressure", pressure)
+        .time(timestamp, WritePrecision.NS)
+    )
+    write_api.write(bucket=INFLUXDB_BUCKET, org=INFLUXDB_ORG, record=point)
 
 # MQTT Client Setup
 mqtt_client = mqtt.Client()
@@ -164,34 +148,58 @@ mqtt_client.on_message = on_message
 mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
 mqtt_client.loop_start()
 
+# ================ Processing Data ================
+def process_sensor_data():
+    """Analyze incoming sensor data and publish results."""
+    while True:
+        if sensor_data["temperature"] and sensor_data["pressure"]:
+            analytics = {
+                "anomalies_temp": AnalyticsService.detect_anomalies(sensor_data["temperature"]),
+                "anomalies_pressure": AnalyticsService.detect_anomalies(sensor_data["pressure"]),
+                "rolling_avg_temp": AnalyticsService.rolling_average(sensor_data["temperature"]),
+                "rolling_avg_pressure": AnalyticsService.rolling_average(sensor_data["pressure"]),
+                "severity_temp": AnalyticsService.classify_severity(len(sensor_data["temperature"])),
+                "severity_pressure": AnalyticsService.classify_severity(len(sensor_data["pressure"])),
+                "energy_recommendation": AnalyticsService.energy_recommendation(
+                    sensor_data["temperature"][-1], sensor_data["pressure"][-1]
+                ),
+                "correlation_temp_pressure": AnalyticsService.calculate_correlation(
+                    sensor_data["temperature"], sensor_data["pressure"]
+                ),
+            }
 
-# REST API for retrieving analytics data
+            # Publish Analytics Results
+            mqtt_client.publish(MQTT_TOPIC_ANALYTICS, json.dumps(analytics))
+            log_event("Analytics Published", analytics)
+
+            # Actuator Control Logic
+            if sensor_data["pressure"][-1] > THRESHOLD_PRESSURE:
+                mqtt_client.publish(MQTT_TOPIC_ACTUATOR, json.dumps({"action": "open"}))
+                log_event("Actuation Triggered", "Valve Open Command Sent")
+
+        time.sleep(PROCESS_INTERVAL)
+
+threading.Thread(target=process_sensor_data, daemon=True).start()
+
+# ================ WebSocket for Real-Time Dashboard ================
+class AnalyticsWebSocket(WebSocket):
+    def received_message(self, message):
+        log_event("WebSocket Message", message)
+
+class WebSocketHandler:
+    @cherrypy.expose
+    def ws(self):
+        cherrypy.request.ws_handler = AnalyticsWebSocket()
+
+WebSocketPlugin(cherrypy.engine).subscribe()
+
+# ================ REST API ================
 class AnalyticsAPI:
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def analytics(self):
         """Expose last analytics results via REST API."""
-        return {
-            "last_temperature": sensor_data["temperature"][-1] if sensor_data["temperature"] else None,
-            "last_pressure": sensor_data["pressure"][-1] if sensor_data["pressure"] else None,
-            "anomalies_temp": AnalyticsService.detect_anomalies(sensor_data["temperature"]),
-            "anomalies_pressure": AnalyticsService.detect_anomalies(sensor_data["pressure"]),
-            "rolling_avg_temp": AnalyticsService.rolling_average(sensor_data["temperature"]),
-            "rolling_avg_pressure": AnalyticsService.rolling_average(sensor_data["pressure"]),
-            "severity_temp": AnalyticsService.classify_severity(len(sensor_data["temperature"])),
-            "severity_pressure": AnalyticsService.classify_severity(len(sensor_data["pressure"])),
-            "correlation_temp_pressure": AnalyticsService.calculate_correlation(
-                sensor_data["temperature"], sensor_data["pressure"]
-            ),
-        }
+        return sensor_data
 
-
-threading.Thread(target=process_sensor_data, daemon=True).start()
-
-# Start CherryPy REST API
-if __name__ == "__main__":
-    cherrypy.config.update({
-        \"server.socket_host\": \"0.0.0.0\",
-        \"server.socket_port\": int(os.getenv('PORT', 8080))
-    })
-    cherrypy.quickstart(AnalyticsAPI(), "/")
+cherrypy.config.update({"server.socket_host": "0.0.0.0", "server.socket_port": 8080})
+cherrypy.quickstart(WebSocketHandler(), "/ws", config={"/ws": {"tools.websocket.on": True}})
