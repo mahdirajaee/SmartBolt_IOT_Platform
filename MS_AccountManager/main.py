@@ -4,8 +4,11 @@ import firebase_admin
 from firebase_admin import credentials, auth
 import os
 
-# Load Firebase Credentials
-FIREBASE_CRED_PATH = os.getenv("FIREBASE_CREDENTIALS", "firebase_credentials.json")
+# Get the absolute path of the current script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FIREBASE_CRED_PATH = os.path.join(BASE_DIR, "firebase_credentials.json")
+
+# Load Firebase Credentials (Using Correct Path)
 cred = credentials.Certificate(FIREBASE_CRED_PATH)
 firebase_admin.initialize_app(cred)
 
