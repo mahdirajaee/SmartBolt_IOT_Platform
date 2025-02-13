@@ -4,14 +4,15 @@ import firebase_admin
 from firebase_admin import credentials, auth
 import os
 
-# Get the absolute path of the current script
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FIREBASE_CRED_PATH = os.path.join(BASE_DIR, "firebase_credentials.json")
 
-# Load Firebase Credentials (Using Correct Path)
+# Load Firebase Credentials 
 cred = credentials.Certificate(FIREBASE_CRED_PATH)
 firebase_admin.initialize_app(cred)
 
+#this class will handle the user authentication using Firebase
 class AccountManager:
     """Handles user authentication using Firebase"""
 
@@ -37,6 +38,8 @@ class AccountManager:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
+    
+    #this method will verify the token and return the user email
     def protected(self, token=None):
         """Verify Firebase Authentication token"""
         if not token:
