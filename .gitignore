@@ -1,0 +1,13 @@
+# Ignore Firebase credentials
+MS_AccountManager/firebase_credentials.json
+
+# Ignore Python virtual environments
+venv/
+.env
+
+# Ignore __pycache__ files
+__pycache__/
+
+# Ignore VS Code settings (optional)
+.vscode/
+.DS_Store
