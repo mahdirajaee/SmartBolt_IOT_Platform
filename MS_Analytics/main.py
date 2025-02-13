@@ -9,8 +9,8 @@ import os
 # MQTT Configuration
 MQTT_BROKER = os.getenv("MQTT_BROKER", "localhost")
 MQTT_PORT = int(os.getenv("MQTT_PORT", 1883))
-MQTT_TOPIC_SENSOR = "/sensor/data"
-MQTT_TOPIC_ANALYTICS = "/analytics/results"
+MQTT_TOPIC_SENSOR = os.getenv('MQTT_TOPIC_SENSOR', '/sensor/data')
+MQTT_TOPIC_ANALYTICS = os.getenv('MQTT_TOPIC_ANALYTICS', '/analytics/results')
 
 # Sensor Data Storage
 sensor_data = {
@@ -20,8 +20,8 @@ sensor_data = {
 }
 
 # Threshold Values
-THRESHOLD_TEMP = 28  # Celsius
-THRESHOLD_PRESSURE = 250  # Pascal
+THRESHOLD_TEMP = float(os.getenv('THRESHOLD_TEMP', 28))  # Celsius
+THRESHOLD_PRESSURE = float(os.getenv('THRESHOLD_PRESSURE', 250))  # Pascal
 MAX_DATA_POINTS = 100  # Limit data stored
 
 
@@ -197,5 +197,8 @@ threading.Thread(target=process_sensor_data, daemon=True).start()
 
 # Start CherryPy REST API
 if __name__ == "__main__":
-    cherrypy.config.update({"server.socket_host": "0.0.0.0", "server.socket_port": 8080})
+    cherrypy.config.update({
+        \"server.socket_host\": \"0.0.0.0\",
+        \"server.socket_port\": int(os.getenv('PORT', 8080))
+    })
     cherrypy.quickstart(AnalyticsAPI(), "/")
