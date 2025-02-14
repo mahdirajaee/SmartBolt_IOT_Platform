@@ -1,6 +1,3 @@
-Here's a well-structured **README.md** file for your **SmartBolt_IOT_Platform** repository:
-
----
 
 # **SmartBolt_IOT_Platform**  
 🚀 **An IoT platform for real-time monitoring and control of industrial pipelines using Smart IoT Bolts.**  
