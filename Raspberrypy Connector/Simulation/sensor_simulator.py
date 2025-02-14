@@ -4,9 +4,7 @@ import json
 from mqtt.MYMQTT import MyMQTT
 from Config import *
 
-# Define the publish interval in seconds
-# PUBLISH_INTERVAL = 5
-
+# Class to simulate temperature and pressure sensors
 class SensorSimulator:
     def __init__(self, device_id, broker, port):
         self.device_id = device_id
@@ -41,9 +39,6 @@ class SensorSimulator:
                 "pressure": pressure,
                 "timestamp": time.time()
             }
-            # Define MQTT topics
-            # MQTT_TOPIC_TEMPERATURE = "sensor/temperature"
-            # MQTT_TOPIC_PRESSURE = "sensor/pressure"
             # Publish to respective topics
             self.mqtt_client.myPublish(MQTT_TOPIC_TEMPERATURE, payload)
             self.mqtt_client.myPublish(MQTT_TOPIC_PRESSURE, payload)
