@@ -52,6 +52,13 @@ class AccountManager:
         except Exception as e:
             cherrypy.response.status = 401
             return {"error": str(e)}
+    #retrieve the all users
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def allusers(self):
+        """Retrieve all users"""
+        users = auth.list_users()
+        return {"users": [user.email for user in users.users]}
 
 if __name__ == "__main__":
     cherrypy.config.update({
