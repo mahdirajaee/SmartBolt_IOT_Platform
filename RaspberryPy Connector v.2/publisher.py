@@ -2,6 +2,7 @@ import time
 import os
 from dotenv import load_dotenv
 from mqtt_client import create_mqtt_client
+import datetime
 
 # Load environment variables
 load_dotenv("config.env")
@@ -52,5 +53,31 @@ def publish_sensor_data():
         print(f"[PUBLISHER] Sent → Temp={temp}°C, Press={press}Pa , Time={timestamp}")
         time.sleep(PUBLISH_INTERVAL)
 
+def get_current_timestamp():
+        """
+        Returns the current timestamp in ISO 8601 format.
+        """
+        return datetime.datetime.now().isoformat()
+
+def publish_sensor_data():
+        """
+        Publishes simulated sensor data to the MQTT topics at regular intervals.
+        """
+        mqtt_client = create_mqtt_client()
+        mqtt_client.loop_start()  # Start background thread to handle networking
+
+        while True:
+            temp, press = simulate_sensor_behavior()
+            timestamp = get_current_timestamp()
+
+            # Publish to each topic
+            mqtt_client.publish(TOPIC_TEMPERATURE, f"{timestamp} - {temp}")
+            mqtt_client.publish(TOPIC_PRESSURE, f"{timestamp} - {press}")
+
+            print(f"[PUBLISHER] Sent → Timestamp={timestamp}, Temp={temp}°C, Press={press}Pa")
+            time.sleep(PUBLISH_INTERVAL)
+
 if __name__ == "__main__":
     publish_sensor_data()
+
+
