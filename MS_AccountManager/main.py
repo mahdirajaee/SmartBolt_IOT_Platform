@@ -12,7 +12,6 @@ FIREBASE_CRED_PATH = os.path.join(BASE_DIR, "firebase_credentials.json")
 cred = credentials.Certificate(FIREBASE_CRED_PATH)
 firebase_admin.initialize_app(cred)
 
-#this class will handle the user authentication using Firebase
 class AccountManager:
     """Handles user authentication using Firebase"""
 
