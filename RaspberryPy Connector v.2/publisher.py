@@ -43,12 +43,13 @@ def publish_sensor_data():
 
     while True:
         temp, press = simulate_sensor_behavior()
+        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 
         # Publish to each topic
         mqtt_client.publish(TOPIC_TEMPERATURE, temp)
         mqtt_client.publish(TOPIC_PRESSURE, press)
 
-        print(f"[PUBLISHER] Sent → Temp={temp}°C, Press={press}Pa")
+        print(f"[PUBLISHER] Sent → Temp={temp}°C, Press={press}Pa , Time={timestamp}")
         time.sleep(PUBLISH_INTERVAL)
 
 if __name__ == "__main__":
