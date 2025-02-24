@@ -20,13 +20,13 @@ class AccountManager:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def index(self):
+    def index(self, *params, **queries):
         """Default response"""
         return {"message": "Welcome to the Account Manager API"}
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def users(self, email=None):
+    def users(self, *params, **queries):
         """
         Handles GET requests:
         - `/users` -> returns all users.
@@ -34,6 +34,8 @@ class AccountManager:
         """
         users = self.load_user_credentials()
 
+        # Check if email is passed as a query parameter
+        email = queries.get("email")
         if email:
             user = next((u for u in users if u["email"] == email), None)
             if user:
@@ -42,12 +44,12 @@ class AccountManager:
                 cherrypy.response.status = 404
                 return {"error": "User not found"}
 
-        return {"users": users}
+        return {"users": users}  # Returns all users
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def register(self):
+    def register(self, *params, **queries):
         """
         Handles POST request to `/register`
         - Registers a user with Firebase Authentication.
@@ -82,10 +84,11 @@ class AccountManager:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def protected(self, token=None):
+    def protected(self, *params, **queries):
         """
         Verify Firebase Authentication token
         """
+        token = queries.get("token")
         if not token:
             cherrypy.response.status = 401
             return {"error": "Token required"}
