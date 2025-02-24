@@ -43,5 +43,75 @@
         "timestamp": "2025-02-24 15:42:38",
         "temperature": 26.8,
         "pressure": 263.5
+    },
+    {
+        "timestamp": "2025-02-24 16:38:34",
+        "temperature": 25.2,
+        "pressure": 251.5
+    },
+    {
+        "timestamp": "2025-02-24 16:38:39",
+        "temperature": 25.4,
+        "pressure": 253.0
+    },
+    {
+        "timestamp": "2025-02-24 16:38:44",
+        "temperature": 25.6,
+        "pressure": 254.5
+    },
+    {
+        "timestamp": "2025-02-24 16:38:49",
+        "temperature": 25.8,
+        "pressure": 256.0
+    },
+    {
+        "timestamp": "2025-02-24 16:38:54",
+        "temperature": 26.0,
+        "pressure": 257.5
+    },
+    {
+        "timestamp": "2025-02-24 16:38:59",
+        "temperature": 26.2,
+        "pressure": 259.0
+    },
+    {
+        "timestamp": "2025-02-24 16:39:04",
+        "temperature": 26.4,
+        "pressure": 260.5
+    },
+    {
+        "timestamp": "2025-02-24 16:39:09",
+        "temperature": 26.6,
+        "pressure": 262.0
+    },
+    {
+        "timestamp": "2025-02-24 16:39:14",
+        "temperature": 26.8,
+        "pressure": 263.5
+    },
+    {
+        "timestamp": "2025-02-24 16:39:19",
+        "temperature": 27.0,
+        "pressure": 265.0
+    },
+    {
+        "timestamp": "2025-02-24 16:39:24",
+        "temperature": 27.2,
+        "pressure": 266.5
+    },
+    {
+        "timestamp": "2025-02-24 16:39:29",
+        "temperature": 27.4,
+        "pressure": 268.0
+    },
+    {
+        "timestamp": "2025-02-24 16:39:34",
+        "temperature": 27.6,
+        "pressure": 269.5
+    },
+    {
+        "timestamp": "2025-02-24 16:39:39",
+        "temperature": 27.8,
+        "pressure": 271.0
     }
 ]
