@@ -1,3 +1,4 @@
+
 import cherrypy
 import json
 import firebase_admin
@@ -5,8 +6,9 @@ from firebase_admin import credentials, auth
 import os
 import hashlib
 
+# Setup paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FIREBASE_CRED_PATH = os.path.join(BASE_DIR, "firebase_credentials.json")
+FIREBASE_CRED_PATH = os.path.join(BASE_DIR, "../../firebase_credentials.json")
 USER_CREDENTIALS_FILE = os.path.join(BASE_DIR, "user_credentials.json")
 
 # Load Firebase Credentials
@@ -19,49 +21,39 @@ class AccountManager:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def GET(self, *path, **queries):
+    def index(self):
+        """Default response"""
+        return {"message": "Welcome to the Account Manager API"}
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def users(self, email=None):
         """
-        Handles GET requests.
-        - If `/users` is accessed, it returns stored user credentials (email + hashed passwords).
-        - If `/users/{email}` is accessed, it returns only that user's hashed password.
+        Handles GET requests:
+        - `/users` -> returns all users.
+        - `/users?email=email@example.com` -> returns only that user's hashed password.
         """
-        if not path:
-            return {"error": "Invalid request. Please specify a resource."}
+        users = self.load_user_credentials()
 
-        if path[0] == "users":
-            users = self.load_user_credentials()
+        if email:
+            user = next((u for u in users if u["email"] == email), None)
+            if user:
+                return {"email": user["email"], "hashed_password": user["hashed_password"]}
+            else:
+                cherrypy.response.status = 404
+                return {"error": "User not found"}
 
-            if len(path) == 1:
-                # Return all users
-                return {"users": users}
-
-            elif len(path) == 2:
-                # Return specific user by email
-                email = path[1]
-                user = next((u for u in users if u["email"] == email), None)
-
-                if user:
-                    return {"email": user["email"], "hashed_password": user["hashed_password"]}
-                else:
-                    cherrypy.response.status = 404
-                    return {"error": "User not found"}
-
-        cherrypy.response.status = 400
-        return {"error": "Invalid endpoint"}
+        return {"users": users}
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def POST(self, *path, **queries):
+    def register(self):
         """
-        Handles POST requests.
-        - If `/register` is accessed, it registers a user (email, password).
-        - Hashes the password and stores it in `user_credentials.json`.
+        Handles POST request to `/register`
+        - Registers a user with Firebase Authentication.
+        - Hashes the password and stores it locally in `user_credentials.json`.
         """
-        if not path or path[0] != "register":
-            cherrypy.response.status = 400
-            return {"error": "Invalid request"}
-
         data = cherrypy.request.json
         email = data.get("email")
         password = data.get("password")
@@ -91,10 +83,10 @@ class AccountManager:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    
-    #this method will verify the token and return the user email
     def protected(self, token=None):
-        """Verify Firebase Authentication token"""
+        """
+        Verify Firebase Authentication token
+        """
         if not token:
             cherrypy.response.status = 401
             return {"error": "Token required"}
@@ -106,6 +98,25 @@ class AccountManager:
             cherrypy.response.status = 401
             return {"error": str(e)}
 
+    # =========== User Storage Helpers ================
+    def store_user_credentials(self, email, hashed_password):
+        """Store user credentials in a JSON file"""
+        users = self.load_user_credentials()
+        users.append({"email": email, "hashed_password": hashed_password})
+
+        with open(USER_CREDENTIALS_FILE, "w") as f:
+            json.dump(users, f, indent=4)
+
+    def load_user_credentials(self):
+        """Load user credentials from the JSON file"""
+        if not os.path.exists(USER_CREDENTIALS_FILE):
+            return []
+
+        with open(USER_CREDENTIALS_FILE, "r") as f:
+            return json.load(f)
+
+
+# ============= CherryPy Server Configuration ==============
 if __name__ == "__main__":
     cherrypy.config.update({
         "server.socket_host": "0.0.0.0",
