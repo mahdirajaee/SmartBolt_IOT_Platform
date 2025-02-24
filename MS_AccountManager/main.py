@@ -58,10 +58,6 @@ class AccountManager:
         - If `/register` is accessed, it registers a user (email, password).
         - Hashes the password and stores it in `user_credentials.json`.
         """
-        if not path or path[0] != "register":
-            cherrypy.response.status = 400
-            return {"error": "Invalid request"}
-
         data = cherrypy.request.json
         email = data.get("email")
         password = data.get("password")
@@ -91,8 +87,6 @@ class AccountManager:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    
-    #this method will verify the token and return the user email
     def protected(self, token=None):
         """Verify Firebase Authentication token"""
         if not token:
