@@ -4,7 +4,6 @@ import paho.mqtt.client as mqtt
 BROKER = 'localhost'
 PORT = 1883
 KEEP_ALIVE_INTERVAL = 60
-TOPIC = 'test/topic'
 
 # Define the callback functions
 def on_connect(client, userdata, flags, rc):
