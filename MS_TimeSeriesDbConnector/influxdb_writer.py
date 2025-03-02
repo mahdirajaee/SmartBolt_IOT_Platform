@@ -2,10 +2,15 @@ import paho.mqtt.client as mqtt
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 import json
+import os
+import sys
 
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 # Load Configuration from config.json
+config_path = os.path.join(os.path.dirname(__file__), "config.json")
 try:
-    with open("config.json", "r") as config_file:
+    with open(config_path, "r") as config_file:
         config = json.load(config_file)
 except FileNotFoundError:
     print("Error: config.json not found.")
