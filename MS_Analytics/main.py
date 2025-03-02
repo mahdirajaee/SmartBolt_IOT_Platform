@@ -6,7 +6,7 @@ import datetime
 import requests
 import numpy as np
 import pandas as pd
-from flask import Flask, request, jsonify
+import cherrypy
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
 from statsmodels.tsa.arima.model import ARIMA
@@ -22,8 +22,6 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger("AnalyticsService")
-
-app = Flask(__name__)
 
 # Configuration - Would typically be loaded from config file or environment variables
 CONFIG = {
@@ -419,58 +417,57 @@ class AnalyticsService:
                 # Sleep for a bit before retrying
                 time.sleep(60)
 
-# Flask API routes
-@app.route('/health', methods=['GET'])
-def health_check():
-    """Health check endpoint"""
-    return jsonify({"status": "healthy"}), 200
 
-@app.route('/api/predictions', methods=['GET'])
-def get_predictions():
-    """Get predictions for a specific bolt and measurement type"""
-    bolt_id = request.args.get('bolt_id')
-    measurement_type = request.args.get('type')
-    hours = int(request.args.get('hours', 24))
+class AnalyticsRESTService:
+    def __init__(self, analytics_service):
+        self.analytics_service = analytics_service
     
-    if not bolt_id or not measurement_type:
-        return jsonify({"error": "Missing required parameters"}), 400
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def health(self):
+        """Health check endpoint"""
+        return {"status": "healthy"}
     
-    if measurement_type not in ["temperature", "pressure"]:
-        return jsonify({"error": "Invalid measurement type"}), 400
-    
-    analytics_service = app.config["analytics_service"]
-    predictions = analytics_service.make_predictions(bolt_id, measurement_type, hours)
-    
-    if predictions is None:
-        return jsonify({"error": "Failed to generate predictions"}), 500
-    
-    return jsonify({"predictions": predictions}), 200
-
-@app.route('/api/alerts', methods=['GET'])
-def get_alerts():
-    """Get current alerts for a specific bolt or all bolts"""
-    bolt_id = request.args.get('bolt_id')
-    
-    analytics_service = app.config["analytics_service"]
-    
-    if bolt_id:
-        # Get alerts for specific bolt
-        alerts = analytics_service.analyze_predictions(bolt_id)
-    else:
-        # Get alerts for all bolts in all sectors
-        alerts = []
-        sectors = analytics_service.get_bolt_sectors()
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def predictions(self, bolt_id=None, type=None, hours=24):
+        """Get predictions for a specific bolt and measurement type"""
+        if not bolt_id or not type:
+            raise cherrypy.HTTPError(400, "Missing required parameters")
         
-        for sector in sectors:
-            sector_id = sector["id"]
-            bolts = analytics_service.get_bolts_in_sector(sector_id)
-            
-            for bolt in bolts:
-                bolt_alerts = analytics_service.analyze_predictions(bolt["id"])
-                if bolt_alerts:
-                    alerts.extend(bolt_alerts)
+        if type not in ["temperature", "pressure"]:
+            raise cherrypy.HTTPError(400, "Invalid measurement type")
+        
+        predictions = self.analytics_service.make_predictions(bolt_id, type, int(hours))
+        
+        if predictions is None:
+            raise cherrypy.HTTPError(500, "Failed to generate predictions")
+        
+        return {"predictions": predictions}
     
-    return jsonify({"alerts": alerts}), 200
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def alerts(self, bolt_id=None):
+        """Get current alerts for a specific bolt or all bolts"""
+        if bolt_id:
+            # Get alerts for specific bolt
+            alerts = self.analytics_service.analyze_predictions(bolt_id)
+        else:
+            # Get alerts for all bolts in all sectors
+            alerts = []
+            sectors = self.analytics_service.get_bolt_sectors()
+            
+            for sector in sectors:
+                sector_id = sector["id"]
+                bolts = self.analytics_service.get_bolts_in_sector(sector_id)
+                
+                for bolt in bolts:
+                    bolt_alerts = self.analytics_service.analyze_predictions(bolt["id"])
+                    if bolt_alerts:
+                        alerts.extend(bolt_alerts)
+        
+        return {"alerts": alerts}
+
 
 def start_analysis_thread(analytics_service):
     """Start the background analysis thread"""
@@ -479,17 +476,63 @@ def start_analysis_thread(analytics_service):
     analysis_thread.start()
     logger.info("Analysis background thread started")
 
+
+def setup_api_endpoints():
+    """Configure CherryPy endpoints"""
+    # Create and configure the analytics service
+    analytics_service = AnalyticsService(CONFIG)
+    
+    # Start background analysis thread
+    start_analysis_thread(analytics_service)
+    
+    # Mount the REST service
+    rest_service = AnalyticsRESTService(analytics_service)
+    
+    # Configure the API endpoints
+    conf = {
+        '/': {
+            'tools.sessions.on': True,
+            'tools.response_headers.on': True,
+            'tools.response_headers.headers': [('Content-Type', 'application/json')],
+        }
+    }
+    
+    # Create API structure
+    api = cherrypy.tree.mount(rest_service, '/', conf)
+    
+    # Add specific endpoint configurations
+    api.merge({
+        '/health': {
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+        },
+        '/api/predictions': {
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+        },
+        '/api/alerts': {
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+        }
+    })
+    
+    return analytics_service
+
+
 if __name__ == "__main__":
     try:
-        # Initialize the analytics service
-        analytics_service = AnalyticsService(CONFIG)
-        app.config["analytics_service"] = analytics_service
+        # Configure CherryPy server
+        cherrypy.config.update({
+            'server.socket_host': '0.0.0.0',
+            'server.socket_port': int(os.getenv("PORT", "5000")),
+            'engine.autoreload.on': False,
+            'log.access_file': 'access.log',
+            'log.error_file': 'error.log'
+        })
         
-        # Start background analysis thread
-        start_analysis_thread(analytics_service)
+        # Setup API endpoints and get the analytics service
+        analytics_service = setup_api_endpoints()
         
-        # Start Flask app
-        port = int(os.getenv("PORT", "5000"))
-        app.run(host="0.0.0.0", port=port)
+        # Start the CherryPy server
+        cherrypy.engine.start()
+        cherrypy.engine.block()
+        
     except Exception as e:
         logger.critical(f"Failed to start analytics service: {str(e)}")
