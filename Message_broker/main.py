@@ -1,245 +1,165 @@
 import paho.mqtt.client as mqtt
-import time
+import os
 import json
+import time
+import requests
 import logging
-from datetime import datetime
-import threading
+from dotenv import load_dotenv
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-logger = logging.getLogger("message_broker")
+logger = logging.getLogger("MessageBroker")
 
-# MQTT Broker Settings
-BROKER = 'localhost'
-PORT = 1883
-KEEP_ALIVE_INTERVAL = 60
+# Load environment variables
+load_dotenv()
 
-# Topic Structure
-SENSOR_TOPICS = [
-    "smartbolt/sector/+/bolt/+/temperature",
-    "smartbolt/sector/+/bolt/+/pressure"
-]
-ACTUATOR_COMMAND_TOPIC = "smartbolt/actuator/+/command"
-ACTUATOR_STATE_TOPIC = "smartbolt/actuator/+/state"
-ALERT_TOPIC = "smartbolt/alerts/+"
-
-# In-memory storage for received messages (for debugging/monitoring)
-received_messages = {
-    "sensors": {},
-    "actuators": {},
-    "alerts": []
-}
-message_lock = threading.Lock()
-
-# Define callback functions
-def on_connect(client, userdata, flags, rc):
-    """Callback for when the client connects to the broker."""
-    if rc == 0:
-        logger.info("Connected to MQTT broker successfully")
+class MessageBroker:
+    def __init__(self):
+        # Get configuration from environment variables or use defaults
+        self.mqtt_host = os.getenv("MQTT_HOST", "localhost")
+        self.mqtt_port = int(os.getenv("MQTT_PORT", 1883))
+        self.mqtt_keepalive = int(os.getenv("MQTT_KEEPALIVE", 60))
+        self.catalog_url = os.getenv("CATALOG_URL", "http://localhost:8080")
         
-        # Subscribe to all relevant topics
-        for topic in SENSOR_TOPICS:
-            client.subscribe(topic, qos=1)
-            logger.info(f"Subscribed to: {topic}")
+        # Topic structure
+        self.sensor_temperature_topic = "/sensor/temperature"
+        self.sensor_pressure_topic = "/sensor/pressure"
+        self.actuator_valve_topic = "/actuator/valve"
         
-        client.subscribe(ACTUATOR_COMMAND_TOPIC, qos=2)
-        logger.info(f"Subscribed to: {ACTUATOR_COMMAND_TOPIC}")
+        # Setup MQTT client
+        self.client = mqtt.Client()
+        self.client.on_connect = self.on_connect
+        self.client.on_message = self.on_message
+        self.client.on_disconnect = self.on_disconnect
         
-        client.subscribe(ACTUATOR_STATE_TOPIC, qos=1)
-        logger.info(f"Subscribed to: {ACTUATOR_STATE_TOPIC}")
+        # Connection status
+        self.connected = False
         
-        client.subscribe(ALERT_TOPIC, qos=2)
-        logger.info(f"Subscribed to: {ALERT_TOPIC}")
-    else:
-        logger.error(f"Failed to connect to MQTT broker with result code {rc}")
-        
-        # RC Error Codes
-        error_codes = {
-            1: "Connection refused - incorrect protocol version",
-            2: "Connection refused - invalid client identifier",
-            3: "Connection refused - server unavailable",
-            4: "Connection refused - bad username or password",
-            5: "Connection refused - not authorized"
+        # Service details for catalog registration
+        self.service_id = "message_broker"
+        self.service_name = "MQTT Message Broker"
+        self.endpoints = {
+            "mqtt": f"mqtt://{self.mqtt_host}:{self.mqtt_port}"
         }
-        if rc in error_codes:
-            logger.error(f"Error details: {error_codes[rc]}")
-
-def on_message(client, userdata, msg):
-    """Callback for when a message is received from the broker."""
-    try:
-        topic = msg.topic
-        payload = msg.payload.decode('utf-8')
+        self.topics = {
+            "temperature": self.sensor_temperature_topic,
+            "pressure": self.sensor_pressure_topic,
+            "valve": self.actuator_valve_topic
+        }
         
-        # Try to parse JSON payload
-        try:
-            payload_data = json.loads(payload)
-        except json.JSONDecodeError:
-            payload_data = payload
+    def on_connect(self, client, userdata, flags, rc):
+        """Callback when connected to MQTT broker"""
+        if rc == 0:
+            logger.info(f"Connected to MQTT Broker at {self.mqtt_host}:{self.mqtt_port}")
+            self.connected = True
             
-        logger.info(f"Message received on {topic}")
-        logger.debug(f"Message content: {payload}")
-        
-        # Store message in memory for monitoring
-        with message_lock:
-            # Handle sensor data
-            if any(topic.startswith(t.replace('+', '')) for t in SENSOR_TOPICS):
-                topic_parts = topic.split('/')
-                if len(topic_parts) >= 6:
-                    sector_id = topic_parts[2]
-                    bolt_id = topic_parts[4]
-                    data_type = topic_parts[5]
-                    
-                    if sector_id not in received_messages["sensors"]:
-                        received_messages["sensors"][sector_id] = {}
-                    if bolt_id not in received_messages["sensors"][sector_id]:
-                        received_messages["sensors"][sector_id][bolt_id] = {}
-                        
-                    received_messages["sensors"][sector_id][bolt_id][data_type] = {
-                        "value": payload_data.get("value", payload),
-                        "timestamp": datetime.now().isoformat()
-                    }
-            
-            # Handle actuator commands/states
-            elif topic.startswith("smartbolt/actuator/"):
-                topic_parts = topic.split('/')
-                if len(topic_parts) >= 4:
-                    actuator_id = topic_parts[2]
-                    message_type = topic_parts[3]  # command or state
-                    
-                    if actuator_id not in received_messages["actuators"]:
-                        received_messages["actuators"][actuator_id] = {}
-                        
-                    received_messages["actuators"][actuator_id][message_type] = {
-                        "value": payload_data,
-                        "timestamp": datetime.now().isoformat()
-                    }
-            
-            # Handle alerts
-            elif topic.startswith("smartbolt/alerts/"):
-                topic_parts = topic.split('/')
-                if len(topic_parts) >= 3:
-                    sector_id = topic_parts[2]
-                    
-                    received_messages["alerts"].append({
-                        "sector_id": sector_id,
-                        "alert": payload_data,
-                        "timestamp": datetime.now().isoformat()
-                    })
-                    
-                    # Keep only last 100 alerts
-                    if len(received_messages["alerts"]) > 100:
-                        received_messages["alerts"] = received_messages["alerts"][-100:]
-        
-    except Exception as e:
-        logger.error(f"Error processing message: {e}")
-
-def on_disconnect(client, userdata, rc):
-    """Callback for when the client disconnects from the broker."""
-    if rc != 0:
-        logger.warning(f"Unexpected disconnection from MQTT broker with code {rc}")
-    else:
-        logger.info("Disconnected from MQTT broker")
-
-def on_publish(client, userdata, mid):
-    """Callback for when a message is published."""
-    logger.debug(f"Message {mid} published")
-
-def on_subscribe(client, userdata, mid, granted_qos):
-    """Callback for when the client subscribes to a topic."""
-    logger.debug(f"Subscribed with message ID {mid} and QoS {granted_qos}")
-
-def on_log(client, userdata, level, buf):
-    """Callback for MQTT client logging."""
-    if level == mqtt.MQTT_LOG_ERR:
-        logger.error(f"MQTT Log: {buf}")
-    elif level == mqtt.MQTT_LOG_WARNING:
-        logger.warning(f"MQTT Log: {buf}")
-    else:
-        logger.debug(f"MQTT Log: {buf}")
-
-def create_client():
-    """Create and configure MQTT client."""
-    client_id = f"smartbolt-broker-{int(time.time())}"
-    client = mqtt.Client(client_id=client_id)
-    
-    # Set callbacks
-    client.on_connect = on_connect
-    client.on_message = on_message
-    client.on_disconnect = on_disconnect
-    client.on_publish = on_publish
-    client.on_subscribe = on_subscribe
-    client.on_log = on_log
-    
-    # Enable logging
-    client.enable_logger(logger)
-    
-    return client
-
-def publish_message(client, topic, payload, qos=1, retain=False):
-    """Publish a message to a topic."""
-    try:
-        # Convert dict to JSON string if needed
-        if isinstance(payload, dict):
-            payload = json.dumps(payload)
-            
-        # Publish message
-        result = client.publish(topic, payload, qos=qos, retain=retain)
-        result.wait_for_publish()
-        
-        if result.rc == mqtt.MQTT_ERR_SUCCESS:
-            logger.info(f"Message published to {topic}")
-            return True
+            # Subscribe to all relevant topics
+            client.subscribe(self.sensor_temperature_topic + "/#")
+            client.subscribe(self.sensor_pressure_topic + "/#")
+            client.subscribe(self.actuator_valve_topic + "/#")
+            logger.info("Subscribed to sensor and actuator topics")
         else:
-            logger.error(f"Failed to publish message to {topic}: {result.rc}")
-            return False
-    except Exception as e:
-        logger.error(f"Error publishing message: {e}")
-        return False
-
-def print_status():
-    """Print the current status of the message broker."""
-    while True:
+            logger.error(f"Failed to connect to MQTT broker with code {rc}")
+            self.connected = False
+    
+    def on_disconnect(self, client, userdata, rc):
+        """Callback when disconnected from MQTT broker"""
+        logger.warning(f"Disconnected from MQTT broker with code {rc}")
+        self.connected = False
+    
+    def on_message(self, client, userdata, msg):
+        """Callback when a message is received"""
         try:
-            time.sleep(60)  # Print status every minute
+            logger.info(f"Message received on topic {msg.topic}: {msg.payload.decode()}")
             
-            with message_lock:
-                sensor_count = sum(len(bolts) for sector, bolts in received_messages["sensors"].items())
-                actuator_count = len(received_messages["actuators"])
-                alert_count = len(received_messages["alerts"])
-                
-            logger.info(f"Status: {sensor_count} sensors, {actuator_count} actuators, {alert_count} alerts processed")
+            # Message forwarding logic can be implemented here if needed
+            # This is a basic broker, so messages are automatically forwarded
+            # by the MQTT broker itself based on topic subscriptions
         except Exception as e:
-            logger.error(f"Error printing status: {e}")
+            logger.error(f"Error processing message: {e}")
+    
+    def register_with_catalog(self):
+        """Register the message broker service with the catalog"""
+        try:
+            service_data = {
+                "id": self.service_id,
+                "name": self.service_name,
+                "endpoints": self.endpoints,
+                "topics": self.topics,
+                "status": "active",
+                "last_updated": time.time()
+            }
+            
+            response = requests.post(
+                f"{self.catalog_url}/services",
+                json=service_data
+            )
+            
+            if response.status_code == 200 or response.status_code == 201:
+                logger.info("Successfully registered with the catalog")
+                return True
+            else:
+                logger.error(f"Failed to register with catalog: {response.status_code} - {response.text}")
+                return False
+        except Exception as e:
+            logger.error(f"Error registering with catalog: {e}")
+            return False
+    
+    def update_status_with_catalog(self):
+        """Update the service status with the catalog"""
+        try:
+            status_data = {
+                "status": "active" if self.connected else "disconnected",
+                "last_updated": time.time()
+            }
+            
+            response = requests.put(
+                f"{self.catalog_url}/services/{self.service_id}",
+                json=status_data
+            )
+            
+            if response.status_code == 200:
+                logger.info("Successfully updated status with the catalog")
+                return True
+            else:
+                logger.error(f"Failed to update status with catalog: {response.status_code} - {response.text}")
+                return False
+        except Exception as e:
+            logger.error(f"Error updating status with catalog: {e}")
+            return False
+        
+    def start(self):
+        """Start the message broker"""
+        try:
+            # Connect to MQTT broker
+            logger.info(f"Connecting to MQTT broker at {self.mqtt_host}:{self.mqtt_port}")
+            self.client.connect(self.mqtt_host, self.mqtt_port, self.mqtt_keepalive)
+            
+            # Register with catalog
+            self.register_with_catalog()
+            
+            # Start the MQTT client loop
+            self.client.loop_start()
+            
+            # Start the heartbeat loop for catalog updates
+            while True:
+                if self.connected:
+                    self.update_status_with_catalog()
+                time.sleep(60)  # Update status every minute
+                
+        except KeyboardInterrupt:
+            logger.info("Shutting down message broker...")
+            self.client.loop_stop()
+            self.client.disconnect()
+        except Exception as e:
+            logger.error(f"Error in message broker: {e}")
+            self.client.loop_stop()
+            self.client.disconnect()
 
-def start_broker():
-    """Start the MQTT message broker."""
-    try:
-        logger.info("Starting SmartBolt MQTT Message Broker")
-        
-        # Create MQTT client
-        client = create_client()
-        
-        # Connect to MQTT broker
-        logger.info(f"Connecting to MQTT broker at {BROKER}:{PORT}")
-        client.connect(BROKER, PORT, KEEP_ALIVE_INTERVAL)
-        
-        # Start the status thread
-        threading.Thread(target=print_status, daemon=True).start()
-        
-        # Start the loop to process callbacks
-        client.loop_forever()
-        
-    except KeyboardInterrupt:
-        logger.info("Message broker stopped by user")
-        if client:
-            client.disconnect()
-    except Exception as e:
-        logger.error(f"Error in message broker: {e}")
-        if client:
-            client.disconnect()
-
+# Entry point
 if __name__ == "__main__":
-    start_broker()
+    broker = MessageBroker()
+    broker.start()
