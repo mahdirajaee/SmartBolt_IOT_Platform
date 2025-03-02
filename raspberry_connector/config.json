@@ -1,0 +1,8 @@
+{
+    "broker_address": "broker.hivemq.com",
+    "broker_port": 1883,
+    "temperature_topic": "sensors/temperature",
+    "pressure_topic": "sensors/pressure",
+    "actuator_command_topic": "actuators/command",
+    "influxdb_topic": "influxdb/data"
+  }

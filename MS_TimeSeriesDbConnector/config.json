@@ -1,0 +1,9 @@
+{
+    "broker_address": "broker.hivemq.com",
+    "broker_port": 1883,
+    "influxdb_url": "http://localhost:8086",
+    "influxdb_token": "YOUR_INFLUXDB_TOKEN",
+    "influxdb_org": "YOUR_INFLUXDB_ORG",
+    "influxdb_bucket": "smart_iot_bolt",
+    "influxdb_topic": "influxdb/data"
+  }
