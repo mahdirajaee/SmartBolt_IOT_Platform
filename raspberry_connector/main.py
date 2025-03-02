@@ -3,13 +3,20 @@ import time
 import importlib
 import json
 import threading
+import datetime
+import os
+import sys
+
+# Add the parent directory to the Python path
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # Load Configuration from config.json
+config_path = os.path.join(os.path.dirname(__file__), "config_sen.json")
 try:
-    with open("config.json", "r") as config_file:
+    with open(config_path, "r") as config_file:
         config = json.load(config_file)
 except FileNotFoundError:
-    print("Error: config.json not found.")
+    print(f"Error: {config_path} not found.")
     exit(1)
 
 # MQTT Broker Configuration
@@ -62,13 +69,17 @@ try:
     while True:
         temperature = temperature_module.get_temperature()
         pressure = pressure_module.get_pressure()
+        #get time like this
+        #time = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
         client.publish(TEMPERATURE_TOPIC, str(temperature))
         client.publish(PRESSURE_TOPIC, str(pressure))
 
         data = {
             "temperature": temperature,
-            "pressure": pressure
+            "pressure": pressure,
+
         }
         client.publish(INFLUXDB_TOPIC, json.dumps(data))
 
