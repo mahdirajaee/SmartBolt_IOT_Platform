@@ -1,9 +1,7 @@
 import os
 import logging
-import json
 import requests
 import asyncio
-import threading
 from datetime import datetime
 from dotenv import load_dotenv
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
