@@ -1,4 +1,4 @@
 import random
 
 def get_pressure():
-    return random.uniform(980, 1020)
+    return round(random.uniform(100, 1020), 2)

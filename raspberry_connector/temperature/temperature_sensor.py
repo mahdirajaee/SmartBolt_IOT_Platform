@@ -1,4 +1,4 @@
 import random
 
 def get_temperature():
-    return random.uniform(20, 30)
+    return round(random.uniform(20, 100), 2)
