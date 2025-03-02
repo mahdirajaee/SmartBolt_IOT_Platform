@@ -3,8 +3,9 @@ import time
 import logging
 import threading
 import requests
-from datetime import datetime
+import cherrypy
 import paho.mqtt.client as mqtt
+from datetime import datetime
 
 # Configure logging
 logging.basicConfig(
@@ -18,7 +19,7 @@ logging.basicConfig(
 logger = logging.getLogger("ControlCenter")
 
 class ControlCenter:
-    def __init__(self, config_file="control_center_config.json"):
+    def __init__(self, config_file="config.py"):
         """Initialize the Control Center with configuration from a file."""
         # Load configuration
         self.load_config(config_file)
@@ -285,20 +286,17 @@ class ControlCenter:
             logger.error(f"Error updating catalog status: {e}")
             return False
 
-    def run(self):
-        """Main method to run the Control Center."""
-        logger.info("Starting Control Center")
+    def background_operations(self):
+        """Background thread for periodic operations."""
+        logger.info("Starting background operations thread")
         
         # Fetch initial configuration from catalog
         self.fetch_from_catalog()
         
         # Connect to MQTT broker
         if not self.connect_mqtt():
-            logger.error("Failed to connect to MQTT broker. Control Center cannot start.")
+            logger.error("Failed to connect to MQTT broker. Control Center cannot operate properly.")
             return
-        
-        # Set running flag
-        self.running = True
         
         # Track last catalog update time
         last_catalog_update = time.time()
@@ -317,116 +315,187 @@ class ControlCenter:
                 # Sleep for the check interval
                 time.sleep(self.check_interval)
                 
-        except KeyboardInterrupt:
-            logger.info("Control Center stopping due to keyboard interrupt")
         except Exception as e:
-            logger.error(f"Error in main loop: {e}")
+            logger.error(f"Error in background operations: {e}")
         finally:
-            # Clean shutdown
-            self.running = False
+            # Clean shutdown of MQTT
             self.mqtt_client.loop_stop()
             self.mqtt_client.disconnect()
-            logger.info("Control Center stopped")
+            logger.info("Background operations thread stopped")
+
+    def start(self):
+        """Start the Control Center background operations."""
+        if not self.running:
+            self.running = True
+            # Start background operations in a separate thread
+            self.bg_thread = threading.Thread(target=self.background_operations, daemon=True)
+            self.bg_thread.start()
+            logger.info("Control Center started")
+            return True
+        else:
+            logger.warning("Control Center is already running")
+            return False
 
     def stop(self):
         """Stop the Control Center."""
-        self.running = False
-        logger.info("Control Center stopping...")
-
-
-# REST API endpoints for external control
-def create_rest_api(control_center):
-    """Create a REST API for the Control Center using Flask."""
-    from flask import Flask, request, jsonify
-    
-    app = Flask(__name__)
-    
-    @app.route('/status', methods=['GET'])
-    def get_status():
-        """Get the current status of the Control Center."""
-        return jsonify({
-            "status": "active" if control_center.running else "inactive",
-            "sensor_data": control_center.sensor_data,
-            "connected_to_mqtt": control_center.mqtt_client.is_connected()
-        })
-    
-    @app.route('/valve/<device_id>', methods=['POST'])
-    def control_valve(device_id):
-        """Control a valve actuator manually."""
-        data = request.json
-        command = data.get('command')
-        
-        if command not in ('open', 'close'):
-            return jsonify({"error": "Invalid command. Use 'open' or 'close'"}), 400
-        
-        success = control_center.send_valve_command(device_id, command)
-        
-        if success:
-            return jsonify({"message": f"Command {command} sent to valve {device_id}"}), 200
+        if self.running:
+            self.running = False
+            logger.info("Control Center stopping...")
+            # Wait for background thread to finish
+            if hasattr(self, 'bg_thread') and self.bg_thread.is_alive():
+                self.bg_thread.join(timeout=5.0)
+            return True
         else:
-            return jsonify({"error": "Failed to send command"}), 500
-    
-    @app.route('/thresholds/<device_id>', methods=['GET', 'PUT'])
-    def manage_thresholds(device_id):
-        """Get or update thresholds for a device."""
-        if request.method == 'GET':
-            # Return current thresholds for the device
-            if hasattr(control_center, 'device_thresholds') and device_id in control_center.device_thresholds:
-                return jsonify(control_center.device_thresholds[device_id])
-            else:
-                return jsonify({
-                    "temperature": control_center.temp_threshold_high,
-                    "pressure": control_center.pressure_threshold_high
-                })
+            logger.warning("Control Center is not running")
+            return False
+
+
+# REST API using CherryPy
+class ControlCenterAPI:
+    def __init__(self, control_center):
+        self.control_center = control_center
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def index(self):
+        """Root endpoint that returns service info."""
+        return {
+            "service": "Control Center",
+            "status": "active" if self.control_center.running else "inactive",
+            "version": "1.0"
+        }
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def status(self):
+        """Get the current status of the Control Center."""
+        return {
+            "status": "active" if self.control_center.running else "inactive",
+            "sensor_data": self.control_center.sensor_data,
+            "connected_to_mqtt": self.control_center.mqtt_client.is_connected() if hasattr(self.control_center, 'mqtt_client') else False
+        }
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def valve(self, device_id=None):
+        """Control a valve actuator manually."""
+        if not device_id:
+            raise cherrypy.HTTPError(400, "Device ID is required")
         
-        elif request.method == 'PUT':
+        if cherrypy.request.method == 'POST':
+            data = cherrypy.request.json
+            command = data.get('command')
+            
+            if command not in ('open', 'close'):
+                raise cherrypy.HTTPError(400, "Invalid command. Use 'open' or 'close'")
+            
+            success = self.control_center.send_valve_command(device_id, command)
+            
+            if success:
+                return {"message": f"Command {command} sent to valve {device_id}"}
+            else:
+                raise cherrypy.HTTPError(500, "Failed to send command")
+        else:
+            raise cherrypy.HTTPError(405, "Method not allowed")
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def thresholds(self, device_id=None):
+        """Get or update thresholds for a device."""
+        if not device_id:
+            raise cherrypy.HTTPError(400, "Device ID is required")
+            
+        if cherrypy.request.method == 'GET':
+            # Return current thresholds for the device
+            if hasattr(self.control_center, 'device_thresholds') and device_id in self.control_center.device_thresholds:
+                return self.control_center.device_thresholds[device_id]
+            else:
+                return {
+                    "temperature": self.control_center.temp_threshold_high,
+                    "pressure": self.control_center.pressure_threshold_high
+                }
+        
+        elif cherrypy.request.method == 'PUT':
             # Update thresholds for the device
-            data = request.json
+            data = cherrypy.request.json
             
-            if not hasattr(control_center, 'device_thresholds'):
-                control_center.device_thresholds = {}
+            if not hasattr(self.control_center, 'device_thresholds'):
+                self.control_center.device_thresholds = {}
             
-            if device_id not in control_center.device_thresholds:
-                control_center.device_thresholds[device_id] = {}
+            if device_id not in self.control_center.device_thresholds:
+                self.control_center.device_thresholds[device_id] = {}
             
             if 'temperature' in data:
-                control_center.device_thresholds[device_id]['temperature'] = float(data['temperature'])
+                self.control_center.device_thresholds[device_id]['temperature'] = float(data['temperature'])
             
             if 'pressure' in data:
-                control_center.device_thresholds[device_id]['pressure'] = float(data['pressure'])
+                self.control_center.device_thresholds[device_id]['pressure'] = float(data['pressure'])
             
-            return jsonify({"message": f"Thresholds updated for device {device_id}"}), 200
+            return {"message": f"Thresholds updated for device {device_id}"}
+        else:
+            raise cherrypy.HTTPError(405, "Method not allowed")
+
+
+def start_control_center(config_file="config.py", api_port=8081):
+    """Start the Control Center and its API."""
+    # Create Control Center instance
+    control_center = ControlCenter(config_file)
     
-    return app
+    # Start the Control Center background operations
+    control_center.start()
+    
+    # Configure CherryPy
+    cherrypy.config.update({
+        'server.socket_host': '0.0.0.0',
+        'server.socket_port': api_port,
+        'engine.autoreload.on': False,
+        'log.screen': True,
+        'log.access_file': 'access.log',
+        'log.error_file': 'error.log'
+    })
+    
+    # Create API
+    api = ControlCenterAPI(control_center)
+    
+    # Configure the API endpoints with their dispatchers
+    conf = {
+        '/': {
+            'tools.sessions.on': True,
+            'tools.response_headers.on': True,
+            'tools.response_headers.headers': [('Content-Type', 'application/json')],
+        }
+    }
+    
+    # Mount the API and start the server
+    cherrypy.tree.mount(api, '/api', conf)
+    
+    # Start CherryPy server
+    cherrypy.engine.start()
+    
+    # Register shutdown hook
+    def cleanup():
+        control_center.stop()
+        cherrypy.engine.exit()
+    
+    cherrypy.engine.subscribe('stop', cleanup)
+    
+    # Block until the server is terminated
+    cherrypy.engine.block()
 
 
 # Main entry point
 if __name__ == "__main__":
     import argparse
-    import threading
     
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='IoT Smart Bolt Control Center')
-    parser.add_argument('--config', type=str, default='control_center_config.json',
+    parser.add_argument('--config', type=str, default='config.py',
                         help='Path to configuration file')
-    parser.add_argument('--api-port', type=int, default=5000,
+    parser.add_argument('--api-port', type=int, default=8081,
                         help='Port for REST API')
     args = parser.parse_args()
     
-    # Create and start the Control Center
-    control_center = ControlCenter(args.config)
-    
-    # Create and start the REST API in a separate thread
-    app = create_rest_api(control_center)
-    threading.Thread(
-        target=lambda: app.run(host='0.0.0.0', port=args.api_port, debug=False),
-        daemon=True
-    ).start()
-    
-    # Run the Control Center
-    try:
-        control_center.run()
-    except KeyboardInterrupt:
-        logger.info("Interrupted by user")
-    finally:
-        control_center.stop()
+    # Start the Control Center with CherryPy API
+    start_control_center(args.config, args.api_port)
