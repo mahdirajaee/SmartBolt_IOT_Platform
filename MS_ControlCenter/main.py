@@ -297,9 +297,6 @@ class ControlCenter:
             logger.error("Failed to connect to MQTT broker. Control Center cannot start.")
             return
         
-        # Set running flag
-        self.running = True
-        
         # Track last catalog update time
         last_catalog_update = time.time()
         
@@ -317,8 +314,6 @@ class ControlCenter:
                 # Sleep for the check interval
                 time.sleep(self.check_interval)
                 
-        except KeyboardInterrupt:
-            logger.info("Control Center stopping due to keyboard interrupt")
         except Exception as e:
             logger.error(f"Error in main loop: {e}")
         finally:
@@ -403,7 +398,6 @@ def create_rest_api(control_center):
 # Main entry point
 if __name__ == "__main__":
     import argparse
-    import threading
     
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='IoT Smart Bolt Control Center')
