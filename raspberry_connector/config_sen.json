@@ -1,8 +1,15 @@
 {
-    "broker_address": "broker.hivemq.com",
-    "broker_port": 1883,
-    "temperature_topic": "sensors/temperature",
-    "pressure_topic": "sensors/pressure",
-    "actuator_command_topic": "actuators/command",
-    "influxdb_topic": "influxdb/data"
+  "broker_address": "localhost",
+  "broker_port": 1883,
+  "temperature_topic": "sensor/temperature",
+  "pressure_topic": "sensor/pressure",
+  "actuator_command_topic": "actuator/valve",
+  "catalog_url": "http://localhost:8080/api/register",
+  "update_interval": 2,
+  "pipeline_id": "pipe001",
+  "device_id": "dev010",
+  "device_location": {
+      "latitude": 45.116177,
+      "longitude": 7.742615
   }
+}
