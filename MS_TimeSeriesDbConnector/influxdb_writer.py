@@ -102,7 +102,6 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(ACTUATOR_STATUS_TOPIC)
 
 def on_message(client, userdata, msg):
-    print ("msg--->>",msg.payload.decode())
     try:
         # Extract pipeline_id and device_id from topic
         # Example topic: sensor/temperature/pipe001/dev010
@@ -140,8 +139,6 @@ def on_message(client, userdata, msg):
         if "timestamp" in data:
             timestamp = datetime.datetime.fromisoformat(data["timestamp"])
             point.time(timestamp)
-
-        print ("data--->>",data)
         # Write to InfluxDB
         write_api.write(bucket=INFLUXDB_BUCKET, record=point)
         print(f"Data written to InfluxDB: {msg.topic} -> {data}")
