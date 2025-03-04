@@ -33,9 +33,9 @@ INFLUXDB_ORG = config["influxdb_org"]
 INFLUXDB_BUCKET = config["influxdb_bucket"]
 
 # MQTT Topics to subscribe
-TEMPERATURE_TOPIC = config["temperature_topic"]+"/#" # Wildcard to capture all pipelines/devices
-PRESSURE_TOPIC = config["pressure_topic"]+"/#" # Wildcard to capture all pipelines/devices
-ACTUATOR_STATUS_TOPIC = config["actuator_command_topic"] 
+TEMPERATURE_TOPIC = config["temperature_topic"]+"/#"  # Wildcard to capture all pipelines/devices
+PRESSURE_TOPIC = config["pressure_topic"]+"/#"
+ACTUATOR_STATUS_TOPIC = config["actuator_command_topic"]+"/#"
 
 # Service information for catalog registration
 service_info = {
@@ -139,6 +139,7 @@ def on_message(client, userdata, msg):
         if "timestamp" in data:
             timestamp = datetime.datetime.fromisoformat(data["timestamp"])
             point.time(timestamp)
+        
         # Write to InfluxDB
         write_api.write(bucket=INFLUXDB_BUCKET, record=point)
         print(f"Data written to InfluxDB: {msg.topic} -> {data}")
