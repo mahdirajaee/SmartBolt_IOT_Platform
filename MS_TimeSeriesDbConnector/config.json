@@ -2,7 +2,7 @@
     "broker_address": "localhost",
     "broker_port": 1883,
     "influxdb_url": "http://localhost:8086",
-    "influxdb_token": "Yb9e6LphaPE2bPUQlHK2MPQySEoGXdzWrgoknsAPDhfyEQ0yGWfiYpukKW689L_eLImfIKziafC2tMskE_HUbA==",
+    "influxdb_token": "mRdOwWpi6TWnPhIwV4kO8Ig38wXPLVYxzSUFpTnNgPjoW9iObQ6NCgzeKGk0-uTHUFVs_wvacYL4xNCDU3VpYQ==",
     "influxdb_org": "IOT_project_Bolt",
     "influxdb_bucket": "smart_Bolt",
     "catalog_url": "http://localhost:8080/api/register",
