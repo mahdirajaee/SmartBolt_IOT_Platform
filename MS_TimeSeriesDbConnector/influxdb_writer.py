@@ -137,10 +137,6 @@ def on_message(client, userdata, msg):
         elif data_type == "valve":
             point.field("status", data["status"])
         
-        # Use timestamp if available
-        # if "timestamp" in data:
-        #     timestamp = datetime.datetime.fromisoformat(data["timestamp"])
-        #     point.time(timestamp)
         
         # Write to InfluxDB
         write_api.write(bucket=INFLUXDB_BUCKET, record=point)
