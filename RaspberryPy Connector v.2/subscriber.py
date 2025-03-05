@@ -37,3 +37,33 @@ def start_subscriber():
 
 if __name__ == "__main__":
     start_subscriber()
+
+# """new code"""
+# import os
+# from dotenv import load_dotenv
+# from mqtt_client import create_mqtt_client
+
+# class SensorSubscriber:
+#     def __init__(self, mqtt_client, subscribe_topic: str):
+#         self.mqtt_client = mqtt_client
+#         self.subscribe_topic = subscribe_topic
+#         self.mqtt_client.on_message = self.on_message
+
+#     def on_message(self, client, userdata, msg):
+#         payload = msg.payload.decode()
+#         print(f"[SUBSCRIBER] Received → Topic: {msg.topic} | Payload: {payload}")
+
+#     def start(self):
+#         self.mqtt_client.subscribe(self.subscribe_topic)
+#         print(f"[SUBSCRIBER] Subscribed to '{self.subscribe_topic}'")
+#         self.mqtt_client.loop_forever()
+
+# if __name__ == "__main__":
+#     load_dotenv("config.env")
+
+#     mqtt_client = create_mqtt_client()
+#     subscriber = SensorSubscriber(
+#         mqtt_client=mqtt_client,
+#         subscribe_topic=os.getenv("MQTT_TOPIC_LISTEN_TEST", "/sensors/#")
+#     )
+#     subscriber.start()

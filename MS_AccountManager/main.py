@@ -1,44 +1,10 @@
+
 import cherrypy
 import json
 import firebase_admin
 from firebase_admin import credentials, auth
 import os
 import hashlib
-import requests
-import time
-import jwt
-import datetime
-import uuid
-import logging
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger('AccountManager')
-
-# Setup paths
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FIREBASE_CRED_PATH = os.path.join(BASE_DIR, "firebase_credentials.json")
-USER_CREDENTIALS_FILE = os.path.join(BASE_DIR, "user_credentials.json")
-
-# Environment variables
-CATALOG_URL = os.getenv("CATALOG_URL", "http://localhost:8080")
-SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-for-jwt")  # For JWT tokens
-SERVICE_ID = str(uuid.uuid4())  # Unique identifier for this service instance
-
-# Load Firebase Credentials (if available)
-try:
-    cred = credentials.Certificate(FIREBASE_CRED_PATH)
-    firebase_admin.initialize_app(cred)
-    FIREBASE_ENABLED = True
-    logger.info("Firebase authentication enabled")
-except Exception as e:
-    FIREBASE_ENABLED = False
-    logger.warning(f"Firebase not configured: {e}. Using local authentication only.")
-
-
 class AccountManager:
     """
     Account Manager Microservice for Smart IoT Bolt Platform
@@ -159,12 +125,36 @@ class AccountManager:
         }
 
     @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def index(self):
+        """Default response"""
+        return {"message": "Welcome to the Account Manager API"}
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def users(self, email=None):
+        """
+        Handles GET requests:
+        - `/users` -> returns all users.
+        - `/users?email=email@example.com` -> returns only that user's hashed password.
+        """
+        users = self.load_user_credentials()
+
+        if email:
+            user = next((u for u in users if u["email"] == email), None)
+            if user:
+                return {"email": user["email"], "hashed_password": user["hashed_password"]}
+            else:
+                cherrypy.response.status = 404
+                return {"error": "User not found"}
+
+        return {"users": users}
+
+    @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def register(self):
         """
-        POST /register
-        Register a new user with the system
         """
         data = cherrypy.request.json
         email = data.get("email")
@@ -178,36 +168,6 @@ class AccountManager:
         # Hash the password
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
-        # Check if user already exists
-        users = self.load_user_credentials()
-        if any(user["email"] == email for user in users):
-            cherrypy.response.status = 409  # Conflict
-            return {"error": "User already exists"}
-
-        try:
-            # Create user in Firebase if enabled
-            if FIREBASE_ENABLED:
-                try:
-                    firebase_user = auth.create_user(email=email, password=password)
-                    firebase_uid = firebase_user.uid
-                except Exception as fe:
-                    logger.error(f"Firebase registration error: {fe}")
-                    cherrypy.response.status = 400
-                    return {"error": f"Firebase registration failed: {str(fe)}"}
-            else:
-                firebase_uid = None
-
-            # Store user credentials locally
-            self.store_user_credentials(email, hashed_password, role, firebase_uid)
-
-            # Generate JWT token
-            token = self.generate_token(email, role)
-
-            return {
-                "message": "User registered successfully",
-                "email": email,
-                "role": role,
-                "token": token
             }
         except Exception as e:
             logger.error(f"Registration error: {e}")
@@ -264,13 +224,6 @@ class AccountManager:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def verify(self, *args, **kwargs):
-        """
-        GET /verify?token=<jwt_token>
-        Verify a JWT token and return user info if valid
-        """
-        token = kwargs.get('token')
-        
         if not token:
             cherrypy.response.status = 400
             return {"error": "Token is required"}
@@ -494,37 +447,6 @@ class AccountManager:
         except Exception as e:
             cherrypy.response.status = 401
             return {"error": str(e)}
-
-
-# ============= CherryPy Server Configuration ==============
-def main():
-    # Configure CherryPy
-    conf = {
-        'global': {
-            'server.socket_host': '0.0.0.0',
-            'server.socket_port': int(os.getenv("PORT", 8081)),
-            'server.thread_pool': 10,
-            'engine.autoreload.on': False
-        },
-        '/': {
-            'tools.sessions.on': True,
-            'tools.sessions.secure': True,
-            'tools.sessions.httponly': True,
-            'tools.response_headers.on': True,
-            'tools.response_headers.headers': [('Content-Type', 'application/json')],
-        }
-    }
-
-    # Start the CherryPy server
-    cherrypy.config.update(conf)
-    
-    # Set socket host/port in case they are accessed before the server starts
-    cherrypy.server.socket_host = '0.0.0.0'
-    cherrypy.server.socket_port = int(os.getenv("PORT", 8081))
-    
-    # Start the service
-    cherrypy.quickstart(AccountManager(), '/', conf)
-
 
 if __name__ == "__main__":
     main()
