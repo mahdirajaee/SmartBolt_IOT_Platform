@@ -1,0 +1,13 @@
+  {
+    "broker_address": "localhost",
+    "broker_port": 1883,
+    "influxdb_url": "http://localhost:8086",
+    "influxdb_token": "mRdOwWpi6TWnPhIwV4kO8Ig38wXPLVYxzSUFpTnNgPjoW9iObQ6NCgzeKGk0-uTHUFVs_wvacYL4xNCDU3VpYQ==",
+    "influxdb_org": "IOT_project_Bolt",
+    "influxdb_bucket": "smart_Bolt",
+    "catalog_url": "http://localhost:8080/api/register",
+    "api_port": 5000,
+    "temperature_topic": "sensor/temperature",
+    "pressure_topic": "sensor/pressure",
+    "actuator_command_topic": "actuator/valve"
+  }
