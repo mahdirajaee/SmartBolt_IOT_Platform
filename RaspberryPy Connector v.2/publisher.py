@@ -3,6 +3,7 @@ import os
 import json
 from dotenv import load_dotenv
 from mqtt_client import create_mqtt_client
+import datetime
 
 class SensorSimulator:
     """
@@ -62,41 +63,37 @@ class SensorPublisher:
         """Publishes simulated data at regular intervals."""
         self.mqtt_client.loop_start()
 
-        while True:
-            temp, press, timestamp = self.simulator.simulate()
+
 
             # Publish to MQTT topics
             self.mqtt_client.publish(self.temp_topic, temp)
             self.mqtt_client.publish(self.pressure_topic, press)
 
-            data = {
-                "timestamp": timestamp,
-                "temperature": temp,
-                "pressure": press
-            }
 
-            # Save to JSON
-            self.data_manager.save_to_json(data)
-            print(f"[PUBLISHER] Sent → Temp={temp}°C, Press={press}Pa, Timestamp={timestamp}")
 
-            time.sleep(self.publish_interval)
+def get_current_timestamp():
+        """
+        Returns the current timestamp in ISO 8601 format.
+        """
+        return datetime.datetime.now().isoformat()
+
+def publish_sensor_data():
+        """
+        Publishes simulated sensor data to the MQTT topics at regular intervals.
+        """
+        mqtt_client = create_mqtt_client()
+        mqtt_client.loop_start()  # Start background thread to handle networking
+
+        while True:
+            temp, press = simulate_sensor_behavior()
+            timestamp = get_current_timestamp()
+
+            # Publish to each topic
+            mqtt_client.publish(TOPIC_TEMPERATURE, f"{timestamp} - {temp}")
+            mqtt_client.publish(TOPIC_PRESSURE, f"{timestamp} - {press}")
+
+            print(f"[PUBLISHER] Sent → Timestamp={timestamp}, Temp={temp}°C, Press={press}Pa")
+            time.sleep(PUBLISH_INTERVAL)
 
 if __name__ == "__main__":
-    # Load environment variables
-    load_dotenv("config.env")
 
-    # Read configurations
-    temp_topic = os.getenv("MQTT_TOPIC_SENSOR_TEMPERATURE", "/default/temperature")
-    pressure_topic = os.getenv("MQTT_TOPIC_SENSOR_PRESSURE", "/default/pressure")
-    publish_interval = int(os.getenv("PUBLISH_INTERVAL", "5"))
-    initial_temp = float(os.getenv("INITIAL_TEMPERATURE", "25.0"))
-    initial_pressure = float(os.getenv("INITIAL_PRESSURE", "250.0"))
-
-    # Create instances
-    mqtt_client = create_mqtt_client()
-    simulator = SensorSimulator(initial_temp, initial_pressure)
-    data_manager = DataManager("sensor_data.json")
-    
-    # Initialize and start publisher
-    publisher = SensorPublisher(mqtt_client, simulator, data_manager, temp_topic, pressure_topic, publish_interval)
-    publisher.publish()

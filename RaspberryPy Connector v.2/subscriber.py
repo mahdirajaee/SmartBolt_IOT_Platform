@@ -6,7 +6,9 @@ from mqtt_client import create_mqtt_client
 load_dotenv("config.env")
 
 # By default, let's subscribe to "/sensor/#"
-SUBSCRIBE_TOPIC = os.getenv("MQTT_TOPIC_LISTEN_TEST", "/sensor/#")
+SUBSCRIBE_TOPIC = os.getenv("MQTT_TOPIC_LISTEN_TEST", "/sensor/temperature")
+MQTT_Broker = os.getenv("MQTT_BROKER", "localhost")
+MQTT_Port = int(os.getenv("MQTT_PORT", "1883"))
 
 def on_message(client, userdata, msg):
     """
@@ -14,6 +16,8 @@ def on_message(client, userdata, msg):
     """
     payload = msg.payload.decode()
     print(f"[SUBSCRIBER] Received message on {msg.topic}: {payload}")
+    # Print the message received from the publisher
+    print(f"Message from topic {msg.topic}: {payload}")
 
 def start_subscriber():
     """
@@ -25,6 +29,9 @@ def start_subscriber():
     # Subscribe to the configured topic (wildcards allowed)
     mqtt_client.subscribe(SUBSCRIBE_TOPIC)
     print(f"[SUBSCRIBER] Subscribed to '{SUBSCRIBE_TOPIC}'")
+    print("[SUBSCRIBER] Waiting for messages...")
+    #get mesaages
+    
 
     mqtt_client.loop_forever()  # Blocking call
 

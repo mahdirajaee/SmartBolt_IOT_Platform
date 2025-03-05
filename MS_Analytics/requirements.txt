@@ -1,4 +1,0 @@
-cherrypy
-numpy
-paho-mqtt
-
