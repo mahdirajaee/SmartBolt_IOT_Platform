@@ -130,7 +130,7 @@ status_thread.start()
 # Main Loop
 try:
     while True:
-        timestamp = datetime.datetime.now().isoformat()
+        # timestamp = datetime.datetime.now().isoformat()
         
         # Get sensor readings
         temperature = get_temperature(config['pipeline_id'], config['device_id'])
@@ -142,7 +142,7 @@ try:
             "pipeline_id": config['pipeline_id'],
             "device_id": config['device_id'],
             "value": temperature,
-            "timestamp": timestamp,
+            # "timestamp": timestamp,
             "unit": "celsius"
         }
         
@@ -150,7 +150,7 @@ try:
             "pipeline_id": config['pipeline_id'],
             "device_id": config['device_id'],
             "value": pressure,
-            "timestamp": timestamp,
+            # "timestamp": timestamp,
             "unit": "bar"
         }
         
@@ -158,7 +158,7 @@ try:
             "pipeline_id": config['pipeline_id'],
             "device_id": config['device_id'],
             "status": actuator_status,
-            "timestamp": timestamp
+            # "timestamp": timestamp
         }
         
         # Publish to respective topics

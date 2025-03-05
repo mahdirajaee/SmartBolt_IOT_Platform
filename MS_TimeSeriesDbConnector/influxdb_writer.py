@@ -36,7 +36,9 @@ INFLUXDB_BUCKET = config["influxdb_bucket"]
 TEMPERATURE_TOPIC = config["temperature_topic"]+"/#"  # Wildcard to capture all pipelines/devices
 PRESSURE_TOPIC = config["pressure_topic"]+"/#"
 ACTUATOR_STATUS_TOPIC = config["actuator_command_topic"]+"/#"
-
+print ("TEMPERATURE_TOPIC:----->>> ", TEMPERATURE_TOPIC)
+print ("PRESSURE_TOPIC:------>>>> ", PRESSURE_TOPIC)
+print ("ACTUATOR_STATUS_TOPIC:------>>>> ", ACTUATOR_STATUS_TOPIC)
 # Service information for catalog registration
 service_info = {
     "service_id": "timeseries_db_connector",
@@ -60,7 +62,7 @@ service_info = {
 influx_client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 write_api = influx_client.write_api(write_options=SYNCHRONOUS)
 query_api = influx_client.query_api()
-
+print(f"Connecting to InfluxDB: {INFLUXDB_URL}, Bucket: {INFLUXDB_BUCKET}")
 # Function to register with catalog
 def register_with_catalog():
     try:
@@ -136,9 +138,9 @@ def on_message(client, userdata, msg):
             point.field("status", data["status"])
         
         # Use timestamp if available
-        if "timestamp" in data:
-            timestamp = datetime.datetime.fromisoformat(data["timestamp"])
-            point.time(timestamp)
+        # if "timestamp" in data:
+        #     timestamp = datetime.datetime.fromisoformat(data["timestamp"])
+        #     point.time(timestamp)
         
         # Write to InfluxDB
         write_api.write(bucket=INFLUXDB_BUCKET, record=point)
