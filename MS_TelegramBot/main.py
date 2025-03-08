@@ -252,7 +252,7 @@ class TelegramBotService:
                 success = response_data.get("success", False)
                 if success:
                     message = (
-                        f"✅ <b>Command Successful</b>\n\n"
+                        f" <b>Command Successful</b>\n\n"
                         f"<b>Action:</b> {session.get('last_action', 'Unknown')}\n"
                         f"<b>Pipeline:</b> {session.get('selected_pipeline', 'Unknown')}\n"
                         f"<b>Device:</b> {session.get('selected_device', 'Unknown')}\n"
@@ -261,7 +261,7 @@ class TelegramBotService:
                     )
                 else:
                     message = (
-                        f"❌ <b>Command Failed</b>\n\n"
+                        f" <b>Command Failed</b>\n\n"
                         f"<b>Action:</b> {session.get('last_action', 'Unknown')}\n"
                         f"<b>Pipeline:</b> {session.get('selected_pipeline', 'Unknown')}\n"
                         f"<b>Device:</b> {session.get('selected_device', 'Unknown')}\n"
@@ -495,7 +495,7 @@ class TelegramBotService:
             if not latest_data:
                 await update.message.reply_text("Unable to retrieve sensor data.")
                 return
-            status_text = "📊 <b>Current System Status</b> 📊\n\n"
+            status_text = " <b>Current System Status</b> \n\n"
             organized_data = {}
             for item in latest_data.get("data", []):
                 pipeline_id = item.get("pipeline_id", "unknown")
