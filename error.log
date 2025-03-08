@@ -22,3 +22,73 @@
 [08/Mar/2025:16:39:31] ENGINE Bus EXITING
 [08/Mar/2025:16:39:31] ENGINE Bus EXITED
 [08/Mar/2025:16:39:31] ENGINE Waiting for child threads to terminate...
+[08/Mar/2025:17:43:38] ENGINE Bus STARTING
+[08/Mar/2025:17:43:38] ENGINE Started monitor thread 'Autoreloader'.
+[08/Mar/2025:17:43:38] ENGINE Serving on http://0.0.0.0:8085
+[08/Mar/2025:17:43:38] ENGINE Bus STARTED
+[08/Mar/2025:17:43:43] ENGINE Keyboard Interrupt: shutting down bus
+[08/Mar/2025:17:43:43] ENGINE Bus STOPPING
+[08/Mar/2025:17:43:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8085)) shut down
+[08/Mar/2025:17:43:44] ENGINE Stopped thread 'Autoreloader'.
+[08/Mar/2025:17:43:44] ENGINE Bus STOPPED
+[08/Mar/2025:17:43:44] ENGINE Bus EXITING
+[08/Mar/2025:17:43:44] ENGINE Bus EXITED
+[08/Mar/2025:17:43:44] ENGINE Waiting for child threads to terminate...
+[08/Mar/2025:23:09:35] ENGINE Bus STARTING
+[08/Mar/2025:23:09:35] ENGINE Started monitor thread 'Autoreloader'.
+[08/Mar/2025:23:09:35] ENGINE Serving on http://0.0.0.0:8080
+[08/Mar/2025:23:09:35] ENGINE Bus STARTED
+[08/Mar/2025:23:25:46] ENGINE Keyboard Interrupt: shutting down bus
+[08/Mar/2025:23:25:46] ENGINE Bus STOPPING
+[08/Mar/2025:23:25:47] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[08/Mar/2025:23:25:47] ENGINE Stopped thread 'Autoreloader'.
+[08/Mar/2025:23:25:47] ENGINE Bus STOPPED
+[08/Mar/2025:23:25:47] ENGINE Bus EXITING
+[08/Mar/2025:23:25:47] ENGINE Bus EXITED
+[08/Mar/2025:23:25:47] ENGINE Waiting for child threads to terminate...
+[08/Mar/2025:23:26:12] ENGINE Bus STARTING
+[08/Mar/2025:23:26:12] ENGINE Started monitor thread 'Autoreloader'.
+[08/Mar/2025:23:26:12] ENGINE Serving on http://0.0.0.0:8082
+[08/Mar/2025:23:26:12] ENGINE Bus STARTED
+[08/Mar/2025:23:37:34] ENGINE Keyboard Interrupt: shutting down bus
+[08/Mar/2025:23:37:34] ENGINE Bus STOPPING
+[08/Mar/2025:23:37:34] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8082)) shut down
+[08/Mar/2025:23:37:34] ENGINE Stopped thread 'Autoreloader'.
+[08/Mar/2025:23:37:34] ENGINE Bus STOPPED
+[08/Mar/2025:23:37:34] ENGINE Bus EXITING
+[08/Mar/2025:23:37:34] ENGINE Bus EXITED
+[08/Mar/2025:23:37:34] ENGINE Waiting for child threads to terminate...
+[08/Mar/2025:23:37:55] ENGINE Bus STARTING
+[08/Mar/2025:23:37:56] ENGINE Serving on http://0.0.0.0:5001
+[08/Mar/2025:23:37:56] ENGINE Bus STARTED
+[08/Mar/2025:23:37:59] ENGINE Keyboard Interrupt: shutting down bus
+[08/Mar/2025:23:37:59] ENGINE Bus STOPPING
+[08/Mar/2025:23:38:00] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5001)) shut down
+[08/Mar/2025:23:38:00] ENGINE Bus STOPPED
+[08/Mar/2025:23:38:00] ENGINE Bus EXITING
+[08/Mar/2025:23:38:00] ENGINE Bus EXITED
+[08/Mar/2025:23:38:00] ENGINE Waiting for child threads to terminate...
+[08/Mar/2025:23:41:11] ENGINE Bus STARTING
+[08/Mar/2025:23:41:11] ENGINE Started monitor thread 'Autoreloader'.
+[08/Mar/2025:23:41:11] ENGINE Serving on http://0.0.0.0:5000
+[08/Mar/2025:23:41:11] ENGINE Bus STARTED
+[08/Mar/2025:23:44:18] ENGINE Keyboard Interrupt: shutting down bus
+[08/Mar/2025:23:44:18] ENGINE Bus STOPPING
+[08/Mar/2025:23:44:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5000)) shut down
+[08/Mar/2025:23:44:19] ENGINE Stopped thread 'Autoreloader'.
+[08/Mar/2025:23:44:19] ENGINE Bus STOPPED
+[08/Mar/2025:23:44:19] ENGINE Bus EXITING
+[08/Mar/2025:23:44:19] ENGINE Bus EXITED
+[08/Mar/2025:23:44:19] ENGINE Waiting for child threads to terminate...
+[08/Mar/2025:23:44:22] ENGINE Bus STARTING
+[08/Mar/2025:23:44:22] ENGINE Started monitor thread 'Autoreloader'.
+[08/Mar/2025:23:44:22] ENGINE Serving on http://0.0.0.0:5000
+[08/Mar/2025:23:44:22] ENGINE Bus STARTED
+[08/Mar/2025:23:44:40] ENGINE Keyboard Interrupt: shutting down bus
+[08/Mar/2025:23:44:40] ENGINE Bus STOPPING
+[08/Mar/2025:23:44:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5000)) shut down
+[08/Mar/2025:23:44:40] ENGINE Stopped thread 'Autoreloader'.
+[08/Mar/2025:23:44:40] ENGINE Bus STOPPED
+[08/Mar/2025:23:44:40] ENGINE Bus EXITING
+[08/Mar/2025:23:44:40] ENGINE Bus EXITED
+[08/Mar/2025:23:44:40] ENGINE Waiting for child threads to terminate...

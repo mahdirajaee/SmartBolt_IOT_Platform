@@ -1,0 +1,1153 @@
+2025-03-08 23:16:29,437 - TimeSeriesDBConnector - INFO - Loaded configuration from /Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_TimeSeriesDbConnector/config.json
+2025-03-08 23:16:29,438 - TimeSeriesDBConnector - INFO - Subscribing to topics: sensor/temperature/#, sensor/pressure/#, actuator/valve/#
+2025-03-08 23:16:29,465 - TimeSeriesDBConnector - INFO - Connected to InfluxDB: http://localhost:8086, Bucket: smart_Bolt
+2025-03-08 23:16:29,479 - TimeSeriesDBConnector - INFO - Connected to MQTT broker at localhost:1883
+2025-03-08 23:16:29,479 - TimeSeriesDBConnector - INFO - Connected to MQTT broker
+2025-03-08 23:16:29,479 - TimeSeriesDBConnector - INFO - Subscribed to topics: sensor/temperature/#, sensor/pressure/#, actuator/valve/#
+2025-03-08 23:16:29,483 - TimeSeriesDBConnector - ERROR - Failed to register with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 206, in POST
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:16:29,484 - TimeSeriesDBConnector - INFO - Started catalog update thread
+2025-03-08 23:16:29,484 - cherrypy.error - INFO - [08/Mar/2025:23:16:29] ENGINE Bus STARTING
+2025-03-08 23:16:29,484 - cherrypy.error - INFO - [08/Mar/2025:23:16:29] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-08 23:16:29,489 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:16:29,589 - cherrypy.error - INFO - [08/Mar/2025:23:16:29] ENGINE Serving on http://0.0.0.0:5000
+2025-03-08 23:16:29,590 - cherrypy.error - INFO - [08/Mar/2025:23:16:29] ENGINE Bus STARTED
+2025-03-08 23:16:31,373 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a5eb10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:31,377 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a5eea0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:31,379 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a17bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:33,376 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:33,378 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:33,379 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c30380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:35,385 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c308d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:35,387 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:35,389 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:37,391 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27350>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:37,397 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:37,399 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c30490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:39,398 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c309e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:39,401 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c30e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:39,403 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c31260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:41,403 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c316a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:41,406 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c31ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:41,407 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c31f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:43,409 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c32360>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:43,411 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c327a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:43,416 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:45,415 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a267a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:45,417 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:45,419 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:47,423 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:47,426 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:47,428 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:49,449 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58c00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:49,455 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:49,456 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:51,433 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:51,435 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:51,437 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:53,439 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:53,443 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a9c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:53,445 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:55,444 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:55,447 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a267a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:55,452 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:57,451 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:57,454 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:57,457 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:59,459 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:59,461 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:16:59,465 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:01,465 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58c00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:01,467 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:01,469 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:03,468 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58050>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:03,470 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:03,472 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a267a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:05,475 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:05,479 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:05,483 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:07,423 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:07,426 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58c00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:07,429 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:09,430 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:09,432 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:09,434 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:11,436 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:11,439 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:11,441 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:13,444 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:13,446 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:13,453 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a267a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:15,450 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:15,452 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:15,454 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:17,456 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:17,458 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:17,460 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:19,462 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:19,464 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:19,466 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58c00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:21,468 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:21,470 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:21,473 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:23,475 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a267a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:23,477 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:23,478 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:25,478 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:25,480 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:25,481 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58c00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:27,485 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:27,486 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:27,488 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:29,443 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:17:29,485 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:29,485 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:29,486 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:31,493 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:31,496 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:31,498 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:33,497 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a267a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:33,498 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:33,500 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:35,502 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:35,504 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:35,505 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:37,501 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:37,502 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:37,503 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:39,513 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:39,515 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:39,518 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58160>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:41,514 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:41,515 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:41,516 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:43,522 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:43,523 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:43,525 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59150>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:45,528 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59590>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:45,530 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c599d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:45,533 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a250>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:47,535 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a360>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:47,537 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a690>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:47,538 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5af10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:49,541 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:49,544 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:49,545 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:51,548 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:51,550 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:51,551 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:53,554 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:53,556 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:53,557 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:55,559 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:55,561 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:55,562 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:57,565 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:57,567 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:57,568 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:59,573 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:59,574 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:17:59,575 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:01,579 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:01,581 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:01,583 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:03,580 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:03,582 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:03,583 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:05,586 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:05,589 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:05,590 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:07,592 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:07,594 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b350>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:07,597 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:09,598 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a278a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:09,600 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:09,602 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:11,601 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b130>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:11,602 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a8b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:11,603 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a470>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:13,608 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a030>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:13,610 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:13,612 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c597b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:15,614 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59370>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:15,616 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58f30>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:15,618 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c588d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:17,621 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:17,623 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:17,625 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bf00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:19,623 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58270>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:19,625 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:19,627 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:21,631 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59150>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:21,633 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59590>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:21,635 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c599d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:23,637 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a250>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:23,638 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a360>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:23,640 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a690>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:25,644 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5af10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:25,645 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:25,647 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:27,649 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:27,653 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:27,654 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:29,458 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:18:29,654 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b350>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:29,655 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:29,657 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:31,661 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:31,663 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:31,665 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:33,666 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:33,667 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:33,668 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:35,673 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:35,674 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:35,675 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:37,677 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107ca0160>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:37,677 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:37,678 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:39,685 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:39,687 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:39,689 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:41,692 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:41,694 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:41,696 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:43,699 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:43,701 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:43,703 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:45,705 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:45,707 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:45,708 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:47,712 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:47,714 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:47,715 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:49,716 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:49,718 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:49,720 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:51,726 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:51,728 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:51,730 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:53,733 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:53,736 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:53,738 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:55,740 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:55,742 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:55,745 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:57,748 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:57,750 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:57,752 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:59,749 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:59,750 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:18:59,751 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:01,754 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:01,756 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:01,756 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:03,762 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:03,764 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:03,765 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:05,768 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:05,771 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:05,776 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:07,775 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:07,777 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:07,778 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:09,779 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:09,781 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:09,783 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:11,785 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:11,787 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:11,790 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:13,792 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:13,794 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:13,796 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:15,800 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:15,802 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:15,804 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:17,804 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26cf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:17,808 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:17,810 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:19,811 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c588d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:19,813 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58f30>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:19,815 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59370>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:21,814 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c597b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:21,815 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:21,817 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a030>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:23,821 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a470>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:23,822 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a8b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:23,824 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b130>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:25,825 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:25,828 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:25,829 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:27,832 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:27,835 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:27,836 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:29,476 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:19:29,840 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:29,843 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:29,846 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:31,842 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:31,844 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:31,845 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:33,848 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:33,850 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:33,853 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a278a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:35,854 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:35,856 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27df0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:35,857 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bf00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:37,861 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58270>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:37,864 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:37,866 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:39,867 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59150>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:39,869 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59590>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:39,871 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c599d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:41,869 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a250>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:41,870 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a360>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:41,872 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a690>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:43,875 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b350>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:43,878 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:43,879 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:45,882 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:45,884 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bdf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:45,886 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:47,889 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:47,891 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:47,892 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:49,893 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:49,895 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:49,896 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:51,901 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:51,903 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:51,905 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:53,909 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b240>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:53,911 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:53,913 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:55,909 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:55,910 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:55,911 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:57,918 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:57,920 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:57,922 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:59,925 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:59,927 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:19:59,929 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:01,933 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:01,935 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:01,937 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:03,940 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:03,942 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26cf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:03,943 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:05,945 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5abe0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:05,946 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b130>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:05,948 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a8b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:07,952 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a470>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:07,954 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a030>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:07,956 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:09,956 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c597b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:09,957 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59370>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:09,958 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58f30>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:11,965 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c588d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:11,968 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:11,971 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:13,969 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:13,974 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:13,977 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:15,975 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:15,977 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:15,979 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:17,980 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:17,984 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:17,986 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:19,985 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:19,989 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:19,992 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:21,991 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:21,997 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:21,999 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:23,999 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:24,002 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bdf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:24,005 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:26,005 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:26,008 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:26,011 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:28,012 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:28,016 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:28,019 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:29,495 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:20:30,019 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58270>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:30,022 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:30,025 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:32,026 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b240>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:32,029 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:32,030 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26cf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:34,031 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:34,034 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:34,036 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:36,037 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:36,040 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:36,042 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:38,045 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:38,048 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:38,050 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:40,049 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:40,052 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:40,055 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a580>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:42,055 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:42,058 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:42,060 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:44,062 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:44,071 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b130>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:44,078 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a8b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:46,066 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a470>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:46,068 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a030>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:46,075 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:48,069 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c597b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:48,072 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59370>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:48,075 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:50,072 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c588d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:50,075 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:50,080 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:52,080 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:52,083 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:52,085 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:54,086 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:54,089 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c588d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:54,093 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:56,091 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59370>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:56,094 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c597b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:56,097 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:58,097 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a030>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:58,099 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a470>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:20:58,101 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a8b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:00,105 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b130>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:00,109 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:00,111 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:02,111 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:02,114 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:02,117 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b130>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:04,118 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a8b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:04,121 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a470>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:04,124 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a030>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:06,124 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:06,127 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c597b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:06,130 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59370>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:08,131 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:08,134 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c588d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:08,137 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:10,139 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b240>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:10,141 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:10,142 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:12,144 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:12,147 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bf00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:12,149 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58f30>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:14,147 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:14,151 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:14,153 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59150>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:16,152 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59590>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:16,155 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c599d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:16,158 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a250>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:18,158 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a360>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:18,161 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a690>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:18,166 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b350>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:20,166 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:20,169 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26cf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:20,173 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:22,167 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:22,170 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:22,172 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:24,180 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:24,181 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:24,182 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:26,193 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:26,196 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:26,199 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:28,194 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:28,196 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:28,199 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:29,517 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:21:30,201 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:30,205 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27df0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:30,208 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:32,209 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:32,212 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58270>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:32,217 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:34,214 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:34,218 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:34,221 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:36,218 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:36,222 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:36,226 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:38,224 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a9c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:38,228 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:38,231 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:40,230 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26cf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:40,232 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:40,234 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b350>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:42,237 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a690>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:42,239 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a360>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:42,240 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a250>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:44,243 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c599d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:44,245 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59590>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:44,246 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59150>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:46,250 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:46,251 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:46,253 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58f30>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:48,258 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bf00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:48,260 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:48,262 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:50,263 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:50,265 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:50,267 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:52,270 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58270>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:52,271 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:52,272 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:54,273 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:54,274 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:54,275 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:56,281 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:56,284 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:56,285 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a9c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:58,288 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:58,290 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:21:58,291 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26cf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:00,290 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:00,293 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b130>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:00,295 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a8b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:02,291 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a470>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:02,292 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a030>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:02,293 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:04,299 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c597b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:04,301 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59370>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:04,303 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:06,305 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c588d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:06,307 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:06,309 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:08,312 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:08,314 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27df0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:08,316 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:10,315 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:10,316 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:10,318 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:12,322 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:12,325 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:12,327 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:14,329 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:14,330 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:14,331 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:16,335 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:16,338 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:16,339 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27df0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:18,342 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:18,344 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:18,346 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:20,349 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:20,350 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:20,352 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:22,354 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:22,355 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:22,356 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:24,361 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:24,363 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:24,365 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:26,368 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:26,371 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:26,372 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:28,373 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27df0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:28,375 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:28,376 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:29,533 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:22:30,382 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:30,384 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58270>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:30,385 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:32,385 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:32,387 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:32,389 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:34,392 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:34,394 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:34,395 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:36,396 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:36,398 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27df0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:36,400 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:38,400 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:38,402 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:38,403 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:40,406 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:40,407 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:40,408 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:42,408 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:42,410 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:42,412 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58270>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:44,413 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:44,415 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:44,416 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a279b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:46,425 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27f00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:46,428 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27df0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:46,430 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a268b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:48,427 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b8a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:48,429 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c586b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:48,434 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58270>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:50,431 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59260>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:50,433 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c596a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:50,435 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59ae0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:52,437 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59f20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:52,439 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a140>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:52,441 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a7a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:54,441 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b020>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:54,444 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a9c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:54,445 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:56,448 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:56,450 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:56,451 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:58,452 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:58,455 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:22:58,457 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:00,457 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:00,458 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:00,460 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:02,464 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:02,468 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:02,486 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:04,471 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:04,476 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:04,478 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:06,479 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:06,486 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5acf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:06,490 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58490>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:08,482 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c588d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:08,484 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b9b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:08,486 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59370>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:10,490 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c597b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:10,494 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59bf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:10,496 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a030>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:12,498 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a470>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:12,501 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a8b0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:12,503 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b130>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:14,505 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:14,508 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26ad0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:14,510 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a26cf0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:16,507 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b350>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:16,510 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a690>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:16,513 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a360>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:18,513 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5a250>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:18,516 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c599d0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:18,519 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59590>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:20,517 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59150>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:20,521 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c587c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:20,529 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58380>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:22,525 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58f30>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:22,528 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58050>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:22,532 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5ae00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:24,531 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27ac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:24,537 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27460>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:24,540 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27680>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:26,537 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:26,540 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:26,543 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:28,544 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:28,546 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:28,547 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:29,548 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-08 23:23:30,559 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:30,565 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:30,568 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:32,564 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:32,570 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5b790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:32,572 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:34,570 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:34,572 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:34,573 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:36,571 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:36,573 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:36,574 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:38,573 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:38,574 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:38,575 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:40,580 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:40,582 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:40,584 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:42,587 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:42,594 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:42,596 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:44,593 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:44,595 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:44,597 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:46,601 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:46,603 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:46,606 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:48,608 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:48,610 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:48,612 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:50,611 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:50,612 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:50,613 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:52,621 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:52,625 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:52,627 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:54,628 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:54,630 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:54,631 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:56,632 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:56,634 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:56,636 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:58,635 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:58,638 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:23:58,641 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:00,639 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:00,640 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:00,642 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:02,649 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:02,652 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:02,654 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bce0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:04,667 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bac0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:04,670 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c58e20>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:04,671 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bbd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:06,652 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c585a0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:06,654 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c589e0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:06,655 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59040>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:08,658 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59480>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:08,661 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c598c0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:08,662 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59e10>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:10,666 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:10,670 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c5bf00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:10,671 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27bd0>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:12,667 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27790>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:12,669 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107a27570>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:12,671 - TimeSeriesDBConnector - ERROR - Error processing message: <urllib3.connection.HTTPConnection object at 0x107c59d00>: Failed to establish a new connection: [Errno 61] Connection refused
+2025-03-08 23:24:13,959 - cherrypy.error - INFO - [08/Mar/2025:23:24:13] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-08 23:24:13,960 - cherrypy.error - INFO - [08/Mar/2025:23:24:13] ENGINE Bus STOPPING
+2025-03-08 23:24:14,359 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5000)) shut down
+2025-03-08 23:24:14,359 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE Stopped thread 'Autoreloader'.
+2025-03-08 23:24:14,359 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE Bus STOPPED
+2025-03-08 23:24:14,360 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE Bus EXITING
+2025-03-08 23:24:14,360 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE Bus EXITED
+2025-03-08 23:24:14,360 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE Waiting for child threads to terminate...
