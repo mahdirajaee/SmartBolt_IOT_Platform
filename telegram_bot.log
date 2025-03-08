@@ -1,0 +1,60 @@
+2025-03-08 15:18:56,643 - TelegramBot - ERROR - TELEGRAM_TOKEN is required
+2025-03-08 15:18:56,643 - TelegramBot - CRITICAL - Failed to start Telegram Bot Service: TELEGRAM_TOKEN environment variable is required
+2025-03-08 15:21:28,685 - TelegramBot - ERROR - Error setting up MQTT: 'TelegramBotService' object has no attribute 'service_cache'
+2025-03-08 15:21:28,694 - TelegramBot - ERROR - Error registering with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c14830>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:21:32,080 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getMe "HTTP/1.1 200 OK"
+2025-03-08 15:21:32,183 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-08 15:21:32,186 - telegram.ext.Application - INFO - Application started
+2025-03-08 15:21:42,568 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:21:52,701 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:21:54,047 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:21:54,057 - TelegramBot - ERROR - Error getting service by type: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/type/accountManager (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c83610>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:21:54,057 - TelegramBot - WARNING - Account Manager service not found, authorization check will be skipped
+2025-03-08 15:21:54,446 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 15:22:02,391 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:22:02,791 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 15:22:12,578 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:22:15,964 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:22:16,277 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendChatAction "HTTP/1.1 200 OK"
+2025-03-08 15:22:16,282 - TelegramBot - ERROR - Error getting pipelines: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /sectors (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102ce8b90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:22:16,439 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 15:22:25,981 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:22:25,993 - TelegramBot - ERROR - Error getting pipelines: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /sectors (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102cdbbb0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:22:25,995 - TelegramBot - ERROR - Error getting service by type: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/type/accountManager (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102d0c3e0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:22:25,996 - TelegramBot - WARNING - Account Manager service not found, returning all pipelines
+2025-03-08 15:22:26,346 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 15:22:30,627 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:22:30,771 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendChatAction "HTTP/1.1 200 OK"
+2025-03-08 15:22:30,777 - TelegramBot - ERROR - Error getting service by type: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/type/analytics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102ce7530>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:22:30,929 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 15:22:41,148 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:22:51,381 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:23:01,621 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:23:10,970 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:23:21,099 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:23:31,204 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:23:41,336 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 15:23:43,833 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-03-08 15:23:43,834 - telegram.ext.Application - INFO - Application.stop() complete
+2025-03-08 15:23:43,834 - TelegramBot - INFO - Telegram bot started successfully
+2025-03-08 15:23:43,835 - TelegramBot - INFO - Started catalog update thread
+2025-03-08 15:23:43,835 - TelegramBot - INFO - Telegram Bot Service initialized
+2025-03-08 15:23:43,837 - cherrypy.error - INFO - [08/Mar/2025:15:23:43] ENGINE Bus STARTING
+2025-03-08 15:23:43,837 - cherrypy.error - INFO - [08/Mar/2025:15:23:43] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-08 15:23:43,837 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c9bce0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:23:43,946 - cherrypy.error - INFO - [08/Mar/2025:15:23:43] ENGINE Serving on http://0.0.0.0:8085
+2025-03-08 15:23:43,947 - cherrypy.error - INFO - [08/Mar/2025:15:23:43] ENGINE Bus STARTED
+2025-03-08 15:24:43,849 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c9a7a0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:25:43,859 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c9aad0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:26:43,875 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c9ae00>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:27:43,897 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c9a8b0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:28:43,908 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c99480>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:29:43,917 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c99150>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:30:39,855 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-08 15:30:39,858 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus STOPPING
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8085)) shut down
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Stopped thread 'Autoreloader'.
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus STOPPED
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus EXITING
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus EXITED
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Waiting for child threads to terminate...

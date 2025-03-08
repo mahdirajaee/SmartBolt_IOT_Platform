@@ -11,3 +11,6 @@ __pycache__/
 # Ignore VS Code settings (optional)
 .vscode/
 .DS_Store
+
+#ignore dashboard 
+MS_WebDashboard/

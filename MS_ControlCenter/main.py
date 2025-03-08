@@ -7,7 +7,6 @@ import cherrypy
 import paho.mqtt.client as mqtt
 from datetime import datetime
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -20,79 +19,54 @@ logger = logging.getLogger("ControlCenter")
 
 class ControlCenter:
     def __init__(self, config_file="config.py"):
-        """Initialize the Control Center with configuration from a file."""
-        # Load configuration
         self.load_config(config_file)
-        
-        # Initialize data storage
         self.sensor_data = {}
         self.device_statuses = {}
-        
-        # Threading lock for thread-safe operations
         self.lock = threading.Lock()
-        
-        # MQTT client setup
         self.mqtt_client = mqtt.Client()
         self.mqtt_client.on_connect = self.on_mqtt_connect
         self.mqtt_client.on_message = self.on_mqtt_message
         self.mqtt_client.on_disconnect = self.on_mqtt_disconnect
-        
-        # Add username/password if provided in config
         if hasattr(self, 'mqtt_username') and hasattr(self, 'mqtt_password'):
             self.mqtt_client.username_pw_set(self.mqtt_username, self.mqtt_password)
-        
-        # Flag to control the main loop
         self.running = False
-        
         logger.info("Control Center initialized")
 
     def load_config(self, config_file):
-        """Load configuration from a JSON file."""
         try:
             with open(config_file, 'r') as f:
                 config = json.load(f)
-                
-            # Set attributes from config
             for key, value in config.items():
                 setattr(self, key, value)
-                
             logger.info(f"Configuration loaded from {config_file}")
-            
         except Exception as e:
             logger.error(f"Error loading configuration: {e}")
-            # Set default values
             self.catalog_url = "http://localhost:8080"
             self.mqtt_broker = "localhost"
             self.mqtt_port = 1883
             self.mqtt_topics = ["sensors/+/temperature", "sensors/+/pressure"]
             self.control_topic = "actuators/{device_id}/valve"
             self.alert_topic = "alerts/telegram"
-            self.check_interval = 5  # seconds
-            self.temp_threshold_high = 85.0  # example threshold
-            self.pressure_threshold_high = 8.5  # example threshold
-            self.update_catalog_interval = 60  # seconds
-            
+            self.check_interval = 5
+            self.temp_threshold_high = 85.0
+            self.pressure_threshold_high = 8.5
+            self.update_catalog_interval = 60
             logger.warning("Using default configuration values")
 
     def fetch_from_catalog(self):
-        """Fetch required information from the Resource/Service Catalog via REST."""
         try:
-            # Get MQTT broker information
             response = requests.get(f"{self.catalog_url}/broker")
             if response.status_code == 200:
                 broker_info = response.json()
                 self.mqtt_broker = broker_info.get("address", self.mqtt_broker)
                 self.mqtt_port = broker_info.get("port", self.mqtt_port)
                 logger.info(f"Updated MQTT broker: {self.mqtt_broker}:{self.mqtt_port}")
-            
-            # Get device list and their thresholds
             response = requests.get(f"{self.catalog_url}/devices")
             if response.status_code == 200:
                 devices = response.json()
                 for device in devices:
                     device_id = device.get("id")
                     if device.get("type") == "sensor":
-                        # Store device thresholds
                         if "thresholds" in device:
                             temp_threshold = device["thresholds"].get("temperature", self.temp_threshold_high)
                             pressure_threshold = device["thresholds"].get("pressure", self.pressure_threshold_high)
@@ -103,19 +77,15 @@ class ControlCenter:
                                 }
                             }
                 logger.info(f"Updated device information from catalog")
-            
-            # Get control strategies/rules
             response = requests.get(f"{self.catalog_url}/strategies")
             if response.status_code == 200:
                 strategies = response.json()
                 self.control_strategies = strategies
                 logger.info(f"Updated control strategies from catalog")
-                
         except Exception as e:
             logger.error(f"Error fetching from catalog: {e}")
 
     def connect_mqtt(self):
-        """Connect to the MQTT broker and start the network loop."""
         try:
             self.mqtt_client.connect(self.mqtt_broker, self.mqtt_port, 60)
             self.mqtt_client.loop_start()
@@ -126,10 +96,8 @@ class ControlCenter:
             return False
 
     def on_mqtt_connect(self, client, userdata, flags, rc):
-        """Callback for when the client receives a CONNACK response from the server."""
         if rc == 0:
             logger.info("Connected to MQTT broker")
-            # Subscribe to all configured topics
             for topic in self.mqtt_topics:
                 client.subscribe(topic)
                 logger.info(f"Subscribed to {topic}")
@@ -137,73 +105,50 @@ class ControlCenter:
             logger.error(f"Failed to connect to MQTT broker with code {rc}")
 
     def on_mqtt_message(self, client, userdata, msg):
-        """Callback for when a PUBLISH message is received from the server."""
         try:
             payload = json.loads(msg.payload.decode())
             topic_parts = msg.topic.split('/')
-            
             if len(topic_parts) >= 3:
                 device_id = topic_parts[1]
-                measurement_type = topic_parts[2]  # temperature or pressure
-                
-                # Store the sensor data
+                measurement_type = topic_parts[2]
                 with self.lock:
                     if device_id not in self.sensor_data:
                         self.sensor_data[device_id] = {}
-                    
                     self.sensor_data[device_id][measurement_type] = {
                         "value": payload.get("value"),
                         "timestamp": payload.get("timestamp", datetime.now().isoformat())
                     }
-                
                 logger.info(f"Received {measurement_type} data from {device_id}: {payload.get('value')}")
-                
-                # Process the data immediately
                 self.process_sensor_data(device_id, measurement_type, payload)
-            
         except json.JSONDecodeError:
             logger.error(f"Failed to decode JSON from message: {msg.payload}")
         except Exception as e:
             logger.error(f"Error processing MQTT message: {e}")
 
     def on_mqtt_disconnect(self, client, userdata, rc):
-        """Callback for when the client disconnects from the server."""
         if rc != 0:
             logger.warning(f"Unexpected MQTT disconnection with code {rc}. Attempting to reconnect...")
             self.connect_mqtt()
 
     def process_sensor_data(self, device_id, measurement_type, payload):
-        """Process incoming sensor data and apply control logic."""
         try:
             value = payload.get("value")
-            
             if value is None:
                 logger.warning(f"No value provided in {measurement_type} data from {device_id}")
                 return
-            
-            # Get thresholds for this device
             threshold_high = None
-            
             if hasattr(self, 'device_thresholds') and device_id in self.device_thresholds:
                 device_threshold = self.device_thresholds[device_id]
                 if measurement_type in device_threshold:
                     threshold_high = device_threshold[measurement_type]
-            
-            # Use default thresholds if no device-specific thresholds are found
             if threshold_high is None:
                 if measurement_type == "temperature":
                     threshold_high = self.temp_threshold_high
                 elif measurement_type == "pressure":
                     threshold_high = self.pressure_threshold_high
-            
-            # Apply threshold logic
             if value > threshold_high:
                 logger.warning(f"High {measurement_type} alert for {device_id}: {value} > {threshold_high}")
-                
-                # Send control command to close valve
                 self.send_valve_command(device_id, "close")
-                
-                # Send alert
                 self.send_alert(
                     device_id=device_id,
                     alert_type=f"high_{measurement_type}",
@@ -211,12 +156,10 @@ class ControlCenter:
                     value=value,
                     threshold=threshold_high
                 )
-            
         except Exception as e:
             logger.error(f"Error processing sensor data: {e}")
 
     def send_valve_command(self, device_id, command):
-        """Send a command to control the valve actuator via MQTT."""
         try:
             topic = self.control_topic.format(device_id=device_id)
             payload = {
@@ -224,22 +167,18 @@ class ControlCenter:
                 "timestamp": datetime.now().isoformat(),
                 "source": "control_center"
             }
-            
             result = self.mqtt_client.publish(topic, json.dumps(payload), qos=1)
-            
             if result.rc == mqtt.MQTT_ERR_SUCCESS:
                 logger.info(f"Sent {command} command to valve actuator for device {device_id}")
                 return True
             else:
                 logger.error(f"Failed to send command to valve actuator: {result.rc}")
                 return False
-                
         except Exception as e:
             logger.error(f"Error sending valve command: {e}")
             return False
 
     def send_alert(self, device_id, alert_type, message, value, threshold):
-        """Send an alert to the Telegram Bot via MQTT."""
         try:
             payload = {
                 "device_id": device_id,
@@ -249,22 +188,18 @@ class ControlCenter:
                 "threshold": threshold,
                 "timestamp": datetime.now().isoformat()
             }
-            
             result = self.mqtt_client.publish(self.alert_topic, json.dumps(payload), qos=1)
-            
             if result.rc == mqtt.MQTT_ERR_SUCCESS:
                 logger.info(f"Sent alert for device {device_id}: {message}")
                 return True
             else:
                 logger.error(f"Failed to send alert: {result.rc}")
                 return False
-                
         except Exception as e:
             logger.error(f"Error sending alert: {e}")
             return False
 
     def update_catalog_status(self):
-        """Update the Control Center status in the Resource/Service Catalog."""
         try:
             status_data = {
                 "id": "control_center",
@@ -272,62 +207,42 @@ class ControlCenter:
                 "status": "active",
                 "last_updated": datetime.now().isoformat()
             }
-            
             response = requests.put(f"{self.catalog_url}/services/control_center", json=status_data)
-            
             if response.status_code in (200, 201):
                 logger.info("Updated Control Center status in catalog")
                 return True
             else:
                 logger.error(f"Failed to update status in catalog: {response.status_code} - {response.text}")
                 return False
-                
         except Exception as e:
             logger.error(f"Error updating catalog status: {e}")
             return False
 
     def background_operations(self):
-        """Background thread for periodic operations."""
         logger.info("Starting background operations thread")
-        
-        # Fetch initial configuration from catalog
         self.fetch_from_catalog()
-        
-        # Connect to MQTT broker
         if not self.connect_mqtt():
             logger.error("Failed to connect to MQTT broker. Control Center cannot operate properly.")
             return
-        
-        # Track last catalog update time
         last_catalog_update = time.time()
-        
         try:
             while self.running:
-                # Periodic checks and updates
                 current_time = time.time()
-                
-                # Update catalog status periodically
                 if current_time - last_catalog_update >= self.update_catalog_interval:
                     self.update_catalog_status()
-                    self.fetch_from_catalog()  # Also refresh our configuration
+                    self.fetch_from_catalog()
                     last_catalog_update = current_time
-                
-                # Sleep for the check interval
                 time.sleep(self.check_interval)
-                
         except Exception as e:
             logger.error(f"Error in background operations: {e}")
         finally:
-            # Clean shutdown of MQTT
             self.mqtt_client.loop_stop()
             self.mqtt_client.disconnect()
             logger.info("Background operations thread stopped")
 
     def start(self):
-        """Start the Control Center background operations."""
         if not self.running:
             self.running = True
-            # Start background operations in a separate thread
             self.bg_thread = threading.Thread(target=self.background_operations, daemon=True)
             self.bg_thread.start()
             logger.info("Control Center started")
@@ -337,11 +252,9 @@ class ControlCenter:
             return False
 
     def stop(self):
-        """Stop the Control Center."""
         if self.running:
             self.running = False
             logger.info("Control Center stopping...")
-            # Wait for background thread to finish
             if hasattr(self, 'bg_thread') and self.bg_thread.is_alive():
                 self.bg_thread.join(timeout=5.0)
             return True
@@ -349,8 +262,6 @@ class ControlCenter:
             logger.warning("Control Center is not running")
             return False
 
-
-# REST API using CherryPy
 class ControlCenterAPI:
     def __init__(self, control_center):
         self.control_center = control_center
@@ -358,7 +269,6 @@ class ControlCenterAPI:
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def index(self):
-        """Root endpoint that returns service info."""
         return {
             "service": "Control Center",
             "status": "active" if self.control_center.running else "inactive",
@@ -368,7 +278,6 @@ class ControlCenterAPI:
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def status(self):
-        """Get the current status of the Control Center."""
         return {
             "status": "active" if self.control_center.running else "inactive",
             "sensor_data": self.control_center.sensor_data,
@@ -379,19 +288,14 @@ class ControlCenterAPI:
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def valve(self, device_id=None):
-        """Control a valve actuator manually."""
         if not device_id:
             raise cherrypy.HTTPError(400, "Device ID is required")
-        
         if cherrypy.request.method == 'POST':
             data = cherrypy.request.json
             command = data.get('command')
-            
             if command not in ('open', 'close'):
                 raise cherrypy.HTTPError(400, "Invalid command. Use 'open' or 'close'")
-            
             success = self.control_center.send_valve_command(device_id, command)
-            
             if success:
                 return {"message": f"Command {command} sent to valve {device_id}"}
             else:
@@ -403,12 +307,9 @@ class ControlCenterAPI:
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def thresholds(self, device_id=None):
-        """Get or update thresholds for a device."""
         if not device_id:
             raise cherrypy.HTTPError(400, "Device ID is required")
-            
         if cherrypy.request.method == 'GET':
-            # Return current thresholds for the device
             if hasattr(self.control_center, 'device_thresholds') and device_id in self.control_center.device_thresholds:
                 return self.control_center.device_thresholds[device_id]
             else:
@@ -416,37 +317,23 @@ class ControlCenterAPI:
                     "temperature": self.control_center.temp_threshold_high,
                     "pressure": self.control_center.pressure_threshold_high
                 }
-        
         elif cherrypy.request.method == 'PUT':
-            # Update thresholds for the device
             data = cherrypy.request.json
-            
             if not hasattr(self.control_center, 'device_thresholds'):
                 self.control_center.device_thresholds = {}
-            
             if device_id not in self.control_center.device_thresholds:
                 self.control_center.device_thresholds[device_id] = {}
-            
             if 'temperature' in data:
                 self.control_center.device_thresholds[device_id]['temperature'] = float(data['temperature'])
-            
             if 'pressure' in data:
                 self.control_center.device_thresholds[device_id]['pressure'] = float(data['pressure'])
-            
             return {"message": f"Thresholds updated for device {device_id}"}
         else:
             raise cherrypy.HTTPError(405, "Method not allowed")
 
-
 def start_control_center(config_file="config.py", api_port=8081):
-    """Start the Control Center and its API."""
-    # Create Control Center instance
     control_center = ControlCenter(config_file)
-    
-    # Start the Control Center background operations
     control_center.start()
-    
-    # Configure CherryPy
     cherrypy.config.update({
         'server.socket_host': '0.0.0.0',
         'server.socket_port': api_port,
@@ -455,11 +342,7 @@ def start_control_center(config_file="config.py", api_port=8081):
         'log.access_file': 'access.log',
         'log.error_file': 'error.log'
     })
-    
-    # Create API
     api = ControlCenterAPI(control_center)
-    
-    # Configure the API endpoints with their dispatchers
     conf = {
         '/': {
             'tools.sessions.on': True,
@@ -467,35 +350,20 @@ def start_control_center(config_file="config.py", api_port=8081):
             'tools.response_headers.headers': [('Content-Type', 'application/json')],
         }
     }
-    
-    # Mount the API and start the server
     cherrypy.tree.mount(api, '/api', conf)
-    
-    # Start CherryPy server
     cherrypy.engine.start()
-    
-    # Register shutdown hook
     def cleanup():
         control_center.stop()
         cherrypy.engine.exit()
-    
     cherrypy.engine.subscribe('stop', cleanup)
-    
-    # Block until the server is terminated
     cherrypy.engine.block()
 
-
-# Main entry point
 if __name__ == "__main__":
     import argparse
-    
-    # Parse command line arguments
     parser = argparse.ArgumentParser(description='IoT Smart Bolt Control Center')
     parser.add_argument('--config', type=str, default='config.py',
                         help='Path to configuration file')
     parser.add_argument('--api-port', type=int, default=8081,
                         help='Port for REST API')
     args = parser.parse_args()
-    
-    # Start the Control Center with CherryPy API
     start_control_center(args.config, args.api_port)
