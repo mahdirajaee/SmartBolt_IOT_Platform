@@ -40,7 +40,7 @@ INFLUXDB_TOKEN = os.getenv("INFLUXDB_TOKEN", config.get("influxdb_token", "your-
 INFLUXDB_ORG = os.getenv("INFLUXDB_ORG", config.get("influxdb_org", "IOT_project_Bolt"))
 INFLUXDB_BUCKET = os.getenv("INFLUXDB_BUCKET", config.get("influxdb_bucket", "smart_Bolt"))
 CATALOG_URL = os.getenv("CATALOG_URL", config.get("catalog_url", "http://localhost:8080"))
-API_PORT = int(os.getenv("API_PORT", config.get("api_port", 5000)))
+API_PORT = int(os.getenv("API_PORT", config.get("api_port", 5002)))
 SERVICE_ID = os.getenv("SERVICE_ID", "timeseries_db_connector")
 
 # MQTT Topics to subscribe

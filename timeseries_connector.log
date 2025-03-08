@@ -1,0 +1,47 @@
+2025-03-08 23:41:11,557 - TimeSeriesDBConnector - INFO - Loaded configuration from /Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_TimeSeriesDbConnector/config.json
+2025-03-08 23:41:11,557 - TimeSeriesDBConnector - INFO - Subscribing to topics: sensor/temperature/#, sensor/pressure/#, actuator/valve/#
+2025-03-08 23:41:11,560 - TimeSeriesDBConnector - INFO - Connected to InfluxDB: http://localhost:8086, Bucket: smart_Bolt
+2025-03-08 23:41:11,567 - TimeSeriesDBConnector - ERROR - Error getting broker info from catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/broker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105d05a90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:41:11,567 - TimeSeriesDBConnector - INFO - Connected to MQTT broker at localhost:1883
+2025-03-08 23:41:11,568 - TimeSeriesDBConnector - ERROR - Error registering with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/services (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105d45090>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:41:11,568 - TimeSeriesDBConnector - INFO - Started catalog update thread
+2025-03-08 23:41:11,569 - TimeSeriesDBConnector - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/services/timeseries_db_connector (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105d45d10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:41:11,569 - cherrypy.error - INFO - [08/Mar/2025:23:41:11] ENGINE Bus STARTING
+2025-03-08 23:41:11,570 - cherrypy.error - INFO - [08/Mar/2025:23:41:11] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-08 23:41:11,579 - TimeSeriesDBConnector - INFO - Connected to MQTT broker
+2025-03-08 23:41:11,579 - TimeSeriesDBConnector - INFO - Subscribed to topics: sensor/temperature/#, sensor/pressure/#, actuator/valve/#
+2025-03-08 23:41:11,678 - cherrypy.error - INFO - [08/Mar/2025:23:41:11] ENGINE Serving on http://0.0.0.0:5000
+2025-03-08 23:41:11,678 - cherrypy.error - INFO - [08/Mar/2025:23:41:11] ENGINE Bus STARTED
+2025-03-08 23:42:11,582 - TimeSeriesDBConnector - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/services/timeseries_db_connector (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105d88640>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:43:11,595 - TimeSeriesDBConnector - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/services/timeseries_db_connector (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105d88d60>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:44:11,608 - TimeSeriesDBConnector - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/services/timeseries_db_connector (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105d90950>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:44:18,976 - cherrypy.error - INFO - [08/Mar/2025:23:44:18] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-08 23:44:18,977 - cherrypy.error - INFO - [08/Mar/2025:23:44:18] ENGINE Bus STOPPING
+2025-03-08 23:44:19,399 - cherrypy.error - INFO - [08/Mar/2025:23:44:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5000)) shut down
+2025-03-08 23:44:19,399 - cherrypy.error - INFO - [08/Mar/2025:23:44:19] ENGINE Stopped thread 'Autoreloader'.
+2025-03-08 23:44:19,399 - cherrypy.error - INFO - [08/Mar/2025:23:44:19] ENGINE Bus STOPPED
+2025-03-08 23:44:19,400 - cherrypy.error - INFO - [08/Mar/2025:23:44:19] ENGINE Bus EXITING
+2025-03-08 23:44:19,400 - cherrypy.error - INFO - [08/Mar/2025:23:44:19] ENGINE Bus EXITED
+2025-03-08 23:44:19,400 - cherrypy.error - INFO - [08/Mar/2025:23:44:19] ENGINE Waiting for child threads to terminate...
+2025-03-08 23:44:22,338 - TimeSeriesDBConnector - INFO - Loaded configuration from /Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_TimeSeriesDbConnector/config.json
+2025-03-08 23:44:22,338 - TimeSeriesDBConnector - INFO - Subscribing to topics: sensor/temperature/#, sensor/pressure/#, actuator/valve/#
+2025-03-08 23:44:22,341 - TimeSeriesDBConnector - INFO - Connected to InfluxDB: http://localhost:8086, Bucket: smart_Bolt
+2025-03-08 23:44:22,346 - TimeSeriesDBConnector - ERROR - Error getting broker info from catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/broker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x107fd9a90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:44:22,347 - TimeSeriesDBConnector - INFO - Connected to MQTT broker at localhost:1883
+2025-03-08 23:44:22,348 - TimeSeriesDBConnector - ERROR - Error registering with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/services (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x108019090>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:44:22,348 - TimeSeriesDBConnector - INFO - Started catalog update thread
+2025-03-08 23:44:22,348 - cherrypy.error - INFO - [08/Mar/2025:23:44:22] ENGINE Bus STARTING
+2025-03-08 23:44:22,348 - cherrypy.error - INFO - [08/Mar/2025:23:44:22] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-08 23:44:22,349 - TimeSeriesDBConnector - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/register/services/timeseries_db_connector (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x108019d10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:44:22,354 - TimeSeriesDBConnector - INFO - Connected to MQTT broker
+2025-03-08 23:44:22,355 - TimeSeriesDBConnector - INFO - Subscribed to topics: sensor/temperature/#, sensor/pressure/#, actuator/valve/#
+2025-03-08 23:44:22,453 - cherrypy.error - INFO - [08/Mar/2025:23:44:22] ENGINE Serving on http://0.0.0.0:5000
+2025-03-08 23:44:22,454 - cherrypy.error - INFO - [08/Mar/2025:23:44:22] ENGINE Bus STARTED
+2025-03-08 23:44:40,021 - cherrypy.error - INFO - [08/Mar/2025:23:44:40] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-08 23:44:40,023 - cherrypy.error - INFO - [08/Mar/2025:23:44:40] ENGINE Bus STOPPING
+2025-03-08 23:44:40,085 - cherrypy.error - INFO - [08/Mar/2025:23:44:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5000)) shut down
+2025-03-08 23:44:40,086 - cherrypy.error - INFO - [08/Mar/2025:23:44:40] ENGINE Stopped thread 'Autoreloader'.
+2025-03-08 23:44:40,086 - cherrypy.error - INFO - [08/Mar/2025:23:44:40] ENGINE Bus STOPPED
+2025-03-08 23:44:40,086 - cherrypy.error - INFO - [08/Mar/2025:23:44:40] ENGINE Bus EXITING
+2025-03-08 23:44:40,086 - cherrypy.error - INFO - [08/Mar/2025:23:44:40] ENGINE Bus EXITED
+2025-03-08 23:44:40,086 - cherrypy.error - INFO - [08/Mar/2025:23:44:40] ENGINE Waiting for child threads to terminate...
