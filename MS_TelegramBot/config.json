@@ -1,0 +1,28 @@
+{
+  "telegram_token": "7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So",
+  "catalog_url": "http://localhost:8080",
+  "mqtt_broker": "localhost",
+  "mqtt_port": 1883,
+  "api_port": 8085,
+  "cache_ttl": 60,
+  "admin_chat_id": "",
+  "alert_topics": {
+    "temperature": "alerts/temperature/#",
+    "pressure": "alerts/pressure/#",
+    "valve": "alerts/valve/#",
+    "prediction": "alerts/prediction/#"
+  },
+  "command_topic": "control/commands/valve/{pipeline_id}/{device_id}",
+  "response_topic": "control/commands/response/#",
+  "default_thresholds": {
+    "temperature": {
+      "warning": 85.0,
+      "critical": 95.0
+    },
+    "pressure": {
+      "warning": 8.5,
+      "critical": 9.5
+    }
+  },
+  "update_interval": 60
+}
