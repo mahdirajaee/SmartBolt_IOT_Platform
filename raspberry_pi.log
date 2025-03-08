@@ -1,0 +1,37 @@
+2025-03-08 14:59:33,139 - RaspberryPiConnector - INFO - Using configuration from environment variables
+2025-03-08 14:59:33,139 - RaspberryPiConnector - INFO - Raspberry Pi Connector initialized
+2025-03-08 14:59:33,146 - RaspberryPiConnector - ERROR - Error getting broker info from catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /broker (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1049130e0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 14:59:33,147 - RaspberryPiConnector - INFO - Connected to MQTT broker at localhost:1883
+2025-03-08 14:59:33,148 - RaspberryPiConnector - ERROR - Error registering with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /devices (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1049ee990>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 14:59:33,148 - RaspberryPiConnector - INFO - Started catalog update thread
+2025-03-08 14:59:33,149 - RaspberryPiConnector - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /devices/raspberry_pi_pipeline001_dev010 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1049ef4d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 14:59:33,164 - RaspberryPiConnector - INFO - Connected to MQTT broker
+2025-03-08 14:59:33,164 - RaspberryPiConnector - INFO - Subscribed to topic: actuator/valve/pipeline001/dev010
+2025-03-08 14:59:35,329 - RaspberryPiConnector - INFO - Published: Temperature=76.14°C, Pressure=9.24 bar
+2025-03-08 14:59:35,330 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:37,331 - RaspberryPiConnector - INFO - Published: Temperature=57.74°C, Pressure=7.57 bar
+2025-03-08 14:59:37,331 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:39,337 - RaspberryPiConnector - INFO - Published: Temperature=74.75°C, Pressure=7.45 bar
+2025-03-08 14:59:39,338 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:41,344 - RaspberryPiConnector - INFO - Published: Temperature=66.17°C, Pressure=7.11 bar
+2025-03-08 14:59:41,344 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:43,350 - RaspberryPiConnector - INFO - Published: Temperature=62.87°C, Pressure=8.05 bar
+2025-03-08 14:59:43,350 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:45,356 - RaspberryPiConnector - INFO - Published: Temperature=67.27°C, Pressure=8.24 bar
+2025-03-08 14:59:45,356 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:47,362 - RaspberryPiConnector - INFO - Published: Temperature=68.93°C, Pressure=8.1 bar
+2025-03-08 14:59:47,363 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:49,369 - RaspberryPiConnector - INFO - Published: Temperature=64.2°C, Pressure=7.46 bar
+2025-03-08 14:59:49,369 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:51,375 - RaspberryPiConnector - INFO - Published: Temperature=61.32°C, Pressure=7.17 bar
+2025-03-08 14:59:51,376 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:53,378 - RaspberryPiConnector - INFO - Published: Temperature=58.24°C, Pressure=7.44 bar
+2025-03-08 14:59:53,378 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:55,384 - RaspberryPiConnector - INFO - Published: Temperature=69.94°C, Pressure=7.65 bar
+2025-03-08 14:59:55,385 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:57,391 - RaspberryPiConnector - INFO - Published: Temperature=60.05°C, Pressure=8.56 bar
+2025-03-08 14:59:57,392 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 14:59:59,398 - RaspberryPiConnector - INFO - Published: Temperature=61.79°C, Pressure=7.38 bar
+2025-03-08 14:59:59,399 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-08 15:00:00,264 - RaspberryPiConnector - INFO - Shutting down...
+2025-03-08 15:00:00,400 - RaspberryPiConnector - WARNING - Disconnected from MQTT broker with code 0
