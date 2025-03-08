@@ -4,6 +4,38 @@ import firebase_admin
 from firebase_admin import credentials, auth
 import os
 import hashlib
+import jwt
+import datetime
+import time
+import logging
+import requests
+import threading
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger("AccountManager")
+
+# Configuration - Load from environment variables
+SERVICE_ID = os.getenv("SERVICE_ID", "account_manager")
+CATALOG_URL = os.getenv("CATALOG_URL", "http://localhost:8080")
+SECRET_KEY = os.getenv("JWT_SECRET", "your-secret-key")  # Should be loaded from env var in production
+USER_CREDENTIALS_FILE = os.getenv("USER_CREDENTIALS_FILE", "user_credentials.json")
+FIREBASE_ENABLED = os.getenv("FIREBASE_ENABLED", "False").lower() == "true"
+
+# Initialize Firebase if enabled
+if FIREBASE_ENABLED:
+    try:
+        cred_path = os.getenv("FIREBASE_CREDENTIALS", "firebase-credentials.json")
+        cred = credentials.Certificate(cred_path)
+        firebase_admin.initialize_app(cred)
+        logger.info("Firebase initialized")
+    except Exception as e:
+        logger.error(f"Firebase initialization failed: {e}")
+        FIREBASE_ENABLED = False
+
 class AccountManager:
     """
     Account Manager Microservice for Smart IoT Bolt Platform
@@ -124,8 +156,7 @@ class AccountManager:
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def register(self):
-        """
-        """
+        """Register a new user"""
         data = cherrypy.request.json
         email = data.get("email")
         password = data.get("password")
@@ -138,6 +169,32 @@ class AccountManager:
         # Hash the password
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
+        try:
+            # Store user credentials locally
+            self.store_user_credentials(email, hashed_password, role)
+            
+            # Register with Firebase if enabled
+            firebase_uid = None
+            if FIREBASE_ENABLED:
+                try:
+                    user = auth.create_user(
+                        email=email,
+                        password=password
+                    )
+                    firebase_uid = user.uid
+                    logger.info(f"User created in Firebase with UID: {firebase_uid}")
+                    
+                    # Update local storage with Firebase UID
+                    self.store_user_credentials(email, hashed_password, role, firebase_uid)
+                    
+                except Exception as e:
+                    logger.warning(f"Failed to create user in Firebase: {e}")
+            
+            return {
+                "message": "User registered successfully",
+                "email": email,
+                "role": role,
+                "firebase_uid": firebase_uid
             }
         except Exception as e:
             logger.error(f"Registration error: {e}")
@@ -194,6 +251,11 @@ class AccountManager:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
+    def verify(self, token=None):
+        """
+        GET /verify?token=<token>
+        Verify a JWT token
+        """
         if not token:
             cherrypy.response.status = 400
             return {"error": "Token is required"}
@@ -415,6 +477,29 @@ class AccountManager:
         except Exception as e:
             cherrypy.response.status = 401
             return {"error": str(e)}
+
+# Main entry point
+def main():
+    # Configure CherryPy
+    cherrypy.config.update({
+        'server.socket_host': '0.0.0.0',
+        'server.socket_port': int(os.getenv("PORT", "8082")),
+        'log.access_file': 'access.log',
+        'log.error_file': 'error.log'
+    })
+    
+    # Mount the application
+    cherrypy.tree.mount(AccountManager(), '/', {
+        '/': {
+            'tools.sessions.on': True,
+            'tools.response_headers.on': True,
+            'tools.response_headers.headers': [('Content-Type', 'application/json')]
+        }
+    })
+    
+    # Start the server
+    cherrypy.engine.start()
+    cherrypy.engine.block()
 
 if __name__ == "__main__":
     main()
