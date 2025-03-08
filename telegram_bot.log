@@ -50,3 +50,11 @@
 2025-03-08 15:27:43,897 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c9a8b0>: Failed to establish a new connection: [Errno 61] Connection refused'))
 2025-03-08 15:28:43,908 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c99480>: Failed to establish a new connection: [Errno 61] Connection refused'))
 2025-03-08 15:29:43,917 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c99150>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 15:30:39,855 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-08 15:30:39,858 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus STOPPING
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8085)) shut down
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Stopped thread 'Autoreloader'.
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus STOPPED
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus EXITING
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus EXITED
+2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Waiting for child threads to terminate...
