@@ -1,0 +1,49 @@
+2025-03-08 23:22:56,862 - TelegramBot - INFO - Loaded configuration from config.json
+2025-03-08 23:22:56,862 - TelegramBot - ERROR - Error setting up MQTT: 'TelegramBotService' object has no attribute 'service_cache'
+2025-03-08 23:22:56,869 - TelegramBot - INFO - Successfully registered with catalog
+2025-03-08 23:22:57,254 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getMe "HTTP/1.1 200 OK"
+2025-03-08 23:22:57,356 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-08 23:22:57,360 - telegram.ext.Application - INFO - Application started
+2025-03-08 23:23:07,736 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:08,811 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:08,824 - TelegramBot - ERROR - Error getting service by type: 0
+2025-03-08 23:23:08,824 - TelegramBot - WARNING - Account Manager service not found, authorization check will be skipped
+2025-03-08 23:23:09,248 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 23:23:13,984 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:14,161 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendChatAction "HTTP/1.1 200 OK"
+2025-03-08 23:23:14,175 - TelegramBot - ERROR - Error getting service by type: 0
+2025-03-08 23:23:14,176 - TelegramBot - ERROR - Time Series DB Connector service not found
+2025-03-08 23:23:14,330 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 23:23:18,183 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:18,202 - TelegramBot - ERROR - Error getting service by type: 0
+2025-03-08 23:23:18,202 - TelegramBot - WARNING - Account Manager service not found, returning all pipelines
+2025-03-08 23:23:18,202 - TelegramBot - ERROR - Error in control command: 'str' object has no attribute 'get'
+2025-03-08 23:23:18,335 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 23:23:22,773 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:22,906 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendChatAction "HTTP/1.1 200 OK"
+2025-03-08 23:23:22,915 - TelegramBot - ERROR - Error getting service by type: 0
+2025-03-08 23:23:23,048 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 23:23:25,913 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:26,105 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendChatAction "HTTP/1.1 200 OK"
+2025-03-08 23:23:26,115 - TelegramBot - ERROR - Error getting service by type: 0
+2025-03-08 23:23:26,265 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 23:23:28,310 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:38,459 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:48,591 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 23:23:51,304 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-03-08 23:23:51,305 - telegram.ext.Application - INFO - Application.stop() complete
+2025-03-08 23:23:51,306 - TelegramBot - INFO - Telegram bot started successfully
+2025-03-08 23:23:51,307 - TelegramBot - INFO - Started catalog update thread
+2025-03-08 23:23:51,308 - TelegramBot - INFO - Telegram Bot Service initialized
+2025-03-08 23:23:51,311 - cherrypy.error - INFO - [08/Mar/2025:23:23:51] ENGINE Bus STARTING
+2025-03-08 23:23:51,312 - cherrypy.error - INFO - [08/Mar/2025:23:23:51] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-08 23:23:51,421 - cherrypy.error - INFO - [08/Mar/2025:23:23:51] ENGINE Serving on http://0.0.0.0:8085
+2025-03-08 23:23:51,422 - cherrypy.error - INFO - [08/Mar/2025:23:23:51] ENGINE Bus STARTED
+2025-03-08 23:23:53,866 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-08 23:23:53,866 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Bus STOPPING
+2025-03-08 23:23:53,933 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8085)) shut down
+2025-03-08 23:23:53,933 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Stopped thread 'Autoreloader'.
+2025-03-08 23:23:53,934 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Bus STOPPED
+2025-03-08 23:23:53,934 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Bus EXITING
+2025-03-08 23:23:53,934 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Bus EXITED
+2025-03-08 23:23:53,934 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Waiting for child threads to terminate...

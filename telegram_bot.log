@@ -58,3 +58,77 @@
 2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus EXITING
 2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Bus EXITED
 2025-03-08 15:30:39,876 - cherrypy.error - INFO - [08/Mar/2025:15:30:39] ENGINE Waiting for child threads to terminate...
+2025-03-08 17:25:46,950 - TelegramBot - ERROR - TELEGRAM_TOKEN is required
+2025-03-08 17:25:46,950 - TelegramBot - CRITICAL - Failed to start Telegram Bot Service: TELEGRAM_TOKEN environment variable is required
+2025-03-08 17:36:46,269 - TelegramBot - ERROR - Error setting up MQTT: 'TelegramBotService' object has no attribute 'service_cache'
+2025-03-08 17:36:46,274 - TelegramBot - ERROR - Error registering with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102df0830>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 17:36:46,726 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getMe "HTTP/1.1 200 OK"
+2025-03-08 17:36:46,850 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-08 17:36:46,853 - telegram.ext.Application - INFO - Application started
+2025-03-08 17:36:57,161 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:37:07,276 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:37:17,435 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:37:27,533 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:37:37,709 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:37:47,818 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:37:50,271 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:37:50,296 - TelegramBot - ERROR - Error getting service by type: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/type/accountManager (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102e574d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 17:37:50,296 - TelegramBot - WARNING - Account Manager service not found, authorization check will be skipped
+2025-03-08 17:37:50,740 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 17:38:00,433 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:38:10,572 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:38:20,708 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:38:30,862 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:38:41,086 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:38:51,224 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:38:52,120 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:38:52,543 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 17:38:55,945 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:38:56,068 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendChatAction "HTTP/1.1 200 OK"
+2025-03-08 17:38:56,073 - TelegramBot - ERROR - Error getting pipelines: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /sectors (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102ec4a50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 17:38:56,194 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/sendMessage "HTTP/1.1 200 OK"
+2025-03-08 17:39:06,076 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:39:16,210 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:39:26,346 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:39:36,587 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:39:46,705 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:39:56,862 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:40:06,960 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:40:17,139 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:40:27,274 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:40:37,413 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:40:47,550 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:40:57,689 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:41:07,826 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:41:17,963 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:41:28,067 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:41:38,239 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:41:48,339 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:41:58,515 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:42:08,653 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:42:18,788 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:42:28,927 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:42:39,069 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:42:49,202 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:42:59,341 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:43:09,477 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:43:19,599 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:43:29,752 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-08 17:43:38,531 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-03-08 17:43:38,534 - telegram.ext.Application - INFO - Application.stop() complete
+2025-03-08 17:43:38,537 - TelegramBot - INFO - Telegram bot started successfully
+2025-03-08 17:43:38,540 - TelegramBot - INFO - Started catalog update thread
+2025-03-08 17:43:38,541 - TelegramBot - INFO - Telegram Bot Service initialized
+2025-03-08 17:43:38,546 - cherrypy.error - INFO - [08/Mar/2025:17:43:38] ENGINE Bus STARTING
+2025-03-08 17:43:38,547 - cherrypy.error - INFO - [08/Mar/2025:17:43:38] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-08 17:43:38,547 - TelegramBot - ERROR - Error updating status with catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/telegram_bot_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102db9cd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 17:43:38,658 - cherrypy.error - INFO - [08/Mar/2025:17:43:38] ENGINE Serving on http://0.0.0.0:8085
+2025-03-08 17:43:38,659 - cherrypy.error - INFO - [08/Mar/2025:17:43:38] ENGINE Bus STARTED
+2025-03-08 17:43:43,794 - cherrypy.error - INFO - [08/Mar/2025:17:43:43] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-08 17:43:43,794 - cherrypy.error - INFO - [08/Mar/2025:17:43:43] ENGINE Bus STOPPING
+2025-03-08 17:43:44,174 - cherrypy.error - INFO - [08/Mar/2025:17:43:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8085)) shut down
+2025-03-08 17:43:44,174 - cherrypy.error - INFO - [08/Mar/2025:17:43:44] ENGINE Stopped thread 'Autoreloader'.
+2025-03-08 17:43:44,174 - cherrypy.error - INFO - [08/Mar/2025:17:43:44] ENGINE Bus STOPPED
+2025-03-08 17:43:44,174 - cherrypy.error - INFO - [08/Mar/2025:17:43:44] ENGINE Bus EXITING
+2025-03-08 17:43:44,174 - cherrypy.error - INFO - [08/Mar/2025:17:43:44] ENGINE Bus EXITED
+2025-03-08 17:43:44,174 - cherrypy.error - INFO - [08/Mar/2025:17:43:44] ENGINE Waiting for child threads to terminate...
