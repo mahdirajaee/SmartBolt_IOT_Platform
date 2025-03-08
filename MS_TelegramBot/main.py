@@ -201,7 +201,6 @@ class TelegramBotService:
             
             # Run the bot until the user presses Ctrl-C
             self.application.run_polling(allowed_updates=Update.ALL_TYPES)
-            
             logger.info("Telegram bot started successfully")
         except Exception as e:
             logger.error(f"Error setting up Telegram bot: {e}")
