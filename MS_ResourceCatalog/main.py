@@ -6,7 +6,6 @@ import datetime
 import logging
 import uuid
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -21,23 +20,15 @@ class ResourceCatalog:
     exposed = True
     
     def __init__(self):
-        # Initialize with empty data structures
-        self.devices = {}  # Dictionary to store device information
-        self.services = {}  # Dictionary to store service information
-        self.sectors = {}  # Dictionary to store sector information (pipelines)
-        
-        # Load configurations
+        self.devices = {}
+        self.services = {}
+        self.sectors = {}
         self.load_config()
-        
-        # Start cleanup thread for stale entries
         self.start_cleanup_thread()
-        
         logger.info("Resource/Service Catalog initialized")
     
     def load_config(self):
-        """Load configuration from file or environment variables"""
         try:
-            # Configuration path from environment or default
             config_path = os.environ.get('CONFIG_PATH', 'config.json')
             
             if os.path.exists(config_path):
@@ -45,10 +36,9 @@ class ResourceCatalog:
                     config = json.load(f)
                 
                 self.catalog_endpoint = config.get('catalog_endpoint', 'http://localhost:8080')
-                self.expiration_time = config.get('expiration_time', 120)  # seconds
-                self.cleanup_interval = config.get('cleanup_interval', 60)  # seconds
+                self.expiration_time = config.get('expiration_time', 120)
+                self.cleanup_interval = config.get('cleanup_interval', 60)
                 
-                # Initial services if any
                 if 'initial_services' in config:
                     self.services = config['initial_services']
                 
@@ -56,17 +46,15 @@ class ResourceCatalog:
             else:
                 logger.warning(f"Configuration file {config_path} not found, using defaults")
                 self.catalog_endpoint = 'http://localhost:8080'
-                self.expiration_time = 120  # seconds
-                self.cleanup_interval = 60  # seconds
+                self.expiration_time = 120
+                self.cleanup_interval = 60
         except Exception as e:
             logger.error(f"Error loading configuration: {e}")
-            # Set defaults
             self.catalog_endpoint = 'http://localhost:8080'
-            self.expiration_time = 120  # seconds
-            self.cleanup_interval = 60  # seconds
+            self.expiration_time = 120
+            self.cleanup_interval = 60
     
     def start_cleanup_thread(self):
-        """Start a CherryPy thread to clean up expired entries"""
         def cleanup():
             while True:
                 self.cleanup_expired_entries()
@@ -76,10 +64,8 @@ class ResourceCatalog:
         logger.info("Started cleanup thread")
     
     def cleanup_expired_entries(self):
-        """Remove expired devices and services"""
         current_time = time.time()
         
-        # Clean devices
         expired_devices = []
         for device_id, device_info in self.devices.items():
             if current_time - device_info.get('last_update', 0) > self.expiration_time:
@@ -89,7 +75,6 @@ class ResourceCatalog:
             logger.info(f"Removing expired device: {device_id}")
             self.devices.pop(device_id, None)
         
-        # Clean services
         expired_services = []
         for service_id, service_info in self.services.items():
             if current_time - service_info.get('last_update', 0) > self.expiration_time:
@@ -101,9 +86,7 @@ class ResourceCatalog:
     
     @cherrypy.tools.json_out()
     def GET(self, *uri, **params):
-        """Handle GET requests for retrieving information"""
         if len(uri) == 0:
-            # Return full catalog info
             return {
                 'devices': self.devices,
                 'services': self.services,
@@ -113,9 +96,7 @@ class ResourceCatalog:
         resource_type = uri[0]
         
         if resource_type == 'devices':
-            # Handle devices requests
             if len(uri) == 1:
-                # Return all devices
                 return {'devices': self.devices}
             elif len(uri) == 2:
                 device_id = uri[1]
@@ -125,9 +106,7 @@ class ResourceCatalog:
                     raise cherrypy.HTTPError(404, f"Device {device_id} not found")
         
         elif resource_type == 'services':
-            # Handle services requests
             if len(uri) == 1:
-                # Return all services
                 return {'services': self.services}
             elif len(uri) == 2:
                 service_id = uri[1]
@@ -136,16 +115,13 @@ class ResourceCatalog:
                 else:
                     raise cherrypy.HTTPError(404, f"Service {service_id} not found")
             elif len(uri) == 3 and uri[1] == 'type':
-                # Filter services by type
                 service_type = uri[2]
                 filtered_services = {k: v for k, v in self.services.items() 
                                     if v.get('type') == service_type}
                 return {'services': filtered_services}
         
         elif resource_type == 'sectors':
-            # Handle sectors requests (pipelines)
             if len(uri) == 1:
-                # Return all sectors
                 return {'sectors': self.sectors}
             elif len(uri) == 2:
                 sector_id = uri[1]
@@ -154,7 +130,6 @@ class ResourceCatalog:
                 else:
                     raise cherrypy.HTTPError(404, f"Sector {sector_id} not found")
             elif len(uri) == 3 and uri[2] == 'devices':
-                # Get all devices in a sector
                 sector_id = uri[1]
                 if sector_id in self.sectors:
                     sector_devices = {k: v for k, v in self.devices.items() 
@@ -164,7 +139,6 @@ class ResourceCatalog:
                     raise cherrypy.HTTPError(404, f"Sector {sector_id} not found")
         
         elif resource_type == 'info':
-            # Return catalog info
             return {
                 'name': 'Smart IoT Bolt Resource/Service Catalog',
                 'version': '1.0',
@@ -177,26 +151,21 @@ class ResourceCatalog:
             }
             
         elif resource_type == 'broker':
-            # Return MQTT broker information
             broker_services = {k: v for k, v in self.services.items() 
                               if v.get('type') == 'messageBroker'}
             if broker_services:
-                # Return the first broker found
                 return list(broker_services.values())[0]
             else:
-                # If no broker registered, return default
                 return {
                     'address': 'localhost',
                     'port': 1883
                 }
         
-        # If nothing matched, return 404
         raise cherrypy.HTTPError(404, "Resource not found")
     
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def POST(self, *uri, **params):
-        """Handle POST requests for creating new entries"""
         if len(uri) == 0:
             raise cherrypy.HTTPError(400, "Invalid request: resource type not specified")
         
@@ -204,13 +173,10 @@ class ResourceCatalog:
         request_data = cherrypy.request.json
         
         if resource_type == 'devices':
-            # Register a new device
             if 'id' not in request_data:
-                # Generate ID if not provided
                 request_data['id'] = f"device_{uuid.uuid4().hex[:8]}"
             
             device_id = request_data['id']
-            # Add timestamp for expiration check
             request_data['last_update'] = time.time()
             
             self.devices[device_id] = request_data
@@ -218,13 +184,10 @@ class ResourceCatalog:
             return {'status': 'success', 'id': device_id, 'message': f"Device {device_id} registered successfully"}
         
         elif resource_type == 'services':
-            # Register a new service
             if 'id' not in request_data:
-                # Generate ID if not provided
                 request_data['id'] = f"service_{uuid.uuid4().hex[:8]}"
             
             service_id = request_data['id']
-            # Add timestamp for expiration check
             request_data['last_update'] = time.time()
             
             self.services[service_id] = request_data
@@ -232,9 +195,7 @@ class ResourceCatalog:
             return {'status': 'success', 'id': service_id, 'message': f"Service {service_id} registered successfully"}
         
         elif resource_type == 'sectors':
-            # Create a new sector (pipeline)
             if 'id' not in request_data:
-                # Generate ID if not provided
                 request_data['id'] = f"sector_{uuid.uuid4().hex[:8]}"
             
             sector_id = request_data['id']
@@ -242,13 +203,11 @@ class ResourceCatalog:
             logger.info(f"Sector {sector_id} created")
             return {'status': 'success', 'id': sector_id, 'message': f"Sector {sector_id} created successfully"}
         
-        # If nothing matched, return 400
         raise cherrypy.HTTPError(400, "Invalid resource type")
     
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def PUT(self, *uri, **params):
-        """Handle PUT requests for updating existing entries"""
         if len(uri) < 2:
             raise cherrypy.HTTPError(400, "Invalid request: resource type and ID required")
         
@@ -257,47 +216,35 @@ class ResourceCatalog:
         request_data = cherrypy.request.json
         
         if resource_type == 'devices':
-            # Update an existing device
             if resource_id not in self.devices:
                 raise cherrypy.HTTPError(404, f"Device {resource_id} not found")
             
-            # Update timestamp
             request_data['last_update'] = time.time()
-            
-            # Update device information
             self.devices[resource_id].update(request_data)
             logger.info(f"Device {resource_id} updated")
             return {'status': 'success', 'message': f"Device {resource_id} updated successfully"}
         
         elif resource_type == 'services':
-            # Update an existing service
             if resource_id not in self.services:
                 raise cherrypy.HTTPError(404, f"Service {resource_id} not found")
             
-            # Update timestamp
             request_data['last_update'] = time.time()
-            
-            # Update service information
             self.services[resource_id].update(request_data)
             logger.info(f"Service {resource_id} updated")
             return {'status': 'success', 'message': f"Service {resource_id} updated successfully"}
         
         elif resource_type == 'sectors':
-            # Update an existing sector
             if resource_id not in self.sectors:
                 raise cherrypy.HTTPError(404, f"Sector {resource_id} not found")
             
-            # Update sector information
             self.sectors[resource_id].update(request_data)
             logger.info(f"Sector {resource_id} updated")
             return {'status': 'success', 'message': f"Sector {resource_id} updated successfully"}
         
-        # If nothing matched, return 400
         raise cherrypy.HTTPError(400, "Invalid resource type")
     
     @cherrypy.tools.json_out()
     def DELETE(self, *uri, **params):
-        """Handle DELETE requests for removing entries"""
         if len(uri) < 2:
             raise cherrypy.HTTPError(400, "Invalid request: resource type and ID required")
         
@@ -305,7 +252,6 @@ class ResourceCatalog:
         resource_id = uri[1]
         
         if resource_type == 'devices':
-            # Delete a device
             if resource_id not in self.devices:
                 raise cherrypy.HTTPError(404, f"Device {resource_id} not found")
             
@@ -314,7 +260,6 @@ class ResourceCatalog:
             return {'status': 'success', 'message': f"Device {resource_id} deleted successfully"}
         
         elif resource_type == 'services':
-            # Delete a service
             if resource_id not in self.services:
                 raise cherrypy.HTTPError(404, f"Service {resource_id} not found")
             
@@ -323,7 +268,6 @@ class ResourceCatalog:
             return {'status': 'success', 'message': f"Service {resource_id} deleted successfully"}
         
         elif resource_type == 'sectors':
-            # Delete a sector
             if resource_id not in self.sectors:
                 raise cherrypy.HTTPError(404, f"Sector {resource_id} not found")
             
@@ -331,21 +275,17 @@ class ResourceCatalog:
             logger.info(f"Sector {resource_id} deleted")
             return {'status': 'success', 'message': f"Sector {resource_id} deleted successfully"}
         
-        # If nothing matched, return 400
         raise cherrypy.HTTPError(400, "Invalid resource type")
 
-# Main entry point
 def main():
-    # Ensure config directory exists
     os.makedirs('config', exist_ok=True)
     
-    # Create default config if it doesn't exist
     config_path = os.environ.get('CONFIG_PATH', 'config.json')
     if not os.path.exists(config_path):
         default_config = {
             'catalog_endpoint': 'http://localhost:8080',
-            'expiration_time': 120,  # seconds
-            'cleanup_interval': 60,  # seconds
+            'expiration_time': 120,
+            'cleanup_interval': 60,
             'initial_services': {
                 'message_broker': {
                     'id': 'message_broker',
@@ -363,7 +303,6 @@ def main():
         
         logger.info(f"Created default configuration file: {config_path}")
     
-    # Configure CherryPy server
     cherrypy.config.update({
         'server.socket_host': '0.0.0.0',
         'server.socket_port': int(os.environ.get('PORT', '8080')),
@@ -371,11 +310,9 @@ def main():
         'log.error_file': 'error.log'
     })
     
-    # Create catalog instance
     catalog = ResourceCatalog()
-    catalog._start_time = time.time()  # Track start time for uptime reporting
+    catalog._start_time = time.time()
     
-    # Mount the application
     conf = {
         '/': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
@@ -387,7 +324,6 @@ def main():
     
     cherrypy.tree.mount(catalog, '/', conf)
     
-    # Start the server
     try:
         cherrypy.engine.start()
         logger.info(f"Resource/Service Catalog running on port {cherrypy.server.socket_port}")
