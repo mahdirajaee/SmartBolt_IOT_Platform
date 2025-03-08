@@ -1,3 +1,7 @@
+# before run use this : 
+# export TELEGRAM_TOKEN="API"
+
+
 import os
 import json
 import time
