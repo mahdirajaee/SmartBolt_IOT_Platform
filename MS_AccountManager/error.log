@@ -1,0 +1,57 @@
+[08/Mar/2025:23:18:48] ENGINE Bus STARTING
+[08/Mar/2025:23:18:48] ENGINE Started monitor thread 'Autoreloader'.
+[08/Mar/2025:23:18:48] ENGINE Serving on http://0.0.0.0:8082
+[08/Mar/2025:23:18:48] ENGINE Bus STARTED
+[08/Mar/2025:23:20:06] ENGINE Bus STARTING
+[08/Mar/2025:23:20:06] ENGINE Started monitor thread 'Autoreloader'.
+[08/Mar/2025:23:20:07] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x1060770e0>>
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/portend.py", line 122, in free
+    Checker(timeout=0.1).assert_free(host, port)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/portend.py", line 71, in assert_free
+    list(itertools.starmap(self._connect, info))
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/portend.py", line 87, in _connect
+    raise PortNotFree(tmpl.format(**locals()))
+portend.PortNotFree: Port 8082 is in use on 0.0.0.0.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/process/wspbus.py", line 229, in publish
+    output.append(listener(*args, **kwargs))
+                  ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpserver.py", line 191, in start
+    super(Server, self).start()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/process/servers.py", line 176, in start
+    portend.free(*self.bind_addr, timeout=Timeouts.free)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/portend.py", line 126, in free
+    raise Timeout("Port {port} not free on {host}.".format(**locals()))
+portend.Timeout: Port 8082 not free on 0.0.0.0.
+
+[08/Mar/2025:23:20:07] ENGINE Shutting down due to error in start listener:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/process/wspbus.py", line 267, in start
+    self.publish('start')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/process/wspbus.py", line 247, in publish
+    raise exc
+cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8082 not free on 0.0.0.0.')
+
+[08/Mar/2025:23:20:07] ENGINE Bus STOPPING
+[08/Mar/2025:23:20:07] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8082)) already shut down
+[08/Mar/2025:23:20:07] ENGINE Stopped thread 'Autoreloader'.
+[08/Mar/2025:23:20:07] ENGINE Bus STOPPED
+[08/Mar/2025:23:20:07] ENGINE Bus EXITING
+[08/Mar/2025:23:20:07] ENGINE Bus EXITED
+[08/Mar/2025:23:24:05] ENGINE Keyboard Interrupt: shutting down bus
+[08/Mar/2025:23:24:05] ENGINE Bus STOPPING
+[08/Mar/2025:23:24:06] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8082)) shut down
+[08/Mar/2025:23:24:06] ENGINE Stopped thread 'Autoreloader'.
+[08/Mar/2025:23:24:06] ENGINE Bus STOPPED
+[08/Mar/2025:23:24:06] ENGINE Bus EXITING
+[08/Mar/2025:23:24:06] ENGINE Bus EXITED
+[08/Mar/2025:23:24:06] ENGINE Waiting for child threads to terminate...

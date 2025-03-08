@@ -1,0 +1,15 @@
+2025-03-08 23:37:55,894 - AnalyticsService - ERROR - Error registering with Resource Catalog: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11f3bcec0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:37:55,894 - AnalyticsService - INFO - Analytics Service initialized
+2025-03-08 23:37:55,894 - AnalyticsService - INFO - Analysis background thread started
+2025-03-08 23:37:55,894 - cherrypy.error - INFO - [08/Mar/2025:23:37:55] ENGINE Bus STARTING
+2025-03-08 23:37:55,895 - AnalyticsService - ERROR - Error updating registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /services/analytics_microservice (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11f3c1bd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:37:55,896 - AnalyticsService - ERROR - Error getting sectors: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /sectors (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11f3c2490>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-08 23:37:56,000 - cherrypy.error - INFO - [08/Mar/2025:23:37:56] ENGINE Serving on http://0.0.0.0:5001
+2025-03-08 23:37:56,000 - cherrypy.error - INFO - [08/Mar/2025:23:37:56] ENGINE Bus STARTED
+2025-03-08 23:37:59,750 - cherrypy.error - INFO - [08/Mar/2025:23:37:59] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-08 23:37:59,751 - cherrypy.error - INFO - [08/Mar/2025:23:37:59] ENGINE Bus STOPPING
+2025-03-08 23:38:00,012 - cherrypy.error - INFO - [08/Mar/2025:23:38:00] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5001)) shut down
+2025-03-08 23:38:00,013 - cherrypy.error - INFO - [08/Mar/2025:23:38:00] ENGINE Bus STOPPED
+2025-03-08 23:38:00,013 - cherrypy.error - INFO - [08/Mar/2025:23:38:00] ENGINE Bus EXITING
+2025-03-08 23:38:00,014 - cherrypy.error - INFO - [08/Mar/2025:23:38:00] ENGINE Bus EXITED
+2025-03-08 23:38:00,014 - cherrypy.error - INFO - [08/Mar/2025:23:38:00] ENGINE Waiting for child threads to terminate...
