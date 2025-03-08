@@ -1,4 +1,3 @@
-
 import cherrypy
 import json
 import firebase_admin
@@ -75,7 +74,6 @@ class AccountManager:
                 self.update_catalog()
                 time.sleep(60)  # Update every minute
                 
-        import threading
         updater = threading.Thread(target=update_loop, daemon=True)
         updater.start()
         logger.info("Started catalog update thread")
@@ -99,8 +97,6 @@ class AccountManager:
         """
         GET /users - Get all users or a specific user
         GET /users?email=email@example.com - Get specific user info
-        
-        Requires admin authentication in a real implementation
         """
         # For a production system, this would need admin authentication
         users = self.load_user_credentials()
@@ -123,32 +119,6 @@ class AccountManager:
                 for user in users
             ]
         }
-
-    @cherrypy.expose
-    @cherrypy.tools.json_out()
-    def index(self):
-        """Default response"""
-        return {"message": "Welcome to the Account Manager API"}
-
-    @cherrypy.expose
-    @cherrypy.tools.json_out()
-    def users(self, email=None):
-        """
-        Handles GET requests:
-        - `/users` -> returns all users.
-        - `/users?email=email@example.com` -> returns only that user's hashed password.
-        """
-        users = self.load_user_credentials()
-
-        if email:
-            user = next((u for u in users if u["email"] == email), None)
-            if user:
-                return {"email": user["email"], "hashed_password": user["hashed_password"]}
-            else:
-                cherrypy.response.status = 404
-                return {"error": "User not found"}
-
-        return {"users": users}
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
@@ -374,8 +344,6 @@ class AccountManager:
         """
         POST /add_pipeline_access
         Add access rights for a user to specific pipelines
-        
-        Requires admin authentication in a real implementation
         """
         data = cherrypy.request.json
         email = data.get("email")
