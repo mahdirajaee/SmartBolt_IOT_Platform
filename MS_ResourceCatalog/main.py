@@ -320,7 +320,7 @@ class ResourceCatalog:
             
             del self.services[resource_id]
             logger.info(f"Service {resource_id} deleted")
-            return {'status': 'success', 'message': f"Service {service_id} deleted successfully"}
+            return {'status': 'success', 'message': f"Service {resource_id} deleted successfully"}
         
         elif resource_type == 'sectors':
             # Delete a sector
