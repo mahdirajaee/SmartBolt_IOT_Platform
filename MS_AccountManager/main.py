@@ -3,10 +3,6 @@ import json
 import firebase_admin
 from firebase_admin import credentials, auth
 import os
-import hashlib
-import jwt
-import datetime
-import time
 import logging
 import requests
 import threading
