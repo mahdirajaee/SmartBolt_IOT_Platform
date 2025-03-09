@@ -25,28 +25,33 @@ const API_CONFIG = {
  * Gets service endpoints from the Resource Catalog
  */
 async function initApiService() {
-    try {
-        // Get all service endpoints from the catalog
-        const services = await fetchServiceEndpoints();
-        
-        if (services) {
-            // Update API_CONFIG with the actual service endpoints
-            Object.keys(services).forEach(serviceKey => {
-                if (API_CONFIG[serviceKey] && services[serviceKey]) {
-                    API_CONFIG[serviceKey] = services[serviceKey];
-                }
-            });
-            
-            console.log('API Service initialized with endpoints:', API_CONFIG);
-            return true;
-        }
-        
-        return false;
-    } catch (error) {
-        console.error('Failed to initialize API service:', error);
-        return false;
-    }
+    console.log("Initializing API service with mock data");
+    // Don't try to fetch services - just use default endpoints
+    return true;
 }
+// async function initApiService() {
+//     try {
+//         // Get all service endpoints from the catalog
+//         const services = await fetchServiceEndpoints();
+        
+//         if (services) {
+//             // Update API_CONFIG with the actual service endpoints
+//             Object.keys(services).forEach(serviceKey => {
+//                 if (API_CONFIG[serviceKey] && services[serviceKey]) {
+//                     API_CONFIG[serviceKey] = services[serviceKey];
+//                 }
+//             });
+            
+//             console.log('API Service initialized with endpoints:', API_CONFIG);
+//             return true;
+//         }
+        
+//         return false;
+//     } catch (error) {
+//         console.error('Failed to initialize API service:', error);
+//         return false;
+//     }
+// }
 
 /**
  * Fetch service endpoints from the Resource Catalog
@@ -316,14 +321,27 @@ async function deleteRequest(service, endpoint, options = {}) {
     // Make request
     return makeRequest(url, requestOptions);
 }
+
 async function fetchPipelines() {
-    try {
-        return await get('catalog', '/sectors');
-    } catch (error) {
-        console.error('Error fetching pipelines:', error);
-        throw error;
-    }
+    console.log("Returning mock pipeline data");
+    return [
+        {id: "pipeline001", name: "Main Pipeline A", devices: []},
+        {id: "pipeline002", name: "Secondary Pipeline B", devices: []},
+        {id: "pipeline003", name: "Process Pipeline C", devices: []}
+    ];
 }
+// /**
+//  * Fetch all pipelines/sectors from the catalog
+// * @returns {Promise<Array>} - List of pipelines/sectors
+//  */
+// async function fetchPipelines() {
+//     try {
+//         return await get('catalog', '/sectors');
+//     } catch (error) {
+//         console.error('Error fetching pipelines:', error);
+//         throw error;
+//     }
+// }
 
 /**
  * Fetch devices (bolts) for a specific pipeline
@@ -395,20 +413,25 @@ async function fetchPredictions(deviceId, sensorType, hours = 24) {
  * @param {string} pipelineId - Optional pipeline ID
  * @returns {Promise<Array>} - List of alerts
  */
-async function fetchAlerts(pipelineId = null) {
-    try {
-        const params = {};
-        
-        if (pipelineId) {
-            params.pipeline_id = pipelineId;
-        }
-        
-        return await get('analytics', '/alerts', params);
-    } catch (error) {
-        console.error('Error fetching alerts:', error);
-        throw error;
-    }
+async function fetchAlerts() {
+    return {
+        alerts: []
+    };
 }
+// async function fetchAlerts(pipelineId = null) {
+//     try {
+//         const params = {};
+        
+//         if (pipelineId) {
+//             params.pipeline_id = pipelineId;
+//         }
+        
+//         return await get('analytics', '/alerts', params);
+//     } catch (error) {
+//         console.error('Error fetching alerts:', error);
+//         throw error;
+//     }
+// }
 
 /**
  * Control a valve actuator

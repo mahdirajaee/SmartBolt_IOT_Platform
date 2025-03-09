@@ -127,5 +127,9 @@
             initLoginPage();
         });
     </script>
+<script>
+    console.log("Firebase loaded:", typeof firebase !== 'undefined');
+    console.log("Firebase auth loaded:", firebase && typeof firebase.auth !== 'undefined');
+</script>
 </body>
 </html>

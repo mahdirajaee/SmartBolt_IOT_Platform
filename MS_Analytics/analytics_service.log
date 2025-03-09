@@ -209,3 +209,318 @@ cherrypy.process.wspbus.ChannelFailures: Timeout('Port 5001 not free on 0.0.0.0.
 2025-03-09 17:54:06,670 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
 2025-03-09 17:55:06,698 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
 2025-03-09 17:55:06,715 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 17:56:06,732 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 17:56:06,739 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 17:57:06,751 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 17:57:06,758 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 17:58:06,782 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 17:58:06,788 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 17:59:06,811 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 17:59:06,819 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:00:06,847 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:00:06,855 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:01:06,876 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:01:06,885 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:02:06,903 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:02:06,912 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:03:06,932 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:03:06,938 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:04:06,948 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:04:06,955 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:05:06,973 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:05:06,978 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:06:07,000 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:06:07,009 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:07:07,028 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:07:07,037 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:08:07,053 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:08:07,059 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:09:07,081 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:09:07,093 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:10:07,115 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:10:07,125 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:11:07,142 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:11:07,151 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:12:07,173 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:12:07,181 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:13:07,201 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:13:07,209 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:14:07,228 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:14:07,238 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:15:07,259 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:15:07,264 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:16:07,289 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:16:07,297 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:17:07,318 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:17:07,326 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:18:07,361 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:18:07,370 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:19:07,388 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:19:07,393 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:20:07,404 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:20:07,407 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:21:07,423 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:21:07,430 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:22:07,444 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:22:07,452 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:23:07,467 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:23:07,474 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:29:29,758 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 18:29:29,763 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:35:16,483 - AnalyticsService - ERROR - Failed to update registration: 404 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>404 Not Found</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>404 Not Found</h2>
+        <p>Service analytics_microservice not found</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 229, in PUT
+    raise cherrypy.HTTPError(404, f"Service {resource_id} not found")
+cherrypy._cperror.HTTPError: (404, 'Service analytics_microservice not found')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 18:35:16,513 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:36:16,538 - AnalyticsService - ERROR - Failed to update registration: 404 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>404 Not Found</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>404 Not Found</h2>
+        <p>Service analytics_microservice not found</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 229, in PUT
+    raise cherrypy.HTTPError(404, f"Service {resource_id} not found")
+cherrypy._cperror.HTTPError: (404, 'Service analytics_microservice not found')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 18:36:16,545 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:37:16,566 - AnalyticsService - ERROR - Failed to update registration: 404 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>404 Not Found</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>404 Not Found</h2>
+        <p>Service analytics_microservice not found</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 229, in PUT
+    raise cherrypy.HTTPError(404, f"Service {resource_id} not found")
+cherrypy._cperror.HTTPError: (404, 'Service analytics_microservice not found')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 18:37:16,574 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:38:16,600 - AnalyticsService - ERROR - Failed to update registration: 404 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>404 Not Found</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>404 Not Found</h2>
+        <p>Service analytics_microservice not found</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 229, in PUT
+    raise cherrypy.HTTPError(404, f"Service {resource_id} not found")
+cherrypy._cperror.HTTPError: (404, 'Service analytics_microservice not found')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 18:38:16,607 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:39:16,624 - AnalyticsService - ERROR - Failed to update registration: 404 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>404 Not Found</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>404 Not Found</h2>
+        <p>Service analytics_microservice not found</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 229, in PUT
+    raise cherrypy.HTTPError(404, f"Service {resource_id} not found")
+cherrypy._cperror.HTTPError: (404, 'Service analytics_microservice not found')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 18:39:16,630 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 18:39:49,767 - cherrypy.error - INFO - [09/Mar/2025:18:39:49] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-09 18:39:49,770 - cherrypy.error - INFO - [09/Mar/2025:18:39:49] ENGINE Bus STOPPING
+2025-03-09 18:39:49,915 - cherrypy.error - INFO - [09/Mar/2025:18:39:49] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5002)) shut down
+2025-03-09 18:39:49,915 - cherrypy.error - INFO - [09/Mar/2025:18:39:49] ENGINE Bus STOPPED
+2025-03-09 18:39:49,915 - cherrypy.error - INFO - [09/Mar/2025:18:39:49] ENGINE Bus EXITING
+2025-03-09 18:39:49,916 - cherrypy.error - INFO - [09/Mar/2025:18:39:49] ENGINE Bus EXITED
+2025-03-09 18:39:49,916 - cherrypy.error - INFO - [09/Mar/2025:18:39:49] ENGINE Waiting for child threads to terminate...
