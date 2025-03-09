@@ -457,7 +457,7 @@ if __name__ == "__main__":
     try:
         cherrypy.config.update({
             'server.socket_host': '0.0.0.0',
-            'server.socket_port': int(os.getenv("PORT", "5001")),
+            'server.socket_port': int(os.getenv("PORT", "5002")),
             'engine.autoreload.on': False,
             'log.access_file': 'access.log',
             'log.error_file': 'error.log'
