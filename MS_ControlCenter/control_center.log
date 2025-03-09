@@ -1,0 +1,15 @@
+2025-03-09 14:24:57,013 - ControlCenter - INFO - Configuration loaded from config.py
+2025-03-09 14:24:57,013 - ControlCenter - INFO - Control Center initialized
+2025-03-09 14:24:57,013 - ControlCenter - INFO - Starting background operations thread
+2025-03-09 14:24:57,013 - ControlCenter - INFO - Control Center started
+2025-03-09 14:24:57,013 - cherrypy.error - INFO - [09/Mar/2025:14:24:57] ENGINE Bus STARTING
+2025-03-09 14:24:57,018 - ControlCenter - INFO - Updated MQTT broker: localhost:1883
+2025-03-09 14:24:57,020 - ControlCenter - ERROR - Error fetching from catalog: 'str' object has no attribute 'get'
+2025-03-09 14:24:57,020 - ControlCenter - INFO - Connected to MQTT broker at localhost:1883
+2025-03-09 14:24:57,020 - ControlCenter - ERROR - Error in background operations: 'ControlCenter' object has no attribute 'update_catalog_interval'
+2025-03-09 14:24:57,021 - ControlCenter - INFO - Connected to MQTT broker
+2025-03-09 14:24:57,021 - ControlCenter - INFO - Subscribed to sensors/+/temperature
+2025-03-09 14:24:57,021 - ControlCenter - INFO - Subscribed to sensors/+/pressure
+2025-03-09 14:24:57,021 - ControlCenter - INFO - Background operations thread stopped
+2025-03-09 14:24:57,120 - cherrypy.error - INFO - [09/Mar/2025:14:24:57] ENGINE Serving on http://0.0.0.0:8081
+2025-03-09 14:24:57,120 - cherrypy.error - INFO - [09/Mar/2025:14:24:57] ENGINE Bus STARTED
