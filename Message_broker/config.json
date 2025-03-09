@@ -1,0 +1,33 @@
+{
+    "broker": {
+        "host": "localhost",
+        "port": 1883,
+        "keepalive": 60,
+        "client_id": "iot_message_broker"
+    },
+    "topics": {
+        "sensor": {
+            "temperature": "/sensor/temperature",
+            "pressure": "/sensor/pressure"
+        },
+        "actuator": {
+            "valve": "/actuator/valve"
+        }
+    },
+    "qos": {
+        "publish": 1,
+        "subscribe": 1
+    },
+    "logging": {
+        "level": "INFO",
+        "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        "file": "message_broker.log"
+    },
+    "security": {
+        "username": "",
+        "password": "",
+        "enable_tls": false,
+        "cert_file": "",
+        "key_file": ""
+    }
+}
