@@ -745,3 +745,9 @@
 2025-03-09 14:32:33,359 - RaspberryPiConnector - INFO - Published actuator status: closed
 2025-03-09 14:32:35,363 - RaspberryPiConnector - INFO - Published: Temperature=67.27°C, Pressure=7.13 bar
 2025-03-09 14:32:35,364 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-09 14:32:37,370 - RaspberryPiConnector - INFO - Published: Temperature=65.92°C, Pressure=6.4 bar
+2025-03-09 14:32:37,371 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-09 14:32:39,377 - RaspberryPiConnector - INFO - Published: Temperature=54.38°C, Pressure=5.27 bar
+2025-03-09 14:32:39,378 - RaspberryPiConnector - INFO - Published actuator status: closed
+2025-03-09 14:32:41,384 - RaspberryPiConnector - INFO - Published: Temperature=73.27°C, Pressure=7.71 bar
+2025-03-09 14:32:41,384 - RaspberryPiConnector - INFO - Published actuator status: closed
