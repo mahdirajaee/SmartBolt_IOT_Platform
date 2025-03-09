@@ -1,0 +1,311 @@
+/* ========== Chart Styles ========== */
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .chart-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(var(--bg-primary-rgb), 0.8);
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  }
+  
+  .chart-loading.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Threshold Lines */
+  .threshold-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-top: 1px dashed;
+    z-index: 1;
+  }
+  
+  .threshold-line span {
+    position: absolute;
+    right: 0;
+    top: -10px;
+    background-color: var(--bg-card);
+    font-size: var(--font-size-xs);
+    padding: 2px var(--spacing-xs);
+    border-radius: var(--border-radius);
+  }
+  
+  .threshold-line.warning {
+    border-color: var(--warning-color);
+  }
+  
+  .threshold-line.warning span {
+    color: var(--warning-color);
+  }
+  
+  .threshold-line.danger {
+    border-color: var(--danger-color);
+  }
+  
+  .threshold-line.danger span {
+    color: var(--danger-color);
+  }
+  
+  /* Pipeline Visualization Styles */
+  .pipeline-visualization {
+    position: relative;
+    height: 200px;
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .pipeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: var(--bg-tertiary);
+    border-radius: 4px;
+    transform: translateY(-50%);
+  }
+  
+  .pipeline-bolt {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    z-index: 2;
+  }
+  
+  .pipeline-bolt:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .pipeline-bolt i {
+    font-size: var(--font-size-md);
+  }
+  
+  .pipeline-bolt.critical {
+    border-color: var(--danger-color);
+  }
+  
+  .pipeline-bolt.critical i {
+    color: var(--danger-color);
+  }
+  
+  .pipeline-bolt.warning {
+    border-color: var(--warning-color);
+  }
+  
+  .pipeline-bolt.warning i {
+    color: var(--warning-color);
+  }
+  
+  .pipeline-bolt.healthy {
+    border-color: var(--success-color);
+  }
+  
+  .pipeline-bolt.healthy i {
+    color: var(--success-color);
+  }
+  
+  .bolt-label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+  }
+  
+  .bolt-tooltip {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    box-shadow: var(--box-shadow);
+    z-index: 10;
+    width: 160px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+  }
+  
+  .pipeline-bolt:hover .bolt-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .bolt-tooltip:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .bolt-tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  
+  .bolt-tooltip-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  .bolt-tooltip-label {
+    font-weight: var(--font-weight-medium);
+  }
+  
+  .bolt-tooltip-value.critical {
+    color: var(--danger-color);
+  }
+  
+  .bolt-tooltip-value.warning {
+    color: var(--warning-color);
+  }
+  
+  .bolt-tooltip-value.healthy {
+    color: var(--success-color);
+  }
+  
+  .valve-indicator {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+  }
+  
+  .valve-indicator i {
+    margin-right: 3px;
+  }
+  
+  .valve-indicator.open {
+    color: var(--success-color);
+  }
+  
+  .valve-indicator.closed {
+    color: var(--danger-color);
+  }
+  
+  /* Historical Chart Controls */
+  .historical-chart-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .date-range-picker {
+    display: flex;
+    align-items: center;
+  }
+  
+  .date-range-picker label {
+    margin-right: var(--spacing-sm);
+    margin-bottom: 0;
+  }
+  
+  .date-range-picker input {
+    width: 140px;
+    margin-right: var(--spacing-sm);
+  }
+  
+  .chart-options {
+    display: flex;
+    align-items: center;
+  }
+  
+  .chart-type-selector {
+    margin-right: var(--spacing-sm);
+  }
+  
+  .comparison-toggle {
+    margin-left: var(--spacing-sm);
+  }
+  
+  /* Chart Legend */
+  .chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-md);
+    justify-content: center;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: var(--spacing-xs);
+  }
+  
+  .legend-label {
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Responsive Chart Adjustments */
+  @media (max-width: 992px) {
+    .chart-container {
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .chart-container {
+      height: 200px;
+    }
+    
+    .historical-chart-controls {
+      flex-direction: column;
+    }
+    
+    .date-range-picker {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .date-range-picker, .chart-options {
+      width: 100%;
+    }
+  }

@@ -1,0 +1,768 @@
+<!-- Add before your other scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart IoT Bolt - Alerts</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/alerts.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <i class="fas fa-bolt logo-icon"></i>
+                    <h1>Smart Bolt</h1>
+                </div>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pipelines.html">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Pipelines</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="alerts.html">
+                            <i class="fas fa-bell"></i>
+                            <span>Alerts</span>
+                            <span class="badge alert-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="page-title">
+                    <h2>Alert Management</h2>
+                    <div class="breadcrumb">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Alerts</span>
+                    </div>
+                </div>
+                
+                <div class="top-nav-actions">
+                    <div class="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch">
+                        <label for="theme-switch" class="theme-switch-label">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                            <span class="switch-ball"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge notification-badge">3</span>
+                        
+                        <div class="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <a href="#" class="mark-all-read">Mark all as read</a>
+                            </div>
+                            
+                            <div class="notification-list">
+                                <!-- Notifications will be loaded here -->
+                            </div>
+                            
+                            <div class="notification-footer">
+                                <a href="alerts.html">View all alerts</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-name">John Doe</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                        <div class="user-avatar">
+                            <img src="assets/img/avatar.png" alt="User Avatar">
+                        </div>
+                        
+                        <div class="user-dropdown">
+                            <ul>
+                                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                                <li><a href="#" id="user-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Alert Summary Cards -->
+                <div class="alert-summary-cards">
+                    <div class="card alert-summary-card">
+                        <div class="card-icon critical">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Critical Alerts</h3>
+                            <div class="card-value">2</div>
+                            <div class="card-subtitle">Require immediate action</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card alert-summary-card">
+                        <div class="card-icon warning">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Warning Alerts</h3>
+                            <div class="card-value">1</div>
+                            <div class="card-subtitle">Require attention</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card alert-summary-card">
+                        <div class="card-icon info">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Informational</h3>
+                            <div class="card-value">5</div>
+                            <div class="card-subtitle">For your information</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card alert-summary-card">
+                        <div class="card-icon healthy">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Resolved</h3>
+                            <div class="card-value">12</div>
+                            <div class="card-subtitle">Last 24 hours</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alert Filters -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Alert Filters</h3>
+                                <div class="card-actions">
+                                    <button class="btn-card-action refresh-alerts">
+                                        <i class="fas fa-sync-alt"></i> Refresh
+                                    </button>
+                                    <button class="btn-card-action resolve-all-btn">
+                                        <i class="fas fa-check-double"></i> Resolve All
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert-filters">
+                                    <div class="alert-filter-group">
+                                        <label>Status</label>
+                                        <div class="filter-buttons">
+                                            <button class="filter-btn active" data-filter="status" data-value="all">All</button>
+                                            <button class="filter-btn" data-filter="status" data-value="active">Active</button>
+                                            <button class="filter-btn" data-filter="status" data-value="resolved">Resolved</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="alert-filter-group">
+                                        <label>Severity</label>
+                                        <div class="filter-buttons">
+                                            <button class="filter-btn active" data-filter="severity" data-value="all">All</button>
+                                            <button class="filter-btn" data-filter="severity" data-value="critical">Critical</button>
+                                            <button class="filter-btn" data-filter="severity" data-value="warning">Warning</button>
+                                            <button class="filter-btn" data-filter="severity" data-value="info">Info</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="alert-filter-group">
+                                        <label>Type</label>
+                                        <div class="filter-buttons">
+                                            <button class="filter-btn active" data-filter="type" data-value="all">All</button>
+                                            <button class="filter-btn" data-filter="type" data-value="temperature">Temperature</button>
+                                            <button class="filter-btn" data-filter="type" data-value="pressure">Pressure</button>
+                                            <button class="filter-btn" data-filter="type" data-value="system">System</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="alert-filter-group">
+                                        <label>Time Range</label>
+                                        <div class="filter-buttons">
+                                            <button class="filter-btn active" data-filter="time" data-value="24h">24 Hours</button>
+                                            <button class="filter-btn" data-filter="time" data-value="7d">7 Days</button>
+                                            <button class="filter-btn" data-filter="time" data-value="30d">30 Days</button>
+                                            <button class="filter-btn" data-filter="time" data-value="custom">Custom</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="alert-filter-group search-filter">
+                                        <label>Search</label>
+                                        <div class="search-box">
+                                            <input type="text" id="alert-search" placeholder="Search alerts...">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Active Alerts -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Active Alerts</h3>
+                                <div class="alert-count">
+                                    <span id="active-alert-count">3</span> alerts
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="alerts-table-container">
+                                    <table class="data-table alerts-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>ID</th>
+                                                <th>Severity</th>
+                                                <th>Type</th>
+                                                <th>Message</th>
+                                                <th>Pipeline</th>
+                                                <th>Device</th>
+                                                <th>Time</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Critical Temperature Alert -->
+                                            <tr class="alert-row">
+                                                <td>
+                                                    <div class="alert-checkbox">
+                                                        <input type="checkbox" id="alert-1" class="alert-select">
+                                                        <label for="alert-1"></label>
+                                                    </div>
+                                                </td>
+                                                <td>ALT-001</td>
+                                                <td>
+                                                    <span class="alert-severity critical">
+                                                        <i class="fas fa-exclamation-triangle"></i> Critical
+                                                    </span>
+                                                </td>
+                                                <td>Temperature</td>
+                                                <td class="alert-message">Temperature exceeded critical threshold (96.3°C)</td>
+                                                <td>pipeline003</td>
+                                                <td>dev010</td>
+                                                <td>12 min ago</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action view-alert" title="View Details">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn-action resolve-alert" title="Resolve Alert">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Critical Pressure Alert -->
+                                            <tr class="alert-row">
+                                                <td>
+                                                    <div class="alert-checkbox">
+                                                        <input type="checkbox" id="alert-2" class="alert-select">
+                                                        <label for="alert-2"></label>
+                                                    </div>
+                                                </td>
+                                                <td>ALT-002</td>
+                                                <td>
+                                                    <span class="alert-severity critical">
+                                                        <i class="fas fa-exclamation-triangle"></i> Critical
+                                                    </span>
+                                                </td>
+                                                <td>Pressure</td>
+                                                <td class="alert-message">Pressure exceeded critical threshold (9.7 bar)</td>
+                                                <td>pipeline003</td>
+                                                <td>dev020</td>
+                                                <td>15 min ago</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action view-alert" title="View Details">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn-action resolve-alert" title="Resolve Alert">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Warning Temperature Alert -->
+                                            <tr class="alert-row">
+                                                <td>
+                                                    <div class="alert-checkbox">
+                                                        <input type="checkbox" id="alert-3" class="alert-select">
+                                                        <label for="alert-3"></label>
+                                                    </div>
+                                                </td>
+                                                <td>ALT-003</td>
+                                                <td>
+                                                    <span class="alert-severity warning">
+                                                        <i class="fas fa-exclamation-circle"></i> Warning
+                                                    </span>
+                                                </td>
+                                                <td>Temperature</td>
+                                                <td class="alert-message">Temperature approaching critical threshold (85.7°C)</td>
+                                                <td>pipeline002</td>
+                                                <td>dev010</td>
+                                                <td>25 min ago</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action view-alert" title="View Details">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn-action resolve-alert" title="Resolve Alert">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="alerts-pagination">
+                                    <div class="pagination-info">
+                                        Showing <span>1-3</span> of <span>3</span> alerts
+                                    </div>
+                                    <div class="pagination-controls">
+                                        <button class="pagination-btn" disabled>
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <span class="pagination-pages">
+                                            <span class="current-page">1</span> / <span class="total-pages">1</span>
+                                        </span>
+                                        <button class="pagination-btn" disabled>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alert History -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Alert History</h3>
+                                <div class="alert-count">
+                                    <span id="history-alert-count">5</span> alerts
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="alerts-table-container">
+                                    <table class="data-table alerts-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>ID</th>
+                                                <th>Severity</th>
+                                                <th>Type</th>
+                                                <th>Message</th>
+                                                <th>Pipeline</th>
+                                                <th>Device</th>
+                                                <th>Time</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Resolved Alert 1 -->
+                                            <tr class="alert-row">
+                                                <td>
+                                                    <div class="alert-checkbox">
+                                                        <input type="checkbox" id="hist-1" class="alert-select">
+                                                        <label for="hist-1"></label>
+                                                    </div>
+                                                </td>
+                                                <td>ALT-004</td>
+                                                <td>
+                                                    <span class="alert-severity info">
+                                                        <i class="fas fa-info-circle"></i> Info
+                                                    </span>
+                                                </td>
+                                                <td>System</td>
+                                                <td class="alert-message">Pipeline maintenance notification</td>
+                                                <td>pipeline001</td>
+                                                <td>-</td>
+                                                <td>2 hours ago</td>
+                                                <td>
+                                                    <span class="alert-status resolved">
+                                                        <i class="fas fa-check"></i> Resolved
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Resolved Alert 2 -->
+                                            <tr class="alert-row">
+                                                <td>
+                                                    <div class="alert-checkbox">
+                                                        <input type="checkbox" id="hist-2" class="alert-select">
+                                                        <label for="hist-2"></label>
+                                                    </div>
+                                                </td>
+                                                <td>ALT-005</td>
+                                                <td>
+                                                    <span class="alert-severity warning">
+                                                        <i class="fas fa-exclamation-circle"></i> Warning
+                                                    </span>
+                                                </td>
+                                                <td>Pressure</td>
+                                                <td class="alert-message">Pressure fluctuation detected (8.7 bar)</td>
+                                                <td>pipeline002</td>
+                                                <td>dev030</td>
+                                                <td>3 hours ago</td>
+                                                <td>
+                                                    <span class="alert-status resolved">
+                                                        <i class="fas fa-check"></i> Resolved
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Resolved Alert 3 -->
+                                            <tr class="alert-row">
+                                                <td>
+                                                    <div class="alert-checkbox">
+                                                        <input type="checkbox" id="hist-3" class="alert-select">
+                                                        <label for="hist-3"></label>
+                                                    </div>
+                                                </td>
+                                                <td>ALT-006</td>
+                                                <td>
+                                                    <span class="alert-severity info">
+                                                        <i class="fas fa-info-circle"></i> Info
+                                                    </span>
+                                                </td>
+                                                <td>System</td>
+                                                <td class="alert-message">Device dev040 connected</td>
+                                                <td>pipeline001</td>
+                                                <td>dev040</td>
+                                                <td>5 hours ago</td>
+                                                <td>
+                                                    <span class="alert-status resolved">
+                                                        <i class="fas fa-check"></i> Resolved
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Resolved Alert 4 -->
+                                            <tr class="alert-row">
+                                                <td>
+                                                    <div class="alert-checkbox">
+                                                        <input type="checkbox" id="hist-4" class="alert-select">
+                                                        <label for="hist-4"></label>
+                                                    </div>
+                                                </td>
+                                                <td>ALT-007</td>
+                                                <td>
+                                                    <span class="alert-severity warning">
+                                                        <i class="fas fa-exclamation-circle"></i> Warning
+                                                    </span>
+                                                </td>
+                                                <td>Temperature</td>
+                                                <td class="alert-message">Temperature spike detected (86.1°C)</td>
+                                                <td>pipeline001</td>
+                                                <td>dev020</td>
+                                                <td>7 hours ago</td>
+                                                <td>
+                                                    <span class="alert-status resolved">
+                                                        <i class="fas fa-check"></i> Resolved
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- Resolved Alert 5 -->
+                                            <tr class="alert-row">
+                                                <td>
+                                                    <div class="alert-checkbox">
+                                                        <input type="checkbox" id="hist-5" class="alert-select">
+                                                        <label for="hist-5"></label>
+                                                    </div>
+                                                </td>
+                                                <td>ALT-008</td>
+                                                <td>
+                                                    <span class="alert-severity critical">
+                                                        <i class="fas fa-exclamation-triangle"></i> Critical
+                                                    </span>
+                                                </td>
+                                                <td>Pressure</td>
+                                                <td class="alert-message">Critical pressure level (9.9 bar)</td>
+                                                <td>pipeline003</td>
+                                                <td>dev010</td>
+                                                <td>8 hours ago</td>
+                                                <td>
+                                                    <span class="alert-status resolved">
+                                                        <i class="fas fa-check"></i> Resolved
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="alerts-pagination">
+                                    <div class="pagination-info">
+                                        Showing <span>1-5</span> of <span>12</span> alerts
+                                    </div>
+                                    <div class="pagination-controls">
+                                        <button class="pagination-btn" disabled>
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <span class="pagination-pages">
+                                            <span class="current-page">1</span> / <span class="total-pages">3</span>
+                                        </span>
+                                        <button class="pagination-btn">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="dashboard-footer">
+                <div class="footer-content">
+                    <p>&copy; 2025 Smart IoT Bolt - Pipeline Monitoring System</p>
+                    <p>Last updated: <span id="last-updated">Just now</span></p>
+                </div>
+            </footer>
+        </main>
+    </div>
+    
+    <!-- Modal Templates -->
+    <!-- Alert Details Modal -->
+    <div class="modal-container" id="alert-details-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Alert Details</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert-details">
+                    <div class="alert-details-header">
+                        <div class="alert-details-severity critical">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Critical</span>
+                        </div>
+                        <div class="alert-details-id">
+                            Alert ID: <span>ALT-001</span>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-details-content">
+                        <div class="detail-row">
+                            <div class="detail-label">Type:</div>
+                            <div class="detail-value">Temperature</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Message:</div>
+                            <div class="detail-value">Temperature exceeded critical threshold (96.3°C)</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Pipeline:</div>
+                            <div class="detail-value">pipeline003</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Device:</div>
+                            <div class="detail-value">dev010</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Threshold:</div>
+                            <div class="detail-value">95.0°C</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Detected Value:</div>
+                            <div class="detail-value critical">96.3°C</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Time:</div>
+                            <div class="detail-value">March 08, 2025 10:25:32 AM</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Status:</div>
+                            <div class="detail-value">Active</div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-actions-section">
+                        <h4>Recommended Actions</h4>
+                        <ul class="recommended-actions">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Verify temperature sensor readings</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Check for issues with cooling system</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ensure valve is functioning properly</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Inspect for physical damage to pipeline</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="resolve-alert-btn">
+                    <i class="fas fa-check"></i> Resolve Alert
+                </button>
+                <button class="btn-secondary modal-close-button">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Resolve Alert Modal -->
+    <div class="modal-container" id="resolve-alert-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Resolve Alert</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="resolve-alert-content">
+                    <div class="resolve-alert-message">
+                        Are you sure you want to resolve alert <strong>ALT-001</strong>?
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resolution-note">Resolution Note</label>
+                        <textarea id="resolution-note" rows="3" placeholder="Enter resolution details (optional)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resolution-action">Action Taken</label>
+                        <select id="resolution-action">
+                            <option value="">Select action...</option>
+                            <option value="fixed">Issue Fixed</option>
+                            <option value="no_issue">No Issue Found</option>
+                            <option value="manual_reset">Manual Reset Performed</option>
+                            <option value="maintenance">Maintenance Scheduled</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close-button">Cancel</button>
+                <button class="btn-primary" id="confirm-resolve-btn">
+                    <i class="fas fa-check"></i> Confirm Resolution
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bulk Action Modal -->
+    <div class="modal-container" id="bulk-action-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Bulk Action</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="bulk-action-content">
+                    <div class="bulk-action-message">
+                        You are about to perform a bulk action on <strong id="selected-count">3</strong> alerts.
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bulk-action">Select Action</label>
+                        <select id="bulk-action">
+                            <option value="">Select action...</option>
+                            <option value="resolve">Resolve Selected Alerts</option>
+                            <option value="delete">Delete Selected Alerts</option>
+                            <option value="export">Export Selected Alerts</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="bulk-resolution-note-group" style="display: none;">
+                        <label for="bulk-resolution-note">Resolution Note</label>
+                        <textarea id="bulk-resolution-note" rows="3" placeholder="Enter resolution details (optional)"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close-button">Cancel</button>
+                <button class="btn-primary" id="confirm-bulk-action-btn">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/alerts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize page
+            window.alerts.initAlerts();
+        });
+    </script>
+</body>
+</html>

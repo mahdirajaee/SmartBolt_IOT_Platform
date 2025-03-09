@@ -1,0 +1,1071 @@
+<!-- Add before your other scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart IoT Bolt - Settings</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <i class="fas fa-bolt logo-icon"></i>
+                    <h1>Smart Bolt</h1>
+                </div>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pipelines.html">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Pipelines</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="alerts.html">
+                            <i class="fas fa-bell"></i>
+                            <span>Alerts</span>
+                            <span class="badge alert-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="page-title">
+                    <h2>Settings</h2>
+                    <div class="breadcrumb">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Settings</span>
+                    </div>
+                </div>
+                
+                <div class="top-nav-actions">
+                    <div class="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch">
+                        <label for="theme-switch" class="theme-switch-label">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                            <span class="switch-ball"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge notification-badge">3</span>
+                        
+                        <div class="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <a href="#" class="mark-all-read">Mark all as read</a>
+                            </div>
+                            
+                            <div class="notification-list">
+                                <!-- Notifications will be loaded here -->
+                            </div>
+                            
+                            <div class="notification-footer">
+                                <a href="alerts.html">View all alerts</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-name">John Doe</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                        <div class="user-avatar">
+                            <img src="assets/img/avatar.png" alt="User Avatar">
+                        </div>
+                        
+                        <div class="user-dropdown">
+                            <ul>
+                                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                                <li><a href="#" id="user-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Settings Content -->
+            <div class="dashboard-content">
+                <div class="settings-container">
+                    <!-- Settings Navigation -->
+                    <div class="settings-navigation">
+                        <ul class="settings-nav-list">
+                            <li class="settings-nav-item active" data-target="account-settings">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Account Settings</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="notification-settings">
+                                <i class="fas fa-bell"></i>
+                                <span>Notification Settings</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="alert-settings">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Alert Thresholds</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="display-settings">
+                                <i class="fas fa-desktop"></i>
+                                <span>Display Settings</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="connection-settings">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Connection Settings</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="system-settings">
+                                <i class="fas fa-cogs"></i>
+                                <span>System Settings</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="user-management">
+                                <i class="fas fa-users-cog"></i>
+                                <span>User Management</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Settings Content -->
+                    <div class="settings-content">
+                        <!-- Account Settings Section -->
+                        <div class="settings-section active" id="account-settings">
+                            <div class="settings-header">
+                                <h3>Account Settings</h3>
+                            </div>
+                            
+                            <div class="settings-body">
+                                <div class="profile-info">
+                                    <div class="profile-avatar">
+                                        <img src="assets/img/avatar.png" alt="User Avatar">
+                                        <div class="avatar-overlay">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                    </div>
+                                    <div class="profile-details">
+                                        <h4>John Doe</h4>
+                                        <p>Administrator</p>
+                                        <button class="btn-secondary btn-sm">
+                                            <i class="fas fa-edit"></i> Change Photo
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <form class="settings-form">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="first-name">First Name</label>
+                                            <input type="text" id="first-name" value="John" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last-name">Last Name</label>
+                                            <input type="text" id="last-name" value="Doe" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" value="john.doe@example.com" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" value="+1 (555) 123-4567">
+                                    </div>
+                                    
+                                    <div class="form-divider">
+                                        <span>Change Password</span>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="current-password">Current Password</label>
+                                        <div class="input-with-icon">
+                                            <input type="password" id="current-password">
+                                            <i class="fas fa-eye-slash toggle-password"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="new-password">New Password</label>
+                                            <div class="input-with-icon">
+                                                <input type="password" id="new-password">
+                                                <i class="fas fa-eye-slash toggle-password"></i>
+                                            </div>
+                                            <div class="password-strength-meter">
+                                                <div class="strength-bar">
+                                                    <div class="strength-level" style="width: 0%"></div>
+                                                </div>
+                                                <span class="strength-text">Password strength</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirm-password">Confirm Password</label>
+                                            <div class="input-with-icon">
+                                                <input type="password" id="confirm-password">
+                                                <i class="fas fa-eye-slash toggle-password"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn-primary">
+                                            <i class="fas fa-save"></i> Save Changes
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Notification Settings Section -->
+                        <div class="settings-section" id="notification-settings">
+                            <div class="settings-header">
+                                <h3>Notification Settings</h3>
+                            </div>
+                            
+                            <div class="settings-body">
+                                <div class="settings-group">
+                                    <h4>Alert Notifications</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Critical Alerts</div>
+                                            <div class="setting-description">Receive notifications for critical alerts</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="critical-alerts" class="toggle-input" checked>
+                                                <label for="critical-alerts" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Warning Alerts</div>
+                                            <div class="setting-description">Receive notifications for warning alerts</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="warning-alerts" class="toggle-input" checked>
+                                                <label for="warning-alerts" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Informational Alerts</div>
+                                            <div class="setting-description">Receive notifications for informational alerts</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="info-alerts" class="toggle-input">
+                                                <label for="info-alerts" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>Notification Methods</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">In-App Notifications</div>
+                                            <div class="setting-description">Show notifications in the dashboard</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="in-app-notifications" class="toggle-input" checked>
+                                                <label for="in-app-notifications" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Email Notifications</div>
+                                            <div class="setting-description">Send alerts to your email</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="email-notifications" class="toggle-input" checked>
+                                                <label for="email-notifications" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Telegram Notifications</div>
+                                            <div class="setting-description">Receive alerts via Telegram Bot</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="telegram-notifications" class="toggle-input" checked>
+                                                <label for="telegram-notifications" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">SMS Notifications</div>
+                                            <div class="setting-description">Receive SMS alerts for critical issues</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="sms-notifications" class="toggle-input">
+                                                <label for="sms-notifications" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>Notification Schedule</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Do Not Disturb</div>
+                                            <div class="setting-description">Mute notifications during specific hours</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="do-not-disturb" class="toggle-input">
+                                                <label for="do-not-disturb" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item dnd-schedule" style="display: none;">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Quiet Hours</div>
+                                        </div>
+                                        <div class="setting-control dnd-times">
+                                            <div class="time-picker">
+                                                <label for="dnd-start">From</label>
+                                                <input type="time" id="dnd-start" value="22:00">
+                                            </div>
+                                            <div class="time-picker">
+                                                <label for="dnd-end">To</label>
+                                                <input type="time" id="dnd-end" value="07:00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn-primary notification-save-btn">
+                                        <i class="fas fa-save"></i> Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Alert Thresholds Section -->
+                        <div class="settings-section" id="alert-settings">
+                            <div class="settings-header">
+                                <h3>Alert Thresholds</h3>
+                            </div>
+                            
+                            <div class="settings-body">
+                                <div class="settings-group">
+                                    <h4>Temperature Thresholds</h4>
+                                    
+                                    <div class="threshold-setting">
+                                        <div class="threshold-info">
+                                            <div class="threshold-title">Warning Threshold</div>
+                                            <div class="threshold-description">Temperature level for warning alerts</div>
+                                        </div>
+                                        <div class="threshold-control">
+                                            <div class="threshold-slider-container">
+                                                <input type="range" min="50" max="100" value="85" class="threshold-slider" id="temp-warning-threshold">
+                                                <div class="threshold-value">
+                                                    <span id="temp-warning-value">85</span>°C
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="threshold-setting">
+                                        <div class="threshold-info">
+                                            <div class="threshold-title">Critical Threshold</div>
+                                            <div class="threshold-description">Temperature level for critical alerts</div>
+                                        </div>
+                                        <div class="threshold-control">
+                                            <div class="threshold-slider-container">
+                                                <input type="range" min="50" max="100" value="95" class="threshold-slider" id="temp-critical-threshold">
+                                                <div class="threshold-value">
+                                                    <span id="temp-critical-value">95</span>°C
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>Pressure Thresholds</h4>
+                                    
+                                    <div class="threshold-setting">
+                                        <div class="threshold-info">
+                                            <div class="threshold-title">Warning Threshold</div>
+                                            <div class="threshold-description">Pressure level for warning alerts</div>
+                                        </div>
+                                        <div class="threshold-control">
+                                            <div class="threshold-slider-container">
+                                                <input type="range" min="5" max="12" step="0.1" value="8.5" class="threshold-slider" id="pressure-warning-threshold">
+                                                <div class="threshold-value">
+                                                    <span id="pressure-warning-value">8.5</span> bar
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="threshold-setting">
+                                        <div class="threshold-info">
+                                            <div class="threshold-title">Critical Threshold</div>
+                                            <div class="threshold-description">Pressure level for critical alerts</div>
+                                        </div>
+                                        <div class="threshold-control">
+                                            <div class="threshold-slider-container">
+                                                <input type="range" min="5" max="12" step="0.1" value="9.5" class="threshold-slider" id="pressure-critical-threshold">
+                                                <div class="threshold-value">
+                                                    <span id="pressure-critical-value">9.5</span> bar
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>Pipeline-Specific Thresholds</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Use Pipeline-Specific Thresholds</div>
+                                            <div class="setting-description">Configure different thresholds for each pipeline</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="pipeline-specific-thresholds" class="toggle-input">
+                                                <label for="pipeline-specific-thresholds" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pipeline-thresholds-container" style="display: none;">
+                                        <div class="pipeline-threshold-header">
+                                            <select id="pipeline-select" class="pipeline-threshold-select">
+                                                <option value="">Select pipeline...</option>
+                                                <option value="pipeline001">Pipeline 001</option>
+                                                <option value="pipeline002">Pipeline 002</option>
+                                                <option value="pipeline003">Pipeline 003</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="pipeline-thresholds">
+                                            <!-- Pipeline specific thresholds will be displayed here -->
+                                            <div class="threshold-placeholder">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span>Select a pipeline to configure specific thresholds</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn-primary threshold-save-btn">
+                                        <i class="fas fa-save"></i> Save Thresholds
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Display Settings Section -->
+                        <div class="settings-section" id="display-settings">
+                            <div class="settings-header">
+                                <h3>Display Settings</h3>
+                            </div>
+                            
+                            <div class="settings-body">
+                                <div class="settings-group">
+                                    <h4>Theme</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Dark Mode</div>
+                                            <div class="setting-description">Toggle between light and dark mode</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="theme-toggle-setting" class="toggle-input">
+                                                <label for="theme-toggle-setting" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Follow System Theme</div>
+                                            <div class="setting-description">Automatically match your system theme</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="system-theme" class="toggle-input" checked>
+                                                <label for="system-theme" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>Dashboard</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Auto-refresh Interval</div>
+                                            <div class="setting-description">How often to update dashboard data</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <select id="refresh-interval" class="setting-select">
+                                                <option value="0">Manual refresh only</option>
+                                                <option value="15">15 seconds</option>
+                                                <option value="30" selected>30 seconds</option>
+                                                <option value="60">1 minute</option>
+                                                <option value="300">5 minutes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Chart Animation</div>
+                                            <div class="setting-description">Enable animations in charts</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="chart-animation" class="toggle-input" checked>
+                                                <label for="chart-animation" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Default View</div>
+                                            <div class="setting-description">Default pipeline visualization view</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <select id="default-view" class="setting-select">
+                                                <option value="schematic" selected>Schematic View</option>
+                                                <option value="table">Table View</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>Units</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Temperature Unit</div>
+                                            <div class="setting-description">Display temperature in Celsius or Fahrenheit</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <select id="temperature-unit" class="setting-select">
+                                                <option value="C" selected>Celsius (°C)</option>
+                                                <option value="F">Fahrenheit (°F)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Pressure Unit</div>
+                                            <div class="setting-description">Display pressure in bar, psi, or kPa</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <select id="pressure-unit" class="setting-select">
+                                                <option value="bar" selected>Bar</option>
+                                                <option value="psi">PSI</option>
+                                                <option value="kPa">kPa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn-primary display-save-btn">
+                                        <i class="fas fa-save"></i> Save Settings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Connection Settings Section -->
+                        <div class="settings-section" id="connection-settings">
+                            <div class="settings-header">
+                                <h3>Connection Settings</h3>
+                            </div>
+                            
+                            <div class="settings-body">
+                                <div class="settings-group">
+                                    <h4>MQTT Configuration</h4>
+                                    
+                                    <div class="form-group">
+                                        <label for="mqtt-broker">MQTT Broker Address</label>
+                                        <input type="text" id="mqtt-broker" value="localhost">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="mqtt-port">MQTT Port</label>
+                                        <input type="number" id="mqtt-port" value="1883">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="mqtt-username">MQTT Username (Optional)</label>
+                                        <input type="text" id="mqtt-username" value="">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="mqtt-password">MQTT Password (Optional)</label>
+                                        <div class="input-with-icon">
+                                            <input type="password" id="mqtt-password">
+                                            <i class="fas fa-eye-slash toggle-password"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>API Configuration</h4>
+                                    
+                                    <div class="form-group">
+                                        <label for="catalog-url">Resource Catalog URL</label>
+                                        <input type="text" id="catalog-url" value="http://localhost:8080">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="timeseries-url">Time Series DB URL</label>
+                                        <input type="text" id="timeseries-url" value="http://localhost:5000/api">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="analytics-url">Analytics Service URL</label>
+                                        <input type="text" id="analytics-url" value="http://localhost:5000">
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>Connection Test</h4>
+                                    
+                                    <div class="connection-test">
+                                        <button type="button" class="btn-secondary test-connection-btn">
+                                            <i class="fas fa-plug"></i> Test Connections
+                                        </button>
+                                        
+                                        <div class="connection-status">
+                                            <div class="status-item">
+                                                <span class="status-label">MQTT Broker:</span>
+                                                <span class="status-value" id="mqtt-status"><i class="fas fa-circle-notch fa-spin"></i> Not Tested</span>
+                                            </div>
+                                            <div class="status-item">
+                                                <span class="status-label">Resource Catalog:</span>
+                                                <span class="status-value" id="catalog-status"><i class="fas fa-circle-notch fa-spin"></i> Not Tested</span>
+                                            </div>
+                                            <div class="status-item">
+                                                <span class="status-label">Time Series DB:</span>
+                                                <span class="status-value" id="timeseries-status"><i class="fas fa-circle-notch fa-spin"></i> Not Tested</span>
+                                            </div>
+                                            <div class="status-item">
+                                                <span class="status-label">Analytics Service:</span>
+                                                <span class="status-value" id="analytics-status"><i class="fas fa-circle-notch fa-spin"></i> Not Tested</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn-primary connection-save-btn">
+                                        <i class="fas fa-save"></i> Save Connection Settings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- System Settings Section -->
+                        <div class="settings-section" id="system-settings">
+                            <div class="settings-header">
+                                <h3>System Settings</h3>
+                            </div>
+                            
+                            <div class="settings-body">
+                                <div class="settings-group">
+                                    <h4>Data Management</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Data Retention Period</div>
+                                            <div class="setting-description">How long to keep historical data</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <select id="data-retention" class="setting-select">
+                                                <option value="30">30 days</option>
+                                                <option value="60">60 days</option>
+                                                <option value="90" selected>90 days</option>
+                                                <option value="180">180 days</option>
+                                                <option value="365">1 year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Data Sampling Rate</div>
+                                            <div class="setting-description">How frequently to collect sensor data</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <select id="data-sampling" class="setting-select">
+                                                <option value="1">Every 1 second</option>
+                                                <option value="5" selected>Every 5 seconds</option>
+                                                <option value="10">Every 10 seconds</option>
+                                                <option value="30">Every 30 seconds</option>
+                                                <option value="60">Every minute</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>Analytics Settings</h4>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Enable Predictive Analytics</div>
+                                            <div class="setting-description">Use machine learning for predictions</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="predictive-analytics" class="toggle-input" checked>
+                                                <label for="predictive-analytics" class="toggle-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <div class="setting-title">Prediction Window</div>
+                                            <div class="setting-description">How far ahead to predict potential issues</div>
+                                        </div>
+                                        <div class="setting-control">
+                                            <select id="prediction-window" class="setting-select">
+                                                <option value="6">6 hours</option>
+                                                <option value="12">12 hours</option>
+                                                <option value="24" selected>24 hours</option>
+                                                <option value="48">48 hours</option>
+                                                <option value="72">72 hours</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="settings-group">
+                                    <h4>System Maintenance</h4>
+                                    
+                                    <div class="maintenance-item">
+                                        <div class="maintenance-info">
+                                            <div class="maintenance-title">System Backup</div>
+                                            <div class="maintenance-description">Backup system configuration and data</div>
+                                        </div>
+                                        <div class="maintenance-control">
+                                            <button type="button" class="btn-secondary backup-btn">
+                                                <i class="fas fa-download"></i> Create Backup
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="maintenance-item">
+                                        <div class="maintenance-info">
+                                            <div class="maintenance-title">Clear Cache</div>
+                                            <div class="maintenance-description">Clear system cache data</div>
+                                        </div>
+                                        <div class="maintenance-control">
+                                            <button type="button" class="btn-secondary clear-cache-btn">
+                                                <i class="fas fa-broom"></i> Clear Cache
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn-primary system-save-btn">
+                                        <i class="fas fa-save"></i> Save System Settings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- User Management Section -->
+                        <div class="settings-section" id="user-management">
+                            <div class="settings-header">
+                                <h3>User Management</h3>
+                                <button class="btn-primary add-user-btn">
+                                    <i class="fas fa-user-plus"></i> Add User
+                                </button>
+                            </div>
+                            
+                            <div class="settings-body">
+                                <div class="users-search">
+                                    <div class="search-box">
+                                        <input type="text" id="user-search" placeholder="Search users...">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <div class="user-filters">
+                                        <select id="role-filter" class="setting-select">
+                                            <option value="all">All Roles</option>
+                                            <option value="admin">Administrator</option>
+                                            <option value="manager">Manager</option>
+                                            <option value="operator">Operator</option>
+                                        </select>
+                                        <select id="status-filter" class="setting-select">
+                                            <option value="all">All Statuses</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="users-table-container">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                                <th>Last Login</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>John Doe</td>
+                                                <td>john.doe@example.com</td>
+                                                <td><span class="role-badge admin">Administrator</span></td>
+                                                <td><span class="status-badge active">Active</span></td>
+                                                <td>Just now</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action edit-user" title="Edit User">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn-action reset-password" title="Reset Password">
+                                                            <i class="fas fa-key"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jane Smith</td>
+                                                <td>jane.smith@example.com</td>
+                                                <td><span class="role-badge manager">Manager</span></td>
+                                                <td><span class="status-badge active">Active</span></td>
+                                                <td>2 hours ago</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action edit-user" title="Edit User">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn-action reset-password" title="Reset Password">
+                                                            <i class="fas fa-key"></i>
+                                                        </button>
+                                                        <button class="btn-action deactivate-user" title="Deactivate User">
+                                                            <i class="fas fa-user-slash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Robert Johnson</td>
+                                                <td>robert.johnson@example.com</td>
+                                                <td><span class="role-badge operator">Operator</span></td>
+                                                <td><span class="status-badge active">Active</span></td>
+                                                <td>1 day ago</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action edit-user" title="Edit User">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn-action reset-password" title="Reset Password">
+                                                            <i class="fas fa-key"></i>
+                                                        </button>
+                                                        <button class="btn-action deactivate-user" title="Deactivate User">
+                                                            <i class="fas fa-user-slash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Emily Davis</td>
+                                                <td>emily.davis@example.com</td>
+                                                <td><span class="role-badge operator">Operator</span></td>
+                                                <td><span class="status-badge inactive">Inactive</span></td>
+                                                <td>2 weeks ago</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action edit-user" title="Edit User">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn-action activate-user" title="Activate User">
+                                                            <i class="fas fa-user-check"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="dashboard-footer">
+                <div class="footer-content">
+                    <p>&copy; 2025 Smart IoT Bolt - Pipeline Monitoring System</p>
+                    <p>Last updated: <span id="last-updated">Just now</span></p>
+                </div>
+            </footer>
+        </main>
+    </div>
+    
+    <!-- Modal Templates -->
+    <!-- Add User Modal -->
+    <div class="modal-container" id="add-user-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New User</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="add-user-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new-first-name">First Name</label>
+                            <input type="text" id="new-first-name" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-last-name">Last Name</label>
+                            <input type="text" id="new-last-name" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-email">Email Address</label>
+                        <input type="email" id="new-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-role">Role</label>
+                        <select id="new-role" name="role" required>
+                            <option value="">Select role...</option>
+                            <option value="admin">Administrator</option>
+                            <option value="manager">Manager</option>
+                            <option value="operator">Operator</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new-password">Password</label>
+                            <div class="input-with-icon">
+                                <input type="password" id="new-password" name="password" required>
+                                <i class="fas fa-eye-slash toggle-password"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-confirm-password">Confirm Password</label>
+                            <div class="input-with-icon">
+                                <input type="password" id="new-confirm-password" name="confirmPassword" required>
+                                <i class="fas fa-eye-slash toggle-password"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="send-welcome" name="sendWelcome" checked>
+                            <label for="send-welcome">Send welcome email with login details</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close-button">Cancel</button>
+                <button class="btn-primary" id="save-user-btn">Save User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/settings.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize page
+            window.settings.initSettings();
+        });
+    </script>
+</body>
+</html>
