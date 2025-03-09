@@ -147,3 +147,53 @@
 2025-03-09 14:27:05,499 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:27:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
 2025-03-09 14:27:08,137 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:27:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
 2025-03-09 14:27:15,824 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:27:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:28:05,521 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:28:05,523 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:28:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:28:08,158 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:28:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:28:11,168 - ResourceCatalog - INFO - Removing expired service: analytics_microservice
+2025-03-09 14:28:15,844 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:28:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:28:27,184 - ResourceCatalog - INFO - Service analytics_microservice registered
+2025-03-09 14:28:27,184 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:28:27] "POST /services HTTP/1.1" 200 122 "" "python-requests/2.32.3"
+2025-03-09 14:28:27,186 - ResourceCatalog - INFO - Service analytics_microservice updated
+2025-03-09 14:28:27,186 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:28:27] "PUT /services/analytics_microservice HTTP/1.1" 200 87 "" "python-requests/2.32.3"
+2025-03-09 14:28:27,188 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:28:27] "GET /sectors HTTP/1.1" 200 15 "" "python-requests/2.32.3"
+2025-03-09 14:29:05,545 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:29:05,546 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:29:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:29:08,184 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:29:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:29:15,866 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:29:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:29:27,201 - ResourceCatalog - INFO - Service analytics_microservice updated
+2025-03-09 14:29:27,201 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:29:27] "PUT /services/analytics_microservice HTTP/1.1" 200 87 "" "python-requests/2.32.3"
+2025-03-09 14:29:27,207 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:29:27] "GET /sectors HTTP/1.1" 200 15 "" "python-requests/2.32.3"
+2025-03-09 14:29:29,890 - ResourceCatalog - INFO - Service telegram_bot_service registered
+2025-03-09 14:29:29,890 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:29:29] "POST /services HTTP/1.1" 200 118 "" "python-requests/2.32.3"
+2025-03-09 14:30:05,534 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:30:05,535 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:30:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:30:08,166 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:30:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:30:15,849 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:30:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:30:18,929 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:30:18] "GET /broker HTTP/1.1" 200 38 "" "python-requests/2.32.3"
+2025-03-09 14:30:18,931 - ResourceCatalog - INFO - Device raspberry_pi_pipeline001_dev010 registered
+2025-03-09 14:30:18,931 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:30:18] "POST /devices HTTP/1.1" 200 139 "" "python-requests/2.32.3"
+2025-03-09 14:30:18,933 - ResourceCatalog - INFO - Device raspberry_pi_pipeline001_dev010 updated
+2025-03-09 14:30:18,933 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:30:18] "PUT /devices/raspberry_pi_pipeline001_dev010 HTTP/1.1" 200 95 "" "python-requests/2.32.3"
+2025-03-09 14:30:27,191 - ResourceCatalog - INFO - Service analytics_microservice updated
+2025-03-09 14:30:27,193 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:30:27] "PUT /services/analytics_microservice HTTP/1.1" 200 87 "" "python-requests/2.32.3"
+2025-03-09 14:30:27,206 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:30:27] "GET /sectors HTTP/1.1" 200 15 "" "python-requests/2.32.3"
+2025-03-09 14:31:05,543 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:31:05,544 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:31:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:31:08,180 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:31:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:31:15,867 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:31:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:31:18,948 - ResourceCatalog - INFO - Device raspberry_pi_pipeline001_dev010 updated
+2025-03-09 14:31:18,949 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:31:18] "PUT /devices/raspberry_pi_pipeline001_dev010 HTTP/1.1" 200 95 "" "python-requests/2.32.3"
+2025-03-09 14:31:27,225 - ResourceCatalog - INFO - Service analytics_microservice updated
+2025-03-09 14:31:27,226 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:31:27] "PUT /services/analytics_microservice HTTP/1.1" 200 87 "" "python-requests/2.32.3"
+2025-03-09 14:31:27,233 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:31:27] "GET /sectors HTTP/1.1" 200 15 "" "python-requests/2.32.3"
+2025-03-09 14:32:05,562 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:32:05,565 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:32:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:32:08,202 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:32:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:32:11,141 - ResourceCatalog - INFO - Removing expired service: telegram_bot_service
+2025-03-09 14:32:15,888 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:32:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:32:18,966 - ResourceCatalog - INFO - Device raspberry_pi_pipeline001_dev010 updated
+2025-03-09 14:32:18,967 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:32:18] "PUT /devices/raspberry_pi_pipeline001_dev010 HTTP/1.1" 200 95 "" "python-requests/2.32.3"
+2025-03-09 14:32:27,264 - ResourceCatalog - INFO - Service analytics_microservice updated
+2025-03-09 14:32:27,265 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:32:27] "PUT /services/analytics_microservice HTTP/1.1" 200 87 "" "python-requests/2.32.3"
+2025-03-09 14:32:27,269 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:32:27] "GET /sectors HTTP/1.1" 200 15 "" "python-requests/2.32.3"

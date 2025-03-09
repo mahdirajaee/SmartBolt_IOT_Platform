@@ -94,3 +94,19 @@ cherrypy.process.wspbus.ChannelFailures: Timeout('Port 5001 not free on 0.0.0.0.
 2025-03-09 14:26:10,416 - cherrypy.error - INFO - [09/Mar/2025:14:26:10] ENGINE Bus STOPPED
 2025-03-09 14:26:10,416 - cherrypy.error - INFO - [09/Mar/2025:14:26:10] ENGINE Bus EXITING
 2025-03-09 14:26:10,416 - cherrypy.error - INFO - [09/Mar/2025:14:26:10] ENGINE Bus EXITED
+2025-03-09 14:28:27,184 - AnalyticsService - INFO - Successfully registered with Resource Catalog
+2025-03-09 14:28:27,185 - AnalyticsService - INFO - Analytics Service initialized
+2025-03-09 14:28:27,185 - AnalyticsService - INFO - Analysis background thread started
+2025-03-09 14:28:27,185 - cherrypy.error - INFO - [09/Mar/2025:14:28:27] ENGINE Bus STARTING
+2025-03-09 14:28:27,187 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 14:28:27,188 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 14:28:27,288 - cherrypy.error - INFO - [09/Mar/2025:14:28:27] ENGINE Serving on http://0.0.0.0:5002
+2025-03-09 14:28:27,288 - cherrypy.error - INFO - [09/Mar/2025:14:28:27] ENGINE Bus STARTED
+2025-03-09 14:29:27,203 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 14:29:27,209 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 14:30:27,200 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 14:30:27,207 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 14:31:27,229 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 14:31:27,234 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
+2025-03-09 14:32:27,266 - AnalyticsService - INFO - Successfully updated registration with Resource Catalog
+2025-03-09 14:32:27,269 - AnalyticsService - ERROR - Error in analysis loop: string indices must be integers, not 'str'
