@@ -108,3 +108,12 @@
 2025-03-08 23:25:47,035 - cherrypy.error - INFO - [08/Mar/2025:23:25:47] ENGINE Bus EXITING
 2025-03-08 23:25:47,035 - cherrypy.error - INFO - [08/Mar/2025:23:25:47] ENGINE Bus EXITED
 2025-03-08 23:25:47,035 - cherrypy.error - INFO - [08/Mar/2025:23:25:47] ENGINE Waiting for child threads to terminate...
+2025-03-09 08:45:40,131 - ResourceCatalog - INFO - Configuration loaded successfully
+2025-03-09 08:45:40,132 - ResourceCatalog - INFO - Started cleanup thread
+2025-03-09 08:45:40,132 - ResourceCatalog - INFO - Resource/Service Catalog initialized
+2025-03-09 08:45:40,132 - cherrypy.error - INFO - [09/Mar/2025:08:45:40] ENGINE Bus STARTING
+2025-03-09 08:45:40,133 - cherrypy.error - INFO - [09/Mar/2025:08:45:40] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-09 08:45:40,240 - cherrypy.error - INFO - [09/Mar/2025:08:45:40] ENGINE Serving on http://0.0.0.0:5001
+2025-03-09 08:45:40,240 - cherrypy.error - INFO - [09/Mar/2025:08:45:40] ENGINE Bus STARTED
+2025-03-09 08:45:40,241 - ResourceCatalog - INFO - Resource/Service Catalog running on port 5001
+2025-03-09 08:45:41,137 - ResourceCatalog - INFO - Removing expired service: message_broker
