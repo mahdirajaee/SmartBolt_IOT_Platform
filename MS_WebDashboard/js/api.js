@@ -316,11 +316,6 @@ async function deleteRequest(service, endpoint, options = {}) {
     // Make request
     return makeRequest(url, requestOptions);
 }
-
-/**
- * Fetch all pipelines/sectors from the catalog
- * @returns {Promise<Array>} - List of pipelines/sectors
- */
 async function fetchPipelines() {
     try {
         return await get('catalog', '/sectors');
