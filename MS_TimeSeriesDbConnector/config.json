@@ -1,13 +1,32 @@
-  {
-    "broker_address": "localhost",
-    "broker_port": 1883,
-    "influxdb_url": "http://localhost:8086",
-    "influxdb_token": "mRdOwWpi6TWnPhIwV4kO8Ig38wXPLVYxzSUFpTnNgPjoW9iObQ6NCgzeKGk0-uTHUFVs_wvacYL4xNCDU3VpYQ==",
-    "influxdb_org": "IOT_project_Bolt",
-    "influxdb_bucket": "smart_Bolt",
-    "catalog_url": "http://localhost:8080/api/register",
-    "api_port": 5000,
-    "temperature_topic": "sensor/temperature",
-    "pressure_topic": "sensor/pressure",
-    "actuator_command_topic": "actuator/valve"
+{
+    "service": {
+      "id": "TimeSeriesDBConnector",
+      "host": "localhost",
+      "port": 8081
+    },
+    "catalog": {
+      "url": "http://localhost:8080"
+    },
+    "influxdb": {
+      "url": "http://localhost:8086",
+      "token": "your_influxdb_token_here",
+      "org": "organization",
+      "bucket": "bucket"
+    },
+    "mqtt": {
+      "broker": "localhost",
+      "port": 1883,
+      "username": "",
+      "password": "",
+      "client_id_prefix": "TimeSeriesDBConnector",
+      "topics": [
+        "/sensor/temperature",
+        "/sensor/pressure"
+      ]
+    },
+    "logging": {
+      "level": "INFO",
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    },
+    "refresh_interval": 60
   }
