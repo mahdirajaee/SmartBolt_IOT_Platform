@@ -10,3 +10,7 @@
 [09/Mar/2025:10:30:19] ENGINE Bus EXITING
 [09/Mar/2025:10:30:19] ENGINE Bus EXITED
 [09/Mar/2025:10:30:19] ENGINE Waiting for child threads to terminate...
+[09/Mar/2025:14:20:10] ENGINE Bus STARTING
+[09/Mar/2025:14:20:10] ENGINE Started monitor thread 'Autoreloader'.
+[09/Mar/2025:14:20:10] ENGINE Serving on http://0.0.0.0:8080
+[09/Mar/2025:14:20:10] ENGINE Bus STARTED

@@ -79,3 +79,7 @@ cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8082 not free on 0.0.0.0.
 [09/Mar/2025:10:30:22] ENGINE Bus EXITING
 [09/Mar/2025:10:30:22] ENGINE Bus EXITED
 [09/Mar/2025:10:30:22] ENGINE Waiting for child threads to terminate...
+[09/Mar/2025:14:23:05] ENGINE Bus STARTING
+[09/Mar/2025:14:23:05] ENGINE Started monitor thread 'Autoreloader'.
+[09/Mar/2025:14:23:05] ENGINE Serving on http://0.0.0.0:8082
+[09/Mar/2025:14:23:05] ENGINE Bus STARTED

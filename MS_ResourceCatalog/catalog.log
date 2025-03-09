@@ -105,3 +105,45 @@
 2025-03-09 10:30:19,553 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Bus EXITING
 2025-03-09 10:30:19,553 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Bus EXITED
 2025-03-09 10:30:19,553 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Waiting for child threads to terminate...
+2025-03-09 14:20:10,121 - ResourceCatalog - INFO - Configuration loaded successfully
+2025-03-09 14:20:10,122 - ResourceCatalog - INFO - Started cleanup thread
+2025-03-09 14:20:10,122 - ResourceCatalog - INFO - Resource/Service Catalog initialized
+2025-03-09 14:20:10,122 - cherrypy.error - INFO - [09/Mar/2025:14:20:10] ENGINE Bus STARTING
+2025-03-09 14:20:10,122 - cherrypy.error - INFO - [09/Mar/2025:14:20:10] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-09 14:20:10,226 - cherrypy.error - INFO - [09/Mar/2025:14:20:10] ENGINE Serving on http://0.0.0.0:8080
+2025-03-09 14:20:10,226 - cherrypy.error - INFO - [09/Mar/2025:14:20:10] ENGINE Bus STARTED
+2025-03-09 14:20:10,226 - ResourceCatalog - INFO - Resource/Service Catalog running on port 8080
+2025-03-09 14:20:11,127 - ResourceCatalog - INFO - Removing expired service: message_broker
+2025-03-09 14:20:15,645 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:20:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:21:15,672 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:21:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:22:15,703 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:22:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:23:05,419 - ResourceCatalog - INFO - Service account_manager registered
+2025-03-09 14:23:05,419 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:23:05] "POST /services HTTP/1.1" 200 108 "" "python-requests/2.32.3"
+2025-03-09 14:23:05,422 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:23:05,422 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:23:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:23:15,733 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:23:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:24:05,438 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:24:05,440 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:24:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:24:08,086 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:24:08] "GET /api/register/broker HTTP/1.1" 404 2086 "" "python-requests/2.32.3"
+2025-03-09 14:24:08,089 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:24:08] "POST /api/register/services HTTP/1.1" 400 2100 "" "python-requests/2.32.3"
+2025-03-09 14:24:08,091 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:24:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:24:15,752 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:24:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:24:57,018 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:24:57] "GET /broker HTTP/1.1" 200 38 "" "python-requests/2.32.3"
+2025-03-09 14:24:57,019 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:24:57] "GET /devices HTTP/1.1" 200 15 "" "python-requests/2.32.3"
+2025-03-09 14:25:05,455 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:25:05,456 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:25:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:25:08,107 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:25:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:25:15,774 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:25:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:26:05,474 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:26:05,476 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:26:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:26:08,119 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:26:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:26:09,354 - ResourceCatalog - INFO - Service analytics_microservice registered
+2025-03-09 14:26:09,354 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:26:09] "POST /services HTTP/1.1" 200 122 "" "python-requests/2.32.3"
+2025-03-09 14:26:09,357 - ResourceCatalog - INFO - Service analytics_microservice updated
+2025-03-09 14:26:09,357 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:26:09] "PUT /services/analytics_microservice HTTP/1.1" 200 87 "" "python-requests/2.32.3"
+2025-03-09 14:26:09,359 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:26:09] "GET /sectors HTTP/1.1" 200 15 "" "python-requests/2.32.3"
+2025-03-09 14:26:15,797 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:26:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"
+2025-03-09 14:27:05,497 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 14:27:05,499 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:27:05] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 14:27:08,137 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:27:08] "PUT /api/register/services/timeseries_db_connector HTTP/1.1" 400 2099 "" "python-requests/2.32.3"
+2025-03-09 14:27:15,824 - cherrypy.access.4361524224 - INFO - 127.0.0.1 - - [09/Mar/2025:14:27:15] "PUT /services/message_broker HTTP/1.1" 404 2128 "" "python-requests/2.32.3"

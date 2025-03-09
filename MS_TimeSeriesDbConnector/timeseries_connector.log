@@ -1151,3 +1151,259 @@ cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
 2025-03-08 23:24:14,360 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE Bus EXITING
 2025-03-08 23:24:14,360 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE Bus EXITED
 2025-03-08 23:24:14,360 - cherrypy.error - INFO - [08/Mar/2025:23:24:14] ENGINE Waiting for child threads to terminate...
+2025-03-09 14:24:08,046 - TimeSeriesDBConnector - INFO - Loaded configuration from /Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_TimeSeriesDbConnector/config.json
+2025-03-09 14:24:08,046 - TimeSeriesDBConnector - INFO - Subscribing to topics: sensor/temperature/#, sensor/pressure/#, actuator/valve/#
+2025-03-09 14:24:08,080 - TimeSeriesDBConnector - INFO - Connected to InfluxDB: http://localhost:8086, Bucket: smart_Bolt
+2025-03-09 14:24:08,088 - TimeSeriesDBConnector - INFO - Connected to MQTT broker at localhost:1883
+2025-03-09 14:24:08,090 - TimeSeriesDBConnector - ERROR - Failed to register with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 206, in POST
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 14:24:08,090 - TimeSeriesDBConnector - INFO - Started catalog update thread
+2025-03-09 14:24:08,090 - cherrypy.error - INFO - [09/Mar/2025:14:24:08] ENGINE Bus STARTING
+2025-03-09 14:24:08,090 - cherrypy.error - INFO - [09/Mar/2025:14:24:08] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-09 14:24:08,092 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 14:24:08,096 - TimeSeriesDBConnector - INFO - Connected to MQTT broker
+2025-03-09 14:24:08,096 - TimeSeriesDBConnector - INFO - Subscribed to topics: sensor/temperature/#, sensor/pressure/#, actuator/valve/#
+2025-03-09 14:24:08,197 - cherrypy.error - INFO - [09/Mar/2025:14:24:08] ENGINE Serving on http://0.0.0.0:5000
+2025-03-09 14:24:08,197 - cherrypy.error - INFO - [09/Mar/2025:14:24:08] ENGINE Bus STARTED
+2025-03-09 14:25:08,109 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 14:26:08,120 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
+2025-03-09 14:27:08,140 - TimeSeriesDBConnector - ERROR - Failed to update status with catalog: 400 <!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+    <title>400 Bad Request</title>
+    <style type="text/css">
+    #powered_by {
+        margin-top: 20px;
+        border-top: 2px solid black;
+        font-style: italic;
+    }
+
+    #traceback {
+        color: red;
+    }
+    </style>
+</head>
+    <body>
+        <h2>400 Bad Request</h2>
+        <p>Invalid resource type</p>
+        <pre id="traceback">Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 659, in respond
+    self._do_respond(path_info)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cprequest.py", line 718, in _do_respond
+    response.body = self.handler()
+                    ~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/encoding.py", line 223, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/lib/jsontools.py", line 59, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/cherrypy/_cpdispatch.py", line 54, in __call__
+    return self.callable(*self.args, **self.kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/Desktop/IOT_LastV_GroupWork/SmartBolt_IOT_Platform/MS_ResourceCatalog/main.py", line 244, in PUT
+    raise cherrypy.HTTPError(400, "Invalid resource type")
+cherrypy._cperror.HTTPError: (400, 'Invalid resource type')
+</pre>
+    <div id="powered_by">
+      <span>
+        Powered by <a href="http://www.cherrypy.dev">CherryPy 18.10.0</a>
+      </span>
+    </div>
+    </body>
+</html>
+
