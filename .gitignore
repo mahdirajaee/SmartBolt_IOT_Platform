@@ -12,5 +12,3 @@ __pycache__/
 .vscode/
 .DS_Store
 
-#ignore dashboard 
-MS_WebDashboard/
