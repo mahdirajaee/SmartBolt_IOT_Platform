@@ -13,3 +13,754 @@
 2025-03-09 14:24:57,021 - ControlCenter - INFO - Background operations thread stopped
 2025-03-09 14:24:57,120 - cherrypy.error - INFO - [09/Mar/2025:14:24:57] ENGINE Serving on http://0.0.0.0:8081
 2025-03-09 14:24:57,120 - cherrypy.error - INFO - [09/Mar/2025:14:24:57] ENGINE Bus STARTED
+2025-03-09 15:01:21,253 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-09 15:01:21,256 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,492 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) shut down
+2025-03-09 15:01:21,493 - ControlCenter - INFO - Control Center stopping...
+2025-03-09 15:01:21,493 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,493 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,493 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,493 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,494 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,494 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,494 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,494 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,494 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,494 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,494 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,494 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,494 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,495 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,495 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,495 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,495 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,495 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,495 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,495 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,495 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,496 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,496 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,496 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,496 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,496 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,496 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,496 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,496 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,496 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,496 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,497 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,497 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,497 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,497 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,497 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,498 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,498 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,498 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,498 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,498 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,498 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,498 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,498 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,498 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,498 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,498 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,498 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,498 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,499 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,499 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,499 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,499 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,499 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,500 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,500 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,500 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,500 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,500 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,500 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,500 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,501 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,501 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,501 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,501 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,501 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,501 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,501 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,501 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,501 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,501 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,501 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,501 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,502 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,502 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,502 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,502 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,502 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,502 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,503 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,503 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,503 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,503 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,503 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,503 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,503 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,503 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,503 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,503 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,503 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,503 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,503 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,504 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,504 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,504 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,504 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,504 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,504 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,504 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,504 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,504 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,504 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,505 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,505 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,505 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,505 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,505 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,506 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,506 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,506 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,506 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,506 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,506 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,506 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,506 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,507 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,507 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,507 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,507 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,507 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,507 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,507 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,508 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,508 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,509 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,509 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,510 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,510 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,510 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,510 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,510 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,510 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,510 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,510 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,510 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,511 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,511 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,511 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,511 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,511 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,511 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,511 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,511 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,511 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,512 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,512 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,513 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,513 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,514 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,514 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,515 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,515 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,516 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,516 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,517 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,517 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,517 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,517 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,517 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,517 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,517 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,518 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,518 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,519 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,519 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,520 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,520 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,521 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,521 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,522 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,522 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,523 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,523 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,524 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,524 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,525 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,525 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,526 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,526 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,526 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,526 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,526 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,526 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,526 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 15:01:21,526 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE Bus STOPPING
+2025-03-09 15:01:21,526 - cherrypy.error - INFO - [09/Mar/2025:15:01:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8081)) already shut down
+2025-03-09 15:01:21,526 - ControlCenter - WARNING - Control Center is not running
+2025-03-09 17:38:59,498 - ControlCenter - INFO - Configuration loaded from config.py
+2025-03-09 17:38:59,499 - ControlCenter - INFO - Control Center initialized
+2025-03-09 17:38:59,499 - ControlCenter - INFO - Starting background operations thread
+2025-03-09 17:38:59,499 - ControlCenter - INFO - Control Center started
+2025-03-09 17:38:59,499 - cherrypy.error - INFO - [09/Mar/2025:17:38:59] ENGINE Bus STARTING
+2025-03-09 17:38:59,504 - ControlCenter - INFO - Updated MQTT broker: localhost:1883
+2025-03-09 17:38:59,505 - ControlCenter - ERROR - Error fetching from catalog: 'str' object has no attribute 'get'
+2025-03-09 17:38:59,506 - ControlCenter - INFO - Connected to MQTT broker at localhost:1883
+2025-03-09 17:38:59,506 - ControlCenter - INFO - Connected to MQTT broker
+2025-03-09 17:38:59,506 - ControlCenter - ERROR - Error in background operations: 'ControlCenter' object has no attribute 'update_catalog_interval'
+2025-03-09 17:38:59,506 - ControlCenter - INFO - Subscribed to sensors/+/temperature
+2025-03-09 17:38:59,506 - ControlCenter - INFO - Subscribed to sensors/+/pressure
+2025-03-09 17:38:59,506 - ControlCenter - INFO - Background operations thread stopped
+2025-03-09 17:38:59,606 - cherrypy.error - INFO - [09/Mar/2025:17:38:59] ENGINE Serving on http://0.0.0.0:8081
+2025-03-09 17:38:59,607 - cherrypy.error - INFO - [09/Mar/2025:17:38:59] ENGINE Bus STARTED

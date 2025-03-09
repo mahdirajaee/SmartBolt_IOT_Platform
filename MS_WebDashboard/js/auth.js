@@ -4,13 +4,13 @@
 
 // Firebase configuration - update with your actual Firebase project settings
 const firebaseConfig = {
-    apiKey: "AIzaSyC2UE0TH9OHXTZDFSSbNfljP8QKuihP2gM",
+    apiKey: "AIzaSyDurWCMYf7LdUYpZBBvSXexg9JYiCU39RA", // Replace with this new key
     authDomain: "smart-bolt-iot-platform.firebaseapp.com",
     projectId: "smart-bolt-iot-platform",
     storageBucket: "smart-bolt-iot-platform.appspot.com",
     messagingSenderId: "752431114855",
     appId: "1:752431114855:web:7a6fd27c54ddbde93c6a3e"
-  };
+};
   
   // User info storage key
   const USER_INFO_KEY = 'user_info';
