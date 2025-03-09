@@ -1,0 +1,107 @@
+2025-03-09 09:38:11,343 - ResourceCatalog - INFO - Created default configuration file: config.json
+2025-03-09 09:38:11,343 - ResourceCatalog - INFO - Configuration loaded successfully
+2025-03-09 09:38:11,343 - ResourceCatalog - INFO - Started cleanup thread
+2025-03-09 09:38:11,343 - ResourceCatalog - INFO - Resource/Service Catalog initialized
+2025-03-09 09:38:11,343 - cherrypy.error - INFO - [09/Mar/2025:09:38:11] ENGINE Bus STARTING
+2025-03-09 09:38:11,343 - cherrypy.error - INFO - [09/Mar/2025:09:38:11] ENGINE Started monitor thread 'Autoreloader'.
+2025-03-09 09:38:11,451 - cherrypy.error - INFO - [09/Mar/2025:09:38:11] ENGINE Serving on http://0.0.0.0:8080
+2025-03-09 09:38:11,451 - cherrypy.error - INFO - [09/Mar/2025:09:38:11] ENGINE Bus STARTED
+2025-03-09 09:38:11,451 - ResourceCatalog - INFO - Resource/Service Catalog running on port 8080
+2025-03-09 09:38:37,194 - ResourceCatalog - INFO - Service account_manager registered
+2025-03-09 09:38:37,194 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:38:37] "POST /services HTTP/1.1" 200 108 "" "python-requests/2.32.3"
+2025-03-09 09:38:37,196 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:38:37,197 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:38:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:39:37,224 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:39:37,226 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:39:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:40:12,354 - ResourceCatalog - INFO - Removing expired service: message_broker
+2025-03-09 09:40:37,239 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:40:37,241 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:40:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:41:37,257 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:41:37,260 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:41:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:42:37,277 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:42:37,278 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:42:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:42:55,521 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:42:55] "GET /services HTTP/1.1" 200 156 "" "PostmanRuntime/7.43.0"
+2025-03-09 09:43:37,300 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:43:37,302 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:43:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:44:37,339 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:44:37,341 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:44:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:45:37,355 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:45:37,357 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:45:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:46:37,371 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:46:37,374 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:46:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:47:37,349 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:47:37,350 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:47:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:48:37,361 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:48:37,363 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:48:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:49:37,377 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:49:37,379 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:49:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:50:37,398 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:50:37,400 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:50:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:51:37,415 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:51:37,418 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:51:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:52:37,431 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:52:37,433 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:52:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:53:37,449 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:53:37,451 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:53:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:54:37,463 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:54:37,465 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:54:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:55:37,490 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:55:37,491 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:55:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:56:37,511 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:56:37,513 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:56:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:57:37,533 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:57:37,535 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:57:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:58:37,549 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:58:37,552 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:58:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 09:59:37,569 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 09:59:37,570 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:09:59:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:00:37,591 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:00:37,594 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:00:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:01:37,609 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:01:37,610 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:01:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:02:37,606 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:02:37,607 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:02:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:03:37,619 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:03:37,622 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:03:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:04:37,640 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:04:37,642 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:04:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:05:37,657 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:05:37,659 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:05:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:06:37,677 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:06:37,680 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:06:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:07:37,695 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:07:37,697 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:07:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:08:37,710 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:08:37,712 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:08:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:09:37,731 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:09:37,733 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:09:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:10:37,752 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:10:37,754 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:10:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:11:37,765 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:11:37,767 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:11:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:12:37,776 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:12:37,778 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:12:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:13:37,794 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:13:37,796 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:13:37] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:14:38,509 - ResourceCatalog - INFO - Service account_manager updated
+2025-03-09 10:14:38,511 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:14:38] "PUT /services/account_manager HTTP/1.1" 200 80 "" "python-requests/2.32.3"
+2025-03-09 10:18:37,623 - ResourceCatalog - INFO - Removing expired service: account_manager
+2025-03-09 10:19:03,057 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:19:03] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:21:05,077 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:21:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:22:05,131 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:22:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:23:05,159 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:23:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:24:05,197 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:24:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:25:05,233 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:25:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:26:05,277 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:26:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:27:05,326 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:27:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:28:05,379 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:28:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:29:05,441 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:29:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:30:05,503 - cherrypy.access.4330918912 - INFO - 127.0.0.1 - - [09/Mar/2025:10:30:05] "PUT /services/account_manager HTTP/1.1" 404 2130 "" "python-requests/2.32.3"
+2025-03-09 10:30:19,382 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-09 10:30:19,384 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Bus STOPPING
+2025-03-09 10:30:19,552 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+2025-03-09 10:30:19,553 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Stopped thread 'Autoreloader'.
+2025-03-09 10:30:19,553 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Bus STOPPED
+2025-03-09 10:30:19,553 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Bus EXITING
+2025-03-09 10:30:19,553 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Bus EXITED
+2025-03-09 10:30:19,553 - cherrypy.error - INFO - [09/Mar/2025:10:30:19] ENGINE Waiting for child threads to terminate...
