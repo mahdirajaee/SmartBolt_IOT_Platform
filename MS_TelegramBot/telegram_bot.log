@@ -47,3 +47,27 @@
 2025-03-08 23:23:53,934 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Bus EXITING
 2025-03-08 23:23:53,934 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Bus EXITED
 2025-03-08 23:23:53,934 - cherrypy.error - INFO - [08/Mar/2025:23:23:53] ENGINE Waiting for child threads to terminate...
+2025-03-09 14:29:29,885 - TelegramBot - INFO - Loaded configuration from config.json
+2025-03-09 14:29:29,885 - TelegramBot - ERROR - Error setting up MQTT: 'TelegramBotService' object has no attribute 'service_cache'
+2025-03-09 14:29:29,891 - TelegramBot - INFO - Successfully registered with catalog
+2025-03-09 14:29:30,261 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getMe "HTTP/1.1 200 OK"
+2025-03-09 14:29:30,373 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/deleteWebhook "HTTP/1.1 200 OK"
+2025-03-09 14:29:30,379 - telegram.ext.Application - INFO - Application started
+2025-03-09 14:29:40,674 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:29:51,255 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:30:01,380 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:30:11,516 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:30:21,958 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:30:32,082 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:30:42,198 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:30:52,676 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:31:02,816 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:31:13,264 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:31:23,703 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:31:34,148 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:31:44,264 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:31:54,731 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:32:04,876 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:32:15,081 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:32:25,455 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
+2025-03-09 14:32:35,572 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7947622045:AAHsINxjjK35EFgPUmGOB8y5DZD5ytYR1So/getUpdates "HTTP/1.1 200 OK"
