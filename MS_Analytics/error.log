@@ -87,3 +87,13 @@ cherrypy.process.wspbus.ChannelFailures: Timeout('Port 5001 not free on 0.0.0.0.
 [09/Mar/2025:14:28:27] ENGINE Bus STARTING
 [09/Mar/2025:14:28:27] ENGINE Serving on http://0.0.0.0:5002
 [09/Mar/2025:14:28:27] ENGINE Bus STARTED
+[09/Mar/2025:14:58:33] ENGINE Keyboard Interrupt: shutting down bus
+[09/Mar/2025:14:58:33] ENGINE Bus STOPPING
+[09/Mar/2025:14:58:33] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5002)) shut down
+[09/Mar/2025:14:58:33] ENGINE Bus STOPPED
+[09/Mar/2025:14:58:33] ENGINE Bus EXITING
+[09/Mar/2025:14:58:33] ENGINE Bus EXITED
+[09/Mar/2025:14:58:33] ENGINE Waiting for child threads to terminate...
+[09/Mar/2025:17:39:06] ENGINE Bus STARTING
+[09/Mar/2025:17:39:06] ENGINE Serving on http://0.0.0.0:5002
+[09/Mar/2025:17:39:06] ENGINE Bus STARTED
