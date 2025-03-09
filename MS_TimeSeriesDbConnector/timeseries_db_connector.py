@@ -10,18 +10,13 @@ from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
 
-# Configure logging
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger("TimeSeriesDBConnector")
-
 class TimeSeriesDBConnector:
-    def __init__(self):
-        self.service_id = "TimeSeriesDBConnector"
-        self.catalog_url = os.getenv("CATALOG_URL", "http://localhost:8080")
+    def __init__(self, config_file="config.json"):
+        # Load configuration
+        self.load_config(config_file)
         
-        # Get configuration from catalog
-        self.load_config_from_catalog()
+        # Configure logging
+        self.setup_logging()
         
         # Setup InfluxDB connection
         self.setup_influxdb()
@@ -35,54 +30,87 @@ class TimeSeriesDBConnector:
         # Start registration refresh thread
         self.start_registration_refresh()
     
-    def load_config_from_catalog(self):
-        """Load configuration from the catalog"""
+    def load_config(self, config_file):
+        """Load configuration from file or environment variables"""
         try:
-            response = requests.get(f"{self.catalog_url}/services")
-            if response.status_code == 200:
-                services = response.json()
+            # Try to load from config file
+            with open(config_file, 'r') as f:
+                config = json.load(f)
                 
-                # Find InfluxDB config
-                for service in services:
-                    if service.get("service_id") == "InfluxDB":
-                        self.influxdb_url = service.get("url", "http://localhost:8086")
-                        self.influxdb_token = service.get("token", "")
-                        self.influxdb_org = service.get("org", "organization")
-                        self.influxdb_bucket = service.get("bucket", "bucket")
+                # Service configuration
+                service_config = config.get("service", {})
+                self.service_id = service_config.get("id", "TimeSeriesDBConnector")
+                self.host = service_config.get("host", "localhost")
+                self.port = service_config.get("port", 8081)
                 
-                # Find MQTT broker config
-                for service in services:
-                    if service.get("service_id") == "MessageBroker":
-                        self.mqtt_broker = service.get("host", "localhost")
-                        self.mqtt_port = service.get("port", 1883)
-                        self.mqtt_username = service.get("username", "")
-                        self.mqtt_password = service.get("password", "")
+                # Catalog configuration
+                catalog_config = config.get("catalog", {})
+                self.catalog_url = catalog_config.get("url", "http://localhost:8080")
                 
-                logger.info("Configuration loaded from catalog")
-            else:
-                logger.error(f"Failed to get config from catalog: {response.status_code}")
-                # Use default values
-                self.setup_default_config()
-        except Exception as e:
-            logger.error(f"Error loading config from catalog: {str(e)}")
-            # Use default values
-            self.setup_default_config()
+                # InfluxDB configuration
+                influxdb_config = config.get("influxdb", {})
+                self.influxdb_url = influxdb_config.get("url", "http://localhost:8086")
+                self.influxdb_token = influxdb_config.get("token", "")
+                self.influxdb_org = influxdb_config.get("org", "organization")
+                self.influxdb_bucket = influxdb_config.get("bucket", "bucket")
+                
+                # MQTT configuration
+                mqtt_config = config.get("mqtt", {})
+                self.mqtt_broker = mqtt_config.get("broker", "localhost")
+                self.mqtt_port = mqtt_config.get("port", 1883)
+                self.mqtt_username = mqtt_config.get("username", "")
+                self.mqtt_password = mqtt_config.get("password", "")
+                self.mqtt_client_id_prefix = mqtt_config.get("client_id_prefix", "TimeSeriesDBConnector")
+                self.mqtt_topics = mqtt_config.get("topics", ["/sensor/temperature", "/sensor/pressure"])
+                
+                # Logging configuration
+                logging_config = config.get("logging", {})
+                self.log_level = logging_config.get("level", "INFO")
+                self.log_format = logging_config.get("format", "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+                
+                # Refresh interval
+                self.refresh_interval = config.get("refresh_interval", 60)
+                
+                print(f"Loaded configuration from {config_file}")
+            
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print(f"Could not load config file: {str(e)}. Using environment variables.")
+            
+            # Service configuration
+            self.service_id = os.getenv("SERVICE_ID", "TimeSeriesDBConnector")
+            self.host = os.getenv("HOST", "localhost")
+            self.port = int(os.getenv("PORT", "8081"))
+            
+            # Catalog configuration
+            self.catalog_url = os.getenv("CATALOG_URL", "http://localhost:8080")
+            
+            # InfluxDB configuration
+            self.influxdb_url = os.getenv("INFLUXDB_URL", "http://localhost:8086")
+            self.influxdb_token = os.getenv("INFLUXDB_TOKEN", "")
+            self.influxdb_org = os.getenv("INFLUXDB_ORG", "organization")
+            self.influxdb_bucket = os.getenv("INFLUXDB_BUCKET", "bucket")
+            
+            # MQTT configuration
+            self.mqtt_broker = os.getenv("MQTT_BROKER", "localhost")
+            self.mqtt_port = int(os.getenv("MQTT_PORT", "1883"))
+            self.mqtt_username = os.getenv("MQTT_USERNAME", "")
+            self.mqtt_password = os.getenv("MQTT_PASSWORD", "")
+            self.mqtt_client_id_prefix = os.getenv("MQTT_CLIENT_ID_PREFIX", "TimeSeriesDBConnector")
+            self.mqtt_topics = ["/sensor/temperature", "/sensor/pressure"]  # Default topics
+            
+            # Logging configuration
+            self.log_level = os.getenv("LOG_LEVEL", "INFO")
+            self.log_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+            
+            # Refresh interval
+            self.refresh_interval = int(os.getenv("REFRESH_INTERVAL", "60"))
     
-    def setup_default_config(self):
-        """Setup default configuration if catalog is unavailable"""
-        # Default InfluxDB configuration
-        self.influxdb_url = os.getenv("INFLUXDB_URL", "http://localhost:8086")
-        self.influxdb_token = os.getenv("INFLUXDB_TOKEN", "")
-        self.influxdb_org = os.getenv("INFLUXDB_ORG", "organization")
-        self.influxdb_bucket = os.getenv("INFLUXDB_BUCKET", "bucket")
-        
-        # Default MQTT configuration
-        self.mqtt_broker = os.getenv("MQTT_BROKER", "localhost")
-        self.mqtt_port = int(os.getenv("MQTT_PORT", "1883"))
-        self.mqtt_username = os.getenv("MQTT_USERNAME", "")
-        self.mqtt_password = os.getenv("MQTT_PASSWORD", "")
-        
-        logger.info("Using default configuration")
+    def setup_logging(self):
+        """Configure logging based on configuration"""
+        log_level = getattr(logging, self.log_level.upper(), logging.INFO)
+        logging.basicConfig(level=log_level, format=self.log_format)
+        self.logger = logging.getLogger(self.service_id)
+        self.logger.info("Logging configured")
     
     def setup_influxdb(self):
         """Setup InfluxDB client"""
@@ -94,14 +122,15 @@ class TimeSeriesDBConnector:
             )
             self.write_api = self.influxdb_client.write_api(write_options=SYNCHRONOUS)
             self.query_api = self.influxdb_client.query_api()
-            logger.info(f"Connected to InfluxDB at {self.influxdb_url}")
+            self.logger.info(f"Connected to InfluxDB at {self.influxdb_url}")
         except Exception as e:
-            logger.error(f"Error connecting to InfluxDB: {str(e)}")
+            self.logger.error(f"Error connecting to InfluxDB: {str(e)}")
     
     def setup_mqtt(self):
         """Setup MQTT client and subscription"""
         try:
-            self.mqtt_client = mqtt.Client(client_id=f"TimeSeriesDBConnector-{int(time.time())}")
+            client_id = f"{self.mqtt_client_id_prefix}-{int(time.time())}"
+            self.mqtt_client = mqtt.Client(client_id=client_id)
             
             # Set username and password if provided
             if self.mqtt_username and self.mqtt_password:
@@ -117,38 +146,38 @@ class TimeSeriesDBConnector:
             
             # Start the loop in a non-blocking way
             self.mqtt_client.loop_start()
-            logger.info(f"Connected to MQTT broker at {self.mqtt_broker}:{self.mqtt_port}")
+            self.logger.info(f"Connecting to MQTT broker at {self.mqtt_broker}:{self.mqtt_port}")
         except Exception as e:
-            logger.error(f"Error setting up MQTT: {str(e)}")
+            self.logger.error(f"Error setting up MQTT: {str(e)}")
     
     def on_mqtt_connect(self, client, userdata, flags, rc):
         """Callback when connected to MQTT broker"""
         if rc == 0:
-            logger.info("Connected to MQTT broker")
-            # Subscribe to sensor topics
-            client.subscribe("/sensor/temperature")
-            client.subscribe("/sensor/pressure")
-            logger.info("Subscribed to sensor topics")
+            self.logger.info("Connected to MQTT broker")
+            # Subscribe to configured topics
+            for topic in self.mqtt_topics:
+                client.subscribe(topic)
+                self.logger.info(f"Subscribed to topic: {topic}")
         else:
-            logger.error(f"Failed to connect to MQTT broker with code {rc}")
+            self.logger.error(f"Failed to connect to MQTT broker with code {rc}")
     
     def on_mqtt_disconnect(self, client, userdata, rc):
         """Callback when disconnected from MQTT broker"""
-        logger.warning(f"Disconnected from MQTT broker with code {rc}")
+        self.logger.warning(f"Disconnected from MQTT broker with code {rc}")
         # Attempt to reconnect
         if rc != 0:
-            logger.info("Attempting to reconnect to MQTT broker")
+            self.logger.info("Attempting to reconnect to MQTT broker")
             try:
                 client.reconnect()
             except Exception as e:
-                logger.error(f"Error reconnecting to MQTT broker: {str(e)}")
+                self.logger.error(f"Error reconnecting to MQTT broker: {str(e)}")
     
     def on_mqtt_message(self, client, userdata, msg):
         """Callback when message is received from MQTT broker"""
         try:
             topic = msg.topic
             payload = msg.payload.decode("utf-8")
-            logger.debug(f"Received message on topic {topic}: {payload}")
+            self.logger.debug(f"Received message on topic {topic}: {payload}")
             
             # Parse the JSON payload
             data = json.loads(payload)
@@ -156,7 +185,7 @@ class TimeSeriesDBConnector:
             # Store data in InfluxDB
             self.store_sensor_data(topic, data)
         except Exception as e:
-            logger.error(f"Error processing MQTT message: {str(e)}")
+            self.logger.error(f"Error processing MQTT message: {str(e)}")
     
     def store_sensor_data(self, topic, data):
         """Store sensor data in InfluxDB"""
@@ -181,22 +210,18 @@ class TimeSeriesDBConnector:
             
             # Write to InfluxDB
             self.write_api.write(bucket=self.influxdb_bucket, record=point)
-            logger.debug(f"Stored {sensor_type} data in InfluxDB: {data}")
+            self.logger.debug(f"Stored {sensor_type} data in InfluxDB: {data}")
         except Exception as e:
-            logger.error(f"Error storing data in InfluxDB: {str(e)}")
+            self.logger.error(f"Error storing data in InfluxDB: {str(e)}")
     
     def register_with_catalog(self):
         """Register this service with the catalog"""
         try:
-            # Get host and port from environment or use defaults
-            host = os.getenv("HOST", "localhost")
-            port = int(os.getenv("PORT", "8081"))
-            
             service_info = {
                 "service_id": self.service_id,
                 "service_type": "data-connector",
-                "host": host,
-                "port": port,
+                "host": self.host,
+                "port": self.port,
                 "protocol": "http",
                 "endpoints": [
                     {"path": "/data", "method": "GET", "description": "Get sensor data"},
@@ -210,20 +235,20 @@ class TimeSeriesDBConnector:
             
             response = requests.post(f"{self.catalog_url}/services/register", json=service_info)
             if response.status_code == 200 or response.status_code == 201:
-                logger.info(f"Registered with catalog: {response.json()}")
+                self.logger.info(f"Registered with catalog: {response.json()}")
             else:
-                logger.error(f"Failed to register with catalog: {response.status_code} - {response.text}")
+                self.logger.error(f"Failed to register with catalog: {response.status_code} - {response.text}")
         except Exception as e:
-            logger.error(f"Error registering with catalog: {str(e)}")
+            self.logger.error(f"Error registering with catalog: {str(e)}")
     
     def refresh_registration(self):
         """Refresh registration with the catalog periodically"""
         while True:
             try:
-                time.sleep(60)  # Refresh every 60 seconds
+                time.sleep(self.refresh_interval)  # Use configured refresh interval
                 self.register_with_catalog()
             except Exception as e:
-                logger.error(f"Error refreshing registration: {str(e)}")
+                self.logger.error(f"Error refreshing registration: {str(e)}")
     
     def start_registration_refresh(self):
         """Start a thread for refreshing registration"""
@@ -293,7 +318,7 @@ class TimeSeriesDBConnector:
             
             return {"data": data, "count": len(data)}
         except Exception as e:
-            logger.error(f"Error querying data: {str(e)}")
+            self.logger.error(f"Error querying data: {str(e)}")
             raise cherrypy.HTTPError(500, f"Error querying data: {str(e)}")
     
     @cherrypy.expose
@@ -342,7 +367,7 @@ class TimeSeriesDBConnector:
             
             return {"data": data, "count": len(data)}
         except Exception as e:
-            logger.error(f"Error querying latest data: {str(e)}")
+            self.logger.error(f"Error querying latest data: {str(e)}")
             raise cherrypy.HTTPError(500, f"Error querying latest data: {str(e)}")
     
     @cherrypy.expose
@@ -393,7 +418,7 @@ class TimeSeriesDBConnector:
             
             return {"data": data, "count": len(data)}
         except Exception as e:
-            logger.error(f"Error querying data range: {str(e)}")
+            self.logger.error(f"Error querying data range: {str(e)}")
             raise cherrypy.HTTPError(500, f"Error querying data range: {str(e)}")
     
     @cherrypy.expose
@@ -447,7 +472,7 @@ class TimeSeriesDBConnector:
                 "time_range": {"start": start, "end": end}
             }
         except Exception as e:
-            logger.error(f"Error preparing analytics data: {str(e)}")
+            self.logger.error(f"Error preparing analytics data: {str(e)}")
             raise cherrypy.HTTPError(500, f"Error preparing analytics data: {str(e)}")
     
     @cherrypy.expose
@@ -530,13 +555,16 @@ class TimeSeriesDBConnector:
             
             return {"summaries": summaries, "count": len(summaries)}
         except Exception as e:
-            logger.error(f"Error preparing telegram summary: {str(e)}")
+            self.logger.error(f"Error preparing telegram summary: {str(e)}")
             raise cherrypy.HTTPError(500, f"Error preparing telegram summary: {str(e)}")
 
 
 def main():
-    # Get port from environment or use default
-    port = int(os.getenv("PORT", "8081"))
+    # Look for config file path in environment variable or use default
+    config_file = os.getenv("CONFIG_FILE", "config.json")
+    
+    # Create and start the server
+    connector = TimeSeriesDBConnector(config_file=config_file)
     
     # CherryPy configuration
     conf = {
@@ -547,14 +575,12 @@ def main():
         }
     }
     
-    # Create and start the server
-    connector = TimeSeriesDBConnector()
     cherrypy.tree.mount(connector, '/', conf)
     
     # Update server socket host and port
     cherrypy.config.update({
-        'server.socket_host': '0.0.0.0',
-        'server.socket_port': port
+        'server.socket_host': connector.host,
+        'server.socket_port': connector.port
     })
     
     # Start the CherryPy server
