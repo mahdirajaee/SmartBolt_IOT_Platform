@@ -1,0 +1,6 @@
+2025-03-10 00:30:49,574 - MessageBroker - INFO - MessageBroker initializing...
+2025-03-10 00:30:49,582 - MessageBroker - INFO - Message broker started successfully.
+2025-03-10 00:30:49,583 - MessageBroker - INFO - Connected to MQTT Broker!
+2025-03-10 00:30:49,583 - MessageBroker - INFO - Subscribed to topic: /sensor/temperature
+2025-03-10 00:30:49,583 - MessageBroker - INFO - Subscribed to topic: /sensor/pressure
+2025-03-10 00:30:49,583 - MessageBroker - INFO - Subscribed to topic: /actuator/valve
