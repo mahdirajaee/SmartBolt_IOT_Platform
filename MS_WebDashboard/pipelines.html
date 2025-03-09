@@ -1,0 +1,714 @@
+<!-- Add before your other scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart IoT Bolt - Pipelines</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pipelines.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <i class="fas fa-bolt logo-icon"></i>
+                    <h1>Smart Bolt</h1>
+                </div>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="pipelines.html">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Pipelines</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="alerts.html">
+                            <i class="fas fa-bell"></i>
+                            <span>Alerts</span>
+                            <span class="badge alert-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="page-title">
+                    <h2>Pipeline Management</h2>
+                    <div class="breadcrumb">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Pipelines</span>
+                    </div>
+                </div>
+                
+                <div class="top-nav-actions">
+                    <div class="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch">
+                        <label for="theme-switch" class="theme-switch-label">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                            <span class="switch-ball"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge notification-badge">3</span>
+                        
+                        <div class="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <a href="#" class="mark-all-read">Mark all as read</a>
+                            </div>
+                            
+                            <div class="notification-list">
+                                <!-- Notifications will be loaded here -->
+                            </div>
+                            
+                            <div class="notification-footer">
+                                <a href="alerts.html">View all alerts</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-name">John Doe</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                        <div class="user-avatar">
+                            <img src="assets/img/avatar.png" alt="User Avatar">
+                        </div>
+                        
+                        <div class="user-dropdown">
+                            <ul>
+                                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                                <li><a href="#" id="user-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Pipeline Management Actions -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="action-bar">
+                            <div class="action-bar-left">
+                                <h3>Pipeline Configuration</h3>
+                            </div>
+                            <div class="action-bar-right">
+                                <button id="add-pipeline" class="btn-primary">
+                                    <i class="fas fa-plus"></i> Add Pipeline
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pipeline List -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Active Pipelines</h3>
+                                <div class="card-actions">
+                                    <div class="search-box">
+                                        <input type="text" id="pipeline-search" placeholder="Search pipelines...">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <button class="btn-card-action refresh-pipelines">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Pipeline ID</th>
+                                                <th>Name</th>
+                                                <th>Bolts</th>
+                                                <th>Status</th>
+                                                <th>Temperature</th>
+                                                <th>Pressure</th>
+                                                <th>Last Update</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="pipeline-list">
+                                            <tr>
+                                                <td>pipeline001</td>
+                                                <td>Main Pipeline A</td>
+                                                <td>4 bolts</td>
+                                                <td><span class="status-badge healthy">Healthy</span></td>
+                                                <td>
+                                                    <div class="pipeline-value-bar">
+                                                        <div class="pipeline-value">65.2°C</div>
+                                                        <div class="progress-bar">
+                                                            <div class="progress" style="width: 65%; background-color: #10b981;"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="pipeline-value-bar">
+                                                        <div class="pipeline-value">7.1 bar</div>
+                                                        <div class="progress-bar">
+                                                            <div class="progress" style="width: 71%; background-color: #10b981;"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Just now</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action view" title="View Pipeline">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn-action edit" title="Edit Pipeline">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn-action delete" title="Delete Pipeline">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>pipeline002</td>
+                                                <td>Secondary Pipeline B</td>
+                                                <td>3 bolts</td>
+                                                <td><span class="status-badge warning">Warning</span></td>
+                                                <td>
+                                                    <div class="pipeline-value-bar">
+                                                        <div class="pipeline-value">85.7°C</div>
+                                                        <div class="progress-bar">
+                                                            <div class="progress" style="width: 85.7%; background-color: #f59e0b;"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="pipeline-value-bar">
+                                                        <div class="pipeline-value">6.8 bar</div>
+                                                        <div class="progress-bar">
+                                                            <div class="progress" style="width: 68%; background-color: #10b981;"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>5 minutes ago</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action view" title="View Pipeline">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn-action edit" title="Edit Pipeline">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn-action delete" title="Delete Pipeline">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>pipeline003</td>
+                                                <td>Process Pipeline C</td>
+                                                <td>2 bolts</td>
+                                                <td><span class="status-badge critical">Critical</span></td>
+                                                <td>
+                                                    <div class="pipeline-value-bar">
+                                                        <div class="pipeline-value">96.3°C</div>
+                                                        <div class="progress-bar">
+                                                            <div class="progress" style="width: 96.3%; background-color: #ef4444;"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="pipeline-value-bar">
+                                                        <div class="pipeline-value">9.3 bar</div>
+                                                        <div class="progress-bar">
+                                                            <div class="progress" style="width: 93%; background-color: #f59e0b;"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>12 minutes ago</td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action view" title="View Pipeline">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                        <button class="btn-action edit" title="Edit Pipeline">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn-action delete" title="Delete Pipeline">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pipeline Details -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Pipeline Details</h3>
+                                <div class="card-actions">
+                                    <button class="btn-card-action toggle-view active" data-view="schematic">
+                                        <i class="fas fa-project-diagram"></i> Schematic
+                                    </button>
+                                    <button class="btn-card-action toggle-view" data-view="table">
+                                        <i class="fas fa-table"></i> Table
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="pipeline-detail-header">
+                                    <div class="pipeline-detail-title">
+                                        <h4 id="selected-pipeline-title">Pipeline 001 - Main Pipeline A</h4>
+                                        <span class="status-badge healthy">Healthy</span>
+                                    </div>
+                                    <div class="pipeline-detail-actions">
+                                        <button class="btn-secondary">
+                                            <i class="fas fa-bolt"></i> Add Bolt
+                                        </button>
+                                        <button class="btn-primary">
+                                            <i class="fas fa-save"></i> Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="pipeline-views">
+                                    <div class="pipeline-view schematic-view active">
+                                        <div class="pipeline-visualization">
+                                            <div class="pipeline-line"></div>
+                                            
+                                            <!-- Bolt 1 -->
+                                            <div class="pipeline-bolt healthy" style="left: 20%;">
+                                                <i class="fas fa-bolt"></i>
+                                                <div class="bolt-label">dev010</div>
+                                                <div class="valve-indicator closed">
+                                                    <i class="fas fa-door-closed"></i> Closed
+                                                </div>
+                                                <div class="bolt-tooltip">
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Temperature:</div>
+                                                        <div class="bolt-tooltip-value healthy">63.5°C</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Pressure:</div>
+                                                        <div class="bolt-tooltip-value healthy">7.2 bar</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Valve:</div>
+                                                        <div class="bolt-tooltip-value closed">Closed</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Last Update:</div>
+                                                        <div class="bolt-tooltip-value">Just now</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Bolt 2 -->
+                                            <div class="pipeline-bolt healthy" style="left: 40%;">
+                                                <i class="fas fa-bolt"></i>
+                                                <div class="bolt-label">dev020</div>
+                                                <div class="valve-indicator closed">
+                                                    <i class="fas fa-door-closed"></i> Closed
+                                                </div>
+                                                <div class="bolt-tooltip">
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Temperature:</div>
+                                                        <div class="bolt-tooltip-value healthy">65.1°C</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Pressure:</div>
+                                                        <div class="bolt-tooltip-value healthy">7.0 bar</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Valve:</div>
+                                                        <div class="bolt-tooltip-value closed">Closed</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Last Update:</div>
+                                                        <div class="bolt-tooltip-value">Just now</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Bolt 3 -->
+                                            <div class="pipeline-bolt healthy" style="left: 60%;">
+                                                <i class="fas fa-bolt"></i>
+                                                <div class="bolt-label">dev030</div>
+                                                <div class="valve-indicator closed">
+                                                    <i class="fas fa-door-closed"></i> Closed
+                                                </div>
+                                                <div class="bolt-tooltip">
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Temperature:</div>
+                                                        <div class="bolt-tooltip-value healthy">66.3°C</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Pressure:</div>
+                                                        <div class="bolt-tooltip-value healthy">7.1 bar</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Valve:</div>
+                                                        <div class="bolt-tooltip-value closed">Closed</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Last Update:</div>
+                                                        <div class="bolt-tooltip-value">Just now</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Bolt 4 -->
+                                            <div class="pipeline-bolt healthy" style="left: 80%;">
+                                                <i class="fas fa-bolt"></i>
+                                                <div class="bolt-label">dev040</div>
+                                                <div class="valve-indicator closed">
+                                                    <i class="fas fa-door-closed"></i> Closed
+                                                </div>
+                                                <div class="bolt-tooltip">
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Temperature:</div>
+                                                        <div class="bolt-tooltip-value healthy">65.9°C</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Pressure:</div>
+                                                        <div class="bolt-tooltip-value healthy">7.0 bar</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Valve:</div>
+                                                        <div class="bolt-tooltip-value closed">Closed</div>
+                                                    </div>
+                                                    <div class="bolt-tooltip-row">
+                                                        <div class="bolt-tooltip-label">Last Update:</div>
+                                                        <div class="bolt-tooltip-value">Just now</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pipeline-view table-view">
+                                        <table class="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Device ID</th>
+                                                    <th>Position</th>
+                                                    <th>Temperature</th>
+                                                    <th>Pressure</th>
+                                                    <th>Valve Status</th>
+                                                    <th>Last Update</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>dev010</td>
+                                                    <td>1</td>
+                                                    <td><span class="status-badge healthy">63.5°C</span></td>
+                                                    <td><span class="status-badge healthy">7.2 bar</span></td>
+                                                    <td><span class="status-badge closed">Closed</span></td>
+                                                    <td>Just now</td>
+                                                    <td>
+                                                        <div class="action-buttons">
+                                                            <button class="btn-action toggle-valve" data-action="open" title="Open Valve">
+                                                                <i class="fas fa-door-open"></i>
+                                                            </button>
+                                                            <button class="btn-action edit-bolt" title="Edit Bolt">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn-action remove-bolt" title="Remove Bolt">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>dev020</td>
+                                                    <td>2</td>
+                                                    <td><span class="status-badge healthy">65.1°C</span></td>
+                                                    <td><span class="status-badge healthy">7.0 bar</span></td>
+                                                    <td><span class="status-badge closed">Closed</span></td>
+                                                    <td>Just now</td>
+                                                    <td>
+                                                        <div class="action-buttons">
+                                                            <button class="btn-action toggle-valve" data-action="open" title="Open Valve">
+                                                                <i class="fas fa-door-open"></i>
+                                                            </button>
+                                                            <button class="btn-action edit-bolt" title="Edit Bolt">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn-action remove-bolt" title="Remove Bolt">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>dev030</td>
+                                                    <td>3</td>
+                                                    <td><span class="status-badge healthy">66.3°C</span></td>
+                                                    <td><span class="status-badge healthy">7.1 bar</span></td>
+                                                    <td><span class="status-badge closed">Closed</span></td>
+                                                    <td>Just now</td>
+                                                    <td>
+                                                        <div class="action-buttons">
+                                                            <button class="btn-action toggle-valve" data-action="open" title="Open Valve">
+                                                                <i class="fas fa-door-open"></i>
+                                                            </button>
+                                                            <button class="btn-action edit-bolt" title="Edit Bolt">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn-action remove-bolt" title="Remove Bolt">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>dev040</td>
+                                                    <td>4</td>
+                                                    <td><span class="status-badge healthy">65.9°C</span></td>
+                                                    <td><span class="status-badge healthy">7.0 bar</span></td>
+                                                    <td><span class="status-badge closed">Closed</span></td>
+                                                    <td>Just now</td>
+                                                    <td>
+                                                        <div class="action-buttons">
+                                                            <button class="btn-action toggle-valve" data-action="open" title="Open Valve">
+                                                                <i class="fas fa-door-open"></i>
+                                                            </button>
+                                                            <button class="btn-action edit-bolt" title="Edit Bolt">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn-action remove-bolt" title="Remove Bolt">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="dashboard-footer">
+                <div class="footer-content">
+                    <p>&copy; 2025 Smart IoT Bolt - Pipeline Monitoring System</p>
+                    <p>Last updated: <span id="last-updated">Just now</span></p>
+                </div>
+            </footer>
+        </main>
+    </div>
+    
+    <!-- Modal Templates -->
+    <!-- Add Pipeline Modal -->
+    <div class="modal-container" id="add-pipeline-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Pipeline</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="add-pipeline-form">
+                    <div class="form-group">
+                        <label for="pipeline-id">Pipeline ID</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-fingerprint"></i>
+                            <input type="text" id="pipeline-id" name="pipelineId" placeholder="Enter unique ID (e.g., pipeline004)" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pipeline-name">Pipeline Name</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-tag"></i>
+                            <input type="text" id="pipeline-name" name="pipelineName" placeholder="Enter pipeline name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pipeline-description">Description</label>
+                        <textarea id="pipeline-description" name="description" rows="3" placeholder="Enter pipeline description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close-button">Cancel</button>
+                <button class="btn-primary" id="save-pipeline">Save Pipeline</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Pipeline Modal -->
+    <div class="modal-container" id="edit-pipeline-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Pipeline</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-pipeline-form">
+                    <input type="hidden" id="edit-pipeline-id" name="pipelineId">
+                    
+                    <div class="form-group">
+                        <label for="edit-pipeline-name">Pipeline Name</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-tag"></i>
+                            <input type="text" id="edit-pipeline-name" name="pipelineName" placeholder="Enter pipeline name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-pipeline-description">Description</label>
+                        <textarea id="edit-pipeline-description" name="description" rows="3" placeholder="Enter pipeline description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close-button">Cancel</button>
+                <button class="btn-primary" id="update-pipeline">Update Pipeline</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Bolt Modal -->
+    <div class="modal-container" id="add-bolt-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Bolt</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="add-bolt-form">
+                    <input type="hidden" id="bolt-pipeline-id" name="pipelineId">
+                    
+                    <div class="form-group">
+                        <label for="bolt-id">Bolt ID</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-bolt"></i>
+                            <input type="text" id="bolt-id" name="boltId" placeholder="Enter bolt ID (e.g., dev050)" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bolt-position">Position</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="number" id="bolt-position" name="position" min="1" placeholder="Enter position number" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bolt-description">Description</label>
+                        <textarea id="bolt-description" name="description" rows="2" placeholder="Enter bolt description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close-button">Cancel</button>
+                <button class="btn-primary" id="save-bolt">Add Bolt</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div class="modal-container" id="confirmation-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Confirm Action</h3>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="confirmation-content">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="confirmation-message">
+                        Are you sure you want to perform this action?
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close-button">Cancel</button>
+                <button class="btn-danger" id="confirm-action">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/pipelines.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize page
+            window.pipelines.initPipelines();
+        });
+    </script>
+</body>
+</html>

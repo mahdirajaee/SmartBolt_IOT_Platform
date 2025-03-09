@@ -117,3 +117,11 @@
 2025-03-09 08:45:40,240 - cherrypy.error - INFO - [09/Mar/2025:08:45:40] ENGINE Bus STARTED
 2025-03-09 08:45:40,241 - ResourceCatalog - INFO - Resource/Service Catalog running on port 5001
 2025-03-09 08:45:41,137 - ResourceCatalog - INFO - Removing expired service: message_broker
+2025-03-09 14:36:59,923 - cherrypy.error - INFO - [09/Mar/2025:14:36:59] ENGINE Keyboard Interrupt: shutting down bus
+2025-03-09 14:36:59,930 - cherrypy.error - INFO - [09/Mar/2025:14:36:59] ENGINE Bus STOPPING
+2025-03-09 14:37:00,251 - cherrypy.error - INFO - [09/Mar/2025:14:37:00] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5001)) shut down
+2025-03-09 14:37:00,251 - cherrypy.error - INFO - [09/Mar/2025:14:37:00] ENGINE Stopped thread 'Autoreloader'.
+2025-03-09 14:37:00,251 - cherrypy.error - INFO - [09/Mar/2025:14:37:00] ENGINE Bus STOPPED
+2025-03-09 14:37:00,252 - cherrypy.error - INFO - [09/Mar/2025:14:37:00] ENGINE Bus EXITING
+2025-03-09 14:37:00,252 - cherrypy.error - INFO - [09/Mar/2025:14:37:00] ENGINE Bus EXITED
+2025-03-09 14:37:00,252 - cherrypy.error - INFO - [09/Mar/2025:14:37:00] ENGINE Waiting for child threads to terminate...

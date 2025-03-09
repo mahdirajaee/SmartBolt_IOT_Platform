@@ -1,0 +1,250 @@
+/* ========== Login Page Styles ========== */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-primary);
+    overflow-x: hidden;
+  }
+  
+  /* Login Container */
+  .login-container {
+    width: 100%;
+    max-width: 480px;
+    padding: var(--spacing-md);
+    position: relative;
+    z-index: 10;
+  }
+  
+  .login-content {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transform: translateY(0);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  }
+  
+  .login-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-hover);
+  }
+  
+  /* Login Header */
+  .login-header {
+    padding: var(--spacing-xl);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .logo-icon {
+    font-size: 30px;
+    color: var(--primary-color);
+    margin-right: var(--spacing-md);
+  }
+  
+  .logo-container h1 {
+    margin-bottom: 0;
+    color: var(--text-primary);
+    font-size: var(--font-size-xxl);
+  }
+  
+  .subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+  
+  /* Login Form Tabs */
+  .form-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .tab-btn {
+    flex: 1;
+    padding: var(--spacing-md);
+    text-align: center;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+    position: relative;
+  }
+  
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color var(--transition-fast);
+  }
+  
+  .tab-btn.active {
+    color: var(--primary-color);
+  }
+  
+  .tab-btn.active::after {
+    background-color: var(--primary-color);
+  }
+  
+  /* Login Form */
+  .login-form-container {
+    padding: var(--spacing-xl);
+  }
+  
+  .login-form {
+    display: none;
+  }
+  
+  .active-form {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Alert Container */
+  .alert-container {
+    margin-bottom: var(--spacing-lg);
+    display: none;
+  }
+  
+  .alert-container.show {
+    display: block;
+    animation: slideDown 0.3s ease forwards;
+  }
+  
+  .alert {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+  }
+  
+  .alert-error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    border-left: 3px solid var(--danger-color);
+  }
+  
+  .alert-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border-left: 3px solid var(--success-color);
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Form Options */
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+  }
+  
+  .forgot-password {
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+  
+  .forgot-password:hover {
+    color: var(--primary-color);
+  }
+  
+  /* Login Button */
+  .btn-login, .btn-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+  }
+  
+  .btn-login .spinner, .btn-register .spinner {
+    padding: 0;
+    margin-left: var(--spacing-sm);
+  }
+  
+  /* Footer */
+  .login-footer {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+    color: var(--text-tertiary);
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Particles Background */
+  .particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  #particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Animation for logo icon */
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 576px) {
+    .login-container {
+      max-width: 100%;
+      padding: var(--spacing-sm);
+    }
+    
+    .login-header, .login-form-container {
+      padding: var(--spacing-lg);
+    }
+    
+    .form-options {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .remember-me {
+      margin-bottom: var(--spacing-sm);
+    }
+  }
