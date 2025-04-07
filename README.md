@@ -111,6 +111,3 @@ Each service uses environment variables for configuration. See `run_services.py`
 - Verify that all required ports are available
 - Check environment variables are correctly set
 
-## License
-
-[MIT License](LICENSE) 
