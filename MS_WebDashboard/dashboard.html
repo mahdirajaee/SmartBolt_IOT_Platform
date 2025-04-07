@@ -650,6 +650,10 @@
       <li data-tab="warnings">Warnings</li>
       <li data-tab="historicalData">Historical Data</li>
     </ul>
+    <div id="connectionStatus" style="text-align: center; padding: 10px; margin: 10px 0; background: rgba(0, 0, 0, 0.3); border-radius: 5px;">
+      <span id="connectionIcon" style="font-size: 12px; margin-right: 5px;">⚫</span>
+      <span id="connectionText">Disconnected</span>
+    </div>
     <div id="sidebarContent">
       <!-- Sectors Tab -->
       <div id="sectorsTab">
@@ -908,6 +912,13 @@
     let forecastDataWindow = 10;
     let forecastHorizon = 5;
     
+    // Connection status
+    let isConnected = false;
+    let connectionCheckInterval;
+    let lastSuccessfulConnection = null;
+    let connectionRetries = 0;
+    const MAX_RETRIES = 3;
+    
     // ==================== AUTHENTICATION FUNCTIONS ====================
     
     /**
@@ -1134,6 +1145,8 @@
           if (!response.ok) {
             throw new Error('Failed to fetch sensor data');
           }
+          // Update connection status on successful data fetch
+          connectionStatusSuccess();
           return response.json();
         })
         .then(data => {
@@ -1152,6 +1165,10 @@
         })
         .catch(error => {
           console.error('Error fetching sensor data:', error);
+          
+          // Count this as a connection failure
+          connectionStatusFailed();
+          
           // Fall back to mock data if API fails
           const mockData = generateMockSensorData();
           
@@ -1307,6 +1324,9 @@
       initEnergyGaugeChart();
       initHistoricalChart();
       
+      // Initialize connection status
+      initConnectionStatus();
+      
       // Load sectors data
       loadSectors();
       
@@ -1315,6 +1335,85 @@
       
       // Start the data update interval
       setInterval(updateSensorData, 2000);
+    }
+    
+    /**
+     * Initialize connection status monitoring
+     */
+    function initConnectionStatus() {
+      // Update connection status initially
+      updateConnectionStatus(false);
+      
+      // Start connection status check interval
+      connectionCheckInterval = setInterval(checkConnection, 5000);
+    }
+    
+    /**
+     * Check if we have a connection to the data sources
+     */
+    function checkConnection() {
+      // Try to ping one of our APIs
+      fetch('http://localhost:8080/health', { method: 'GET', timeout: 3000 })
+        .then(response => {
+          if (response.ok) {
+            // Connection successful
+            connectionStatusSuccess();
+          } else {
+            // API returned an error
+            connectionStatusFailed();
+          }
+        })
+        .catch(error => {
+          // Connection failed
+          connectionStatusFailed();
+        });
+    }
+    
+    /**
+     * Handle successful connection
+     */
+    function connectionStatusSuccess() {
+      lastSuccessfulConnection = new Date();
+      connectionRetries = 0;
+      
+      // Only update UI if connection status actually changed
+      if (!isConnected) {
+        updateConnectionStatus(true);
+      }
+    }
+    
+    /**
+     * Handle failed connection
+     */
+    function connectionStatusFailed() {
+      connectionRetries++;
+      
+      // Only consider disconnected after MAX_RETRIES failed attempts
+      if (isConnected && connectionRetries >= MAX_RETRIES) {
+        updateConnectionStatus(false);
+      }
+    }
+    
+    /**
+     * Update the connection status in the UI
+     */
+    function updateConnectionStatus(connected) {
+      isConnected = connected;
+      
+      const connectionIcon = document.getElementById('connectionIcon');
+      const connectionText = document.getElementById('connectionText');
+      
+      if (connected) {
+        connectionIcon.textContent = '🟢';
+        connectionIcon.style.color = '#4CAF50';
+        connectionText.textContent = 'Connected';
+        connectionText.style.color = '#4CAF50';
+      } else {
+        connectionIcon.textContent = '🔴';
+        connectionIcon.style.color = '#FF5252';
+        connectionText.textContent = 'Disconnected';
+        connectionText.style.color = '#FF5252';
+      }
     }
   </script>
 </body>

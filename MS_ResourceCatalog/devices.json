@@ -5,11 +5,11 @@
     "type": "raspberry_pi_connector",
     "status": {
       "online": true,
-      "temperature": 22.93,
-      "pressure": 90.87,
+      "temperature": 21.35,
+      "pressure": 99.31,
       "valve": "closed"
     },
-    "last_seen": 1744048357.334678,
+    "last_seen": 1744059054.294879,
     "additional_info": {}
   }
 }
