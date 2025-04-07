@@ -110,3 +110,4 @@ Each service uses environment variables for configuration. See `run_services.py`
 - Ensure InfluxDB and MQTT broker are running
 - Verify that all required ports are available
 - Check environment variables are correctly set
+

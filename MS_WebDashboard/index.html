@@ -7,14 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4361ee;
-      --secondary: #3f37c9;
-      --accent: #4cc9f0;
-      --dark: #1b1b1b;
-      --light: #f8f9fa;
-      --success: #4CAF50;
-      --warning: #ff9800;
-      --danger: #f44336;
+      --primary: #2E5EAA;
+      --secondary: #1D3557;
+      --accent: #43AA8B;
+      --dark: #232F34;
+      --light: #F8F9FA;
+      --success: #43AA8B;
+      --warning: #F8961E;
+      --danger: #F94144;
     }
     
     * {
@@ -126,7 +126,7 @@
     .cta-button:hover {
       background-color: var(--secondary);
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+      box-shadow: 0 5px 15px rgba(46, 94, 170, 0.3);
     }
     
     /* Hero Section */
@@ -145,13 +145,25 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(76, 201, 240, 0.1));
+      background: linear-gradient(135deg, rgba(46, 94, 170, 0.1), rgba(67, 170, 139, 0.1));
       z-index: -1;
     }
     
     .hero-content {
       width: 50%;
       animation: fadeInLeft 1s ease-out;
+    }
+    
+    /* Politecnico logo styling */
+    .polito-logo {
+      margin-bottom: 30px;
+      max-width: 350px;
+    }
+    
+    .polito-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
     
     .hero-title {
@@ -173,7 +185,7 @@
       left: 0;
       width: 100%;
       height: 10px;
-      background-color: rgba(76, 201, 240, 0.3);
+      background-color: rgba(67, 170, 139, 0.3);
       z-index: -1;
     }
     
@@ -205,7 +217,7 @@
       background-color: var(--primary);
       color: white;
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+      box-shadow: 0 5px 15px rgba(46, 94, 170, 0.2);
     }
     
     .hero-image {
@@ -300,7 +312,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="%234361ee" opacity="0.2"/></svg>');
+      background: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="%232E5EAA" opacity="0.2"/></svg>');
       z-index: -1;
     }
     
@@ -330,7 +342,7 @@
       font-size: 1.5rem;
       font-weight: 600;
       margin: 0 auto 1.5rem;
-      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+      box-shadow: 0 5px 15px rgba(46, 94, 170, 0.3);
     }
     
     .step-title {
@@ -355,98 +367,58 @@
       z-index: 0;
     }
     
-    /* Testimonials Section */
-    .testimonials {
+    /* Team Section */
+    .team {
       padding: 6rem 0;
       background-color: white;
     }
     
-    .testimonials-container {
-      display: flex;
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
-      overflow-x: scroll;
-      padding-bottom: 2rem;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
     }
     
-    .testimonials-container::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .testimonial-card {
-      min-width: 350px;
-      scroll-snap-align: start;
+    .team-member {
       background-color: white;
       border-radius: 10px;
       padding: 2rem;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
       transition: all 0.3s ease;
     }
     
-    .testimonial-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-top: 3px solid var(--accent);
     }
     
-    .testimonial-content {
-      margin-bottom: 1.5rem;
-      position: relative;
-      font-style: italic;
-      color: #555;
-      line-height: 1.6;
-    }
-    
-    .testimonial-content::before,
-    .testimonial-content::after {
-      content: '"';
-      font-size: 3rem;
-      color: var(--primary);
-      line-height: 0;
-      position: absolute;
-      opacity: 0.2;
-    }
-    
-    .testimonial-content::before {
-      top: 0.5rem;
-      left: -1rem;
-    }
-    
-    .testimonial-content::after {
-      bottom: -1rem;
-      right: -1rem;
-      transform: rotate(180deg);
-    }
-    
-    .testimonial-author {
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      overflow: hidden;
+      background-color: var(--primary);
       display: flex;
       align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      font-weight: 700;
     }
     
-    .author-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #eee;
-      margin-right: 1rem;
-      overflow: hidden;
+    .team-member h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
     }
     
-    .author-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .author-details h4 {
-      margin-bottom: 0.25rem;
-      font-weight: 600;
-    }
-    
-    .author-details p {
+    .team-member p {
       color: #777;
-      font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
     
     /* CTA Section */
@@ -488,7 +460,7 @@
     
     /* Footer */
     footer {
-      background-color: #222;
+      background-color: var(--dark);
       color: white;
       padding: 4rem 0 2rem;
     }
@@ -514,7 +486,7 @@
       left: 0;
       width: 40px;
       height: 3px;
-      background-color: var(--primary);
+      background-color: var(--accent);
     }
     
     .footer-column ul {
@@ -553,7 +525,7 @@
     }
     
     .social-link:hover {
-      background-color: var(--primary);
+      background-color: var(--accent);
       transform: translateY(-3px);
     }
     
@@ -619,7 +591,19 @@
     .particle {
       position: absolute;
       border-radius: 50%;
-      background-color: rgba(67, 97, 238, 0.2);
+      background-color: rgba(46, 94, 170, 0.2);
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(46, 94, 170, 0.3);
+    }
+    
+    /* Add SVG particles container */
+    .particle-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
       pointer-events: none;
     }
     
@@ -636,6 +620,10 @@
       
       .steps::after {
         display: none;
+      }
+      
+      .polito-logo {
+        max-width: 300px;
       }
     }
     
@@ -687,6 +675,11 @@
       .step {
         width: 100%;
       }
+      
+      .polito-logo {
+        max-width: 250px;
+        margin: 0 auto 20px;
+      }
     }
     
     @media (max-width: 576px) {
@@ -704,8 +697,12 @@
         padding: 1.5rem;
       }
       
-      .testimonial-card {
+      .team-member {
         min-width: 280px;
+      }
+      
+      .polito-logo {
+        max-width: 200px;
       }
     }
   </style>
@@ -713,6 +710,7 @@
 <body>
   <!-- Particle Background -->
   <div class="particle-background" id="particles"></div>
+  <svg class="particle-lines" id="particle-lines"></svg>
 
   <!-- Header -->
   <header id="main-header">
@@ -733,7 +731,7 @@
         <ul>
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#team">Our Team</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -746,6 +744,11 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
+        <!-- Politecnico di Torino logo -->
+        <div class="polito-logo">
+          <img src="images/polito-logo.svg" alt="Politecnico di Torino">
+        </div>
+        
         <h1 class="hero-title">Smart Monitoring for <span>Industrial Pipelines</span></h1>
         <p class="hero-description">Monitor pressure and temperature in real-time with our innovative Smart IoT Bolt technology. Prevent failures, reduce downtime, and optimize maintenance schedules.</p>
         <div class="hero-cta">
@@ -756,7 +759,7 @@
     </div>
     
     <div class="hero-image floating">
-      <img src="/api/placeholder/600/400" alt="Smart IoT Bolt Dashboard Preview">
+      <img src="/api/placeholder/600/400" alt="">
     </div>
   </section>
 
@@ -877,58 +880,37 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="testimonials" id="testimonials">
+  <!-- Team Section -->
+  <section class="team" id="team">
     <div class="container">
       <div class="section-title">
-        <h2>What Our Clients Say</h2>
-        <p>Discover how Smart IoT Bolt is transforming pipeline monitoring and maintenance for our clients.</p>
+        <h2>Our Team</h2>
+        <p>Meet the talented individuals behind the Smart IoT Bolt for Pipelines project.</p>
       </div>
       
-      <div class="testimonials-container">
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            The Smart IoT Bolt system has been a game-changer for our refinery operations. We've reduced unplanned downtime by 37% and saved thousands in maintenance costs.
-          </div>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/api/placeholder/50/50" alt="Client">
-            </div>
-            <div class="author-details">
-              <h4>Michael Johnson</h4>
-              <p>Operations Manager, PetroTech Inc.</p>
-            </div>
-          </div>
+      <div class="team-container">
+        <div class="team-member">
+          <div class="team-avatar">M</div>
+          <h3>Mahdi Rajaee</h3>
+          <p>full stack software developer</p>
         </div>
         
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            The predictive analytics capability is impressive. Last month, the system detected a potential failure two days before it would have occurred, saving us from a major shutdown.
-          </div>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/api/placeholder/50/50" alt="Client">
-            </div>
-            <div class="author-details">
-              <h4>Sarah Williams</h4>
-              <p>Chief Engineer, GlobalOil Corp</p>
-            </div>
-          </div>
+        <div class="team-member">
+          <div class="team-avatar">M</div>
+          <h3>Mohammad Eftekharipour</h3>
+          <p>BackEnd developer</p>
         </div>
         
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            Installation was seamless, and the dashboard is intuitive even for our less tech-savvy team members. The ROI was evident within the first quarter of implementation.
-          </div>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/api/placeholder/50/50" alt="Client">
-            </div>
-            <div class="author-details">
-              <h4>David Chen</h4>
-              <p>Maintenance Director, IndusTech Systems</p>
-            </div>
-          </div>
+        <div class="team-member">
+          <div class="team-avatar">T</div>
+          <h3>Tanin Heidarloui Moghaddam</h3>
+          <p>FronEnd developer</p>
+        </div>
+        
+        <div class="team-member">
+          <div class="team-avatar">H</div>
+          <h3>Hamid Shabanipour</h3>
+          <p>Python Developer</p>
         </div>
       </div>
     </div>
@@ -976,7 +958,7 @@
           <ul>
             <li><a href="#features">Features</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#team">Our Team</a></li>
             <li><a href="login.html">Login</a></li>
             <li><a href="#">Register</a></li>
           </ul>
@@ -996,9 +978,10 @@
         <div class="footer-column">
           <h3>Contact Us</h3>
           <ul>
-            <li>Email: info@smartiotbolt.com</li>
-            <li>Phone: +1 (555) 123-4567</li>
-            <li>Address: 123 Tech Street, Industrial Park, CA 90001</li>
+            <li>mahdi.rajaee@studenti.polito.it</li>
+            <li>tanin.heidarloui@polito.it</li>
+            <li>EftekhariPour.Mohammad@polito.it</li>
+            <li>Shabanipour.Hamid@polito.it</li>
           </ul>
         </div>
       </div>
@@ -1037,17 +1020,48 @@
       observer.observe(element);
     });
     
-    // Particle Background
+    // Enhanced Particle Background
     function createParticles() {
       const particleContainer = document.getElementById('particles');
-      const particleCount = 50;
+      const linesSvg = document.getElementById('particle-lines');
+      const particleCount = 70; // Increased count for more visible effect
+      const maxLines = 120; // More connection lines
+      const particles = [];
+      const lines = [];
+      let mouseX = 0;
+      let mouseY = 0;
+      
+      // Update SVG viewBox
+      function updateSvgViewBox() {
+        linesSvg.setAttribute('width', window.innerWidth);
+        linesSvg.setAttribute('height', window.innerHeight);
+        linesSvg.setAttribute('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`);
+      }
+      
+      updateSvgViewBox();
+      window.addEventListener('resize', updateSvgViewBox);
+      
+      // Track mouse position
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      
+      // Create primary color variants with more vibrant colors
+      const colors = [
+        'rgba(46, 94, 170, 0.5)',    // Primary blue - more opaque
+        'rgba(67, 170, 139, 0.5)',   // Accent green - more opaque
+        'rgba(29, 53, 87, 0.45)',    // Secondary darker blue - more opaque
+        'rgba(67, 126, 255, 0.55)',  // Bright blue - new vibrant color
+        'rgba(46, 170, 160, 0.5)'    // Teal - new vibrant color
+      ];
       
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         
-        // Random size
-        const size = Math.random() * 5 + 2;
+        // Larger size with more variation
+        const size = Math.random() * 8 + 2;  // Increased from 6+1 to 8+2
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         
@@ -1057,16 +1071,161 @@
         particle.style.left = `${posX}%`;
         particle.style.top = `${posY}%`;
         
-        // Random opacity
-        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        // Increased opacity
+        particle.style.opacity = Math.random() * 0.6 + 0.4;  // Changed from 0.5+0.1 to 0.6+0.4
         
-        // Animation
-        const duration = Math.random() * 20 + 10;
-        const delay = Math.random() * 5;
-        particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+        // Random color
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         
+        // Store particle properties for animation
+        const particleObj = {
+          element: particle,
+          x: posX,
+          y: posY,
+          size: size,
+          speedX: Math.random() * 0.2 - 0.1,
+          speedY: Math.random() * 0.2 - 0.1,
+          // Add random friction and acceleration for more natural movement
+          friction: 0.95 + Math.random() * 0.03,
+          directionChangeInterval: Math.random() * 200 + 50,
+          // Pixel positions (for line drawing)
+          pxX: 0,
+          pxY: 0
+        };
+        
+        particles.push(particleObj);
         particleContainer.appendChild(particle);
       }
+      
+      // Create a pool of reusable SVG lines
+      function createLinePool() {
+        for (let i = 0; i < maxLines; i++) {
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('stroke', 'rgba(46, 94, 170, 0.1)');
+          line.setAttribute('stroke-width', '1');
+          line.style.display = 'none';
+          linesSvg.appendChild(line);
+          lines.push({
+            element: line,
+            inUse: false
+          });
+        }
+      }
+      
+      createLinePool();
+      
+      // Animate particles
+      function animateParticles() {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        
+        // Reset all lines to not in use
+        lines.forEach(line => {
+          line.inUse = false;
+          line.element.style.display = 'none';
+        });
+        
+        // Process particle movement
+        particles.forEach(p => {
+          // Add slight mouse attraction
+          if (mouseX && mouseY) {
+            const mouseXPercent = (mouseX / windowWidth) * 100;
+            const mouseYPercent = (mouseY / windowHeight) * 100;
+            
+            // Calculate distance from mouse
+            const dx = mouseXPercent - p.x;
+            const dy = mouseYPercent - p.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Apply subtle attraction when close to mouse
+            if (distance < 20) {
+              p.speedX += dx * 0.0005;
+              p.speedY += dy * 0.0005;
+            }
+          }
+          
+          // Apply velocity
+          p.x += p.speedX;
+          p.y += p.speedY;
+          
+          // Apply friction
+          p.speedX *= p.friction;
+          p.speedY *= p.friction;
+          
+          // Randomly change direction occasionally
+          if (Math.random() * 100 < 1) {
+            p.speedX = Math.random() * 0.4 - 0.2;
+            p.speedY = Math.random() * 0.4 - 0.2;
+          }
+          
+          // Boundary check with bounce
+          if (p.x < 0) {
+            p.x = 0;
+            p.speedX *= -1;
+          } else if (p.x > 100) {
+            p.x = 100;
+            p.speedX *= -1;
+          }
+          
+          if (p.y < 0) {
+            p.y = 0;
+            p.speedY *= -1;
+          } else if (p.y > 100) {
+            p.y = 100;
+            p.speedY *= -1;
+          }
+          
+          // Update position
+          p.element.style.left = `${p.x}%`;
+          p.element.style.top = `${p.y}%`;
+          
+          // Calculate pixel positions for line drawing
+          p.pxX = (p.x / 100) * windowWidth;
+          p.pxY = (p.y / 100) * windowHeight;
+        });
+        
+        // Draw lines between nearby particles
+        let lineIndex = 0;
+        
+        // Only check some particles each frame for connecting to others
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            // Skip some particle pairs for better performance
+            if (Math.random() > 0.2) continue;
+            
+            const p1 = particles[i];
+            const p2 = particles[j];
+            
+            // Calculate distance
+            const dx = p1.pxX - p2.pxX;
+            const dy = p1.pxY - p2.pxY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Show line only if particles are close enough
+            if (distance < 150 && lineIndex < maxLines) {  // Increased from 120 to 150
+              const line = lines[lineIndex];
+              line.inUse = true;
+              line.element.style.display = 'block';
+              line.element.setAttribute('x1', p1.pxX);
+              line.element.setAttribute('y1', p1.pxY);
+              line.element.setAttribute('x2', p2.pxX);
+              line.element.setAttribute('y2', p2.pxY);
+              
+              // Make lines more opaque and visible
+              const opacity = 0.25 * (1 - distance / 150);  // Changed from 0.15 to 0.25
+              line.element.setAttribute('stroke', `rgba(46, 94, 170, ${opacity})`);
+              line.element.setAttribute('stroke-width', '1.2');  // Increased from 1 to 1.2
+              
+              lineIndex++;
+            }
+          }
+        }
+        
+        requestAnimationFrame(animateParticles);
+      }
+      
+      // Start animation
+      animateParticles();
     }
     
     // Initialize particles
