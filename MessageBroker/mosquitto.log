@@ -291,3 +291,97 @@
 1744048290: Opening ipv4 listen socket on port 8883.
 1744048290: mosquitto version 2.0.21 running
 1744048432: Reloading config.
+1744048832: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744049624: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744049857: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744050091: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744050517: New connection from 127.0.0.1:52186 on port 1884.
+1744050517: New connection from 127.0.0.1:52187 on port 1885.
+1744050517: Client <unknown> closed its connection.
+1744050517: Client <unknown> closed its connection.
+1744050517: New connection from 127.0.0.1:52188 on port 1886.
+1744050517: Client <unknown> closed its connection.
+1744050523: New connection from 127.0.0.1:52208 on port 1884.
+1744050523: Client <unknown> closed its connection.
+1744050523: New connection from 127.0.0.1:52209 on port 1885.
+1744050523: Client <unknown> closed its connection.
+1744050523: New connection from 127.0.0.1:52210 on port 1886.
+1744050523: Client <unknown> closed its connection.
+1744050523: New connection from 127.0.0.1:52211 on port 8883.
+1744050523: Client <unknown> closed its connection.
+1744050633: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744051425: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744051658: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744051892: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744052434: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744053226: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744053459: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744053693: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744054235: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744055027: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744055260: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744055494: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744056036: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744056828: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744057061: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744057179: New connection from 127.0.0.1:54251 on port 1884.
+1744057179: Client <unknown> closed its connection.
+1744057179: New connection from 127.0.0.1:54252 on port 1885.
+1744057179: Client <unknown> closed its connection.
+1744057179: New connection from 127.0.0.1:54253 on port 1886.
+1744057179: Client <unknown> closed its connection.
+1744057185: New connection from 127.0.0.1:54271 on port 1884.
+1744057185: New connection from 127.0.0.1:54272 on port 1885.
+1744057185: Client <unknown> closed its connection.
+1744057185: Client <unknown> closed its connection.
+1744057185: New connection from 127.0.0.1:54273 on port 1886.
+1744057185: Client <unknown> closed its connection.
+1744057185: New connection from 127.0.0.1:54274 on port 8883.
+1744057185: Client <unknown> closed its connection.
+1744057295: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744057837: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744058528: New connection from 127.0.0.1:55223 on port 1884.
+1744058528: New connection from 127.0.0.1:55224 on port 1885.
+1744058528: New connection from 127.0.0.1:55225 on port 1886.
+1744058528: Client <unknown> closed its connection.
+1744058528: Client <unknown> closed its connection.
+1744058528: Client <unknown> closed its connection.
+1744058534: New connection from 127.0.0.1:55251 on port 1884.
+1744058534: New connection from 127.0.0.1:55252 on port 1885.
+1744058534: Client <unknown> closed its connection.
+1744058534: Client <unknown> closed its connection.
+1744058534: New connection from 127.0.0.1:55253 on port 1886.
+1744058534: Client <unknown> closed its connection.
+1744058534: New connection from 127.0.0.1:55254 on port 8883.
+1744058534: Client <unknown> closed its connection.
+1744058629: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744058825: New connection from 127.0.0.1:55816 on port 1884.
+1744058825: New connection from 127.0.0.1:55817 on port 1885.
+1744058825: New connection from 127.0.0.1:55818 on port 1886.
+1744058825: Client <unknown> closed its connection.
+1744058825: Client <unknown> closed its connection.
+1744058825: Client <unknown> closed its connection.
+1744058832: New connection from 127.0.0.1:55936 on port 1884.
+1744058832: New connection from 127.0.0.1:55937 on port 1885.
+1744058832: New connection from 127.0.0.1:55939 on port 8883.
+1744058832: New connection from 127.0.0.1:55938 on port 1886.
+1744058832: Client <unknown> closed its connection.
+1744058832: Client <unknown> closed its connection.
+1744058832: Client <unknown> closed its connection.
+1744058832: Client <unknown> closed its connection.
+1744058861: New connection from 127.0.0.1:56059 on port 1884.
+1744058861: New connection from 127.0.0.1:56060 on port 1885.
+1744058861: Client <unknown> closed its connection.
+1744058861: New connection from 127.0.0.1:56061 on port 1886.
+1744058861: Client <unknown> closed its connection.
+1744058861: Client <unknown> closed its connection.
+1744058862: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744058867: New connection from 127.0.0.1:56082 on port 1884.
+1744058867: Client <unknown> closed its connection.
+1744058867: New connection from 127.0.0.1:56083 on port 1885.
+1744058867: Client <unknown> closed its connection.
+1744058867: New connection from 127.0.0.1:56084 on port 1886.
+1744058867: Client <unknown> closed its connection.
+1744058867: New connection from 127.0.0.1:56085 on port 8883.
+1744058867: Client <unknown> closed its connection.
+1744059096: Saving in-memory database to ./mosquitto_data//mosquitto.db.
