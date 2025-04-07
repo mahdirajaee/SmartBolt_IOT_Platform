@@ -1,0 +1,5 @@
+cherrypy==18.8.0
+paho-mqtt==2.2.1
+influxdb-client==1.36.1
+requests==2.31.0
+python-dotenv==1.0.0
