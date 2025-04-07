@@ -7,14 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4361ee;
-      --secondary: #3f37c9;
-      --accent: #4cc9f0;
-      --dark: #1b1b1b;
-      --light: #f8f9fa;
-      --success: #4CAF50;
-      --warning: #ff9800;
-      --danger: #f44336;
+      --primary: #2E5EAA;
+      --secondary: #1D3557;
+      --accent: #43AA8B;
+      --dark: #232F34;
+      --light: #F8F9FA;
+      --success: #43AA8B;
+      --warning: #F8961E;
+      --danger: #F94144;
     }
     
     * {
@@ -126,7 +126,7 @@
     .cta-button:hover {
       background-color: var(--secondary);
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+      box-shadow: 0 5px 15px rgba(46, 94, 170, 0.3);
     }
     
     /* Hero Section */
@@ -145,13 +145,25 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(76, 201, 240, 0.1));
+      background: linear-gradient(135deg, rgba(46, 94, 170, 0.1), rgba(67, 170, 139, 0.1));
       z-index: -1;
     }
     
     .hero-content {
       width: 50%;
       animation: fadeInLeft 1s ease-out;
+    }
+    
+    /* Politecnico logo styling */
+    .polito-logo {
+      margin-bottom: 30px;
+      max-width: 350px;
+    }
+    
+    .polito-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
     
     .hero-title {
@@ -173,7 +185,7 @@
       left: 0;
       width: 100%;
       height: 10px;
-      background-color: rgba(76, 201, 240, 0.3);
+      background-color: rgba(67, 170, 139, 0.3);
       z-index: -1;
     }
     
@@ -205,7 +217,7 @@
       background-color: var(--primary);
       color: white;
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+      box-shadow: 0 5px 15px rgba(46, 94, 170, 0.2);
     }
     
     .hero-image {
@@ -300,7 +312,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="%234361ee" opacity="0.2"/></svg>');
+      background: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="%232E5EAA" opacity="0.2"/></svg>');
       z-index: -1;
     }
     
@@ -330,7 +342,7 @@
       font-size: 1.5rem;
       font-weight: 600;
       margin: 0 auto 1.5rem;
-      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+      box-shadow: 0 5px 15px rgba(46, 94, 170, 0.3);
     }
     
     .step-title {
@@ -355,98 +367,58 @@
       z-index: 0;
     }
     
-    /* Testimonials Section */
-    .testimonials {
+    /* Team Section */
+    .team {
       padding: 6rem 0;
       background-color: white;
     }
     
-    .testimonials-container {
-      display: flex;
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
-      overflow-x: scroll;
-      padding-bottom: 2rem;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
     }
     
-    .testimonials-container::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .testimonial-card {
-      min-width: 350px;
-      scroll-snap-align: start;
+    .team-member {
       background-color: white;
       border-radius: 10px;
       padding: 2rem;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
       transition: all 0.3s ease;
     }
     
-    .testimonial-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-top: 3px solid var(--accent);
     }
     
-    .testimonial-content {
-      margin-bottom: 1.5rem;
-      position: relative;
-      font-style: italic;
-      color: #555;
-      line-height: 1.6;
-    }
-    
-    .testimonial-content::before,
-    .testimonial-content::after {
-      content: '"';
-      font-size: 3rem;
-      color: var(--primary);
-      line-height: 0;
-      position: absolute;
-      opacity: 0.2;
-    }
-    
-    .testimonial-content::before {
-      top: 0.5rem;
-      left: -1rem;
-    }
-    
-    .testimonial-content::after {
-      bottom: -1rem;
-      right: -1rem;
-      transform: rotate(180deg);
-    }
-    
-    .testimonial-author {
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      overflow: hidden;
+      background-color: var(--primary);
       display: flex;
       align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      font-weight: 700;
     }
     
-    .author-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #eee;
-      margin-right: 1rem;
-      overflow: hidden;
+    .team-member h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
     }
     
-    .author-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .author-details h4 {
-      margin-bottom: 0.25rem;
-      font-weight: 600;
-    }
-    
-    .author-details p {
+    .team-member p {
       color: #777;
-      font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
     
     /* CTA Section */
@@ -488,7 +460,7 @@
     
     /* Footer */
     footer {
-      background-color: #222;
+      background-color: var(--dark);
       color: white;
       padding: 4rem 0 2rem;
     }
@@ -514,7 +486,7 @@
       left: 0;
       width: 40px;
       height: 3px;
-      background-color: var(--primary);
+      background-color: var(--accent);
     }
     
     .footer-column ul {
@@ -553,7 +525,7 @@
     }
     
     .social-link:hover {
-      background-color: var(--primary);
+      background-color: var(--accent);
       transform: translateY(-3px);
     }
     
@@ -619,7 +591,7 @@
     .particle {
       position: absolute;
       border-radius: 50%;
-      background-color: rgba(67, 97, 238, 0.2);
+      background-color: rgba(46, 94, 170, 0.2);
       pointer-events: none;
     }
     
@@ -636,6 +608,10 @@
       
       .steps::after {
         display: none;
+      }
+      
+      .polito-logo {
+        max-width: 300px;
       }
     }
     
@@ -687,6 +663,11 @@
       .step {
         width: 100%;
       }
+      
+      .polito-logo {
+        max-width: 250px;
+        margin: 0 auto 20px;
+      }
     }
     
     @media (max-width: 576px) {
@@ -704,8 +685,12 @@
         padding: 1.5rem;
       }
       
-      .testimonial-card {
+      .team-member {
         min-width: 280px;
+      }
+      
+      .polito-logo {
+        max-width: 200px;
       }
     }
   </style>
@@ -733,7 +718,7 @@
         <ul>
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#team">Our Team</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -746,6 +731,11 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
+        <!-- Politecnico di Torino logo -->
+        <div class="polito-logo">
+          <img src="images/polito-logo.svg" alt="Politecnico di Torino">
+        </div>
+        
         <h1 class="hero-title">Smart Monitoring for <span>Industrial Pipelines</span></h1>
         <p class="hero-description">Monitor pressure and temperature in real-time with our innovative Smart IoT Bolt technology. Prevent failures, reduce downtime, and optimize maintenance schedules.</p>
         <div class="hero-cta">
@@ -756,7 +746,7 @@
     </div>
     
     <div class="hero-image floating">
-      <img src="/api/placeholder/600/400" alt="Smart IoT Bolt Dashboard Preview">
+      <img src="/api/placeholder/600/400" alt="">
     </div>
   </section>
 
@@ -877,58 +867,37 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="testimonials" id="testimonials">
+  <!-- Team Section -->
+  <section class="team" id="team">
     <div class="container">
       <div class="section-title">
-        <h2>What Our Clients Say</h2>
-        <p>Discover how Smart IoT Bolt is transforming pipeline monitoring and maintenance for our clients.</p>
+        <h2>Our Team</h2>
+        <p>Meet the talented individuals behind the Smart IoT Bolt for Pipelines project.</p>
       </div>
       
-      <div class="testimonials-container">
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            The Smart IoT Bolt system has been a game-changer for our refinery operations. We've reduced unplanned downtime by 37% and saved thousands in maintenance costs.
-          </div>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/api/placeholder/50/50" alt="Client">
-            </div>
-            <div class="author-details">
-              <h4>Michael Johnson</h4>
-              <p>Operations Manager, PetroTech Inc.</p>
-            </div>
-          </div>
+      <div class="team-container">
+        <div class="team-member">
+          <div class="team-avatar">M</div>
+          <h3>Mahdi Rajaee</h3>
+          <p>Team Member</p>
         </div>
         
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            The predictive analytics capability is impressive. Last month, the system detected a potential failure two days before it would have occurred, saving us from a major shutdown.
-          </div>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/api/placeholder/50/50" alt="Client">
-            </div>
-            <div class="author-details">
-              <h4>Sarah Williams</h4>
-              <p>Chief Engineer, GlobalOil Corp</p>
-            </div>
-          </div>
+        <div class="team-member">
+          <div class="team-avatar">M</div>
+          <h3>Mohammad Eftekharipour</h3>
+          <p>Team Member</p>
         </div>
         
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            Installation was seamless, and the dashboard is intuitive even for our less tech-savvy team members. The ROI was evident within the first quarter of implementation.
-          </div>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/api/placeholder/50/50" alt="Client">
-            </div>
-            <div class="author-details">
-              <h4>David Chen</h4>
-              <p>Maintenance Director, IndusTech Systems</p>
-            </div>
-          </div>
+        <div class="team-member">
+          <div class="team-avatar">T</div>
+          <h3>Tanin Heidarloui Moghaddam</h3>
+          <p>Team Member</p>
+        </div>
+        
+        <div class="team-member">
+          <div class="team-avatar">H</div>
+          <h3>Hamid Shabanipour</h3>
+          <p>Team Member</p>
         </div>
       </div>
     </div>
@@ -976,7 +945,7 @@
           <ul>
             <li><a href="#features">Features</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#team">Our Team</a></li>
             <li><a href="login.html">Login</a></li>
             <li><a href="#">Register</a></li>
           </ul>
@@ -996,9 +965,10 @@
         <div class="footer-column">
           <h3>Contact Us</h3>
           <ul>
-            <li>Email: info@smartiotbolt.com</li>
-            <li>Phone: +1 (555) 123-4567</li>
-            <li>Address: 123 Tech Street, Industrial Park, CA 90001</li>
+            <li>mahdi.rajaee@studenti.polito.it</li>
+            <li>tanin.heidarloui@polito.it</li>
+            <li>EftekhariPour.Mohammad@polito.it</li>
+            <li>Shabanipour.Hamid@polito.it</li>
           </ul>
         </div>
       </div>
