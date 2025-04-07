@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Smart IoT Bolt Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #4cc9f0;
+      --dark: #1b1b1b;
+      --light: #f8f9fa;
+      --success: #4CAF50;
+      --warning: #ff9800;
+      --danger: #f44336;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+    }
+    
+    .login-container {
+      display: flex;
+      max-width: 900px;
+      width: 90%;
+      height: 550px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .info-side {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      width: 45%;
+      padding: 40px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .info-side::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1.5' fill='%23ffffff' opacity='0.2'/%3E%3C/svg%3E");
+      z-index: 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .logo-icon {
+      margin-right: 8px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    
+    .logo-text span {
+      color: var(--accent);
+    }
+    
+    .welcome-text {
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .welcome-text h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    .welcome-text p {
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+    
+    .features-list {
+      list-style: none;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .features-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .feature-icon {
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+    }
+    
+    .back-to-home {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+      width: fit-content;
+    }
+    
+    .back-to-home svg {
+      margin-right: 5px;
+    }
+    
+    .login-side {
+      width: 55%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .login-header h2 {
+      font-size: 2rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    
+    .login-header p {
+      color: #666;
+    }
+    
+    .login-form {
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    
+    .input-with-icon {
+      position: relative;
+    }
+    
+    .input-with-icon input {
+      width: 100%;
+      padding: 12px 40px 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .input-with-icon input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    .input-with-icon .icon {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      color: #999;
+    }
+    
+    .forgot-password {
+      text-align: right;
+      margin: -10px 0 20px;
+    }
+    
+    .forgot-password a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    
+    .forgot-password a:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+    
+    .login-button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .login-button:hover {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
+    }
+    
+    .separator {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+      color: #777;
+    }
+    
+    .separator::before,
+    .separator::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .separator::before {
+      margin-right: 10px;
+    }
+    
+    .separator::after {
+      margin-left: 10px;
+    }
+    
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .social-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background-color: white;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .social-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .google {
+      color: #DB4437;
+    }
+    
+    .facebook {
+      color: #4267B2;
+    }
+    
+    .twitter {
+      color: #1DA1F2;
+    }
+    
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .register-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .register-link a:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+
+    /* Float animation for logo */
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Error message styling */
+    .error-message {
+      background: rgba(255, 0, 0, 0.1);
+      color: #f44336;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      display: none;
+      font-size: 0.9rem;
+      border-left: 3px solid #f44336;
+    }
+    
+    /* Session selector */
+    .session-select {
+      margin-bottom: 20px;
+    }
+    
+    .session-select label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    
+    .session-select select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background-color: white;
+    }
+    
+    .session-select select:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .login-container {
+        flex-direction: column;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      
+      .info-side {
+        width: 100%;
+        padding: 30px;
+      }
+      
+      .login-side {
+        width: 100%;
+        padding: 30px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .login-container {
+        width: 95%;
+      }
+      
+      .login-side {
+        padding: 20px;
+      }
+      
+      .login-header h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Animation classes */
+    .fade-in-up {
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .fade-in-left {
+      animation: fadeInLeft 0.5s ease forwards;
+    }
+
+    .fade-in-right {
+      animation: fadeInRight 0.5s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+    
+    .delay-4 {
+      animation-delay: 0.4s;
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles Background -->
+  <div class="particles-container" id="particles"></div>
+  
+  <div class="login-container">
+    <!-- Info Side -->
+    <div class="info-side">
+      <div class="logo fade-in-left">
+        <div class="logo-icon float">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="2"/>
+            <path d="M12 6V18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 9L17 9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 15L17 15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">Smart<span>IoT</span>Bolt</div>
+      </div>
+      
+      <div class="welcome-text fade-in-left delay-1">
+        <h2>Welcome Back!</h2>
+        <p>Access your Smart IoT Bolt Dashboard to monitor your industrial pipelines in real-time.</p>
+      </div>
+      
+      <ul class="features-list">
+        <li class="fade-in-left delay-2">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+          Real-time temperature & pressure monitoring
+        </li>
+        <li class="fade-in-left delay-3">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+          ARIMA-based predictive analytics & alerts
+        </li>
+        <li class="fade-in-left delay-4">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+          Cascade failure detection & prevention
+        </li>
+      </ul>
+      
+      <a href="index.html" class="back-to-home fade-in-left">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 19L5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Home
+      </a>
+    </div>
+    
+    <!-- Login Side -->
+    <div class="login-side">
+      <div class="login-header fade-in-right">
+        <h2>Login</h2>
+        <p>Enter your credentials to access your dashboard</p>
+      </div>
+      
+      <div class="error-message" id="errorMessage">
+        Invalid username or password. Please try again.
+      </div>
+      
+      <form class="login-form" id="loginForm">
+        <div class="form-group fade-in-right delay-1">
+          <label for="email">Email Address</label>
+          <div class="input-with-icon">
+            <input type="email" id="email" placeholder="your@email.com" required>
+            <div class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group fade-in-right delay-2">
+          <label for="password">Password</label>
+          <div class="input-with-icon">
+            <input type="password" id="password" placeholder="••••••••" required>
+            <div class="icon" id="togglePassword">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17C13.6569 17 15 15.6569 15 14C15 12.3431 13.6569 11 12 11C10.3431 11 9 12.3431 9 14C9 15.6569 10.3431 17 12 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 14C2 14 5 8 12 8C19 8 22 14 22 14C22 14 19 20 12 20C5 20 2 14 2 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <div class="session-select fade-in-right delay-3">
+          <label for="session-type">Login as</label>
+          <select id="session-type">
+            <option value="operator">Operator</option>
+            <option value="maintenance">Maintenance Engineer</option>
+            <option value="manager">Industry Manager</option>
+            <option value="admin">System Administrator</option>
+          </select>
+        </div>
+        
+        <div class="forgot-password fade-in-right delay-3">
+          <a href="#">Forgot Password?</a>
+        </div>
+        
+        <button type="submit" class="login-button fade-in-right delay-3">Login</button>
+        
+        <div class="separator fade-in-right delay-4">or continue with</div>
+        
+        <div class="social-login fade-in-right delay-4">
+          <button type="button" class="social-button google">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.2836 10.1905H19.5V10.1429H12V13.8571H16.8378C16.203 15.7905 14.2905 17.1429 12 17.1429C9.23867 17.1429 7 14.9043 7 12.1429C7 9.38152 9.23867 7.14286 12 7.14286C13.2843 7.14286 14.463 7.64029 15.36 8.45714L18.0223 5.79486C16.4549 4.32719 14.3295 3.42857 12 3.42857C7.1801 3.42857 3.28571 7.32295 3.28571 12.1429C3.28571 16.9628 7.1801 20.8571 12 20.8571C16.8199 20.8571 20.7143 16.9628 20.7143 12.1429C20.7143 11.4795 20.6194 10.825 20.2836 10.1905Z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button type="button" class="social-button facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button type="button" class="social-button twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="register-link fade-in-right delay-4">
+          Don't have an account? <a href="#">Register now</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Create particles
+    function createParticles() {
+      const particleContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Set random size
+        const size = Math.random() * 5 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Set random position
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        particle.style.left = posX + '%';
+        particle.style.top = posY + '%';
+        
+        // Set random opacity
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        // Add animation
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        
+        particleContainer.appendChild(particle);
+      }
+    }
+    
+    // Initialize particles
+    createParticles();
+    
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        this.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 3L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        `;
+      } else {
+        passwordInput.type = 'password';
+        this.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 17C13.6569 17 15 15.6569 15 14C15 12.3431 13.6569 11 12 11C10.3431 11 9 12.3431 9 14C9 15.6569 10.3431 17 12 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 14C2 14 5 8 12 8C19 8 22 14 22 14C22 14 19 20 12 20C5 20 2 14 2 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        `;
+      }
+    });
+    
+    // Form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const sessionType = document.getElementById('session-type').value;
+      
+      // Simple validation
+      if (!email || !password) {
+        document.getElementById('errorMessage').style.display = 'block';
+        return;
+      }
+      
+      // Simulate a loading state
+      const loginButton = document.querySelector('.login-button');
+      loginButton.textContent = 'Logging in...';
+      loginButton.disabled = true;
+      
+      // Send login request to Account Manager service
+      fetch('http://localhost:8086/account/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Login failed');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Successfully authenticated with the backend
+        console.log('Authentication successful:', data);
+        
+        // Store authentication data in session storage
+        sessionStorage.setItem('userEmail', email);
+        sessionStorage.setItem('userRole', sessionType); // Using the selected role from dropdown
+        sessionStorage.setItem('isAuthenticated', 'true');
+        sessionStorage.setItem('authToken', data.token); // Store the JWT token
+        
+        // Redirect to dashboard
+        window.location.href = 'dashboard.html';
+      })
+      .catch(error => {
+        console.error('Login error:', error);
+        
+        // If API is not available or returns error, fallback to demo mode
+        console.log('Falling back to demo mode...');
+        
+        // The validCredentials object with demo accounts
+        const validCredentials = {
+          'operator@example.com': 'password',
+          'maintenance@example.com': 'password',
+          'manager@example.com': 'password',
+          'admin@example.com': 'password'
+        };
+        
+        if (validCredentials[email] === password) {
+          // Success in demo mode
+          console.log('Demo login successful');
+          sessionStorage.setItem('userEmail', email);
+          sessionStorage.setItem('userRole', sessionType);
+          sessionStorage.setItem('isAuthenticated', 'true');
+          sessionStorage.setItem('demoMode', 'true'); // Flag for demo mode
+          
+          // Redirect to dashboard
+          window.location.href = 'dashboard.html';
+        } else {
+          // Failed login
+          document.getElementById('errorMessage').style.display = 'block';
+          loginButton.textContent = 'Login';
+          loginButton.disabled = false;
+        }
+      });
+    });
+    
+    // Social login buttons
+    document.querySelectorAll('.social-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const provider = this.classList.contains('google') ? 'Google' : 
+                        this.classList.contains('facebook') ? 'Facebook' : 'Twitter';
+        
+        alert(`${provider} login is not implemented in this demo. Please use email login.`);
+      });
+    });
+    
+    // Set demo credentials for easy testing
+    const demoEmails = [
+      'operator@example.com',
+      'maintenance@example.com',
+      'manager@example.com',
+      'admin@example.com'
+    ];
+    
+    document.getElementById('session-type').addEventListener('change', function() {
+      const selectedRole = this.value;
+      const emailInput = document.getElementById('email');
+      
+      switch(selectedRole) {
+        case 'operator':
+          emailInput.value = demoEmails[0];
+          break;
+        case 'maintenance':
+          emailInput.value = demoEmails[1];
+          break;
+        case 'manager':
+          emailInput.value = demoEmails[2];
+          break;
+        case 'admin':
+          emailInput.value = demoEmails[3];
+          break;
+      }
+      
+      document.getElementById('password').value = 'password';
+    });
+    
+    // Set default credentials
+    document.getElementById('email').value = demoEmails[0];
+    document.getElementById('password').value = 'password';
+  </script>
+</body>
+</html>

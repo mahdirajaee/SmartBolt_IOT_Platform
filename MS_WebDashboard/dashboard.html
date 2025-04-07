@@ -1,494 +1,1321 @@
-<!-- Firebase SDK - Add this before your other JavaScript files -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-
-<!-- Your own JavaScript files -->
-<script src="js/utils.js"></script>
-<script src="js/api.js"></script>
-<script src="js/auth.js"></script>
-<!-- Other page-specific scripts -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart IoT Bolt - Dashboard</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/charts.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart IoT Bolt Pipeline Monitoring Dashboard</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Chart.js Annotation Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
+  <style>
+    /* ========= Global Reset & Base ========= */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 600% 600%;
+      animation: gradientAnimation 20s ease infinite;
+      position: relative;
+      color: #fff;
+      height: 100vh;
+      width: 100vw;
+    }
+    
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* ========= Particle Canvas ========= */
+    #particleCanvas {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      z-index: -1;
+      display: block;
+    }
+    
+    /* ========= Sidebar ========= */
+    .sidebar {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      bottom: 0; 
+      width: 250px;
+      background: rgba(0, 0, 0, 0.6); 
+      backdrop-filter: blur(10px);
+      padding: 20px; 
+      z-index: 10;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar h2 { 
+      text-align: center; 
+      margin-bottom: 20px; 
+      font-size: 24px; 
+    }
+    
+    .nav-menu { 
+      list-style: none; 
+      padding-left: 0; 
+      margin-bottom: 15px; 
+    }
+    
+    .nav-menu li {
+      margin: 10px 0; 
+      padding: 8px 12px; 
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px; 
+      cursor: pointer; 
+      transition: background 0.3s; 
+      font-size: 16px;
+    }
+    
+    .nav-menu li:hover, .nav-menu li.active { 
+      background: rgba(255, 255, 255, 0.3); 
+    }
+    
+    /* Sidebar Content */
+    #sidebarContent > div { 
+      display: none; 
+    }
+    
+    #sectorsTab { 
+      display: block; 
+    }
+    
+    .sector-list { 
+      list-style: none; 
+      padding-left: 0; 
+      margin-top: 10px; 
+    }
+    
+    .sector-list li {
+      padding: 8px 10px; 
+      margin: 5px 0; 
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px; 
+      cursor: pointer; 
+      transition: background 0.3s; 
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .sector-list li:hover, 
+    .sector-list li.active { 
+      background: rgba(255, 255, 255, 0.2); 
+    }
+    
+    .sector-list li button {
+      margin-left: 5px;
+      padding: 2px 5px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 3px;
+      color: white;
+      cursor: pointer;
+    }
+    
+    .sector-list li button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    #sectorsTab > .header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 0 10px; 
+    }
+    
+    #sectorsTab h3 { 
+      margin: 0; 
+      font-size: 16px; 
+    }
+    
+    #addSectorBtn { 
+      font-size: 16px; 
+      padding: 2px 8px; 
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    
+    #addSectorBtn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Devices Tab */
+    #devicesTab {
+      display: none;
+    }
+    
+    #devicesTab .device-list { 
+      list-style: none; 
+      padding-left: 0; 
+      margin-top: 10px; 
+    }
+    
+    #devicesTab .device-list li {
+      padding: 8px 10px; 
+      margin: 5px 0; 
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px; 
+      cursor: pointer; 
+      transition: background 0.3s; 
+      font-size: 14px;
+    }
+    
+    #devicesTab .device-list li:hover, 
+    #devicesTab .device-list li.active { 
+      background: rgba(255, 255, 255, 0.2); 
+    }
+    
+    /* Analytics Tab */
+    #postProcessingTab { 
+      padding: 10px;
+      display: none;
+    }
+    
+    /* Forecasting Settings Panel */
+    #forecastSettings {
+      padding: 10px; 
+      background: rgba(255, 255, 255, 0.1); 
+      margin-bottom: 10px; 
+      border-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    #forecastSettings label { 
+      margin-right: 5px; 
+    }
+    
+    #forecastSettings input {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 3px;
+      padding: 5px;
+      color: white;
+    }
+    
+    #applyForecastSettings {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 3px;
+      padding: 5px 10px;
+      color: white;
+      cursor: pointer;
+    }
+    
+    #applyForecastSettings:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Warnings Tab */
+    #warningsTab { 
+      padding: 10px;
+      display: none;
+    }
+    
+    #warningsTab h3 { 
+      font-size: 18px; 
+      margin-bottom: 8px; 
+    }
+    
+    #warningsTab p { 
+      margin-bottom: 5px; 
+    }
+    
+    /* Historical Data Tab (Sidebar) */
+    #historicalDataTab { 
+      padding: 10px; 
+      display: none; 
+    }
+    
+    /* ========= Main Content ========= */
+    .main-content {
+      margin-left: 250px; 
+      padding: 20px; 
+      height: 100vh; 
+      overflow-y: auto; 
+      z-index: 1;
+      width: calc(100% - 250px);
+    }
+    
+    /* ========= Header ========= */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .header h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+    
+    .user-section {
+      display: flex;
+      align-items: center;
+    }
+    
+    #userInfo {
+      margin-right: 15px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    .logout-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .logout-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Views */
+    #dashboardView, #warningsView, #postProcessingView, #historicalDataView { 
+      display: none; 
+    }
+    
+    #dashboardView { 
+      display: block; 
+    }
+    
+    .dashboard-cards {
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px; 
+      margin-bottom: 30px;
+    }
+    
+    .card {
+      background: rgba(0, 0, 0, 0.5); 
+      backdrop-filter: blur(5px); 
+      border-radius: 10px;
+      padding: 20px; 
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s; 
+      opacity: 0; 
+      animation: fadeInUp 0.5s forwards;
+    }
+    
+    .card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); 
+    }
+    
+    .card:nth-child(1) { animation-delay: 0.2s; }
+    .card:nth-child(2) { animation-delay: 0.3s; }
+    .card:nth-child(3) { animation-delay: 0.4s; }
+    .card:nth-child(4) { animation-delay: 0.5s; }
+    
+    @keyframes fadeInUp { 
+      from { opacity: 0; transform: translateY(20px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    
+    /* Charts Section */
+    .charts {
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 20px;
+    }
+    
+    .chart-card {
+      background: rgba(0, 0, 0, 0.5); 
+      backdrop-filter: blur(5px); 
+      border-radius: 10px;
+      padding: 20px; 
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+      animation: fadeInUp 0.5s forwards;
+    }
+    
+    .chart-card h3 { 
+      margin-bottom: 15px; 
+    }
+    
+    /* Canvas sizing for charts */
+    .chart-card canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+    
+    /* Enlarged Weekly Forecast Card */
+    #weeklyForecastCard {
+      grid-column: span 2;
+      padding: 30px;
+      min-height: 450px;
+    }
+    
+    #weeklyForecastChart {
+      width: 100% !important;
+      height: 400px !important;
+    }
+    
+    /* Analytics View */
+    #postProcessingView header { 
+      margin-bottom: 10px; 
+    }
+    
+    #postProcessingSector { 
+      font-size: 18px; 
+      margin-bottom: 10px; 
+      text-align: center; 
+    }
+    
+    /* Warnings View */
+    #warningsView h2 { 
+      margin-bottom: 20px; 
+    }
+    
+    .warning-card {
+      background: rgba(0, 0, 0, 0.5); 
+      border-left: 5px solid; 
+      border-radius: 8px;
+      margin-bottom: 15px; 
+      padding: 10px 15px; 
+      transition: background 0.3s, transform 0.3s; 
+      position: relative;
+    }
+    
+    #tempWarningCard { 
+      border-color: red; 
+    }
+    
+    #pressureWarningCard { 
+      border-color: orange; 
+    }
+    
+    .warning-card:hover { 
+      background: rgba(0, 0, 0, 0.6); 
+      transform: scale(1.02); 
+    }
+    
+    .warning-header { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      cursor: pointer; 
+    }
+    
+    .warning-header h3 { 
+      margin: 0; 
+      font-size: 18px; 
+      flex-grow: 1; 
+      padding-left: 10px; 
+    }
+    
+    .warning-icon { 
+      font-size: 22px; 
+    }
+    
+    .warning-details {
+      padding-top: 10px; 
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      margin-top: 8px; 
+      font-size: 14px; 
+      color: #f1f1f1;
+    }
+    
+    .toggle-details, .acknowledge-warning, .resend-telegram {
+      background: transparent; 
+      border: 1px solid #fff; 
+      border-radius: 4px;
+      color: #fff; 
+      font-size: 14px; 
+      cursor: pointer; 
+      padding: 3px 6px; 
+      margin-left: 5px; 
+      outline: none;
+    }
+    
+    .toggle-details:hover, .acknowledge-warning:hover, .resend-telegram:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .notification-status { 
+      font-size: 12px; 
+      margin-top: 5px; 
+      color: #ccc; 
+    }
+    
+    /* Warning Log */
+    #warningLog { 
+      margin-top: 20px; 
+    }
+    
+    #warningLog h3 { 
+      margin-bottom: 10px; 
+    }
+    
+    .warning-log-container {
+      max-height: 250px; 
+      overflow-y: auto; 
+      background: rgba(0,0,0,0.5); 
+      padding: 10px; 
+      border-radius: 8px;
+    }
+    
+    .warning-log-container table {
+      width: 100%; 
+      border-collapse: collapse; 
+      font-size: 13px; 
+      color: #fff;
+    }
+    
+    .warning-log-container th, 
+    .warning-log-container td {
+      padding: 6px; 
+      border: 1px solid rgba(255,255,255,0.2); 
+      text-align: center;
+    }
+    
+    .warning-log-container th {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .acknowledged-row { 
+      background: rgba(0, 128, 0, 0.3); 
+      text-decoration: line-through; 
+    }
+    
+    .critical-row { 
+      background: rgba(255, 0, 0, 0.3); 
+    }
+    
+    /* Historical Data View */
+    #historicalDataView {
+      display: none;
+    }
+    
+    #historicalControls {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    #filterSelect {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+    }
+    
+    #downloadDataBtn {
+      background: #4CAF50;
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    #downloadDataBtn:hover {
+      background: #3e8e41;
+    }
+    
+    /* Special styling for Analytics cards */
+    .critical { color: #ff0000; }
+    .warning { color: #ff9900; }
+    .watch { color: #ffcc00; }
+    .normal { color: #00cc00; }
+    .alert { background-color: rgba(255, 0, 0, 0.2); padding: 5px; border-radius: 3px; }
+    
+    /* Responsive styling */
+    @media (max-width: 1200px) {
+      .charts {
+        grid-template-columns: 1fr;
+      }
+      
+      #weeklyForecastCard {
+        grid-column: span 1;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .dashboard-cards {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+      
+      .main-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+      
+      header .search-box input {
+        width: 150px;
+      }
+      
+      #forecastSettings {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .sidebar {
+        width: 60px;
+        padding: 10px 5px;
+      }
+      
+      .sidebar h2, .nav-menu li {
+        font-size: 0;
+      }
+      
+      .sidebar h2:before {
+        content: "IoT";
+        font-size: 16px;
+      }
+      
+      .nav-menu li:nth-child(1):before { content: "S"; font-size: 14px; }
+      .nav-menu li:nth-child(2):before { content: "D"; font-size: 14px; }
+      .nav-menu li:nth-child(3):before { content: "A"; font-size: 14px; }
+      .nav-menu li:nth-child(4):before { content: "W"; font-size: 14px; }
+      .nav-menu li:nth-child(5):before { content: "H"; font-size: 14px; }
+      
+      .main-content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+        padding: 10px;
+      }
+      
+      header {
+        padding: 8px;
+      }
+      
+      header .search-box input {
+        width: 120px;
+        padding: 5px 10px;
+      }
+      
+      .card, .chart-card {
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo-container">
-                    <i class="fas fa-bolt logo-icon"></i>
-                    <h1>Smart Bolt</h1>
-                </div>
-                <button id="sidebar-toggle" class="sidebar-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="nav-item active">
-                        <a href="dashboard.html">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pipelines.html">
-                            <i class="fas fa-project-diagram"></i>
-                            <span>Pipelines</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="alerts.html">
-                            <i class="fas fa-bell"></i>
-                            <span>Alerts</span>
-                            <span class="badge alert-badge">3</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="analytics.html">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Analytics</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="settings.html">
-                            <i class="fas fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <button id="logout-btn" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </button>
-            </div>
-        </aside>
-        
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Top Navigation -->
-            <header class="top-nav">
-                <div class="page-title">
-                    <h2>Dashboard</h2>
-                    <div class="breadcrumb">
-                        <span>Home</span>
-                        <i class="fas fa-chevron-right"></i>
-                        <span>Dashboard</span>
-                    </div>
-                </div>
-                
-                <div class="top-nav-actions">
-                    <div class="theme-toggle">
-                        <input type="checkbox" id="theme-switch" class="theme-switch">
-                        <label for="theme-switch" class="theme-switch-label">
-                            <i class="fas fa-sun"></i>
-                            <i class="fas fa-moon"></i>
-                            <span class="switch-ball"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="notification-bell">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge notification-badge">3</span>
-                        
-                        <div class="notification-dropdown">
-                            <div class="notification-header">
-                                <h3>Notifications</h3>
-                                <a href="#" class="mark-all-read">Mark all as read</a>
-                            </div>
-                            
-                            <div class="notification-list">
-                                <!-- Notifications will be loaded here -->
-                            </div>
-                            
-                            <div class="notification-footer">
-                                <a href="alerts.html">View all alerts</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="user-profile">
-                        <div class="user-info">
-                            <span class="user-name">John Doe</span>
-                            <span class="user-role">Administrator</span>
-                        </div>
-                        <div class="user-avatar">
-                            <img src="assets/img/avatar.png" alt="User Avatar">
-                        </div>
-                        
-                        <div class="user-dropdown">
-                            <ul>
-                                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
-                                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                                <li><a href="#" id="user-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            
-            <!-- Dashboard Content -->
-            <div class="dashboard-content">
-                <!-- Status Cards -->
-                <div class="status-cards">
-                    <div class="card status-card">
-                        <div class="card-icon healthy">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="card-info">
-                            <h3>Smart Bolts</h3>
-                            <div class="card-value">24</div>
-                            <div class="card-subtitle">22 Online</div>
-                        </div>
-                    </div>
-                    
-                    <div class="card status-card">
-                        <div class="card-icon warning">
-                            <i class="fas fa-thermometer-half"></i>
-                        </div>
-                        <div class="card-info">
-                            <h3>Temperature</h3>
-                            <div class="card-value">78.5°C</div>
-                            <div class="card-subtitle">Avg. across pipelines</div>
-                        </div>
-                    </div>
-                    
-                    <div class="card status-card">
-                        <div class="card-icon critical">
-                            <i class="fas fa-tachometer-alt"></i>
-                        </div>
-                        <div class="card-info">
-                            <h3>Pressure</h3>
-                            <div class="card-value">9.2 bar</div>
-                            <div class="card-subtitle">Avg. across pipelines</div>
-                        </div>
-                    </div>
-                    
-                    <div class="card status-card">
-                        <div class="card-icon healthy">
-                            <i class="fas fa-bell"></i>
-                        </div>
-                        <div class="card-info">
-                            <h3>Active Alerts</h3>
-                            <div class="card-value">3</div>
-                            <div class="card-subtitle">2 Critical, 1 Warning</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Pipeline Overview -->
-                <div class="row">
-                    <!-- Pipeline Selection -->
-                    <div class="col-12">
-                        <div class="card pipeline-selector-card">
-                            <div class="card-header">
-                                <h3>Pipeline Selection</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="pipeline-selector">
-                                    <select id="pipeline-select" class="custom-select">
-                                        <option value="all">All Pipelines</option>
-                                        <option value="pipeline001">Pipeline 001</option>
-                                        <option value="pipeline002">Pipeline 002</option>
-                                        <option value="pipeline003">Pipeline 003</option>
-                                    </select>
-                                    <button id="refresh-data" class="btn-refresh">
-                                        <i class="fas fa-sync-alt"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Charts & Pipeline Visualization -->
-                <div class="row">
-                    <!-- Temperature Chart -->
-                    <div class="col-6">
-                        <div class="card chart-card">
-                            <div class="card-header">
-                                <h3>Temperature Monitoring</h3>
-                                <div class="card-actions">
-                                    <button class="btn-card-action" data-timeframe="hour">1h</button>
-                                    <button class="btn-card-action active" data-timeframe="day">24h</button>
-                                    <button class="btn-card-action" data-timeframe="week">7d</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-container">
-                                    <canvas id="temperature-chart"></canvas>
-                                    <div class="chart-loading">
-                                        <div class="spinner">
-                                            <i class="fas fa-spinner fa-spin"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="threshold-line warning" style="top: 30%;">
-                                    <span>Warning: 85°C</span>
-                                </div>
-                                <div class="threshold-line danger" style="top: 20%;">
-                                    <span>Critical: 95°C</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Pressure Chart -->
-                    <div class="col-6">
-                        <div class="card chart-card">
-                            <div class="card-header">
-                                <h3>Pressure Monitoring</h3>
-                                <div class="card-actions">
-                                    <button class="btn-card-action" data-timeframe="hour">1h</button>
-                                    <button class="btn-card-action active" data-timeframe="day">24h</button>
-                                    <button class="btn-card-action" data-timeframe="week">7d</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-container">
-                                    <canvas id="pressure-chart"></canvas>
-                                    <div class="chart-loading">
-                                        <div class="spinner">
-                                            <i class="fas fa-spinner fa-spin"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="threshold-line warning" style="top: 40%;">
-                                    <span>Warning: 8.5 bar</span>
-                                </div>
-                                <div class="threshold-line danger" style="top: 25%;">
-                                    <span>Critical: 9.5 bar</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Pipeline Visualization -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card pipeline-card">
-                            <div class="card-header">
-                                <h3>Pipeline Visualization</h3>
-                                <div class="card-actions">
-                                    <button class="btn-card-action toggle-view active" data-view="schematic">
-                                        <i class="fas fa-project-diagram"></i> Schematic
-                                    </button>
-                                    <button class="btn-card-action toggle-view" data-view="table">
-                                        <i class="fas fa-table"></i> Table
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="pipeline-view schematic-view active">
-                                    <div class="pipeline-container" id="pipeline-container">
-                                        <!-- Pipeline visualization will be rendered here -->
-                                        <div class="pipeline-loading">
-                                            <div class="spinner">
-                                                <i class="fas fa-spinner fa-spin"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="pipeline-view table-view">
-                                    <table class="pipeline-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Device ID</th>
-                                                <th>Temperature</th>
-                                                <th>Pressure</th>
-                                                <th>Valve Status</th>
-                                                <th>Last Update</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="pipeline-table-body">
-                                            <!-- Table rows will be generated here -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Alert List and Valve Control -->
-                <div class="row">
-                    <!-- Active Alerts -->
-                    <div class="col-8">
-                        <div class="card alerts-card">
-                            <div class="card-header">
-                                <h3>Active Alerts</h3>
-                                <button class="btn-view-all">View All</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="alert-list" id="alert-list">
-                                    <!-- Alerts will be loaded here -->
-                                    <div class="alert-item critical">
-                                        <div class="alert-icon">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                        </div>
-                                        <div class="alert-content">
-                                            <div class="alert-title">Critical Temperature</div>
-                                            <div class="alert-message">Temperature exceeded 95°C on Pipeline 001, Device 010</div>
-                                            <div class="alert-time">10 minutes ago</div>
-                                        </div>
-                                        <div class="alert-actions">
-                                            <button class="btn-alert-action resolve">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                            <button class="btn-alert-action details">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="alert-item warning">
-                                        <div class="alert-icon">
-                                            <i class="fas fa-exclamation-circle"></i>
-                                        </div>
-                                        <div class="alert-content">
-                                            <div class="alert-title">High Pressure Warning</div>
-                                            <div class="alert-message">Pressure approaching critical level on Pipeline 002, Device 020</div>
-                                            <div class="alert-time">25 minutes ago</div>
-                                        </div>
-                                        <div class="alert-actions">
-                                            <button class="btn-alert-action resolve">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                            <button class="btn-alert-action details">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="alert-item info">
-                                        <div class="alert-icon">
-                                            <i class="fas fa-info-circle"></i>
-                                        </div>
-                                        <div class="alert-content">
-                                            <div class="alert-title">Valve Action Required</div>
-                                            <div class="alert-message">Maintenance recommended for valve on Pipeline 003, Device 030</div>
-                                            <div class="alert-time">1 hour ago</div>
-                                        </div>
-                                        <div class="alert-actions">
-                                            <button class="btn-alert-action resolve">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                            <button class="btn-alert-action details">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Valve Control -->
-                    <div class="col-4">
-                        <div class="card valve-control-card">
-                            <div class="card-header">
-                                <h3>Valve Control</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="valve-control-container">
-                                    <div class="valve-selector">
-                                        <label for="valve-device-select">Select Device</label>
-                                        <select id="valve-device-select" class="custom-select">
-                                            <option value="">Select device...</option>
-                                            <option value="device010">Pipeline 001 - Device 010</option>
-                                            <option value="device020">Pipeline 001 - Device 020</option>
-                                            <option value="device030">Pipeline 002 - Device 030</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="valve-status">
-                                        <div class="status-label">Current Status:</div>
-                                        <div class="status-value" id="valve-status">
-                                            <span class="status-badge closed">Closed</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="valve-controls">
-                                        <button id="open-valve" class="btn-valve open">
-                                            <i class="fas fa-door-open"></i> Open Valve
-                                        </button>
-                                        <button id="close-valve" class="btn-valve close">
-                                            <i class="fas fa-door-closed"></i> Close Valve
-                                        </button>
-                                    </div>
-                                    
-                                    <div class="valve-confirmation hidden" id="valve-confirmation">
-                                        <div class="confirmation-message">
-                                            Are you sure you want to <span id="valve-action">open</span> the valve?
-                                        </div>
-                                        <div class="confirmation-buttons">
-                                            <button id="confirm-valve-action" class="btn-confirm">Yes, continue</button>
-                                            <button id="cancel-valve-action" class="btn-cancel">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Footer -->
-            <footer class="dashboard-footer">
-                <div class="footer-content">
-                    <p>&copy; 2025 Smart IoT Bolt - Pipeline Monitoring System</p>
-                    <p>Last updated: <span id="last-updated">Just now</span></p>
-                </div>
-            </footer>
-        </main>
+  <!-- Particle Background Canvas -->
+  <canvas id="particleCanvas"></canvas>
+  
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <h2>Smart IoT Bolts</h2>
+    <ul class="nav-menu">
+      <li data-tab="sectors" class="active">Sectors</li>
+      <li data-tab="devices">Devices</li>
+      <li data-tab="postProcessing">Analytics</li>
+      <li data-tab="warnings">Warnings</li>
+      <li data-tab="historicalData">Historical Data</li>
+    </ul>
+    <div id="sidebarContent">
+      <!-- Sectors Tab -->
+      <div id="sectorsTab">
+        <div class="header">
+          <h3>Sectors</h3>
+          <button id="addSectorBtn">+</button>
+        </div>
+        <ul class="sector-list" id="sectorsList"><!-- Dynamically populated --></ul>
+      </div>
+      
+      <!-- Devices Tab -->
+      <div id="devicesTab">
+        <ul class="device-list" id="boltsList"><!-- Dynamically populated --></ul>
+      </div>
+      
+      <!-- Analytics Tab -->
+      <div id="postProcessingTab">
+        <p style="padding:10px;">Analytics for the selected sector are shown in the main area below.</p>
+      </div>
+      
+      <!-- Warnings Tab -->
+      <div id="warningsTab">
+        <div>
+          <h3>Warning Summary</h3>
+          <p><span style="color:red; font-weight:bold;">Temperature:</span> <span id="sidebarTempWarnings">0</span> occurrences</p>
+          <p><span style="color:orange; font-weight:bold;">Pressure:</span> <span id="sidebarPressureWarnings">0</span> occurrences</p>
+        </div>
+      </div>
+      
+      <!-- Historical Data Tab (Sidebar) -->
+      <div id="historicalDataTab">
+        <p style="padding:10px;">View full historical sensor data here.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <div class="header">
+      <h1 id="sectorName">Pipeline Sector: Not Selected</h1>
+      <div class="user-section">
+        <span id="userInfo"></span>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </div>
+    <!-- Dashboard View -->
+    <div id="dashboardView">
+      <header>
+        <div class="search-box"><input type="text" placeholder="Search sectors..." /></div>
+        <div class="user-profile">A</div>
+      </header>
+      <section class="dashboard-cards" id="dashboardCards">
+        <div class="card" id="sectorCard">
+          <h3 id="sectorName">Pipeline Sector: N/A</h3>
+          <p>Sensor Bolts Installed: <strong id="boltsCount">--</strong></p>
+          <p>Status: <strong id="sensorStatus" style="color: #4CAF50;">Online</strong></p>
+          <p>Temperature: <strong id="temperatureValue">--</strong> °C</p>
+          <p>Pressure: <strong id="pressureValue">--</strong> kPa</p>
+        </div>
+      </section>
+      <section class="charts">
+        <div class="chart-card">
+          <h3>Temperature Over Time</h3>
+          <canvas id="temperatureChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Pressure Over Time</h3>
+          <canvas id="pressureChart"></canvas>
+        </div>
+      </section>
     </div>
     
-    <!-- Modal Templates -->
-    <div class="modal-container" id="alert-details-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>Alert Details</h3>
-                <button class="modal-close"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert-details">
-                    <!-- Alert details will be loaded here -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-primary modal-action-button">Take Action</button>
-                <button class="btn-secondary modal-close-button">Close</button>
-            </div>
+    <!-- Warnings View -->
+    <div id="warningsView">
+      <header>
+        <div class="search-box"><input type="text" placeholder="Search warnings..." /></div>
+        <div class="user-profile">A</div>
+      </header>
+      <h2>Warnings</h2>
+      <div class="warning-card" id="tempWarningCard">
+        <div class="warning-header">
+          <span class="warning-icon">⚠️</span>
+          <h3>Temperature Threshold Exceeded</h3>
+          <button class="toggle-details">Details</button>
         </div>
+        <div class="warning-details" style="display:none;">
+          <p>Exceeded <span id="tempWarningCount">0</span> time(s).</p>
+          <p class="notification-status" id="tempNotificationStatus">Telegram: Not Sent</p>
+          <div style="margin-top:5px;">
+            <button class="acknowledge-warning" data-type="Temperature">Acknowledge</button>
+            <button class="resend-telegram" data-type="Temperature">Resend Telegram</button>
+          </div>
+        </div>
+      </div>
+      <div class="warning-card" id="pressureWarningCard">
+        <div class="warning-header">
+          <span class="warning-icon">⚠️</span>
+          <h3>Pressure Threshold Exceeded</h3>
+          <button class="toggle-details">Details</button>
+        </div>
+        <div class="warning-details" style="display:none;">
+          <p>Exceeded <span id="pressureWarningCount">0</span> time(s).</p>
+          <p class="notification-status" id="pressureNotificationStatus">Telegram: Not Sent</p>
+          <div style="margin-top:5px;">
+            <button class="acknowledge-warning" data-type="Pressure">Acknowledge</button>
+            <button class="resend-telegram" data-type="Pressure">Resend Telegram</button>
+          </div>
+        </div>
+      </div>
+      <div id="warningLog">
+        <h3>Warning Log</h3>
+        <div class="warning-log-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="warningLogBody"><!-- Dynamically populated --></tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    
+    <!-- Analytics View (formerly Post Processing) -->
+    <div id="postProcessingView">
+      <header>
+        <div class="search-box"><input type="text" placeholder="Search analytics..." /></div>
+        <div class="user-profile">A</div>
+      </header>
+      <h3 id="postProcessingSector" style="text-align:center; margin-bottom:10px;">Analytics for: N/A</h3>
+      <!-- Forecasting Settings Panel -->
+      <div id="forecastSettings">
+        <label for="dataWindow">Data Window (readings):</label>
+        <input type="number" id="dataWindow" value="10" min="1" max="100" />
+        <label for="forecastHorizon">Forecast Horizon (predictions):</label>
+        <input type="number" id="forecastHorizon" value="5" min="1" max="100" />
+        <button id="applyForecastSettings">Apply</button>
+      </div>
+      <section class="dashboard-cards" id="postProcessingCards">
+        <div class="card" id="anomalyCard">
+          <h3>Anomaly Detection</h3>
+          <div id="anomalyContent"><!-- Anomaly info --></div>
+        </div>
+        <div class="card" id="trendCard">
+          <h3>Trend Analysis</h3>
+          <div id="trendContent"><!-- Trend info --></div>
+        </div>
+        <div class="card" id="severityCard">
+          <h3>Severity Alerts</h3>
+          <div id="severityContent"><!-- Severity info --></div>
+        </div>
+        <div class="card" id="energyCard">
+          <h3>Energy Efficiency Recommendations</h3>
+          <div id="energyContent"><!-- Recommendation info --></div>
+        </div>
+        <div class="card" id="correlationCard">
+          <h3>Cascade Problem Analysis</h3>
+          <div id="correlationContent"><!-- Correlation info --></div>
+        </div>
+        <div class="card" id="energyGaugeCard">
+          <h3>Energy Efficiency Score</h3>
+          <canvas id="energyGaugeChart"></canvas>
+        </div>
+        <!-- Enlarged Weekly Forecast Card -->
+        <div class="card" id="weeklyForecastCard">
+          <h3>Weekly Forecast</h3>
+          <canvas id="weeklyForecastChart"></canvas>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Historical Data View -->
+    <div id="historicalDataView">
+      <header>
+        <div class="search-box"><input type="text" placeholder="Search historical data..." /></div>
+        <div class="user-profile">A</div>
+      </header>
+      <h2>Historical Data</h2>
+      <!-- Filter and Download Controls -->
+      <div id="historicalControls">
+        <label for="filterSelect">Filter:</label>
+        <select id="filterSelect">
+          <option value="all">All</option>
+          <option value="hourly">Hourly</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+        <button id="downloadDataBtn">Download Data</button>
+      </div>
+      <div class="chart-card">
+        <h3>Historical Temperature & Pressure</h3>
+        <canvas id="historicalDataChart"></canvas>
+      </div>
+    </div>
+  </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/charts.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            initDashboard();
+  <script>
+    /**
+     * Combined JavaScript for the Smart IoT Bolt Dashboard
+     * Includes:
+     * - Dashboard core functionality
+     * - Chart initialization and updates
+     * - Sector management
+     * - Warning management
+     * - Analytics functionality
+     * - Historical data functionality
+     */
+
+    // ==================== GLOBAL VARIABLES ====================
+    
+    // Authentication variables
+    let isAuthenticated = false;
+    let userRole = null;
+    let authToken = null;
+    let demoMode = false;
+    
+    // Charts
+    let temperatureChart;
+    let pressureChart;
+    let weeklyForecastChart;
+    let historicalChart;
+    let energyGaugeChart;
+    
+    // Current sector
+    let currentSector = null;
+    
+    // Temperature warning state
+    let tempWarningCount = 0;
+    let tempAlertSent = false;
+    let prevTempAbove = false;
+    
+    // Pressure warning state
+    let pressureWarningCount = 0;
+    let pressureAlertSent = false;
+    let prevPressureAbove = false;
+    
+    // Warning logs
+    const warningLogs = [];
+    
+    // Thresholds
+    let thresholdTemp = 30;
+    let thresholdPressure = 105;
+    let thresholdAlertCount = 3;
+    
+    // Chart max points
+    const maxPoints = 20;
+    
+    // Forecasting parameters
+    let forecastDataWindow = 10;
+    let forecastHorizon = 5;
+    
+    // ==================== AUTHENTICATION FUNCTIONS ====================
+    
+    /**
+     * Check if user is authenticated and redirect to login if not
+     */
+    function checkAuthentication() {
+      isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+      userRole = sessionStorage.getItem('userRole');
+      authToken = sessionStorage.getItem('authToken');
+      demoMode = sessionStorage.getItem('demoMode') === 'true';
+      
+      if (!isAuthenticated) {
+        // Redirect to login page if not authenticated
+        window.location.href = 'login.html';
+        return false;
+      }
+      
+      // Update user info in UI if we have a user info element
+      const userInfoElement = document.getElementById('userInfo');
+      if (userInfoElement) {
+        userInfoElement.textContent = `${sessionStorage.getItem('userEmail')} (${userRole})`;
+      }
+      
+      // Apply role-based permissions
+      applyRolePermissions();
+      
+      return true;
+    }
+    
+    /**
+     * Apply role-based permissions to UI elements
+     */
+    function applyRolePermissions() {
+      if (userRole === 'operator') {
+        // Operators can view but not edit
+        document.querySelectorAll('.edit-sector, .delete-sector, #addSectorBtn').forEach(el => {
+          el.style.display = 'none';
         });
-    </script>
+      } else if (userRole === 'maintenance') {
+        // Maintenance can edit but not delete
+        document.querySelectorAll('.delete-sector').forEach(el => {
+          el.style.display = 'none';
+        });
+      }
+      // Managers and admins have full access by default
+    }
+    
+    /**
+     * Perform authenticated API request
+     */
+    function apiRequest(url, options = {}) {
+      // Set up headers with authentication token if available
+      if (!options.headers) {
+        options.headers = {};
+      }
+      
+      // Set content type if not specified
+      if (!options.headers['Content-Type']) {
+        options.headers['Content-Type'] = 'application/json';
+      }
+      
+      // Add authorization header if token is available and not in demo mode
+      if (authToken && !demoMode) {
+        options.headers['Authorization'] = `Bearer ${authToken}`;
+      }
+      
+      // Return the fetch promise
+      return fetch(url, options);
+    }
+    
+    /**
+     * Log out the current user
+     */
+    function logout() {
+      // Clear session storage
+      sessionStorage.removeItem('userEmail');
+      sessionStorage.removeItem('userRole');
+      sessionStorage.removeItem('isAuthenticated');
+      sessionStorage.removeItem('authToken');
+      sessionStorage.removeItem('demoMode');
+      
+      // Redirect to login page
+      window.location.href = 'login.html';
+    }
+    
+    // ==================== INITIALIZATION ====================
+
+    // Check authentication when the page loads
+    if (!checkAuthentication()) {
+      // Stop execution if not authenticated - redirect handled in checkAuthentication
+      throw new Error('Authentication required');
+    }
+    
+    // Add sector button event handler
+    document.getElementById('addSectorBtn').addEventListener('click', addNewSector);
+    
+    // Device list event handler for valve control
+    document.getElementById('boltsList').addEventListener('click', function(e) {
+      if (e.target && e.target.nodeName === 'LI') {
+        const deviceId = e.target.getAttribute('data-id');
+        const action = confirm(`Do you want to control the valve for ${deviceId}?`);
+        
+        if (action) {
+          const state = confirm(`Select OK to OPEN the valve, or Cancel to CLOSE it.`);
+          controlValve(deviceId, state);
+        }
+      }
+    });
+    
+    // Historical data filter change event handler
+    document.getElementById('filterSelect').addEventListener('change', updateHistoricalChart);
+    
+    // Download historical data button event handler
+    document.getElementById('downloadDataBtn').addEventListener('click', downloadHistoricalData);
+    
+    // Initialize the dashboard on page load
+    document.addEventListener('DOMContentLoaded', initDashboard);
+
+    /**
+     * Load the list of pipeline sectors
+     */
+    function loadSectors() {
+      // Fetch sectors from Resource Catalog
+      apiRequest('http://localhost:8080/devices')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch sectors from Resource Catalog');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Filter devices to include only pipeline bolt sensors
+          const sectors = {};
+          
+          // Group devices by their sector
+          data.forEach(device => {
+            if (device.type === 'bolt_sensor' || device.type === 'smart_bolt') {
+              const sectorName = device.sector || 'Sector 1';
+              const sectorId = sectorName.toLowerCase().replace(/\s+/g, '');
+              
+              if (!sectors[sectorId]) {
+                sectors[sectorId] = {
+                  id: sectorId,
+                  name: sectorName,
+                  bolts: 0,
+                  baseTemp: 25,
+                  basePressure: 100,
+                  boltsHealth: [],
+                  avgDegradationRate: 0,
+                  devices: []
+                };
+              }
+              
+              sectors[sectorId].bolts++;
+              sectors[sectorId].devices.push(device);
+              sectors[sectorId].boltsHealth.push(device.health || 100);
+            }
+          });
+          
+          // If no sectors found, create a sample one
+          if (Object.keys(sectors).length === 0) {
+            console.warn('No sectors found in Resource Catalog, using sample data');
+            sectors['sector1'] = {
+              id: 'sector1',
+              name: 'Sector 1',
+              bolts: 3,
+              baseTemp: 25,
+              basePressure: 100,
+              boltsHealth: [100, 100, 100],
+              avgDegradationRate: 0,
+              devices: []
+            };
+          }
+          
+          // Convert to array and render
+          const sectorsArray = Object.values(sectors);
+          renderSectorsList(sectorsArray);
+          
+          // Select the first sector if none is selected
+          if (!currentSector) {
+            selectSector(sectorsArray[0]);
+          }
+        })
+        .catch(error => {
+          console.error('Error loading sectors:', error);
+          // Fallback to sample data if API fails
+          const sampleSectors = [
+            {
+              id: 'sector1',
+              name: 'Sector 1',
+              bolts: 3,
+              baseTemp: 25,
+              basePressure: 100,
+              boltsHealth: [100, 100, 100],
+              avgDegradationRate: 0
+            },
+            {
+              id: 'sector2',
+              name: 'Sector 2',
+              bolts: 2,
+              baseTemp: 24,
+              basePressure: 98,
+              boltsHealth: [95, 98],
+              avgDegradationRate: 0
+            }
+          ];
+          renderSectorsList(sampleSectors);
+          
+          if (!currentSector) {
+            selectSector(sampleSectors[0]);
+          }
+        });
+    }
+
+    /**
+     * Update sensor data for the current sector
+     */
+    function updateSensorData() {
+      if (!currentSector) return;
+      
+      // Fetch latest data from TimeSeriesDB Connector
+      apiRequest(`http://localhost:8081/measurements/latest?sector=${currentSector.id}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch sensor data');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Process real sensor data
+          const processedData = processSensorData(data);
+          
+          // Update current values
+          document.getElementById('temperatureValue').textContent = processedData.current.temperature;
+          document.getElementById('pressureValue').textContent = processedData.current.pressure;
+          
+          // Update charts
+          updateCharts(processedData);
+          
+          // Check for threshold violations
+          checkThresholds(processedData.current.temperature, processedData.current.pressure);
+        })
+        .catch(error => {
+          console.error('Error fetching sensor data:', error);
+          // Fall back to mock data if API fails
+          const mockData = generateMockSensorData();
+          
+          // Update current values
+          document.getElementById('temperatureValue').textContent = mockData.current.temperature;
+          document.getElementById('pressureValue').textContent = mockData.current.pressure;
+          
+          // Update charts
+          updateCharts(mockData);
+          
+          // Check for threshold violations
+          checkThresholds(mockData.current.temperature, mockData.current.pressure);
+        });
+    }
+
+    /**
+     * Control a valve on a specific bolt
+     */
+    function controlValve(deviceId, state) {
+      // Send command to Control Center
+      apiRequest('http://localhost:8083/control/valve', {
+        method: 'POST',
+        body: JSON.stringify({
+          device_id: deviceId,
+          action: state ? 'open' : 'close'
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to control valve');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Update UI with success message
+        alert(`Valve for ${deviceId} ${state ? 'opened' : 'closed'} successfully.`);
+      })
+      .catch(error => {
+        console.error('Error controlling valve:', error);
+        // Show error but pretend it worked for demo purposes
+        alert(`Command sent to ${deviceId} to ${state ? 'open' : 'close'} valve. (Simulated)`);
+      });
+    }
+
+    /**
+     * Send a telegram notification for a warning
+     */
+    function sendTelegramNotification(type, value, time, isAlert = false) {
+      // Send notification request to Telegram Bot service
+      apiRequest('http://localhost:8085/send_notification', {
+        method: 'POST',
+        body: JSON.stringify({
+          type: type,
+          value: value,
+          time: time,
+          is_alert: isAlert,
+          sector: currentSector ? currentSector.name : 'Unknown'
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to send notification');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(`Telegram notification sent for ${type} at ${time} with value ${value}`);
+        
+        // Update UI
+        if (type === "Temperature") {
+          document.getElementById('tempNotificationStatus').textContent = 
+            isAlert ? "ALERT: Telegram sent at " + time : "Telegram: Sent at " + time;
+        } else if (type === "Pressure") {
+          document.getElementById('pressureNotificationStatus').textContent = 
+            isAlert ? "ALERT: Telegram sent at " + time : "Telegram: Sent at " + time;
+        }
+      })
+      .catch(error => {
+        console.error('Error sending notification:', error);
+        
+        // Update UI anyway for demo purposes
+        if (type === "Temperature") {
+          document.getElementById('tempNotificationStatus').textContent = 
+            isAlert ? "ALERT: Telegram sent at " + time : "Telegram: Sent at " + time;
+        } else if (type === "Pressure") {
+          document.getElementById('pressureNotificationStatus').textContent = 
+            isAlert ? "ALERT: Telegram sent at " + time : "Telegram: Sent at " + time;
+        }
+      });
+    }
+
+    /**
+     * Update the historical data chart
+     */
+    function updateHistoricalChart() {
+      if (!currentSector) return;
+      
+      const filter = document.getElementById('filterSelect').value;
+      
+      // Determine time range based on filter
+      let from, to;
+      to = new Date();
+      
+      if (filter === 'hourly') {
+        from = new Date(to.getTime() - 60 * 60 * 1000); // 1 hour ago
+      } else if (filter === 'daily') {
+        from = new Date(to.getTime() - 24 * 60 * 60 * 1000); // 1 day ago
+      } else if (filter === 'weekly') {
+        from = new Date(to.getTime() - 7 * 24 * 60 * 60 * 1000); // 1 week ago
+      } else if (filter === 'monthly') {
+        from = new Date(to.getTime() - 30 * 24 * 60 * 60 * 1000); // 30 days ago
+      } else {
+        from = new Date(to.getTime() - 60 * 60 * 1000); // Default to hourly
+      }
+      
+      // Fetch historical data from TimeSeriesDB Connector
+      apiRequest(`http://localhost:8081/measurements/query?sector=${currentSector.id}&from=${from.toISOString()}&to=${to.toISOString()}&aggregation=${filter}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch historical data');
+          }
+          return response.json();
+        })
+        .then(data => {
+          updateHistoricalChartWithData(data);
+        })
+        .catch(error => {
+          console.error('Error fetching historical data:', error);
+          // Fall back to generating sample data
+          generateAndUpdateHistoricalChart();
+        });
+    }
+
+    /**
+     * Initialize the dashboard
+     */
+    function initDashboard() {
+      // First check if user is authenticated
+      if (!checkAuthentication()) {
+        return; // Stop initialization if not authenticated
+      }
+
+      // Generate particle effect
+      initParticles();
+      
+      // Initialize sidebar tabs
+      initSidebarTabs();
+      
+      // Initialize charts
+      initTemperatureChart();
+      initPressureChart();
+      initWeeklyForecastChart();
+      initEnergyGaugeChart();
+      initHistoricalChart();
+      
+      // Load sectors data
+      loadSectors();
+      
+      // Setup event listeners
+      setupWarningEventListeners();
+      
+      // Start the data update interval
+      setInterval(updateSensorData, 2000);
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+{
+  "dev010": {
+    "device_id": "dev010",
+    "sector_id": "1",
+    "type": "raspberry_pi_connector",
+    "status": {
+      "online": true,
+      "temperature": 22.93,
+      "pressure": 90.87,
+      "valve": "closed"
+    },
+    "last_seen": 1744048357.334678,
+    "additional_info": {}
+  }
+}
