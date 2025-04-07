@@ -1,135 +1,1094 @@
-<!-- Firebase SDK - Add this before your other JavaScript files -->
-<!-- Firebase App (the core Firebase SDK) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<!-- Firebase Authentication -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-
-<!-- Your own JavaScript files -->
-<script src="js/utils.js"></script>
-<script src="js/api.js"></script>
-<script src="js/auth.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart IoT Bolt - Login</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart IoT Bolt for Pipelines | Industrial Monitoring Solution</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #4cc9f0;
+      --dark: #1b1b1b;
+      --light: #f8f9fa;
+      --success: #4CAF50;
+      --warning: #ff9800;
+      --danger: #f44336;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      background-color: var(--light);
+      overflow-x: hidden;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* Header Styles */
+    header {
+      padding: 1.5rem 0;
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-right: 0.5rem;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+    
+    .logo-text span {
+      color: var(--primary);
+    }
+    
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    .main-nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    .main-nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .main-nav a:hover {
+      color: var(--primary);
+    }
+    
+    .main-nav a:hover::after {
+      width: 100%;
+    }
+    
+    .cta-button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(76, 201, 240, 0.1));
+      z-index: -1;
+    }
+    
+    .hero-content {
+      width: 50%;
+      animation: fadeInLeft 1s ease-out;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    .hero-title span {
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .hero-title span::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-color: rgba(76, 201, 240, 0.3);
+      z-index: -1;
+    }
+    
+    .hero-description {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .secondary-button {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .secondary-button:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+    }
+    
+    .hero-image {
+      width: 45%;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: fadeInRight 1s ease-out;
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 6rem 0;
+      background-color: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    
+    .section-title p {
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border-top: 5px solid transparent;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-top: 5px solid var(--primary);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .feature-description {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    /* How It Works Section */
+    .how-it-works {
+      padding: 6rem 0;
+      background-color: #f8faff;
+      position: relative;
+    }
+    
+    .how-it-works::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="%234361ee" opacity="0.2"/></svg>');
+      z-index: -1;
+    }
+    
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+      position: relative;
+    }
+    
+    .step {
+      width: 25%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    }
+    
+    .step-title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .step-description {
+      color: #555;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    .steps::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 15%;
+      width: 70%;
+      height: 2px;
+      background-color: #e1e5f2;
+      z-index: 0;
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      padding: 6rem 0;
+      background-color: white;
+    }
+    
+    .testimonials-container {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      overflow-x: scroll;
+      padding-bottom: 2rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    
+    .testimonials-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .testimonial-card {
+      min-width: 350px;
+      scroll-snap-align: start;
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .testimonial-content {
+      margin-bottom: 1.5rem;
+      position: relative;
+      font-style: italic;
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .testimonial-content::before,
+    .testimonial-content::after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--primary);
+      line-height: 0;
+      position: absolute;
+      opacity: 0.2;
+    }
+    
+    .testimonial-content::before {
+      top: 0.5rem;
+      left: -1rem;
+    }
+    
+    .testimonial-content::after {
+      bottom: -1rem;
+      right: -1rem;
+      transform: rotate(180deg);
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #eee;
+      margin-right: 1rem;
+      overflow: hidden;
+    }
+    
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author-details h4 {
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+    
+    .author-details p {
+      color: #777;
+      font-size: 0.9rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-description {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    
+    .white-button {
+      background-color: white;
+      color: var(--primary);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .white-button:hover {
+      background-color: var(--light);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-column h3 {
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-column a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--accent);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translate(50px, -50%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0, -50%);
+      }
+    }
+    
+    /* Floating Animation */
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+    
+    /* Particle Background */
+    .particle-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(67, 97, 238, 0.2);
+      pointer-events: none;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero-content {
+        width: 70%;
+      }
+      
+      .hero-image {
+        width: 50%;
+        opacity: 0.8;
+      }
+      
+      .steps::after {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        padding: 1rem 0;
+      }
+      
+      .main-nav {
+        margin-top: 1rem;
+      }
+      
+      .main-nav ul {
+        gap: 1rem;
+      }
+      
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 4rem;
+        height: auto;
+        min-height: 100vh;
+      }
+      
+      .hero-content {
+        width: 100%;
+        margin-top: 5rem;
+      }
+      
+      .hero-cta {
+        justify-content: center;
+      }
+      
+      .hero-image {
+        position: relative;
+        width: 80%;
+        transform: none;
+        margin-top: 3rem;
+        right: auto;
+        top: auto;
+      }
+      
+      .steps {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .step {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .feature-card {
+        padding: 1.5rem;
+      }
+      
+      .testimonial-card {
+        min-width: 280px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-content">
-            <div class="login-header">
-                <div class="logo-container">
-                    <i class="fas fa-bolt logo-icon pulse"></i>
-                    <h1>Smart IoT Bolt</h1>
-                </div>
-                <p class="subtitle">Pipeline Monitoring System</p>
-            </div>
-            
-            <div class="login-form-container">
-                <div class="form-tabs">
-                    <button class="tab-btn active" data-tab="login">Login</button>
-                    <button class="tab-btn" data-tab="register">Register</button>
-                </div>
-                
-                <div class="alert-container" id="login-alert">
-                    <!-- Alerts will be inserted here -->
-                </div>
-                
-                <form id="login-form" class="login-form active-form">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                            <i class="fas fa-eye toggle-password"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="form-options">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Remember me</label>
-                        </div>
-                        <a href="#" class="forgot-password">Forgot password?</a>
-                    </div>
-                    
-                    <button type="submit" class="btn-login btn-primary">
-                        <span>Login</span>
-                        <div class="spinner hidden">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                    </button>
-                </form>
-                
-                <form id="register-form" class="login-form">
-                    <div class="form-group">
-                        <label for="reg-email">Email</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" id="reg-email" name="email" placeholder="Enter your email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reg-password">Password</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="reg-password" name="password" placeholder="Enter your password" required>
-                            <i class="fas fa-eye toggle-password"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reg-confirm-password">Confirm Password</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="reg-confirm-password" name="confirm-password" placeholder="Confirm your password" required>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn-register btn-primary">
-                        <span>Register</span>
-                        <div class="spinner hidden">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                    </button>
-                </form>
-            </div>
+  <!-- Particle Background -->
+  <div class="particle-background" id="particles"></div>
+
+  <!-- Header -->
+  <header id="main-header">
+    <div class="container header-container">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 9L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 15L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </div>
-        
-        <div class="login-footer">
-            <p>&copy; 2025 Smart IoT Bolt - Pipeline Monitoring System</p>
+        <div class="logo-text">Smart<span>IoT</span>Bolt</div>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <a href="login.html" class="cta-button">Login</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Smart Monitoring for <span>Industrial Pipelines</span></h1>
+        <p class="hero-description">Monitor pressure and temperature in real-time with our innovative Smart IoT Bolt technology. Prevent failures, reduce downtime, and optimize maintenance schedules.</p>
+        <div class="hero-cta">
+          <a href="login.html" class="cta-button">Get Started</a>
+          <a href="#how-it-works" class="secondary-button">Learn More</a>
         </div>
+      </div>
     </div>
     
-    <div class="particles-container">
-        <div id="particles"></div>
+    <div class="hero-image floating">
+      <img src="/api/placeholder/600/400" alt="Smart IoT Bolt Dashboard Preview">
     </div>
+  </section>
 
-    <script src="js/utils.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            initLoginPage();
-        });
-    </script>
-<script>
-    console.log("Firebase loaded:", typeof firebase !== 'undefined');
-    console.log("Firebase auth loaded:", firebase && typeof firebase.auth !== 'undefined');
-</script>
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Powerful Pipeline Monitoring Features</h2>
+        <p>Our Smart IoT Bolt system provides comprehensive monitoring capabilities to ensure optimal pipeline performance and safety.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card animate__animated animate__fadeInUp">
+          <div class="feature-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 9C13.6569 9 15 7.65685 15 6C15 4.34315 13.6569 3 12 3C10.3431 3 9 4.34315 9 6C9 7.65685 10.3431 9 12 9Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M3 18C3 14.6863 7.02944 12 12 12C16.9706 12 21 14.6863 21 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M15 18H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M7 18H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Real-time Monitoring</h3>
+          <p class="feature-description">Monitor pipeline pressure and temperature in real-time with high-precision sensors embedded in our Smart IoT Bolts.</p>
+        </div>
+        
+        <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+          <div class="feature-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 3H3V10H10V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 3H14V10H21V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 14H14V21H21V14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14H3V21H10V14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Predictive Analytics</h3>
+          <p class="feature-description">Advanced analytics with ARIMA models to predict potential failures before they occur, allowing for proactive maintenance.</p>
+        </div>
+        
+        <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+          <div class="feature-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Historical Data Analysis</h3>
+          <p class="feature-description">Access and analyze historical data to identify trends, optimize operations, and improve maintenance strategies.</p>
+        </div>
+        
+        <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+          <div class="feature-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H20V20H4V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 10H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Intuitive Dashboard</h3>
+          <p class="feature-description">Easy-to-use dashboard with visualizations, alerts, and actionable insights for efficient pipeline management.</p>
+        </div>
+        
+        <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
+          <div class="feature-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Cascade Problem Detection</h3>
+          <p class="feature-description">Advanced algorithms to detect cascade problems along the pipeline, identifying root causes rather than just symptoms.</p>
+        </div>
+        
+        <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 1s;">
+          <div class="feature-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Alerts & Notifications</h3>
+          <p class="feature-description">Receive instant alerts via telegram and email when anomalies are detected, allowing for quick response and intervention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-title">
+        <h2>How Smart IoT Bolt Works</h2>
+        <p>Our system provides end-to-end monitoring and analytics for your industrial pipelines.</p>
+      </div>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Sensor Installation</h3>
+          <p class="step-description">Smart IoT Bolts with integrated sensors are installed at strategic points along the pipeline.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Data Collection</h3>
+          <p class="step-description">The sensors continuously collect temperature and pressure data in real-time.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Analysis & Prediction</h3>
+          <p class="step-description">Our analytics engine processes the data, identifies patterns, and predicts potential issues.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Alert & Action</h3>
+          <p class="step-description">Receive alerts and take preventive actions before failures occur, reducing downtime and costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>What Our Clients Say</h2>
+        <p>Discover how Smart IoT Bolt is transforming pipeline monitoring and maintenance for our clients.</p>
+      </div>
+      
+      <div class="testimonials-container">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            The Smart IoT Bolt system has been a game-changer for our refinery operations. We've reduced unplanned downtime by 37% and saved thousands in maintenance costs.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/50/50" alt="Client">
+            </div>
+            <div class="author-details">
+              <h4>Michael Johnson</h4>
+              <p>Operations Manager, PetroTech Inc.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            The predictive analytics capability is impressive. Last month, the system detected a potential failure two days before it would have occurred, saving us from a major shutdown.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/50/50" alt="Client">
+            </div>
+            <div class="author-details">
+              <h4>Sarah Williams</h4>
+              <p>Chief Engineer, GlobalOil Corp</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            Installation was seamless, and the dashboard is intuitive even for our less tech-savvy team members. The ROI was evident within the first quarter of implementation.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/50/50" alt="Client">
+            </div>
+            <div class="author-details">
+              <h4>David Chen</h4>
+              <p>Maintenance Director, IndusTech Systems</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-title">Ready to Transform Your Pipeline Monitoring?</h2>
+      <p class="cta-description">Join hundreds of industrial facilities that have already improved efficiency, reduced costs, and prevented failures with Smart IoT Bolt.</p>
+      <a href="login.html" class="white-button">Get Started Today</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>Smart IoT Bolt</h3>
+          <p>Innovative pipeline monitoring solutions for industrial applications. Prevent failures, reduce downtime, and optimize maintenance with our smart technology.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 9H2V21H6V9Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="#">Register</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Tutorials</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul>
+            <li>Email: info@smartiotbolt.com</li>
+            <li>Phone: +1 (555) 123-4567</li>
+            <li>Address: 123 Tech Street, Industrial Park, CA 90001</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Smart IoT Bolt. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll Header Effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Intersection Observer for Animations
+    const animateElements = document.querySelectorAll('.animate__animated');
+    
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.visibility = 'visible';
+          entry.target.classList.add('animate__fadeInUp');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    animateElements.forEach(element => {
+      element.style.visibility = 'hidden';
+      observer.observe(element);
+    });
+    
+    // Particle Background
+    function createParticles() {
+      const particleContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random size
+        const size = Math.random() * 5 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        
+        // Random opacity
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        // Animation
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+        particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+        
+        particleContainer.appendChild(particle);
+      }
+    }
+    
+    // Initialize particles
+    createParticles();
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
