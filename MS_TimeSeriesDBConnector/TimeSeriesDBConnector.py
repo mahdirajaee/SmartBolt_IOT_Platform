@@ -73,14 +73,8 @@ class TimeSeriesDBConnector:
     
     def setup_mqtt(self):
         try:
-            # Check paho-mqtt version and initialize client accordingly
-            mqtt_version = mqtt.__version__.split('.')
-            is_paho_v2_plus = int(mqtt_version[0]) >= 2
-            
-            if is_paho_v2_plus:
-                self.mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
-            else:
-                self.mqtt_client = mqtt.Client()
+            # Modified MQTT client initialization to avoid version check
+            self.mqtt_client = mqtt.Client()
                 
             self.mqtt_client.on_connect = self.on_mqtt_connect
             self.mqtt_client.on_message = self.on_mqtt_message
@@ -117,6 +111,12 @@ class TimeSeriesDBConnector:
     def setup_influxdb(self):
         try:
             print(f"Connecting to InfluxDB at {self.influxdb_url}")
+            
+            # Set a default token for development
+            if not self.influxdb_token:
+                self.influxdb_token = "mydevtoken123"
+                print(f"Using default development token for InfluxDB")
+                
             self.influxdb_client = InfluxDBClient(
                 url=self.influxdb_url,
                 token=self.influxdb_token,
@@ -152,11 +152,22 @@ class TimeSeriesDBConnector:
     
     def register_with_catalog(self):
         try:
-            self.service_info["timestamp"] = int(time.time())
+            # Updated to match the catalog API format
+            service_data = {
+                "name": self.service_id,
+                "endpoint": f"http://localhost:{self.service_port}",
+                "port": self.service_port,
+                "additional_info": {
+                    "description": "Time Series DB Connector Service",
+                    "mqtt_broker": self.mqtt_broker,
+                    "mqtt_port": self.mqtt_port,
+                    "influxdb_url": self.influxdb_url
+                }
+            }
             
             response = requests.post(
-                f"{self.catalog_url}/services",
-                json=self.service_info,
+                f"{self.catalog_url}/service",
+                json=service_data,
                 timeout=5
             )
             

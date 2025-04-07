@@ -3,7 +3,7 @@
     "name": "control_center",
     "endpoint": "http://0.0.0.0:8083",
     "port": 8083,
-    "last_seen": 1744048354.983951,
+    "last_seen": 1744059051.928889,
     "status": "active",
     "additional_info": {
       "service_name": "Control Center Microservice"
@@ -13,10 +13,23 @@
     "name": "account_manager",
     "endpoint": "http://localhost:8087",
     "port": 8087,
-    "last_seen": 1744048356.1483479,
+    "last_seen": 1744059053.07092,
     "status": "active",
     "additional_info": {
       "description": "Account management service for authentication and user management"
+    }
+  },
+  "time_series_db_connector": {
+    "name": "time_series_db_connector",
+    "endpoint": "http://localhost:8081",
+    "port": 8081,
+    "last_seen": 1744059050.855336,
+    "status": "active",
+    "additional_info": {
+      "description": "Time Series DB Connector Service",
+      "mqtt_broker": "localhost",
+      "mqtt_port": 1883,
+      "influxdb_url": "http://localhost:8086"
     }
   }
 }
