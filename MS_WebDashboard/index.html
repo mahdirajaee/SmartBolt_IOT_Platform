@@ -593,6 +593,18 @@
       border-radius: 50%;
       background-color: rgba(46, 94, 170, 0.2);
       pointer-events: none;
+      box-shadow: 0 0 10px rgba(46, 94, 170, 0.3);
+    }
+    
+    /* Add SVG particles container */
+    .particle-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      pointer-events: none;
     }
     
     /* Responsive Styles */
@@ -698,6 +710,7 @@
 <body>
   <!-- Particle Background -->
   <div class="particle-background" id="particles"></div>
+  <svg class="particle-lines" id="particle-lines"></svg>
 
   <!-- Header -->
   <header id="main-header">
@@ -1007,17 +1020,48 @@
       observer.observe(element);
     });
     
-    // Particle Background
+    // Enhanced Particle Background
     function createParticles() {
       const particleContainer = document.getElementById('particles');
-      const particleCount = 50;
+      const linesSvg = document.getElementById('particle-lines');
+      const particleCount = 70; // Increased count for more visible effect
+      const maxLines = 120; // More connection lines
+      const particles = [];
+      const lines = [];
+      let mouseX = 0;
+      let mouseY = 0;
+      
+      // Update SVG viewBox
+      function updateSvgViewBox() {
+        linesSvg.setAttribute('width', window.innerWidth);
+        linesSvg.setAttribute('height', window.innerHeight);
+        linesSvg.setAttribute('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`);
+      }
+      
+      updateSvgViewBox();
+      window.addEventListener('resize', updateSvgViewBox);
+      
+      // Track mouse position
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      
+      // Create primary color variants with more vibrant colors
+      const colors = [
+        'rgba(46, 94, 170, 0.5)',    // Primary blue - more opaque
+        'rgba(67, 170, 139, 0.5)',   // Accent green - more opaque
+        'rgba(29, 53, 87, 0.45)',    // Secondary darker blue - more opaque
+        'rgba(67, 126, 255, 0.55)',  // Bright blue - new vibrant color
+        'rgba(46, 170, 160, 0.5)'    // Teal - new vibrant color
+      ];
       
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         
-        // Random size
-        const size = Math.random() * 5 + 2;
+        // Larger size with more variation
+        const size = Math.random() * 8 + 2;  // Increased from 6+1 to 8+2
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         
@@ -1027,16 +1071,161 @@
         particle.style.left = `${posX}%`;
         particle.style.top = `${posY}%`;
         
-        // Random opacity
-        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        // Increased opacity
+        particle.style.opacity = Math.random() * 0.6 + 0.4;  // Changed from 0.5+0.1 to 0.6+0.4
         
-        // Animation
-        const duration = Math.random() * 20 + 10;
-        const delay = Math.random() * 5;
-        particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+        // Random color
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         
+        // Store particle properties for animation
+        const particleObj = {
+          element: particle,
+          x: posX,
+          y: posY,
+          size: size,
+          speedX: Math.random() * 0.2 - 0.1,
+          speedY: Math.random() * 0.2 - 0.1,
+          // Add random friction and acceleration for more natural movement
+          friction: 0.95 + Math.random() * 0.03,
+          directionChangeInterval: Math.random() * 200 + 50,
+          // Pixel positions (for line drawing)
+          pxX: 0,
+          pxY: 0
+        };
+        
+        particles.push(particleObj);
         particleContainer.appendChild(particle);
       }
+      
+      // Create a pool of reusable SVG lines
+      function createLinePool() {
+        for (let i = 0; i < maxLines; i++) {
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('stroke', 'rgba(46, 94, 170, 0.1)');
+          line.setAttribute('stroke-width', '1');
+          line.style.display = 'none';
+          linesSvg.appendChild(line);
+          lines.push({
+            element: line,
+            inUse: false
+          });
+        }
+      }
+      
+      createLinePool();
+      
+      // Animate particles
+      function animateParticles() {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        
+        // Reset all lines to not in use
+        lines.forEach(line => {
+          line.inUse = false;
+          line.element.style.display = 'none';
+        });
+        
+        // Process particle movement
+        particles.forEach(p => {
+          // Add slight mouse attraction
+          if (mouseX && mouseY) {
+            const mouseXPercent = (mouseX / windowWidth) * 100;
+            const mouseYPercent = (mouseY / windowHeight) * 100;
+            
+            // Calculate distance from mouse
+            const dx = mouseXPercent - p.x;
+            const dy = mouseYPercent - p.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Apply subtle attraction when close to mouse
+            if (distance < 20) {
+              p.speedX += dx * 0.0005;
+              p.speedY += dy * 0.0005;
+            }
+          }
+          
+          // Apply velocity
+          p.x += p.speedX;
+          p.y += p.speedY;
+          
+          // Apply friction
+          p.speedX *= p.friction;
+          p.speedY *= p.friction;
+          
+          // Randomly change direction occasionally
+          if (Math.random() * 100 < 1) {
+            p.speedX = Math.random() * 0.4 - 0.2;
+            p.speedY = Math.random() * 0.4 - 0.2;
+          }
+          
+          // Boundary check with bounce
+          if (p.x < 0) {
+            p.x = 0;
+            p.speedX *= -1;
+          } else if (p.x > 100) {
+            p.x = 100;
+            p.speedX *= -1;
+          }
+          
+          if (p.y < 0) {
+            p.y = 0;
+            p.speedY *= -1;
+          } else if (p.y > 100) {
+            p.y = 100;
+            p.speedY *= -1;
+          }
+          
+          // Update position
+          p.element.style.left = `${p.x}%`;
+          p.element.style.top = `${p.y}%`;
+          
+          // Calculate pixel positions for line drawing
+          p.pxX = (p.x / 100) * windowWidth;
+          p.pxY = (p.y / 100) * windowHeight;
+        });
+        
+        // Draw lines between nearby particles
+        let lineIndex = 0;
+        
+        // Only check some particles each frame for connecting to others
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            // Skip some particle pairs for better performance
+            if (Math.random() > 0.2) continue;
+            
+            const p1 = particles[i];
+            const p2 = particles[j];
+            
+            // Calculate distance
+            const dx = p1.pxX - p2.pxX;
+            const dy = p1.pxY - p2.pxY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Show line only if particles are close enough
+            if (distance < 150 && lineIndex < maxLines) {  // Increased from 120 to 150
+              const line = lines[lineIndex];
+              line.inUse = true;
+              line.element.style.display = 'block';
+              line.element.setAttribute('x1', p1.pxX);
+              line.element.setAttribute('y1', p1.pxY);
+              line.element.setAttribute('x2', p2.pxX);
+              line.element.setAttribute('y2', p2.pxY);
+              
+              // Make lines more opaque and visible
+              const opacity = 0.25 * (1 - distance / 150);  // Changed from 0.15 to 0.25
+              line.element.setAttribute('stroke', `rgba(46, 94, 170, ${opacity})`);
+              line.element.setAttribute('stroke-width', '1.2');  // Increased from 1 to 1.2
+              
+              lineIndex++;
+            }
+          }
+        }
+        
+        requestAnimationFrame(animateParticles);
+      }
+      
+      // Start animation
+      animateParticles();
     }
     
     // Initialize particles
