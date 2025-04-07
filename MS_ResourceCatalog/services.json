@@ -1,0 +1,22 @@
+{
+  "control_center": {
+    "name": "control_center",
+    "endpoint": "http://0.0.0.0:8083",
+    "port": 8083,
+    "last_seen": 1744048354.983951,
+    "status": "active",
+    "additional_info": {
+      "service_name": "Control Center Microservice"
+    }
+  },
+  "account_manager": {
+    "name": "account_manager",
+    "endpoint": "http://localhost:8087",
+    "port": 8087,
+    "last_seen": 1744048356.1483479,
+    "status": "active",
+    "additional_info": {
+      "description": "Account management service for authentication and user management"
+    }
+  }
+}
