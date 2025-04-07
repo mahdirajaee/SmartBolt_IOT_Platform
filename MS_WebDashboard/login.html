@@ -7,14 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4361ee;
-      --secondary: #3f37c9;
-      --accent: #4cc9f0;
-      --dark: #1b1b1b;
-      --light: #f8f9fa;
-      --success: #4CAF50;
-      --warning: #ff9800;
-      --danger: #f44336;
+      --primary: #2E5EAA;
+      --secondary: #1D3557;
+      --accent: #43AA8B;
+      --dark: #232F34;
+      --light: #F8F9FA;
+      --success: #43AA8B;
+      --warning: #F8961E;
+      --danger: #F94144;
+      --gradient-start: #1D3557;
+      --gradient-mid: #244c80;
+      --gradient-end: #2E5EAA;
     }
     
     * {
@@ -25,7 +28,7 @@
     
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
       background-size: 400% 400%;
       animation: gradient 15s ease infinite;
       height: 100vh;
@@ -34,6 +37,7 @@
       justify-content: center;
       overflow: hidden;
       position: relative;
+      color: var(--dark);
     }
     
     @keyframes gradient {
@@ -65,13 +69,13 @@
       height: 550px;
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 12px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       position: relative;
     }
     
     .info-side {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
       width: 45%;
       padding: 40px;
       color: white;
@@ -187,7 +191,7 @@
     }
     
     .login-header p {
-      color: #666;
+      color: #555;
     }
     
     .login-form {
@@ -224,7 +228,7 @@
     .input-with-icon input:focus {
       border-color: var(--primary);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+      box-shadow: 0 0 0 3px rgba(46, 94, 170, 0.2);
     }
     
     .input-with-icon .icon {
@@ -268,68 +272,7 @@
     .login-button:hover {
       background-color: var(--secondary);
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
-    }
-    
-    .separator {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      margin: 20px 0;
-      color: #777;
-    }
-    
-    .separator::before,
-    .separator::after {
-      content: '';
-      flex: 1;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    .separator::before {
-      margin-right: 10px;
-    }
-    
-    .separator::after {
-      margin-left: 10px;
-    }
-    
-    .social-login {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-    
-    .social-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 1px solid #ddd;
-      background-color: white;
-      color: #333;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .social-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .google {
-      color: #DB4437;
-    }
-    
-    .facebook {
-      color: #4267B2;
-    }
-    
-    .twitter {
-      color: #1DA1F2;
+      box-shadow: 0 4px 10px rgba(29, 53, 87, 0.3);
     }
     
     .register-link {
@@ -364,14 +307,14 @@
     
     /* Error message styling */
     .error-message {
-      background: rgba(255, 0, 0, 0.1);
-      color: #f44336;
+      background: rgba(249, 65, 68, 0.1);
+      color: var(--danger);
       padding: 10px;
       border-radius: 5px;
       margin-bottom: 20px;
       display: none;
       font-size: 0.9rem;
-      border-left: 3px solid #f44336;
+      border-left: 3px solid var(--danger);
     }
     
     /* Session selector */
@@ -399,7 +342,7 @@
     .session-select select:focus {
       border-color: var(--primary);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+      box-shadow: 0 0 0 3px rgba(46, 94, 170, 0.2);
     }
     
     /* Responsive styles */
@@ -604,9 +547,7 @@
           <label for="session-type">Login as</label>
           <select id="session-type">
             <option value="operator">Operator</option>
-            <option value="maintenance">Maintenance Engineer</option>
-            <option value="manager">Industry Manager</option>
-            <option value="admin">System Administrator</option>
+            <option value="admin">Administrator</option>
           </select>
         </div>
         
@@ -615,26 +556,6 @@
         </div>
         
         <button type="submit" class="login-button fade-in-right delay-3">Login</button>
-        
-        <div class="separator fade-in-right delay-4">or continue with</div>
-        
-        <div class="social-login fade-in-right delay-4">
-          <button type="button" class="social-button google">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.2836 10.1905H19.5V10.1429H12V13.8571H16.8378C16.203 15.7905 14.2905 17.1429 12 17.1429C9.23867 17.1429 7 14.9043 7 12.1429C7 9.38152 9.23867 7.14286 12 7.14286C13.2843 7.14286 14.463 7.64029 15.36 8.45714L18.0223 5.79486C16.4549 4.32719 14.3295 3.42857 12 3.42857C7.1801 3.42857 3.28571 7.32295 3.28571 12.1429C3.28571 16.9628 7.1801 20.8571 12 20.8571C16.8199 20.8571 20.7143 16.9628 20.7143 12.1429C20.7143 11.4795 20.6194 10.825 20.2836 10.1905Z" fill="currentColor"/>
-            </svg>
-          </button>
-          <button type="button" class="social-button facebook">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" fill="currentColor"/>
-            </svg>
-          </button>
-          <button type="button" class="social-button twitter">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" fill="currentColor"/>
-            </svg>
-          </button>
-        </div>
         
         <div class="register-link fade-in-right delay-4">
           Don't have an account? <a href="#">Register now</a>
@@ -761,8 +682,6 @@
         // The validCredentials object with demo accounts
         const validCredentials = {
           'operator@example.com': 'password',
-          'maintenance@example.com': 'password',
-          'manager@example.com': 'password',
           'admin@example.com': 'password'
         };
         
@@ -785,21 +704,9 @@
       });
     });
     
-    // Social login buttons
-    document.querySelectorAll('.social-button').forEach(button => {
-      button.addEventListener('click', function() {
-        const provider = this.classList.contains('google') ? 'Google' : 
-                        this.classList.contains('facebook') ? 'Facebook' : 'Twitter';
-        
-        alert(`${provider} login is not implemented in this demo. Please use email login.`);
-      });
-    });
-    
     // Set demo credentials for easy testing
     const demoEmails = [
       'operator@example.com',
-      'maintenance@example.com',
-      'manager@example.com',
       'admin@example.com'
     ];
     
@@ -811,14 +718,8 @@
         case 'operator':
           emailInput.value = demoEmails[0];
           break;
-        case 'maintenance':
-          emailInput.value = demoEmails[1];
-          break;
-        case 'manager':
-          emailInput.value = demoEmails[2];
-          break;
         case 'admin':
-          emailInput.value = demoEmails[3];
+          emailInput.value = demoEmails[1];
           break;
       }
       

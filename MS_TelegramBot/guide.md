@@ -1,4 +1,3 @@
-
 # Guide to Interacting with IOT_SmartBolt Telegram Bot
 
 ## Finding Your Bot
