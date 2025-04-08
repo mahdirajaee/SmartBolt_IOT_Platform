@@ -41,17 +41,20 @@ class AnalyticsMicroservice:
         while True:
             try:
                 service_info = {
-                    "service_id": self.service_id,
-                    "service_name": self.service_name,
-                    "endpoints": {
-                        "base_url": self.base_url,
-                        "predictions": f"{self.base_url}/predictions",
-                        "anomalies": f"{self.base_url}/anomalies",
-                        "cascade_analysis": f"{self.base_url}/cascade_analysis"
+                    "name": self.service_id,
+                    "endpoint": self.base_url,
+                    "port": self.port,
+                    "additional_info": {
+                        "service_name": self.service_name,
+                        "endpoints": {
+                            "predictions": f"{self.base_url}/predictions",
+                            "anomalies": f"{self.base_url}/anomalies",
+                            "cascade_analysis": f"{self.base_url}/cascade_analysis"
+                        }
                     }
                 }
                 
-                response = requests.post(f"{self.catalog_url}/services", json=service_info)
+                response = requests.post(f"{self.catalog_url}/service", json=service_info)
                 
                 if response.status_code == 200 or response.status_code == 201:
                     self.discover_services()
