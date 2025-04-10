@@ -8,7 +8,6 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 import cherrypy
 import requests
 from datetime import datetime
-
 class TimeSeriesDBConnector:
     exposed = True
     
@@ -25,12 +24,13 @@ class TimeSeriesDBConnector:
         }
         
         # Default configurations
-        self.mqtt_broker = os.environ.get('MQTT_BROKER', 'localhost')
-        self.mqtt_port = int(os.environ.get('MQTT_PORT', 1883))
-        self.influxdb_url = os.environ.get('INFLUXDB_URL', 'http://localhost:8086')
-        self.influxdb_token = os.environ.get('INFLUXDB_TOKEN', '')
-        self.influxdb_org = os.environ.get('INFLUXDB_ORG', 'smart_iot')
-        self.influxdb_bucket = os.environ.get('INFLUXDB_BUCKET', 'sensor_data')
+        self.mqtt_broker = os.environ.get('MQTT_BROKER')
+        self.mqtt_port = int(os.environ.get('MQTT_PORT'))
+        self.influxdb_url = os.environ.get('INFLUXDB_URL')
+        self.influxdb_token = os.environ.get('INFLUXDB_TOKEN')
+        self.influxdb_org = os.environ.get('INFLUXDB_ORG')
+        self.influxdb_bucket = os.environ.get('INFLUXDB_BUCKET')
+        print(f"Using InfluxDB bucket------->>>>>>>>>: {self.influxdb_bucket}")
         
         self.influxdb_client = None
         self.mqtt_client = None
