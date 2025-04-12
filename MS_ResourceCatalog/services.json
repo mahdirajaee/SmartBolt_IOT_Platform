@@ -23,8 +23,8 @@
     "name": "time_series_db_connector",
     "endpoint": "http://localhost:8081",
     "port": 8081,
-    "last_seen": 1744066577.389075,
-    "status": "inactive",
+    "last_seen": 1744479602.4637916,
+    "status": "active",
     "additional_info": {
       "description": "Time Series DB Connector Service",
       "mqtt_broker": "localhost",
