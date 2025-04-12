@@ -30,8 +30,6 @@ class TimeSeriesDBConnector:
         self.influxdb_token = os.environ.get('INFLUXDB_TOKEN')
         self.influxdb_org = os.environ.get('INFLUXDB_ORG')
         self.influxdb_bucket = os.environ.get('INFLUXDB_BUCKET')
-        print(f"Using InfluxDB bucket------->>>>>>>>>: {self.influxdb_bucket}")
-        
         self.influxdb_client = None
         self.mqtt_client = None
         self.write_api = None
