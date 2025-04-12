@@ -21,24 +21,24 @@ load_dotenv()
 
 class RaspberryPiConnector:
     def __init__(self):
-        self.device_id = os.getenv("DEVICE_ID", "dev010")
-        self.sector_id = os.getenv("SECTOR_ID", "1")
-        self.catalog_url = os.getenv("CATALOG_URL", "http://localhost:8080")
+        self.device_id = os.getenv("DEVICE_ID")
+        self.sector_id = os.getenv("SECTOR_ID")
+        self.catalog_url = os.getenv("CATALOG_URL")
         
         self.connector_id = f"raspberry_pi_{self.sector_id}_{self.device_id}_{str(uuid.uuid4())[:8]}"
-        self.port = self.find_available_port(int(os.getenv("PORT", "8090")))
-        self.base_url = f"http://{os.getenv('HOST', 'localhost')}:{self.port}"
+        self.port = self.find_available_port(int(os.getenv("PORT")))
+        self.base_url = f"http://{os.getenv('HOST')}:{self.port}"
         
-        self.temperature_mean = float(os.getenv("TEMP_MEAN", "25.0"))
-        self.temperature_std = float(os.getenv("TEMP_STD", "2.0"))
-        self.pressure_mean = float(os.getenv("PRESSURE_MEAN", "100.0"))
-        self.pressure_std = float(os.getenv("PRESSURE_STD", "5.0"))
+        self.temperature_mean = float(os.getenv("TEMP_MEAN"))
+        self.temperature_std = float(os.getenv("TEMP_STD"))
+        self.pressure_mean = float(os.getenv("PRESSURE_MEAN"))
+        self.pressure_std = float(os.getenv("PRESSURE_STD"))
         
-        self.sensor_interval = int(os.getenv("SENSOR_INTERVAL", "5"))
-        self.catalog_update_interval = int(os.getenv("CATALOG_UPDATE_INTERVAL", "60"))
+        self.sensor_interval = int(os.getenv("SENSOR_INTERVAL"))
+        self.catalog_update_interval = int(os.getenv("CATALOG_UPDATE_INTERVAL"))
         
-        self.mqtt_broker = os.getenv("MQTT_BROKER", "localhost")
-        self.mqtt_port = int(os.getenv("MQTT_PORT", "1883"))
+        self.mqtt_broker = os.getenv("MQTT_BROKER")
+        self.mqtt_port = int(os.getenv("MQTT_PORT"))
         self.mqtt_client = None
         
         self.valve_status = "closed"
@@ -300,20 +300,24 @@ class RaspberryPiConnector:
         return {"status": "error", "message": "Method not allowed"}
 
     def find_available_port(self, preferred_port, max_attempts=10):
-        """Find an available port starting from the preferred port"""
+        """
+        Attempts to find an available TCP port starting from preferred_port.
+        Tries to bind a socket to confirm the port is truly available.
+        """
         port = preferred_port
-        attempts = 0
-        
-        while attempts < max_attempts:
-            if not self.is_port_in_use(port):
-                print(f"Using port {port}")
-                return port
-            
-            print(f"Port {port} is already in use, trying next port.")
-            port += 1
-            attempts += 1
-        
-        raise RuntimeError(f"Could not find an available port after {max_attempts} attempts")
+        for attempt in range(max_attempts):
+            try:
+                # Actually try to bind the port
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                    s.bind(('0.0.0.0', port))
+                    print(f"Found available port: {port}")
+                    return port
+            except OSError:
+                print(f"Port {port} is already in use, trying {port + 1}")
+                port += 1
+
+        raise RuntimeError(f"[!] Could not find an available port after {max_attempts} attempts starting from {preferred_port}")
     
     def is_port_in_use(self, port, host='0.0.0.0'):
         """Check if a port is in use"""

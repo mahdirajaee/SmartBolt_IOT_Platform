@@ -12,9 +12,9 @@ class TimeSeriesDBConnector:
     exposed = True
     
     def __init__(self):
-        self.catalog_url = os.environ.get('CATALOG_URL', 'http://localhost:8080')
+        self.catalog_url = os.environ.get('CATALOG_URL')
         self.service_id = "time_series_db_connector"
-        self.service_port = int(os.environ.get('SERVICE_PORT', 8081))
+        self.service_port = int(os.environ.get('SERVICE_PORT'))
         
         self.service_info = {
             "id": self.service_id,
