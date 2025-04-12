@@ -3,8 +3,13 @@
     "device_id": "dev010",
     "sector_id": "1",
     "type": "raspberry_pi_connector",
-    "status": "active",
-    "last_seen": 1744190796.3640544,
+    "status": {
+      "online": true,
+      "temperature": 25.79,
+      "pressure": 99.31,
+      "valve": "closed"
+    },
+    "last_seen": 1744479194.7773597,
     "additional_info": {}
   }
 }
