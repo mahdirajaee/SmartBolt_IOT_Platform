@@ -18,7 +18,7 @@ class AnalyticsMicroservice:
         self.service_id = "analytics_service"
         self.service_name = "Analytics Microservice"
         self.host = os.getenv("HOST")
-        self.port = int(os.getenv("PORT", 8082))
+        self.port = int(os.getenv("PORT"))
         self.base_url = f"http://{self.host}:{self.port}"
         
         self.ts_db_connector_url = None
@@ -68,6 +68,7 @@ class AnalyticsMicroservice:
     def discover_services(self):
         try:
             response = requests.get(f"{self.catalog_url}/services")
+            print(f"catalog_url:----------->>>>>>>>>>>>>> {self.catalog_url}")
             if response.status_code == 200:
                 services = response.json()
                 

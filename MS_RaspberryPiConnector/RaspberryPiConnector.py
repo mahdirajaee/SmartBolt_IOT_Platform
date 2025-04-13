@@ -235,7 +235,7 @@ class RaspberryPiConnector:
         except Exception as e:
             print(f"Error registering with Resource Catalog: {e}")
             raise
-    
+    # update the last status of the Temp and Pres in the catalog
     def update_catalog_status(self):
         status_data = {
             "online": True,
