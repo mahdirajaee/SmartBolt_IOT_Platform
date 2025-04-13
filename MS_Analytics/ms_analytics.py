@@ -14,11 +14,11 @@ load_dotenv()
 
 class AnalyticsMicroservice:
     def __init__(self):
-        self.catalog_url = os.getenv("CATALOG_URL", "http://localhost:8080")
+        self.catalog_url = os.getenv("CATALOG_URL")
         self.service_id = "analytics_service"
         self.service_name = "Analytics Microservice"
-        self.host = os.getenv("HOST", "0.0.0.0")
-        self.port = int(os.getenv("PORT", 8082))
+        self.host = os.getenv("HOST")
+        self.port = int(os.getenv("PORT"))
         self.base_url = f"http://{self.host}:{self.port}"
         
         self.ts_db_connector_url = None
@@ -26,13 +26,13 @@ class AnalyticsMicroservice:
         self.telegram_bot_url = None
         self.control_center_url = None
         
-        self.threshold_temp_high = float(os.getenv("THRESHOLD_TEMP_HIGH", "80.0"))
-        self.threshold_temp_low = float(os.getenv("THRESHOLD_TEMP_LOW", "10.0"))
-        self.threshold_pressure_high = float(os.getenv("THRESHOLD_PRESSURE_HIGH", "10.0"))
-        self.threshold_pressure_low = float(os.getenv("THRESHOLD_PRESSURE_LOW", "1.0"))
+        self.threshold_temp_high = float(os.getenv("THRESHOLD_TEMP_HIGH"))
+        self.threshold_temp_low = float(os.getenv("THRESHOLD_TEMP_LOW"))
+        self.threshold_pressure_high = float(os.getenv("THRESHOLD_PRESSURE_HIGH"))
+        self.threshold_pressure_low = float(os.getenv("THRESHOLD_PRESSURE_LOW"))
         
-        self.prediction_window = int(os.getenv("PREDICTION_WINDOW", "12"))  # 12 data points ahead
-        self.anomaly_check_interval = int(os.getenv("ANOMALY_CHECK_INTERVAL", "300"))  # seconds
+        self.prediction_window = int(os.getenv("PREDICTION_WINDOW"))  # number of data points ahead
+        self.anomaly_check_interval = int(os.getenv("ANOMALY_CHECK_INTERVAL")) #second
         
         threading.Thread(target=self.register_with_catalog, daemon=True).start()
         threading.Thread(target=self.periodic_anomaly_check, daemon=True).start()
@@ -68,6 +68,7 @@ class AnalyticsMicroservice:
     def discover_services(self):
         try:
             response = requests.get(f"{self.catalog_url}/services")
+            print(f"catalog_url:----------->>>>>>>>>>>>>> {self.catalog_url}")
             if response.status_code == 200:
                 services = response.json()
                 
