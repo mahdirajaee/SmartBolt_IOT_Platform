@@ -5,6 +5,10 @@ import time
 import sys
 import signal
 import socket
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Get the absolute path of the project directory
 project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -116,11 +120,14 @@ services = [
         "directory": "MS_ResourceCatalog",
         "command": "python3 ResourceCatalog.py",
         "delay": 5,  # Increased delay to ensure Resource Catalog is fully initialized
-        "port": 8080,
+        "port": int(os.getenv("RESOURCE_CATALOG_PORT", 8080)),
         "env_vars": {
-            "RESOURCE_CATALOG_PORT": "8080",
-            "ENABLE_AUTH": "false",
-            "DEBUG": "true"
+            "RESOURCE_CATALOG_PORT": os.getenv("RESOURCE_CATALOG_PORT", "8080"),
+            "RESOURCE_CATALOG_HOST": os.getenv("RESOURCE_CATALOG_HOST", "0.0.0.0"),
+            "ENABLE_AUTH": os.getenv("ENABLE_AUTH", "false"),
+            "API_USERNAME": os.getenv("API_USERNAME", "admin"),
+            "API_PASSWORD": os.getenv("API_PASSWORD", "password"),
+            "DEBUG": os.getenv("DEBUG", "true")
         }
     },
     {
@@ -128,10 +135,10 @@ services = [
         "directory": "MessageBroker",
         "command": "python3 message_broker.py",
         "delay": 3,
-        "port": 1883,
+        "port": int(os.getenv("MQTT_PORT", 1883)),
         "env_vars": {
-            "MQTT_PORT": "1883",  # Ensure consistent port
-            "CATALOG_URL": "http://localhost:8080"
+            "MQTT_PORT": os.getenv("MQTT_PORT", "1883"),
+            "CATALOG_URL": os.getenv("CATALOG_URL", "http://localhost:8080")
         }
     },
     {
@@ -139,16 +146,16 @@ services = [
         "directory": "MS_TimeSeriesDBConnector",
         "command": "python3 TimeSeriesDBConnector.py",
         "delay": 1,
-        "port": 8081,
+        "port": int(os.getenv("TIMESERIES_PORT", 8081)),
         "env_vars": {
-            "CATALOG_URL": "http://localhost:8080",
-            "SERVICE_PORT": "8081",
-            "MQTT_BROKER": "localhost",
-            "MQTT_PORT": "1883",
-            "INFLUXDB_URL": "http://localhost:8086",
-            "INFLUXDB_TOKEN": "mydevtoken123",  # Default for development, replace with your token
-            "INFLUXDB_ORG": "smart_iot",
-            "INFLUXDB_BUCKET": "sensor_data"
+            "CATALOG_URL": os.getenv("CATALOG_URL", "http://localhost:8080"),
+            "SERVICE_PORT": os.getenv("TIMESERIES_PORT", "8081"),
+            "MQTT_BROKER": os.getenv("MQTT_BROKER", "localhost"),
+            "MQTT_PORT": os.getenv("MQTT_PORT", "1883"),
+            "INFLUXDB_URL": os.getenv("INFLUXDB_URL", "http://localhost:8086"),
+            "INFLUXDB_TOKEN": os.getenv("INFLUXDB_TOKEN", "mydevtoken123"),
+            "INFLUXDB_ORG": os.getenv("INFLUXDB_ORG", "smart_iot"),
+            "INFLUXDB_BUCKET": os.getenv("INFLUXDB_BUCKET", "sensor_data")
         }
     },
     {
@@ -156,11 +163,11 @@ services = [
         "directory": "MS_ControlCenter",
         "command": "python3 ControlCenter.py",
         "delay": 1,
-        "port": 8083,
+        "port": int(os.getenv("CONTROL_CENTER_PORT", 8083)),
         "env_vars": {
-            "CATALOG_URL": "http://localhost:8080",
-            "PORT": "8083",
-            "HOST": "0.0.0.0"
+            "CATALOG_URL": os.getenv("CATALOG_URL", "http://localhost:8080"),
+            "PORT": os.getenv("CONTROL_CENTER_PORT", "8083"),
+            "HOST": os.getenv("CONTROL_CENTER_HOST", "0.0.0.0")
         }
     },
     {
@@ -168,11 +175,11 @@ services = [
         "directory": "MS_AccountManager",
         "command": "python3 account_manager.py",
         "delay": 1,
-        "port": 8086,
+        "port": int(os.getenv("ACCOUNT_MANAGER_PORT", 8086)),
         "env_vars": {
-            "CATALOG_URL": "http://localhost:8080",
-            "PORT": "8086",
-            "JWT_SECRET": "smart_iot_bolt_secret_key"
+            "CATALOG_URL": os.getenv("CATALOG_URL", "http://localhost:8080"),
+            "PORT": os.getenv("ACCOUNT_MANAGER_PORT", "8086"),
+            "JWT_SECRET": os.getenv("JWT_SECRET", "smart_iot_bolt_secret_key")
         }
     },
     {
@@ -180,10 +187,10 @@ services = [
         "directory": "MS_RaspberryPiConnector",
         "command": "python3 RaspberryPiConnector.py",
         "delay": 1,
-        "port": 8090,
+        "port": int(os.getenv("RPI_CONNECTOR_PORT", 8090)),
         "env_vars": {
-            "CATALOG_URL": "http://localhost:8080",
-            "PORT": "8090"
+            "CATALOG_URL": os.getenv("CATALOG_URL", "http://localhost:8080"),
+            "PORT": os.getenv("RPI_CONNECTOR_PORT", "8090")
         }
     },
     {
@@ -191,12 +198,12 @@ services = [
         "directory": "MS_TelegramBot",
         "command": "python3 telegram_bot.py",
         "delay": 1,
-        "port": 8085,
+        "port": int(os.getenv("TELEGRAM_BOT_PORT", 8085)),
         "env_vars": {
-            "RESOURCE_CATALOG_URL": "http://localhost:8080",
-            "SERVICE_PORT": "8085",
-            "SERVICE_HOST": "localhost",
-            "PTB_HTTPX_DISABLE_PROXIES": "True"
+            "RESOURCE_CATALOG_URL": os.getenv("CATALOG_URL", "http://localhost:8080"),
+            "SERVICE_PORT": os.getenv("TELEGRAM_BOT_PORT", "8085"),
+            "SERVICE_HOST": os.getenv("TELEGRAM_BOT_HOST", "localhost"),
+            "PTB_HTTPX_DISABLE_PROXIES": os.getenv("PTB_HTTPX_DISABLE_PROXIES", "True")
         }
     },
     {
@@ -204,11 +211,11 @@ services = [
         "directory": "MS_Analytics",
         "command": "python3 ms_analytics.py",
         "delay": 1,
-        "port": 8082,
+        "port": int(os.getenv("ANALYTICS_PORT", 8082)),
         "env_vars": {
-            "CATALOG_URL": "http://localhost:8080",
-            "PORT": "8082",
-            "HOST": "0.0.0.0"
+            "CATALOG_URL": os.getenv("CATALOG_URL", "http://localhost:8080"),
+            "PORT": os.getenv("ANALYTICS_PORT", "8082"),
+            "HOST": os.getenv("ANALYTICS_HOST", "0.0.0.0")
         }
     }
 ]

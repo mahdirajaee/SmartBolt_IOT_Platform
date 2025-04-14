@@ -385,3 +385,8 @@
 1744058867: New connection from 127.0.0.1:56085 on port 8883.
 1744058867: Client <unknown> closed its connection.
 1744059096: Saving in-memory database to ./mosquitto_data//mosquitto.db.
+1744651024: mosquitto version 2.0.21 starting
+1744651024: Config loaded from mosquitto.conf.
+1744651024: Opening ipv4 listen socket on port 1884.
+1744651024: mosquitto version 2.0.21 running
+1744651113: Reloading config.

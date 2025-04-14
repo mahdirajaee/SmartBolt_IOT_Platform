@@ -1,5 +1,9 @@
 import os
 import sys
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Add current directory to Python path
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -359,7 +363,7 @@ def main():
     
     # Configure CherryPy server
     cherrypy.config.update({
-        'server.socket_host': '0.0.0.0',
+        'server.socket_host': os.getenv("RESOURCE_CATALOG_HOST", '0.0.0.0'),
         'server.socket_port': port,
         'engine.autoreload.on': False,
         'log.screen': True

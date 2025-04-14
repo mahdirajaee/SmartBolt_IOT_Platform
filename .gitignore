@@ -1,14 +1,76 @@
 # Ignore Firebase credentials
 MS_AccountManager/firebase_credentials.json
 
-# Ignore Python virtual environments
-venv/
+# Environment variables
 .env
+.env.*
+!.env.example
 
-# Ignore __pycache__ files
+# Python virtual environments
+venv/
+env/
+ENV/
+virtualenv/
+
+# Python bytecode and cache
 __pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
 
-# Ignore VS Code settings (optional)
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE settings
 .vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# System files
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Local data
+*.db
+*.sqlite3
+*.db-journal
+mosquitto_data/
+
+# Sensitive information
+**/credentials.json
+**/token.json
+**/*.pem
+**/*.key
+**/*.crt
+
+# Specific to this IoT platform
+devices.json
+services.json
+*_local.json
+*.session
+
+# Temp files
+*.swp
+*.swo
+.~*
+*.tmp
+*.bak
+*~
+
+# User-specific configuration overrides
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
