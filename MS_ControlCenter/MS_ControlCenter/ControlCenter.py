@@ -7,6 +7,7 @@ import time
 import json
 import threading
 import requests
+import socket
 from dotenv import load_dotenv
 
 # Apply CherryPy patch before importing it
@@ -25,7 +26,8 @@ class MS_ControlCenter:
         self.service_name = "Control Center Microservice"
         self.catalog_url = os.getenv('CATALOG_URL', 'http://localhost:8080')
         self.host = os.getenv('HOST', '0.0.0.0')
-        self.port = int(os.getenv('PORT', 8083))
+        
+        self.port = self.find_available_port(int(os.getenv('PORT', 8083)))
         
         # Initialize services and endpoints
         self.endpoints = {}
@@ -37,10 +39,30 @@ class MS_ControlCenter:
         self.temp_threshold = float(os.getenv('TEMP_THRESHOLD', '80.0'))  # Default 80°C
         self.pressure_threshold = float(os.getenv('PRESSURE_THRESHOLD', '10.0'))  # Default 10 bar
         
+        # Record the start time
+        self.start_time = time.time()
+        
         # Register with catalog and get service information
         self.register_with_catalog()
         self.get_service_info()
         self.connect_mqtt()
+
+    def find_available_port(self, preferred_port):
+        max_port = preferred_port + 100
+        current_port = preferred_port
+        
+        while current_port < max_port:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(1)
+            result = sock.connect_ex((self.host, current_port))
+            sock.close()
+            
+            if result != 0:
+                return current_port
+            
+            current_port += 1
+        
+        return preferred_port
 
     def register_with_catalog(self):
         """Register this service with the Resource Catalog"""
@@ -179,39 +201,90 @@ class MS_ControlCenter:
             anomaly_type = anomaly_data.get("type")  # e.g., "temperature", "pressure", "cascade"
             severity = anomaly_data.get("severity", "medium")  # Default to medium if not specified
             
-            print(f"Processing {severity} {anomaly_type} anomaly in sector {sector_id}, device {device_id}")
+            if not sector_id or not device_id:
+                return {"status": "error", "message": "Missing sector_id or device_id"}
             
-            if anomaly_type == "cascade":
-                # For cascade problem, get all devices in the sector
-                devices = self.get_devices_in_sector(sector_id)
+            # Get current device status from catalog
+            try:
+                response = requests.get(f"{self.catalog_url}/device/{device_id}")
+                if response.status_code != 200:
+                    return {"status": "error", "message": f"Failed to get device status: {response.status_code}"}
                 
-                # Sort by device ID (assuming numeric ordering like dev010, dev020)
-                sorted_devices = sorted(devices, key=lambda x: x.get("device_id"))
+                device_info = response.json()
+                current_status = device_info.get("status", {})
                 
-                # Find the index of the device with anomaly
-                anomaly_index = next((i for i, d in enumerate(sorted_devices) if d.get("device_id") == device_id), -1)
+                # Get current temperature and pressure readings
+                current_temp = current_status.get("temperature")
+                current_pressure = current_status.get("pressure")
+                current_valve_status = current_status.get("valve", "unknown")
                 
-                if anomaly_index > 0:
-                    # Close valve of the device before the anomaly
-                    prev_device = sorted_devices[anomaly_index - 1]
-                    self.send_valve_command(sector_id, prev_device.get("device_id"), "close")
-                    return True
+                # Check if both temperature and pressure exceed thresholds
+                temp_exceeded = current_temp is not None and current_temp > self.temp_threshold
+                pressure_exceeded = current_pressure is not None and current_pressure > self.pressure_threshold
+                
+                # Log the anomaly
+                print(f"Processing anomaly: {anomaly_type} in {sector_id}/{device_id}")
+                print(f"Current readings: Temp={current_temp}, Pressure={current_pressure}, Valve={current_valve_status}")
+                print(f"Thresholds: Temp={self.temp_threshold}, Pressure={self.pressure_threshold}")
+                
+                valve_action = None
+                
+                # Handle cascade problems with high severity
+                if anomaly_type == "cascade" and severity == "high":
+                    # For cascade problems, we always want to isolate the sector
+                    valve_action = "close"
+                    reason = "Cascade problem detected with high severity"
+                
+                # Both temperature and pressure exceeded - automatic valve control
+                elif temp_exceeded and pressure_exceeded:
+                    valve_action = "close"
+                    reason = f"Both temperature ({current_temp}) and pressure ({current_pressure}) exceed thresholds"
+                
+                # Only temperature exceeded with high severity
+                elif temp_exceeded and severity == "high":
+                    valve_action = "close"
+                    reason = f"Temperature ({current_temp}) exceeds threshold with high severity"
+                
+                # Only pressure exceeded with high severity
+                elif pressure_exceeded and severity == "high":
+                    valve_action = "close"
+                    reason = f"Pressure ({current_pressure}) exceeds threshold with high severity"
+                
+                # Check if we need to control the valve
+                if valve_action and current_valve_status != valve_action:
+                    # Send command to valve
+                    print(f"Sending {valve_action} command to valve {device_id} in sector {sector_id}")
+                    self.send_valve_command(sector_id, device_id, valve_action)
+                    
+                    return {
+                        "status": "success", 
+                        "message": f"Valve {valve_action} command sent for {device_id}", 
+                        "reason": reason
+                    }
+                elif valve_action and current_valve_status == valve_action:
+                    return {
+                        "status": "success", 
+                        "message": f"Valve already in {valve_action} state", 
+                        "reason": reason
+                    }
+                else:
+                    return {
+                        "status": "success", 
+                        "message": "No valve action required at this time",
+                        "temperature": current_temp,
+                        "pressure": current_pressure,
+                        "thresholds": {
+                            "temperature": self.temp_threshold,
+                            "pressure": self.pressure_threshold
+                        }
+                    }
             
-            # For single device anomalies based on severity
-            if severity == "high":
-                # Close the valve of the affected device
-                self.send_valve_command(sector_id, device_id, "close")
-                return True
-            elif severity == "medium":
-                # Could implement more nuanced control strategies
-                pass
-            
-            return False
-            
+            except requests.RequestException as e:
+                return {"status": "error", "message": f"Failed to process anomaly: {str(e)}"}
+                
         except Exception as e:
-            print(f"Error processing anomaly: {e}")
-            return False
-            
+            return {"status": "error", "message": f"Error processing anomaly: {str(e)}"}
+
     def health_check(self):
         """Health check endpoint to verify service is running"""
         return {
@@ -261,8 +334,8 @@ class MS_ControlCenter:
         """Endpoint to receive anomaly reports from Analytics"""
         if cherrypy.request.method == 'POST':
             anomaly_data = cherrypy.request.json
-            success = self.process_anomaly(anomaly_data)
-            return {"status": "processed" if success else "failed"}
+            result = self.process_anomaly(anomaly_data)
+            return result
         else:
             raise cherrypy.HTTPError(405, "Method not allowed")
     
@@ -303,6 +376,32 @@ class MS_ControlCenter:
             )
         else:
             raise cherrypy.HTTPError(405, "Method not allowed")
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def status(self):
+        """Returns the current status of the control center"""
+        return {
+            "service": self.service_name,
+            "uptime": time.time() - self.start_time if hasattr(self, 'start_time') else 0,
+            "thresholds": {
+                "temperature": self.temp_threshold,
+                "pressure": self.pressure_threshold
+            },
+            "mqtt_connected": self.mqtt_client.is_connected() if self.mqtt_client else False,
+            "sectors_monitored": len(self.get_all_sectors())
+        }
+    
+    def get_all_sectors(self):
+        """Get all sectors from the catalog"""
+        try:
+            response = requests.get(f"{self.catalog_url}/sector")
+            if response.status_code == 200:
+                return response.json().get("sectors", [])
+            return []
+        except Exception as e:
+            print(f"Error getting sectors: {e}")
+            return []
 
 
 def periodic_tasks(control_center, interval=60):

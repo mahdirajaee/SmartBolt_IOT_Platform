@@ -19,7 +19,7 @@ logger = logging.getLogger('MessageBroker')
 
 class MessageBroker:
     def __init__(self):
-        self.mqtt_port = int(os.getenv('MQTT_PORT', '1884'))
+        self.mqtt_port = int(os.getenv('MQTT_PORT', '1883'))
         self.mqtt_host = os.getenv('MQTT_HOST', '0.0.0.0')
         self.catalog_url = os.getenv('CATALOG_URL', 'http://localhost:8080')
         self.mosquitto_path = os.getenv('MOSQUITTO_PATH', None)
@@ -47,24 +47,71 @@ class MessageBroker:
             return None
 
     def check_port_available(self):
+        """
+        Check if the configured MQTT port is available.
+        If the port from .env is in use, try to find an alternative port.
+        Returns True if the original port is available or if an alternative was found.
+        """
         try:
+            # Get the original port from .env for reference
+            original_port = self.mqtt_port
+            
+            # Check if the configured port is available
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.settimeout(1)
             result = s.connect_ex((self.mqtt_host, self.mqtt_port))
             s.close()
+            
             if result == 0:
-                logger.error(f"Port {self.mqtt_port} is already in use")
-                for alt_port in [1884, 1885, 1886, 8883]:
-                    if alt_port != self.mqtt_port:
-                        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                        s.settimeout(1)
-                        result = s.connect_ex((self.mqtt_host, alt_port))
-                        s.close()
-                        if result != 0:
-                            logger.info(f"Found available alternative port: {alt_port}")
-                            self.mqtt_port = alt_port
-                            return True
+                logger.warning(f"Port {self.mqtt_port} from .env is already in use")
+                
+                # Define potential alternative ports
+                # First try +1, +2, etc. from the original port
+                alt_ports = []
+                # Add ports close to the original port first (up to 10 higher)
+                for i in range(1, 11):
+                    alt_ports.append(original_port + i)
+                # Then add some standard MQTT ports if they aren't already in the list
+                for std_port in [1883, 1884, 1885, 1886, 8883]:
+                    if std_port != original_port and std_port not in alt_ports:
+                        alt_ports.append(std_port)
+                
+                # Try each alternative port
+                for alt_port in alt_ports:
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    s.settimeout(1)
+                    result = s.connect_ex((self.mqtt_host, alt_port))
+                    s.close()
+                    if result != 0:
+                        logger.info(f"Found available alternative port: {alt_port}")
+                        logger.info(f"Switching from configured port {original_port} to available port {alt_port}")
+                        self.mqtt_port = alt_port
+                        
+                        # Update mosquitto.conf if it exists
+                        try:
+                            if os.path.exists('mosquitto.conf'):
+                                with open('mosquitto.conf', 'r') as f:
+                                    lines = f.readlines()
+                                
+                                with open('mosquitto.conf', 'w') as f:
+                                    for line in lines:
+                                        if line.startswith('listener'):
+                                            f.write(f"listener {self.mqtt_port} {self.mqtt_host}\n")
+                                        else:
+                                            f.write(line)
+                                logger.info(f"Updated mosquitto.conf with new port {self.mqtt_port}")
+                        except Exception as e:
+                            logger.error(f"Error updating mosquitto.conf: {str(e)}")
+                        
+                        # Update .env file for future runs
+                        self.update_env_file(original_port, self.mqtt_port)
+                        
+                        return True
+                
+                logger.error("Could not find any available alternative port")
                 return False
+            
+            logger.info(f"Using port {self.mqtt_port} from .env file")
             return True
         except Exception as e:
             logger.error(f"Error checking port availability: {str(e)}")
@@ -89,20 +136,49 @@ class MessageBroker:
 
     def register_with_catalog(self):
         try:
+            # Register as a standard service with proper format
             service_info = {
-                "service_id": self.service_id,
-                "service_type": "mqtt_broker",
+                "name": self.service_id,
                 "endpoint": f"mqtt://{self.mqtt_host}:{self.mqtt_port}",
-                "topics": self.topics,
+                "port": self.mqtt_port,
+                "last_seen": time.time(),
                 "status": "active",
-                "last_update": int(time.time())
+                "additional_info": {
+                    "service_type": "mqtt_broker",
+                    "topics": self.topics,
+                    "address": self.mqtt_host,
+                    "broker": self.mqtt_host
+                }
             }
+            
+            # Register using the /service endpoint as expected by other services
             response = requests.post(
-                f"{self.catalog_url}/services",
+                f"{self.catalog_url}/service",
                 json=service_info
             )
             if response.status_code in (200, 201):
                 logger.info(f"Successfully registered with catalog")
+
+                # Register a specific broker endpoint for backward compatibility
+                broker_info = {
+                    "broker": self.mqtt_host,
+                    "address": self.mqtt_host,
+                    "port": self.mqtt_port,
+                    "topics": self.topics
+                }
+                
+                # Create a custom broker endpoint in the catalog
+                try:
+                    broker_response = requests.post(
+                        f"{self.catalog_url}/broker",
+                        json=broker_info
+                    )
+                    if broker_response.status_code in (200, 201, 404):
+                        # If 404, the endpoint might not exist yet, which is ok
+                        logger.info("Registered broker information at /broker endpoint")
+                except Exception as e:
+                    logger.warning(f"Could not create broker endpoint (will continue): {str(e)}")
+                
                 return True
             else:
                 logger.error(f"Failed to register with catalog: {response.status_code}")
@@ -114,17 +190,23 @@ class MessageBroker:
     def send_heartbeat(self):
         while self.running:
             try:
+                # Update service status
                 service_info = {
-                    "service_id": self.service_id,
                     "status": "active",
-                    "last_update": int(time.time())
+                    "last_seen": time.time()
                 }
                 response = requests.put(
-                    f"{self.catalog_url}/services/{self.service_id}",
+                    f"{self.catalog_url}/service/{self.service_id}",
                     json=service_info
                 )
                 if response.status_code != 200:
                     logger.warning(f"Heartbeat update failed: {response.status_code}")
+                    
+                    # Try to re-register if update fails
+                    if response.status_code == 404:
+                        logger.info("Service not found in catalog, re-registering...")
+                        self.register_with_catalog()
+                
             except Exception as e:
                 logger.error(f"Error sending heartbeat: {str(e)}")
             time.sleep(60)
@@ -135,13 +217,18 @@ class MessageBroker:
             logger.error("Cannot start broker: Mosquitto is not installed or not in PATH")
             logger.info("You can install Mosquitto or set MOSQUITTO_PATH in your .env file")
             return False
+            
+        # Try to use the port from .env, with fallback to alternative ports if necessary
+        logger.info(f"Checking availability of MQTT port {self.mqtt_port} from .env")
         if not self.check_port_available():
-            logger.error(f"Cannot start broker: Port {self.mqtt_port} is already in use")
+            logger.error(f"Cannot start broker: No available ports found")
             return False
+            
         try:
             config_path = self.create_config()
             if not config_path:
                 return False
+                
             logger.info(f"Starting Mosquitto broker on {self.mqtt_host}:{self.mqtt_port}")
             self.process = subprocess.Popen(
                 [mosquitto_path, '-c', config_path, '-v'],
@@ -190,12 +277,10 @@ class MessageBroker:
             self.running = False
             try:
                 service_info = {
-                    "service_id": self.service_id,
-                    "status": "stopping",
-                    "last_update": int(time.time())
+                    "status": "stopping"
                 }
                 requests.put(
-                    f"{self.catalog_url}/services/{self.service_id}",
+                    f"{self.catalog_url}/service/{self.service_id}",
                     json=service_info
                 )
             except Exception as e:
@@ -229,6 +314,47 @@ class MessageBroker:
     def signal_handler(self, sig, frame):
         logger.info(f"Received signal {sig}, shutting down...")
         self.stop()
+
+    def update_env_file(self, original_port, new_port):
+        """
+        Update the .env file with the new port when a fallback port is used.
+        This helps ensure that subsequent runs use the working port.
+        """
+        try:
+            env_file = os.path.join(os.getcwd(), '.env')
+            if not os.path.exists(env_file):
+                logger.warning("No .env file found to update")
+                return False
+                
+            # Read the current .env file
+            with open(env_file, 'r') as f:
+                lines = f.readlines()
+                
+            # Check if we need to update or add the MQTT_PORT
+            port_updated = False
+            new_lines = []
+            
+            for line in lines:
+                if line.strip().startswith('MQTT_PORT='):
+                    new_lines.append(f'MQTT_PORT={new_port}\n')
+                    port_updated = True
+                else:
+                    new_lines.append(line)
+            
+            # If MQTT_PORT wasn't in the file, add it
+            if not port_updated:
+                new_lines.append(f'MQTT_PORT={new_port}\n')
+                
+            # Write the updated .env file
+            with open(env_file, 'w') as f:
+                f.writelines(new_lines)
+                
+            logger.info(f"Updated .env file: MQTT_PORT changed from {original_port} to {new_port}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error updating .env file: {str(e)}")
+            return False
 
 if __name__ == "__main__":
     broker = MessageBroker()
