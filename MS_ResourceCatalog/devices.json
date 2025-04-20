@@ -5,11 +5,32 @@
     "type": "raspberry_pi_connector",
     "status": {
       "online": true,
-      "temperature": 28.0,
-      "pressure": 95.86,
+      "temperature": 24.47,
+      "pressure": 94.13,
       "valve": "closed"
     },
-    "last_seen": 1744066580.832114,
+    "last_seen": 1745071299.2335103,
+    "additional_info": {}
+  },
+  "dev011": {
+    "device_id": "dev011",
+    "sector_id": "1",
+    "type": "raspberry_pi_connector",
+    "status": {
+      "online": true,
+      "temperature": 25.25,
+      "pressure": 109.92,
+      "valve": "closed"
+    },
+    "last_seen": 1745047099.3799605,
+    "additional_info": {}
+  },
+  "null": {
+    "device_id": null,
+    "sector_id": null,
+    "type": "raspberry_pi_connector",
+    "status": "active",
+    "last_seen": 1745072526.0155368,
     "additional_info": {}
   }
 }

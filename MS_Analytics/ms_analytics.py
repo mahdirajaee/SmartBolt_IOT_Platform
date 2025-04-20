@@ -3,6 +3,13 @@ import json
 import time
 import requests
 import threading
+import sys
+import socket
+
+# Apply CGI patch for Python 3.13 compatibility
+if sys.version_info >= (3, 13):
+    import cgi_patch
+
 import cherrypy
 import numpy as np
 import pandas as pd
@@ -14,11 +21,12 @@ load_dotenv()
 
 class AnalyticsMicroservice:
     def __init__(self):
-        self.catalog_url = os.getenv("CATALOG_URL", "http://localhost:8080")
+        self.catalog_url = os.getenv("CATALOG_URL")
         self.service_id = "analytics_service"
         self.service_name = "Analytics Microservice"
-        self.host = os.getenv("HOST", "0.0.0.0")
-        self.port = int(os.getenv("PORT", 8082))
+        self.host = os.getenv("HOST")
+        
+        self.port = self.find_available_port(int(os.getenv("PORT")))
         self.base_url = f"http://{self.host}:{self.port}"
         
         self.ts_db_connector_url = None
@@ -26,16 +34,35 @@ class AnalyticsMicroservice:
         self.telegram_bot_url = None
         self.control_center_url = None
         
-        self.threshold_temp_high = float(os.getenv("THRESHOLD_TEMP_HIGH", "80.0"))
-        self.threshold_temp_low = float(os.getenv("THRESHOLD_TEMP_LOW", "10.0"))
-        self.threshold_pressure_high = float(os.getenv("THRESHOLD_PRESSURE_HIGH", "10.0"))
-        self.threshold_pressure_low = float(os.getenv("THRESHOLD_PRESSURE_LOW", "1.0"))
+        self.threshold_temp_high = float(os.getenv("THRESHOLD_TEMP_HIGH"))
+        self.threshold_temp_low = float(os.getenv("THRESHOLD_TEMP_LOW"))
+        self.threshold_pressure_high = float(os.getenv("THRESHOLD_PRESSURE_HIGH"))
+        self.threshold_pressure_low = float(os.getenv("THRESHOLD_PRESSURE_LOW"))
         
-        self.prediction_window = int(os.getenv("PREDICTION_WINDOW", "12"))  # 12 data points ahead
-        self.anomaly_check_interval = int(os.getenv("ANOMALY_CHECK_INTERVAL", "300"))  # seconds
+        self.prediction_window = int(os.getenv("PREDICTION_WINDOW"))  # number of data points ahead
+        self.anomaly_check_interval = int(os.getenv("ANOMALY_CHECK_INTERVAL")) #second
         
         threading.Thread(target=self.register_with_catalog, daemon=True).start()
         threading.Thread(target=self.periodic_anomaly_check, daemon=True).start()
+
+    def find_available_port(self, port):
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.bind((self.host, port))
+            sock.close()
+            return port
+        except socket.error:
+            print(f"Port {port} is busy, trying another port...")
+            for alternative_port in range(port + 1, port + 100):
+                try:
+                    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    sock.bind((self.host, alternative_port))
+                    sock.close()
+                    print(f"Using alternative port: {alternative_port}")
+                    return alternative_port
+                except socket.error:
+                    continue
+            raise Exception("No available ports found")
 
     def register_with_catalog(self):
         while True:
@@ -67,20 +94,19 @@ class AnalyticsMicroservice:
 
     def discover_services(self):
         try:
-            response = requests.get(f"{self.catalog_url}/services")
+            response = requests.get(f"{self.catalog_url}/service")
             if response.status_code == 200:
-                services = response.json()
+                services_data = response.json().get("services", {})
                 
-                for service in services:
-                    if "service_name" in service:
-                        if service["service_name"] == "Time Series DB Connector":
-                            self.ts_db_connector_url = service["endpoints"]["base_url"]
-                        elif service["service_name"] == "Web Dashboard":
-                            self.web_dashboard_url = service["endpoints"]["base_url"]
-                        elif service["service_name"] == "Telegram Bot":
-                            self.telegram_bot_url = service["endpoints"]["base_url"]
-                        elif service["service_name"] == "Control Center":
-                            self.control_center_url = service["endpoints"]["base_url"]
+                for service_id, service_info in services_data.items():
+                    if service_id == "time_series_db_connector":
+                        self.ts_db_connector_url = f"http://{service_info['endpoint'].split('://')[1]}"
+                    elif service_id == "telegram_bot":
+                        self.telegram_bot_url = f"http://{service_info['endpoint'].split('://')[1]}"
+                    elif service_id == "control_center":
+                        self.control_center_url = f"http://{service_info['endpoint'].split('://')[1]}"
+                
+                print(f"Discovered services: TimeSeriesDB={self.ts_db_connector_url}, TelegramBot={self.telegram_bot_url}, ControlCenter={self.control_center_url}")
         except Exception as e:
             print(f"Error discovering services: {e}")
 
@@ -201,16 +227,25 @@ class AnalyticsMicroservice:
         # Get all devices in the sector
         devices = self.get_devices_for_sector(sector_id)
         if not devices:
-            return {"error": "No devices found for sector"}
+            return {"status": "error", "message": f"No devices found for sector {sector_id}"}
         
-        # Time range for analysis (last hour)
+        # Sort devices by their numeric ID to get sequential order along the pipeline
+        devices.sort(key=lambda device: int(device["device_id"].replace("dev", "")))
+        
+        # Check for anomalies across multiple devices in sequence
+        anomalies = []
+        cascade_detected = False
+        propagation_direction = None
+        propagation_speed = None
+        
+        # Get data for each device and check for anomalies
         end_time = datetime.now()
-        start_time = end_time - timedelta(hours=1)
+        start_time = end_time - timedelta(hours=1)  # Look at the last hour of data
         
         device_data = {}
-        anomalies_by_device = {}
+        device_anomalies = {}
         
-        # Get data for each device
+        # First pass: collect data and detect individual anomalies
         for device in devices:
             device_id = device["device_id"]
             data = self.get_sensor_data(sector_id, device_id, data_type, start_time, end_time)
@@ -218,73 +253,122 @@ class AnalyticsMicroservice:
             if data:
                 device_data[device_id] = data
                 
-                # Determine threshold based on data type
-                if data_type == "temperature":
-                    threshold_high = self.threshold_temp_high
-                    threshold_low = self.threshold_temp_low
-                else:  # pressure
-                    threshold_high = self.threshold_pressure_high
-                    threshold_low = self.threshold_pressure_low
+                # Check for anomalies in this device's data
+                threshold_high = self.threshold_temp_high if data_type == "temperature" else self.threshold_pressure_high
+                threshold_low = self.threshold_temp_low if data_type == "temperature" else self.threshold_pressure_low
                 
-                # Check for anomalies
-                anomalies = []
-                for item in data:
-                    if item['value'] > threshold_high or item['value'] < threshold_low:
-                        anomalies.append({
-                            'timestamp': item['timestamp'],
-                            'value': item['value'],
-                            'threshold_violated': 'high' if item['value'] > threshold_high else 'low'
-                        })
+                # Get the most recent data points
+                recent_data = sorted(data, key=lambda x: x["timestamp"])[-30:]  # Last 30 points
                 
-                if anomalies:
-                    anomalies_by_device[device_id] = anomalies
-        
-        # If no anomalies detected, return empty result
-        if not anomalies_by_device:
-            return {"result": "No anomalies detected", "devices": [device["device_id"] for device in devices]}
-        
-        # Find the first device with anomaly (root cause)
-        first_anomaly_device = None
-        earliest_anomaly_time = None
-        
-        for device_id, anomalies in anomalies_by_device.items():
-            for anomaly in anomalies:
-                anomaly_time = datetime.fromisoformat(anomaly['timestamp'])
-                if earliest_anomaly_time is None or anomaly_time < earliest_anomaly_time:
-                    earliest_anomaly_time = anomaly_time
-                    first_anomaly_device = device_id
-        
-        # Check if subsequent devices also have anomalies (cascade effect)
-        cascade_effects = []
-        
-        if first_anomaly_device:
-            first_device_index = next(i for i, device in enumerate(devices) if device["device_id"] == first_anomaly_device)
-            
-            # Check devices after the first anomaly device
-            for i in range(first_device_index + 1, len(devices)):
-                subsequent_device_id = devices[i]["device_id"]
-                if subsequent_device_id in anomalies_by_device:
-                    cascade_effects.append({
-                        "device_id": subsequent_device_id,
-                        "anomalies": anomalies_by_device[subsequent_device_id]
+                # Calculate mean and standard deviation
+                values = [point["value"] for point in recent_data]
+                mean_value = sum(values) / len(values)
+                std_dev = (sum((x - mean_value) ** 2 for x in values) / len(values)) ** 0.5
+                
+                # Detect anomalies (values beyond 2 standard deviations or beyond thresholds)
+                anomaly_points = []
+                for point in recent_data:
+                    if (point["value"] > threshold_high or 
+                        point["value"] < threshold_low or
+                        point["value"] > mean_value + 2 * std_dev or
+                        point["value"] < mean_value - 2 * std_dev):
+                        anomaly_points.append(point)
+                
+                device_anomalies[device_id] = anomaly_points
+                
+                if anomaly_points:
+                    anomalies.append({
+                        "device_id": device_id,
+                        "anomalies": anomaly_points,
+                        "timestamp": anomaly_points[-1]["timestamp"] if anomaly_points else None
                     })
         
-        result = {
-            "root_cause_device": first_anomaly_device,
-            "root_cause_anomalies": anomalies_by_device.get(first_anomaly_device, []),
-            "cascade_effects": cascade_effects,
-            "recommendation": f"Close valve before {first_anomaly_device} to prevent cascade effects"
+        # Second pass: analyze propagation patterns
+        if len(anomalies) >= 2:
+            # Sort anomalies by device ID to maintain pipeline order
+            sorted_anomalies = sorted(anomalies, key=lambda a: int(a["device_id"].replace("dev", "")))
+            
+            # Check if anomalies appear in sequence along the pipeline
+            earliest_anomaly_times = {}
+            for anomaly in sorted_anomalies:
+                if anomaly["anomalies"]:
+                    earliest_time = min(point["timestamp"] for point in anomaly["anomalies"])
+                    earliest_anomaly_times[anomaly["device_id"]] = datetime.fromisoformat(earliest_time.replace('Z', '+00:00'))
+            
+            # Sort devices by anomaly detection time
+            devices_by_time = sorted(earliest_anomaly_times.items(), key=lambda x: x[1])
+            
+            # Convert to ordered lists of IDs and timestamps
+            sequential_devices = [item[0] for item in devices_by_time]
+            sequential_times = [item[1] for item in devices_by_time]
+            
+            # Check if anomalies appear in sequential order along the pipeline
+            device_ids = [d["device_id"] for d in devices]
+            device_positions = {device_id: i for i, device_id in enumerate(device_ids)}
+            
+            sequential_positions = [device_positions[device_id] for device_id in sequential_devices]
+            
+            # If positions increase or decrease monotonically, we have a cascade
+            if all(sequential_positions[i] < sequential_positions[i+1] for i in range(len(sequential_positions)-1)):
+                cascade_detected = True
+                propagation_direction = "forward"
+                
+                # Calculate propagation speed if we have more than one device with anomalies
+                if len(sequential_times) >= 2:
+                    time_diffs = [(sequential_times[i+1] - sequential_times[i]).total_seconds() 
+                                  for i in range(len(sequential_times)-1)]
+                    propagation_speed = sum(time_diffs) / len(time_diffs)
+                    
+            elif all(sequential_positions[i] > sequential_positions[i+1] for i in range(len(sequential_positions)-1)):
+                cascade_detected = True
+                propagation_direction = "backward"
+                
+                # Calculate propagation speed if we have more than one device with anomalies
+                if len(sequential_times) >= 2:
+                    time_diffs = [(sequential_times[i+1] - sequential_times[i]).total_seconds() 
+                                  for i in range(len(sequential_times)-1)]
+                    propagation_speed = sum(time_diffs) / len(time_diffs)
+        
+        # Prepare response
+        response = {
+            "sector_id": sector_id,
+            "data_type": data_type,
+            "devices_analyzed": len(devices),
+            "anomalies_detected": len(anomalies),
+            "cascade_detected": cascade_detected,
+            "device_anomalies": anomalies
         }
         
-        # Send alert to Telegram Bot if a root cause is identified
-        if first_anomaly_device and self.telegram_bot_url:
-            self.send_alert(result)
-        
-        # Send control recommendation to Control Center
-        if first_anomaly_device and self.control_center_url:
-            self.send_control_recommendation(sector_id, first_anomaly_device, result["recommendation"])
-        
-        return result
+        if cascade_detected:
+            response["propagation_direction"] = propagation_direction
+            response["propagation_speed_seconds"] = propagation_speed
+            
+            # If cascade is detected, send alert with high severity
+            alert_data = {
+                "sector_id": sector_id,
+                "alert_type": "cascade_problem",
+                "severity": "high",
+                "message": f"Cascade problem detected in sector {sector_id} for {data_type}. " +
+                          f"Propagating {propagation_direction} at {round(propagation_speed, 2)} seconds between devices.",
+                "devices_affected": [a["device_id"] for a in anomalies],
+                "timestamp": datetime.now().isoformat()
+            }
+            self.send_alert(alert_data)
+            
+            # Send control recommendation to the Control Center
+            # For a cascade problem, we want to close valves to isolate the affected sector
+            first_affected_device = sequential_devices[0]
+            recommendation = {
+                "sector_id": sector_id,
+                "device_id": first_affected_device,
+                "action": "close_valve",
+                "reason": f"Cascade problem detected, propagating {propagation_direction}",
+                "severity": "high",
+                "timestamp": datetime.now().isoformat()
+            }
+            self.send_control_recommendation(sector_id, first_affected_device, recommendation)
+            
+        return response
 
     def send_alert(self, alert_data):
         if not self.telegram_bot_url:
@@ -461,14 +545,35 @@ class AnalyticsMicroservice:
             return {"error": "Method not allowed"}
 
 def main():
-    analytics_service = AnalyticsMicroservice()
-    
-    cherrypy.config.update({
-        'server.socket_host': analytics_service.host,
-        'server.socket_port': analytics_service.port,
-    })
-    
-    cherrypy.quickstart(analytics_service)
+    try:
+        # Create the analytics service
+        analytics_service = AnalyticsMicroservice()
+        
+        # Configure CherryPy
+        cherrypy.config.update({
+            'server.socket_host': analytics_service.host,
+            'server.socket_port': analytics_service.port,
+            'engine.autoreload.on': False
+        })
+        
+        # Mount the service at the root
+        cherrypy.tree.mount(analytics_service, '/', {
+            '/': {
+                'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+                'tools.sessions.on': True,
+                'tools.response_headers.on': True,
+                'tools.response_headers.headers': [('Content-Type', 'application/json')],
+            }
+        })
+        
+        # Start the server
+        print(f"Starting Analytics Microservice on {analytics_service.host}:{analytics_service.port}")
+        cherrypy.engine.start()
+        cherrypy.engine.block()
+    except Exception as e:
+        print(f"Failed to start Analytics Microservice: {e}")
+        import traceback
+        traceback.print_exc()
 
 if __name__ == "__main__":
     main()

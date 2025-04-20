@@ -4,7 +4,7 @@
     "endpoint": "http://0.0.0.0:8083",
     "port": 8083,
     "last_seen": 1744066578.634017,
-    "status": "active",
+    "status": "inactive",
     "additional_info": {
       "service_name": "Control Center Microservice"
     }
@@ -14,7 +14,7 @@
     "endpoint": "http://localhost:8087",
     "port": 8087,
     "last_seen": 1744066579.62802,
-    "status": "active",
+    "status": "inactive",
     "additional_info": {
       "description": "Account management service for authentication and user management"
     }
@@ -23,13 +23,28 @@
     "name": "time_series_db_connector",
     "endpoint": "http://localhost:8081",
     "port": 8081,
-    "last_seen": 1744066577.389075,
-    "status": "active",
+    "last_seen": 1745065434.0021212,
+    "status": "inactive",
     "additional_info": {
       "description": "Time Series DB Connector Service",
       "mqtt_broker": "localhost",
       "mqtt_port": 1883,
       "influxdb_url": "http://localhost:8086"
+    }
+  },
+  "analytics_service": {
+    "name": "analytics_service",
+    "endpoint": "http://0.0.0.0:8082",
+    "port": 8082,
+    "last_seen": 1745061573.4986808,
+    "status": "inactive",
+    "additional_info": {
+      "service_name": "Analytics Microservice",
+      "endpoints": {
+        "predictions": "http://0.0.0.0:8082/predictions",
+        "anomalies": "http://0.0.0.0:8082/anomalies",
+        "cascade_analysis": "http://0.0.0.0:8082/cascade_analysis"
+      }
     }
   }
 }
