@@ -23,8 +23,8 @@
     "name": "time_series_db_connector",
     "endpoint": "http://localhost:8081",
     "port": 8081,
-    "last_seen": 1744565232.312429,
-    "status": "active",
+    "last_seen": 1745065434.0021212,
+    "status": "inactive",
     "additional_info": {
       "description": "Time Series DB Connector Service",
       "mqtt_broker": "localhost",
@@ -36,7 +36,7 @@
     "name": "analytics_service",
     "endpoint": "http://0.0.0.0:8082",
     "port": 8082,
-    "last_seen": 1744536038.0460706,
+    "last_seen": 1745061573.4986808,
     "status": "inactive",
     "additional_info": {
       "service_name": "Analytics Microservice",

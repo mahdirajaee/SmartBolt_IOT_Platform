@@ -6,8 +6,6 @@ import random
 import threading
 import numpy as np
 import socket
-
-# Apply CGI patch for Python 3.13 compatibility
 import sys
 if sys.version_info >= (3, 13):
     import cgi_patch
@@ -26,7 +24,7 @@ class RaspberryPiConnector:
         self.catalog_url = os.getenv("CATALOG_URL")
         
         self.connector_id = f"raspberry_pi_{self.sector_id}_{self.device_id}_{str(uuid.uuid4())[:8]}"
-        self.port = self.find_available_port(int(os.getenv("PORT")))
+        self.port = self.get_port_from_env()
         self.base_url = f"http://{os.getenv('HOST')}:{self.port}"
         
         self.temperature_mean = float(os.getenv("TEMP_MEAN"))
@@ -46,6 +44,14 @@ class RaspberryPiConnector:
         self.last_pressure = None
         
         self.running = True
+    
+    def get_port_from_env(self):
+        try:
+            preferred_port = int(os.getenv("PORT"))
+            return self.find_available_port(preferred_port)
+        except (ValueError, TypeError):
+            print(f"Invalid PORT in .env, using default port 8000")
+            return self.find_available_port(8000)
         
     def start(self):
         try:
@@ -88,24 +94,19 @@ class RaspberryPiConnector:
                 print(f"Retrieved broker configuration: {self.mqtt_broker}:{self.mqtt_port}")
         except Exception as e:
             print(f"Error retrieving configuration: {e}")
-            # Keep using the default values from environment variables
     
     def setup_mqtt(self):
-        # Check if we're using Paho MQTT 1.x or 2.x
         try:
             major_version = int(mqtt.__version__.split('.')[0])
             
             if major_version >= 2:
-                # For Paho MQTT 2.x
                 self.mqtt_client = mqtt.Client(
                     client_id=self.connector_id,
                     callback_api_version=mqtt.CallbackAPIVersion.VERSION2
                 )
             else:
-                # For Paho MQTT 1.x
                 self.mqtt_client = mqtt.Client(client_id=self.connector_id)
         except AttributeError:
-            # If __version__ attribute doesn't exist, assume newer version
             print("Could not determine MQTT version, using default client initialization")
             self.mqtt_client = mqtt.Client(client_id=self.connector_id)
         
@@ -221,7 +222,6 @@ class RaspberryPiConnector:
         }
         
         try:
-            # Use device_id as expected by the API
             response = requests.post(
                 f"{self.catalog_url}/device",
                 json=registration_data
@@ -235,7 +235,7 @@ class RaspberryPiConnector:
         except Exception as e:
             print(f"Error registering with Resource Catalog: {e}")
             raise
-    # update the last status of the Temp and Pres in the catalog
+            
     def update_catalog_status(self):
         status_data = {
             "online": True,
@@ -245,7 +245,6 @@ class RaspberryPiConnector:
         }
         
         try:
-            # The API uses device_id to identify devices
             response = requests.put(
                 f"{self.catalog_url}/device/{self.device_id}",
                 json={"status": status_data}
@@ -289,7 +288,6 @@ class RaspberryPiConnector:
                 self.valve_status = "open" if data["command"] == "open" else "closed"
                 self.update_catalog_status()
                 
-                # Also publish to MQTT if client is available
                 if self.mqtt_client:
                     valve_topic = f"/actuator/valve/{self.sector_id}/{self.device_id}"
                     self.mqtt_client.publish(valve_topic, json.dumps({"command": data["command"]}))
@@ -300,14 +298,9 @@ class RaspberryPiConnector:
         return {"status": "error", "message": "Method not allowed"}
 
     def find_available_port(self, preferred_port, max_attempts=10):
-        """
-        Attempts to find an available TCP port starting from preferred_port.
-        Tries to bind a socket to confirm the port is truly available.
-        """
         port = preferred_port
         for attempt in range(max_attempts):
             try:
-                # Actually try to bind the port
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                     s.bind(('0.0.0.0', port))
@@ -317,10 +310,9 @@ class RaspberryPiConnector:
                 print(f"Port {port} is already in use, trying {port + 1}")
                 port += 1
 
-        raise RuntimeError(f"[!] Could not find an available port after {max_attempts} attempts starting from {preferred_port}")
+        raise RuntimeError(f"Could not find an available port after {max_attempts} attempts starting from {preferred_port}")
     
     def is_port_in_use(self, port, host='0.0.0.0'):
-        """Check if a port is in use"""
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             return s.connect_ex((host, port)) == 0
 
