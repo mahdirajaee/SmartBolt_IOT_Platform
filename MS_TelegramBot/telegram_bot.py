@@ -15,6 +15,7 @@ import asyncio
 import threading
 import requests
 import cherrypy
+import socket
 from dotenv import load_dotenv
 
 # Load environment variables from .env file in the current directory
@@ -32,13 +33,16 @@ class TelegramBotService:
             
         self.catalog_url = os.getenv("RESOURCE_CATALOG_URL", "http://localhost:8080")
         self.service_id = "telegram_bot"
-        self.service_port = int(os.getenv("SERVICE_PORT", 8085))
+        self.service_port = self.find_available_port()
         self.service_host = os.getenv("SERVICE_HOST", "localhost")
         self.service_address = f"http://{self.service_host}:{self.service_port}"
         
         self.endpoints = {}
         self.authenticated_users = {}
         self.active_chat_ids = set()
+        
+        # Record start time
+        self.start_time = time.time()
         
         # Use a more compatible configuration for ApplicationBuilder
         try:
@@ -67,6 +71,31 @@ class TelegramBotService:
             cherrypy.log("Telegram bot functionality will be disabled")
             self.bot_application = None
     
+    def find_available_port(self):
+        preferred_port = int(os.getenv("SERVICE_PORT", 8085))
+        
+        if self.is_port_available(preferred_port):
+            return preferred_port
+            
+        cherrypy.log(f"Port {preferred_port} is not available, searching for alternative...")
+        
+        for port in range(8000, 9000):
+            if port != preferred_port and self.is_port_available(port):
+                cherrypy.log(f"Using alternative port: {port}")
+                return port
+                
+        raise RuntimeError("No available ports found")
+    
+    def is_port_available(self, port):
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(2)
+            result = sock.connect_ex(('localhost', port))
+            sock.close()
+            return result != 0
+        except:
+            return False
+    
     def run_bot(self):
         if self.bot_application:
             try:
@@ -78,20 +107,23 @@ class TelegramBotService:
     
     def register_with_catalog(self):
         service_info = {
-            "id": self.service_id,
-            "name": "Telegram Bot Service",
+            "name": self.service_id,
             "endpoint": self.service_address,
-            "status": "active",
-            "last_update": int(time.time())
+            "port": self.service_port,
+            "additional_info": {
+                "description": "Telegram Bot Service for notifications and control",
+                "commands": ["/start", "/help", "/login", "/status", "/sectors", "/valve"],
+                "notification_endpoint": f"{self.service_address}/send_notification"
+            }
         }
         
         try:
-            response = requests.post(f"{self.catalog_url}/services", json=service_info)
+            response = requests.post(f"{self.catalog_url}/service", json=service_info)
             if response.status_code in (200, 201):
                 cherrypy.log("Successfully registered with the Resource Catalog")
                 return True
             else:
-                cherrypy.log(f"Failed to register with catalog: {response.text}")
+                cherrypy.log(f"Failed to register with catalog: {response.status_code} - {response.text}")
                 return False
         except Exception as e:
             cherrypy.log(f"Error registering with catalog: {str(e)}")
@@ -392,6 +424,18 @@ class TelegramBotService:
                     cherrypy.log(f"Failed to send alert to chat {chat_id}: {e}")
         
         threading.Thread(target=lambda: asyncio.run(send_alerts())).start()
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def status(self):
+        """Status endpoint for the Telegram Bot Service"""
+        return {
+            "service": "Telegram Bot Service",
+            "bot_running": self.bot_application is not None,
+            "active_chats": len(self.active_chat_ids),
+            "authenticated_users": len(self.authenticated_users),
+            "uptime": time.time() - self.start_time if hasattr(self, 'start_time') else 0
+        }
 
 def periodic_tasks():
     service = cherrypy.engine.telegram_service
