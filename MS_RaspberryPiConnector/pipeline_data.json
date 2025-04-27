@@ -1,0 +1,34 @@
+{
+  "sectors": [
+    {
+      "sector_id": "A",
+      "name": "Sector A",
+      "start_device_id": 1,
+      "end_device_id": 10,
+      "device_count": 2,
+      "valve_state": "closed"
+    }
+  ],
+  "devices": [
+    {
+      "device_id": 1,
+      "sector_id": "A",
+      "name": "Device 001",
+      "status": "active",
+      "readings": {
+        "temperature": 24,
+        "pressure": 1005
+      }
+    },
+    {
+      "device_id": 10,
+      "sector_id": "A",
+      "name": "Device 010",
+      "status": "active",
+      "readings": {
+        "temperature": 24,
+        "pressure": 1015
+      }
+    }
+  ]
+}
