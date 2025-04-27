@@ -1,0 +1,27 @@
+{
+    "service": {
+        "id": "telegram_bot",
+        "name": "Telegram Bot Service",
+        "description": "Telegram bot interface for Smart Bolt system",
+        "type": "interface",
+        "port": 5005
+    },
+    "resource_catalog": {
+        "url": "http://localhost:5000"
+    },
+    "account_manager": {
+        "url": "http://localhost:5002"
+    },
+    "telegram": {
+        "bot_token": "7947622045:AAEkAL7ldeK9hipn-m-xj0UXRSjHxEhf6T8"
+    },
+    "mqtt": {
+        "broker": "localhost",
+        "port": 1883,
+        "topic_commands": "smart_bolt/commands"
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "telegram_bot.log"
+    }
+}

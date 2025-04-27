@@ -1,0 +1,42 @@
+{
+    "service": {
+        "id": "web_dashboard",
+        "name": "Web Dashboard",
+        "description": "Web-based visualization dashboard for Smart Bolt system",
+        "type": "interface",
+        "port": 5007
+    },
+    "resource_catalog": {
+        "url": "http://localhost:5000"
+    },
+    "account_manager": {
+        "url": "http://localhost:5002"
+    },
+    "analytics_service": {
+        "url": "http://localhost:5003"
+    },
+    "timeseries_db": {
+        "url": "http://localhost:5004"
+    },
+    "raspberry_pi_connector": {
+        "url": "http://localhost:5001"
+    },
+    "mqtt": {
+        "broker": "localhost",
+        "port": 1883,
+        "topics": {
+            "sensor_data": "smart_bolt/sensors/+",
+            "commands": "smart_bolt/commands",
+            "alerts": "smart_bolt/alerts"
+        }
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "web_dashboard.log"
+    },
+    "refresh_interval": 30000,
+    "security": {
+        "secret_key": "change_this_to_a_secure_random_key_in_production",
+        "cookie_max_age": 86400
+    }
+}
