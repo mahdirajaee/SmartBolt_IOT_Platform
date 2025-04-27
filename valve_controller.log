@@ -1,0 +1,3 @@
+2025-04-24 15:40:16,534 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-24 15:40:16,535 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-24 15:40:16,535 - valve_controller - INFO - Valve control message handler started

@@ -1,0 +1,17 @@
+{
+    "server": {
+        "host": "0.0.0.0",
+        "port": 8080
+    },
+    "storage": {
+        "db_path": "catalog_db.json"
+    },
+    "timeout": {
+        "device_offline": 300,
+        "cleanup_interval": 60
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "resource_catalog.log"
+    }
+}
