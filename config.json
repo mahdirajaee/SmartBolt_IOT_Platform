@@ -1,0 +1,23 @@
+{
+    "service": {
+        "id": "account_manager",
+        "name": "Account Manager Service",
+        "description": "Handles user authentication and authorization for Smart Bolt services",
+        "type": "authentication",
+        "port": 5002
+    },
+    "resource_catalog": {
+        "url": "http://localhost:5000"
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "account_manager.log"
+    },
+    "storage": {
+        "db_file": "user_accounts.db"
+    },
+    "auth": {
+        "jwt_secret": "smart_bolt_secret_key",
+        "jwt_expiration": 3600
+    }
+}

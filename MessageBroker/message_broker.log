@@ -1,0 +1,259 @@
+2025-04-23 18:20:09,529 - message_broker - INFO - Message store initialized
+2025-04-23 18:20:09,532 - message_broker - INFO - Message broker started
+2025-04-23 18:20:09,534 - message_broker - INFO - Connected to MQTT broker
+2025-04-23 18:20:09,534 - message_broker - INFO - Republished 0 retained messages
+2025-04-23 19:15:17,669 - message_broker - INFO - Shutdown signal received
+2025-04-23 19:15:17,679 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-23T19:15:17.674891', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-23 19:15:18,682 - message_broker - INFO - Disconnected from MQTT broker
+2025-04-23 19:15:18,685 - message_broker - INFO - Message broker stopped
+2025-04-24 15:04:15,335 - message_broker - INFO - Message store initialized
+2025-04-24 15:04:15,337 - message_broker - INFO - Message broker started
+2025-04-24 15:04:15,338 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 15:04:15,338 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:09,217 - message_broker - INFO - Message store initialized
+2025-04-24 16:31:09,223 - message_broker - INFO - Message broker started
+2025-04-24 16:31:09,226 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:09,226 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:09,232 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:10,245 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:10,246 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:10,248 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:11,255 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:11,255 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:11,256 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:12,262 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:12,262 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:12,264 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:13,270 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:13,270 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:13,271 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:14,278 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:14,278 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:14,280 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:15,286 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:15,286 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:15,288 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:16,294 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:16,293 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:16,295 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:17,303 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:17,303 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:17,305 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:18,310 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:18,310 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:18,311 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:19,316 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:19,316 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:19,318 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:20,326 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:20,326 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:20,328 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:21,335 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:21,335 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:21,337 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:22,344 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:22,344 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:22,347 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:23,350 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:23,350 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:23,350 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:24,357 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:24,357 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:24,358 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:25,361 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:25,361 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:25,363 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:26,368 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:26,368 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:26,370 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:27,372 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:27,373 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:27,374 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:28,383 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:28,382 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:28,385 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:29,391 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:29,391 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:29,392 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:30,397 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:30,397 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:30,401 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:31,406 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:31,406 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:31,412 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:32,414 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:32,414 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:32,415 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:33,423 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:33,424 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:33,428 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:34,428 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:34,428 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:34,429 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:35,436 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:35,437 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:35,439 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:36,440 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:36,440 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:36,441 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:37,447 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:37,447 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:37,449 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:38,452 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:38,452 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:38,455 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:39,461 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:39,461 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:39,463 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:40,470 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:40,470 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:40,472 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:41,476 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:41,476 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:41,478 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:42,486 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:42,486 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:42,488 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:43,495 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:43,495 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:43,496 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:44,502 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:44,502 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:44,505 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:45,511 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:45,511 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:45,515 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:46,521 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:46,521 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:46,524 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:47,528 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:47,528 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:47,530 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:48,536 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:48,536 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:48,538 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:49,543 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:49,543 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:49,545 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:50,552 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:50,552 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:50,554 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:51,561 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:51,561 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:51,563 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:52,567 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:52,567 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:52,568 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:53,585 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:53,586 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:53,589 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:54,596 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:54,596 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:54,597 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:55,604 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:55,604 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:55,606 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:56,612 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:56,612 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:56,614 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:57,620 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:57,620 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:57,620 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:58,626 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:58,626 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:58,627 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:31:59,635 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:31:59,635 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:31:59,638 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:00,641 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:32:00,641 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:00,642 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:01,648 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:01,648 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:32:01,649 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:02,652 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:32:02,652 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:02,655 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:03,661 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:32:03,661 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:03,663 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:04,670 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:04,669 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:32:04,672 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:05,678 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: 7
+2025-04-24 16:32:05,678 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:05,679 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:06,684 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:06,686 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:09,675 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:09,677 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:32:11,688 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:32:11,690 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:35:03,174 - message_broker - INFO - Message store initialized
+2025-04-24 16:35:03,177 - message_broker - INFO - Message broker started
+2025-04-24 16:35:03,182 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:35:03,182 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:35:03,186 - message_broker - INFO - System event received: {'event': 'broker_start', 'timestamp': '2025-04-24T16:35:03.177965', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-24 16:35:40,067 - message_broker - INFO - Shutdown signal received
+2025-04-24 16:35:40,071 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-24T16:35:40.069742', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-24 16:35:40,073 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-24T16:35:40.069742', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-24 16:35:41,073 - message_broker - INFO - Disconnected from MQTT broker
+2025-04-24 16:35:41,080 - message_broker - INFO - Message broker stopped
+2025-04-24 16:35:55,364 - message_broker - INFO - Shutdown signal received
+2025-04-24 16:35:55,367 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-24T16:35:55.365357', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-24 16:35:56,384 - message_broker - INFO - Message broker stopped
+2025-04-24 16:37:11,619 - message_broker - INFO - Message store initialized
+2025-04-24 16:37:11,622 - message_broker - INFO - Message broker started
+2025-04-24 16:37:11,624 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:37:11,624 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:39:37,965 - message_broker - INFO - Shutdown signal received
+2025-04-24 16:39:37,969 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-24T16:39:37.968045', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-24 16:39:38,974 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: DisconnectFlags(is_disconnect_packet_from_server=False)
+2025-04-24 16:39:38,975 - message_broker - INFO - Message broker stopped
+2025-04-24 16:39:48,381 - message_broker - INFO - Message store initialized
+2025-04-24 16:39:48,385 - message_broker - INFO - Message broker started
+2025-04-24 16:39:48,386 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:39:48,386 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:39:57,168 - message_broker - INFO - Shutdown signal received
+2025-04-24 16:39:57,170 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-24T16:39:57.169272', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-24 16:39:58,175 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: DisconnectFlags(is_disconnect_packet_from_server=False)
+2025-04-24 16:39:58,176 - message_broker - INFO - Message broker stopped
+2025-04-24 16:40:06,203 - message_broker - INFO - Message store initialized
+2025-04-24 16:40:06,206 - message_broker - INFO - Message broker started
+2025-04-24 16:40:06,206 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:40:06,206 - message_broker - INFO - Republished 0 retained messages
+2025-04-24 16:40:21,540 - message_broker - INFO - Shutdown signal received
+2025-04-24 16:40:21,544 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-24T16:40:21.541299', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-24 16:40:22,487 - message_broker - INFO - Shutdown signal received
+2025-04-24 16:41:27,862 - message_broker - INFO - Message store initialized
+2025-04-24 16:41:27,865 - message_broker - INFO - Message broker started
+2025-04-24 16:41:27,867 - message_broker - INFO - Connected to MQTT broker
+2025-04-24 16:41:27,867 - message_broker - INFO - Republished 0 retained messages
+2025-04-25 08:57:22,486 - message_broker - INFO - Shutdown signal received
+2025-04-25 08:57:22,498 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-25T08:57:22.493060', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-25 08:57:23,501 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: DisconnectFlags(is_disconnect_packet_from_server=False)
+2025-04-25 08:57:23,504 - message_broker - INFO - Message broker stopped
+2025-04-26 14:29:51,273 - message_broker - INFO - Message store initialized
+2025-04-26 14:29:51,275 - message_broker - INFO - Message broker started
+2025-04-26 14:29:51,275 - message_broker - INFO - Connected to MQTT broker
+2025-04-26 14:29:51,275 - message_broker - INFO - Republished 0 retained messages
+2025-04-26 22:53:00,250 - message_broker - INFO - Shutdown signal received
+2025-04-26 22:53:00,260 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-26T22:53:00.256727', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-26 22:53:01,264 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: DisconnectFlags(is_disconnect_packet_from_server=False)
+2025-04-26 22:53:01,265 - message_broker - INFO - Message broker stopped
+2025-04-27 14:08:33,823 - message_broker - INFO - Message store initialized
+2025-04-27 14:08:33,826 - message_broker - INFO - Message broker started
+2025-04-27 14:08:33,831 - message_broker - INFO - Connected to MQTT broker
+2025-04-27 14:08:33,832 - message_broker - INFO - Republished 0 retained messages
+2025-04-27 14:08:56,795 - message_broker - INFO - Shutdown signal received
+2025-04-27 14:08:56,800 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-27T14:08:56.796460', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-27 14:08:57,813 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: DisconnectFlags(is_disconnect_packet_from_server=False)
+2025-04-27 14:08:57,814 - message_broker - INFO - Message broker stopped
+2025-04-27 14:09:14,611 - message_broker - INFO - Message store initialized
+2025-04-27 14:09:14,614 - message_broker - INFO - Message broker started
+2025-04-27 14:09:14,615 - message_broker - INFO - Connected to MQTT broker
+2025-04-27 14:09:14,615 - message_broker - INFO - Republished 0 retained messages
+2025-04-27 14:16:42,160 - message_broker - INFO - Shutdown signal received
+2025-04-27 14:16:42,164 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-27T14:16:42.162693', 'broker_id': 'smart_bolt_message_broker'}
+2025-04-27 14:16:43,169 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: DisconnectFlags(is_disconnect_packet_from_server=False)
+2025-04-27 14:16:43,170 - message_broker - INFO - Message broker stopped
