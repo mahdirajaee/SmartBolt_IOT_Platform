@@ -22,8 +22,8 @@ SQLITE_DB_FILE = "timeseries_data.db"
 # InfluxDB settings (v2.x)
 INFLUXDB_HOST = "localhost"
 INFLUXDB_PORT = 8086
-INFLUXDB_ORG = "INFLUXDB_TOKEN"  # Your organization name
-INFLUXDB_TOKEN = "AQFaXwV-179yDwbMBzALoYdnwVK5fUqhhJGb6Dikey1Wu6c9tBf51cKjRy_uJOurrpJ5xTdPSebqx4R0FI5bWA=="  # Your API token
+INFLUXDB_ORG = "IOT_project_Bolt"  # Your organization name
+INFLUXDB_TOKEN = "gDlmQKm_p-cp1T2vcpFoWv7Ole73y3AR405jhi-kpNCveSFjmqZwnPmPWD1ztC5No0TSVAKwFziaACbphEuP5w=="  # Your API token
 INFLUXDB_BUCKET = "smart_bolt_v1"  # The bucket we'll use for all data
 
 # TimescaleDB settings (if used)

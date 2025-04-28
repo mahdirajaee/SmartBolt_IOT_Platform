@@ -51,7 +51,7 @@ class TimeSeriesStorage(ABC):
         """Close database connections"""
         pass
 
-class SQLiteStorage(TimeSeriesStorage):
+# class SQLiteStorage(TimeSeriesStorage):
     """SQLite implementation of time series data storage"""
     
     def __init__(self, db_file=None):
@@ -334,8 +334,8 @@ class InfluxDBStorage(TimeSeriesStorage):
     def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit, metadata=None):
         """Store a single sensor reading in InfluxDB v2.x"""
         if not self._influxdb_available:
-            return False
-            
+            return False   
+        
         try:
             # Create a Point
             point = self.Point(sensor_type)
@@ -427,7 +427,6 @@ class InfluxDBStorage(TimeSeriesStorage):
         """Store a valve state change in InfluxDB v2.x"""
         if not self._influxdb_available:
             return False
-            
         try:
             # Create a Point
             point = self.Point("valve_state")
@@ -574,268 +573,268 @@ class InfluxDBStorage(TimeSeriesStorage):
                 logger.error(f"Error closing InfluxDB connection: {e}")
 
 
-class TimescaleDBStorage(TimeSeriesStorage):
-    """TimescaleDB implementation of time series data storage"""
+# class TimescaleDBStorage(TimeSeriesStorage):
+    # """TimescaleDB implementation of time series data storage"""
     
-    def __init__(self):
-        try:
-            import psycopg2
-            from psycopg2.extras import RealDictCursor
+    # def __init__(self):
+    #     try:
+    #         import psycopg2
+    #         from psycopg2.extras import RealDictCursor
             
-            self.conn = psycopg2.connect(
-                host=config.TIMESCALEDB_HOST,
-                port=config.TIMESCALEDB_PORT,
-                user=config.TIMESCALEDB_USER,
-                password=config.TIMESCALEDB_PASSWORD,
-                dbname=config.TIMESCALEDB_DATABASE
-            )
+    #         self.conn = psycopg2.connect(
+    #             host=config.TIMESCALEDB_HOST,
+    #             port=config.TIMESCALEDB_PORT,
+    #             user=config.TIMESCALEDB_USER,
+    #             password=config.TIMESCALEDB_PASSWORD,
+    #             dbname=config.TIMESCALEDB_DATABASE
+    #         )
             
-            self.conn.autocommit = False
-            self.cursor_factory = RealDictCursor
+    #         self.conn.autocommit = False
+    #         self.cursor_factory = RealDictCursor
             
-            self._initialize_db()
-            logger.info(f"Connected to TimescaleDB at {config.TIMESCALEDB_HOST}:{config.TIMESCALEDB_PORT}")
-            self._timescaledb_available = True
-        except ImportError:
-            logger.error("psycopg2 not installed. Install using 'pip install psycopg2-binary'")
-            self._timescaledb_available = False
-        except Exception as e:
-            logger.error(f"Failed to connect to TimescaleDB: {e}")
-            self._timescaledb_available = False
+    #         self._initialize_db()
+    #         logger.info(f"Connected to TimescaleDB at {config.TIMESCALEDB_HOST}:{config.TIMESCALEDB_PORT}")
+    #         self._timescaledb_available = True
+    #     except ImportError:
+    #         logger.error("psycopg2 not installed. Install using 'pip install psycopg2-binary'")
+    #         self._timescaledb_available = False
+    #     except Exception as e:
+    #         logger.error(f"Failed to connect to TimescaleDB: {e}")
+    #         self._timescaledb_available = False
     
-    def _initialize_db(self):
-        """Initialize the TimescaleDB with required tables and hypertables"""
-        if not self._timescaledb_available:
-            return
+    # def _initialize_db(self):
+    #     """Initialize the TimescaleDB with required tables and hypertables"""
+    #     if not self._timescaledb_available:
+    #         return
             
-        try:
-            cursor = self.conn.cursor()
+    #     try:
+    #         cursor = self.conn.cursor()
             
-            # Create extension if it doesn't exist (requires superuser)
-            try:
-                cursor.execute("CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;")
-            except Exception as e:
-                logger.warning(f"Could not create TimescaleDB extension (may require superuser): {e}")
+    #         # Create extension if it doesn't exist (requires superuser)
+    #         try:
+    #             cursor.execute("CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;")
+    #         except Exception as e:
+    #             logger.warning(f"Could not create TimescaleDB extension (may require superuser): {e}")
             
-            # Create sensor readings table
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS sensor_readings (
-                    time TIMESTAMPTZ NOT NULL,
-                    device_id TEXT NOT NULL,
-                    sensor_type TEXT NOT NULL,
-                    value DOUBLE PRECISION NOT NULL,
-                    unit TEXT,
-                    metadata JSONB
-                );
-            """)
+    #         # Create sensor readings table
+    #         cursor.execute("""
+    #             CREATE TABLE IF NOT EXISTS sensor_readings (
+    #                 time TIMESTAMPTZ NOT NULL,
+    #                 device_id TEXT NOT NULL,
+    #                 sensor_type TEXT NOT NULL,
+    #                 value DOUBLE PRECISION NOT NULL,
+    #                 unit TEXT,
+    #                 metadata JSONB
+    #             );
+    #         """)
             
-            # Create valve states table
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS valve_states (
-                    time TIMESTAMPTZ NOT NULL,
-                    sector_id TEXT NOT NULL,
-                    state TEXT NOT NULL,
-                    metadata JSONB
-                );
-            """)
+    #         # Create valve states table
+    #         cursor.execute("""
+    #             CREATE TABLE IF NOT EXISTS valve_states (
+    #                 time TIMESTAMPTZ NOT NULL,
+    #                 sector_id TEXT NOT NULL,
+    #                 state TEXT NOT NULL,
+    #                 metadata JSONB
+    #             );
+    #         """)
             
-            # Create hypertables if not already created
-            try:
-                cursor.execute("SELECT create_hypertable('sensor_readings', 'time', if_not_exists => TRUE);")
-                cursor.execute("SELECT create_hypertable('valve_states', 'time', if_not_exists => TRUE);")
-            except Exception as e:
-                logger.warning(f"Could not create hypertables (TimescaleDB may not be installed correctly): {e}")
+    #         # Create hypertables if not already created
+    #         try:
+    #             cursor.execute("SELECT create_hypertable('sensor_readings', 'time', if_not_exists => TRUE);")
+    #             cursor.execute("SELECT create_hypertable('valve_states', 'time', if_not_exists => TRUE);")
+    #         except Exception as e:
+    #             logger.warning(f"Could not create hypertables (TimescaleDB may not be installed correctly): {e}")
             
-            # Create indexes
-            cursor.execute("""
-                CREATE INDEX IF NOT EXISTS idx_sensor_device_type_time 
-                ON sensor_readings (device_id, sensor_type, time DESC);
-            """)
+    #         # Create indexes
+    #         cursor.execute("""
+    #             CREATE INDEX IF NOT EXISTS idx_sensor_device_type_time 
+    #             ON sensor_readings (device_id, sensor_type, time DESC);
+    #         """)
             
-            cursor.execute("""
-                CREATE INDEX IF NOT EXISTS idx_valve_sector_time 
-                ON valve_states (sector_id, time DESC);
-            """)
+    #         cursor.execute("""
+    #             CREATE INDEX IF NOT EXISTS idx_valve_sector_time 
+    #             ON valve_states (sector_id, time DESC);
+    #         """)
             
-            self.conn.commit()
-            logger.info("TimescaleDB initialized")
-        except Exception as e:
-            self.conn.rollback()
-            logger.error(f"TimescaleDB initialization error: {e}")
+    #         self.conn.commit()
+    #         logger.info("TimescaleDB initialized")
+    #     except Exception as e:
+    #         self.conn.rollback()
+    #         logger.error(f"TimescaleDB initialization error: {e}")
     
-    def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit, metadata=None):
-        """Store a single sensor reading in TimescaleDB"""
-        if not self._timescaledb_available:
-            return False
+    # def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit, metadata=None):
+    #     """Store a single sensor reading in TimescaleDB"""
+    #     if not self._timescaledb_available:
+    #         return False
             
-        try:
-            cursor = self.conn.cursor()
+    #     try:
+    #         cursor = self.conn.cursor()
             
-            # Handle timestamp
-            if isinstance(timestamp, str):
-                timestamp = timestamp  # TimescaleDB can handle ISO format strings
-            elif isinstance(timestamp, datetime.datetime):
-                timestamp = timestamp
-            else:
-                timestamp = datetime.datetime.now().isoformat()
+    #         # Handle timestamp
+    #         if isinstance(timestamp, str):
+    #             timestamp = timestamp  # TimescaleDB can handle ISO format strings
+    #         elif isinstance(timestamp, datetime.datetime):
+    #             timestamp = timestamp
+    #         else:
+    #             timestamp = datetime.datetime.now().isoformat()
             
-            # Convert metadata to JSONB if provided
-            if metadata:
-                import json
-                metadata_json = json.dumps(metadata)
-            else:
-                metadata_json = None
+    #         # Convert metadata to JSONB if provided
+    #         if metadata:
+    #             import json
+    #             metadata_json = json.dumps(metadata)
+    #         else:
+    #             metadata_json = None
             
-            cursor.execute(
-                """INSERT INTO sensor_readings 
-                   (time, device_id, sensor_type, value, unit, metadata) 
-                   VALUES (%s, %s, %s, %s, %s, %s)""",
-                (timestamp, str(device_id), sensor_type, value, unit, metadata_json)
-            )
+    #         cursor.execute(
+    #             """INSERT INTO sensor_readings 
+    #                (time, device_id, sensor_type, value, unit, metadata) 
+    #                VALUES (%s, %s, %s, %s, %s, %s)""",
+    #             (timestamp, str(device_id), sensor_type, value, unit, metadata_json)
+    #         )
             
-            self.conn.commit()
-            return True
-        except Exception as e:
-            self.conn.rollback()
-            logger.error(f"Error storing sensor data in TimescaleDB: {e}")
-            return False
+    #         self.conn.commit()
+    #         return True
+    #     except Exception as e:
+    #         self.conn.rollback()
+    #         logger.error(f"Error storing sensor data in TimescaleDB: {e}")
+    #         return False
     
-    def store_sensor_data_batch(self, readings):
-        """Store multiple sensor readings in a batch"""
-        if not self._timescaledb_available:
-            return False
+    # def store_sensor_data_batch(self, readings):
+    #     """Store multiple sensor readings in a batch"""
+    #     if not self._timescaledb_available:
+    #         return False
             
-        try:
-            cursor = self.conn.cursor()
+    #     try:
+    #         cursor = self.conn.cursor()
             
-            for reading in readings:
-                # Handle timestamp
-                timestamp = reading['timestamp']
-                if isinstance(timestamp, str):
-                    timestamp = timestamp  # TimescaleDB can handle ISO format strings
-                elif not isinstance(timestamp, datetime.datetime):
-                    timestamp = datetime.datetime.now().isoformat()
+    #         for reading in readings:
+    #             # Handle timestamp
+    #             timestamp = reading['timestamp']
+    #             if isinstance(timestamp, str):
+    #                 timestamp = timestamp  # TimescaleDB can handle ISO format strings
+    #             elif not isinstance(timestamp, datetime.datetime):
+    #                 timestamp = datetime.datetime.now().isoformat()
                 
-                # Convert metadata to JSONB if provided
-                metadata_json = None
-                if 'metadata' in reading and reading['metadata']:
-                    metadata_json = json.dumps(reading['metadata'])
+    #             # Convert metadata to JSONB if provided
+    #             metadata_json = None
+    #             if 'metadata' in reading and reading['metadata']:
+    #                 metadata_json = json.dumps(reading['metadata'])
                 
-                cursor.execute(
-                    """INSERT INTO sensor_readings 
-                       (time, device_id, sensor_type, value, unit, metadata) 
-                       VALUES (%s, %s, %s, %s, %s, %s)""",
-                    (timestamp, str(reading['device_id']), reading['sensor_type'], 
-                     reading['value'], reading.get('unit'), metadata_json)
-                )
+    #             cursor.execute(
+    #                 """INSERT INTO sensor_readings 
+    #                    (time, device_id, sensor_type, value, unit, metadata) 
+    #                    VALUES (%s, %s, %s, %s, %s, %s)""",
+    #                 (timestamp, str(reading['device_id']), reading['sensor_type'], 
+    #                  reading['value'], reading.get('unit'), metadata_json)
+    #             )
             
-            self.conn.commit()
-            return True
-        except Exception as e:
-            self.conn.rollback()
-            logger.error(f"Error storing batch sensor data in TimescaleDB: {e}")
-            return False
+    #         self.conn.commit()
+    #         return True
+    #     except Exception as e:
+    #         self.conn.rollback()
+    #         logger.error(f"Error storing batch sensor data in TimescaleDB: {e}")
+    #         return False
             
-    def store_valve_state(self, timestamp, sector_id, state, metadata=None):
-        """Store a valve state change in TimescaleDB"""
-        if not self._timescaledb_available:
-            return False
+    # def store_valve_state(self, timestamp, sector_id, state, metadata=None):
+    #     """Store a valve state change in TimescaleDB"""
+    #     if not self._timescaledb_available:
+    #         return False
             
-        try:
-            cursor = self.conn.cursor()
+    #     try:
+    #         cursor = self.conn.cursor()
             
-            # Handle timestamp
-            if isinstance(timestamp, str):
-                timestamp = timestamp  # TimescaleDB can handle ISO format strings
-            elif isinstance(timestamp, datetime.datetime):
-                timestamp = timestamp
-            else:
-                timestamp = datetime.datetime.now().isoformat()
+    #         # Handle timestamp
+    #         if isinstance(timestamp, str):
+    #             timestamp = timestamp  # TimescaleDB can handle ISO format strings
+    #         elif isinstance(timestamp, datetime.datetime):
+    #             timestamp = timestamp
+    #         else:
+    #             timestamp = datetime.datetime.now().isoformat()
             
-            # Convert metadata to JSONB if provided
-            if metadata:
-                metadata_json = json.dumps(metadata)
-            else:
-                metadata_json = None
+    #         # Convert metadata to JSONB if provided
+    #         if metadata:
+    #             metadata_json = json.dumps(metadata)
+    #         else:
+    #             metadata_json = None
             
-            cursor.execute(
-                """INSERT INTO valve_states 
-                   (time, sector_id, state, metadata) 
-                   VALUES (%s, %s, %s, %s)""",
-                (timestamp, sector_id, state, metadata_json)
-            )
+    #         cursor.execute(
+    #             """INSERT INTO valve_states 
+    #                (time, sector_id, state, metadata) 
+    #                VALUES (%s, %s, %s, %s)""",
+    #             (timestamp, sector_id, state, metadata_json)
+    #         )
             
-            self.conn.commit()
-            return True
-        except Exception as e:
-            self.conn.rollback()
-            logger.error(f"Error storing valve state in TimescaleDB: {e}")
-            return False
+    #         self.conn.commit()
+    #         return True
+    #     except Exception as e:
+    #         self.conn.rollback()
+    #         logger.error(f"Error storing valve state in TimescaleDB: {e}")
+    #         return False
     
-    def get_sensor_data(self, device_id, sensor_type, start_time, end_time):
-        """Retrieve sensor data for a specific device and sensor type within a time range"""
-        if not self._timescaledb_available:
-            return []
+    # def get_sensor_data(self, device_id, sensor_type, start_time, end_time):
+    #     """Retrieve sensor data for a specific device and sensor type within a time range"""
+    #     if not self._timescaledb_available:
+    #         return []
             
-        try:
-            cursor = self.conn.cursor(cursor_factory=self.cursor_factory)
+    #     try:
+    #         cursor = self.conn.cursor(cursor_factory=self.cursor_factory)
             
-            # Handle timestamp formats
-            if isinstance(start_time, datetime.datetime):
-                start_time = start_time.isoformat()
-            if isinstance(end_time, datetime.datetime):
-                end_time = end_time.isoformat()
+    #         # Handle timestamp formats
+    #         if isinstance(start_time, datetime.datetime):
+    #             start_time = start_time.isoformat()
+    #         if isinstance(end_time, datetime.datetime):
+    #             end_time = end_time.isoformat()
             
-            cursor.execute(
-                """SELECT time as timestamp, device_id, sensor_type, value, unit, metadata 
-                   FROM sensor_readings 
-                   WHERE device_id = %s AND sensor_type = %s AND time BETWEEN %s AND %s 
-                   ORDER BY time""",
-                (str(device_id), sensor_type, start_time, end_time)
-            )
+    #         cursor.execute(
+    #             """SELECT time as timestamp, device_id, sensor_type, value, unit, metadata 
+    #                FROM sensor_readings 
+    #                WHERE device_id = %s AND sensor_type = %s AND time BETWEEN %s AND %s 
+    #                ORDER BY time""",
+    #             (str(device_id), sensor_type, start_time, end_time)
+    #         )
             
-            rows = cursor.fetchall()
-            return [dict(row) for row in rows]
-        except Exception as e:
-            logger.error(f"Error retrieving sensor data from TimescaleDB: {e}")
-            return []
+    #         rows = cursor.fetchall()
+    #         return [dict(row) for row in rows]
+    #     except Exception as e:
+    #         logger.error(f"Error retrieving sensor data from TimescaleDB: {e}")
+    #         return []
     
-    def get_valve_states(self, sector_id, start_time, end_time):
-        """Retrieve valve state changes for a specific sector within a time range"""
-        if not self._timescaledb_available:
-            return []
+    # def get_valve_states(self, sector_id, start_time, end_time):
+    #     """Retrieve valve state changes for a specific sector within a time range"""
+    #     if not self._timescaledb_available:
+    #         return []
             
-        try:
-            cursor = self.conn.cursor(cursor_factory=self.cursor_factory)
+    #     try:
+    #         cursor = self.conn.cursor(cursor_factory=self.cursor_factory)
             
-            # Handle timestamp formats
-            if isinstance(start_time, datetime.datetime):
-                start_time = start_time.isoformat()
-            if isinstance(end_time, datetime.datetime):
-                end_time = end_time.isoformat()
+    #         # Handle timestamp formats
+    #         if isinstance(start_time, datetime.datetime):
+    #             start_time = start_time.isoformat()
+    #         if isinstance(end_time, datetime.datetime):
+    #             end_time = end_time.isoformat()
             
-            cursor.execute(
-                """SELECT time as timestamp, sector_id, state, metadata 
-                   FROM valve_states 
-                   WHERE sector_id = %s AND time BETWEEN %s AND %s 
-                   ORDER BY time""",
-                (sector_id, start_time, end_time)
-            )
+    #         cursor.execute(
+    #             """SELECT time as timestamp, sector_id, state, metadata 
+    #                FROM valve_states 
+    #                WHERE sector_id = %s AND time BETWEEN %s AND %s 
+    #                ORDER BY time""",
+    #             (sector_id, start_time, end_time)
+    #         )
             
-            rows = cursor.fetchall()
-            return [dict(row) for row in rows]
-        except Exception as e:
-            logger.error(f"Error retrieving valve states from TimescaleDB: {e}")
-            return []
+    #         rows = cursor.fetchall()
+    #         return [dict(row) for row in rows]
+    #     except Exception as e:
+    #         logger.error(f"Error retrieving valve states from TimescaleDB: {e}")
+    #         return []
     
-    def close(self):
-        """Close database connections"""
-        if self._timescaledb_available:
-            try:
-                self.conn.close()
-                logger.info("TimescaleDB connection closed")
-            except Exception as e:
-                logger.error(f"Error closing TimescaleDB connection: {e}")
+    # def close(self):
+    #     """Close database connections"""
+    #     if self._timescaledb_available:
+    #         try:
+    #             self.conn.close()
+    #             logger.info("TimescaleDB connection closed")
+    #         except Exception as e:
+    #             logger.error(f"Error closing TimescaleDB connection: {e}")
 
 
 def get_storage():
@@ -844,7 +843,7 @@ def get_storage():
     
     if storage_type == "influxdb":
         return InfluxDBStorage()
-    elif storage_type == "timescaledb":
-        return TimescaleDBStorage()
-    else:  # Default to SQLite
-        return SQLiteStorage()
+    # elif storage_type == "timescaledb":
+    #     return TimescaleDBStorage()
+    # else:  # Default to SQLite
+    #     return SQLiteStorage()

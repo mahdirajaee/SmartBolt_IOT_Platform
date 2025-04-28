@@ -134,7 +134,6 @@ class TimeSeriesConnector:
             timestamp = data.get('timestamp', datetime.now().isoformat())
             device_id = data.get('device_id', 'unknown')
             readings = data.get('readings', {})
-            logger.info(f"Processing sensor data for device/*/*/*/<<>>> {topic}: {readings}")
             # Create metadata from the message
             metadata = {
                 "topic": topic,
@@ -190,8 +189,7 @@ class TimeSeriesConnector:
             
             timestamp = data.get('timestamp', datetime.now().isoformat())
             sector_id = data.get('sector_id')
-            valve_state = data.get('valve_state')
-            
+            valve_state = data.get('state')
             if not sector_id or not valve_state:
                 logger.warning("Missing sector_id or valve_state in valve status message")
                 return
