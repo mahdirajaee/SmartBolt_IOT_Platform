@@ -35,9 +35,9 @@ def connect_to_influxdb():
         client = InfluxDBClient(
             host=config.INFLUXDB_HOST, 
             port=config.INFLUXDB_PORT,
-            username=config.INFLUXDB_USER,
-            password=config.INFLUXDB_PASSWORD,
-            database=config.INFLUXDB_DATABASE
+            organization=config.INFLUXDB_ORG,
+            token=config.INFLUXDB_TOKEN,
+            bucket=config.INFLUXDB_BUCKET
         )
         
         # Test connection
