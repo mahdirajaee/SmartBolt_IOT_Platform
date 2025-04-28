@@ -13,7 +13,7 @@ PRESSURE_MAX = 1100.0
 
 SERVER_URL = "http://localhost:5000/api/sensor-data"
 API_KEY = "your_api_key_here"
-USE_MQTT = False
+USE_MQTT = True
 
 MQTT_BROKER = "localhost"
 MQTT_PORT = 1883

@@ -91,3 +91,53 @@
 [27/Apr/2025:14:16:43] ENGINE Bus EXITING
 [27/Apr/2025:14:16:43] ENGINE Bus EXITED
 [27/Apr/2025:14:16:43] ENGINE Waiting for child threads to terminate...
+2025-04-27 21:17:39,441 - resource_catalog - INFO - Starting Resource Catalog service
+[27/Apr/2025:21:17:39] ENGINE Bus STARTING
+[27/Apr/2025:21:17:39]  Marked 2 stale entries as offline
+[27/Apr/2025:21:17:39] ENGINE Serving on http://0.0.0.0:8080
+[27/Apr/2025:21:17:39] ENGINE Bus STARTED
+2025-04-27 21:28:31,249 - resource_catalog - INFO - Starting Resource Catalog service
+[27/Apr/2025:21:28:31] ENGINE Bus STARTING
+[27/Apr/2025:21:28:31] ENGINE Serving on http://0.0.0.0:8080
+[27/Apr/2025:21:28:31] ENGINE Bus STARTED
+[27/Apr/2025:21:32:32] ENGINE Keyboard Interrupt: shutting down bus
+[27/Apr/2025:21:32:32] ENGINE Bus STOPPING
+[27/Apr/2025:21:32:32] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[27/Apr/2025:21:32:32] ENGINE Bus STOPPED
+[27/Apr/2025:21:32:32] ENGINE Bus EXITING
+[27/Apr/2025:21:32:32] ENGINE Bus EXITED
+[27/Apr/2025:21:32:32] ENGINE Waiting for child threads to terminate...
+2025-04-27 21:55:54,868 - resource_catalog - INFO - Starting Resource Catalog service
+[27/Apr/2025:21:55:54] ENGINE Bus STARTING
+[27/Apr/2025:21:55:54]  Marked 2 stale entries as offline
+[27/Apr/2025:21:55:55] ENGINE Serving on http://0.0.0.0:8080
+[27/Apr/2025:21:55:55] ENGINE Bus STARTED
+[27/Apr/2025:21:58:11] ENGINE Keyboard Interrupt: shutting down bus
+[27/Apr/2025:21:58:11] ENGINE Bus STOPPING
+[27/Apr/2025:21:58:12] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[27/Apr/2025:21:58:12] ENGINE Bus STOPPED
+[27/Apr/2025:21:58:12] ENGINE Bus EXITING
+[27/Apr/2025:21:58:12] ENGINE Bus EXITED
+[27/Apr/2025:21:58:12] ENGINE Waiting for child threads to terminate...
+2025-04-28 13:56:53,969 - resource_catalog - INFO - Starting Resource Catalog service
+[28/Apr/2025:13:56:53] ENGINE Bus STARTING
+[28/Apr/2025:13:56:54]  Marked 2 stale entries as offline
+[28/Apr/2025:13:56:54] ENGINE Serving on http://0.0.0.0:8080
+[28/Apr/2025:13:56:54] ENGINE Bus STARTED
+[28/Apr/2025:14:43:35] ENGINE Keyboard Interrupt: shutting down bus
+[28/Apr/2025:14:43:35] ENGINE Bus STOPPING
+[28/Apr/2025:14:43:35] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[28/Apr/2025:14:43:35] ENGINE Bus STOPPED
+[28/Apr/2025:14:43:35] ENGINE Bus EXITING
+[28/Apr/2025:14:43:35] ENGINE Bus EXITED
+[28/Apr/2025:14:43:35] ENGINE Waiting for child threads to terminate...
+2025-04-28 14:53:49,395 - resource_catalog - INFO - Starting Resource Catalog service
+[28/Apr/2025:14:53:49] ENGINE Bus STARTING
+[28/Apr/2025:14:53:49]  Marked 2 stale entries as offline
+[28/Apr/2025:14:53:49] ENGINE Serving on http://0.0.0.0:8080
+[28/Apr/2025:14:53:49] ENGINE Bus STARTED
+2025-04-28 18:21:47,757 - resource_catalog - INFO - Starting Resource Catalog service
+[28/Apr/2025:18:21:47] ENGINE Bus STARTING
+[28/Apr/2025:18:21:48] ENGINE Serving on http://0.0.0.0:8080
+[28/Apr/2025:18:21:48] ENGINE Bus STARTED
+[28/Apr/2025:18:54:48]  Marked 2 stale entries as offline
