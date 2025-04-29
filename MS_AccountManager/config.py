@@ -45,3 +45,23 @@ REGISTRATION_INTERVAL = 60  # Seconds between re-registration attempts (heartbea
 LOGGING_ENABLED = True
 LOG_LEVEL = "INFO"
 LOG_FILE = "timeseries_db_connector.log"
+
+"""
+Account Manager Configuration
+"""
+
+# Database settings
+DB_PATH = "user_accounts.db"
+
+# Resource Catalog Configuration
+RESOURCE_CATALOG_URL = "http://localhost:8080"
+SERVICE_ID = "account_manager"
+SERVICE_NAME = "Account Manager"
+SERVICE_DESCRIPTION = "Handles user authentication and authorization"
+SERVICE_TYPE = "authentication"
+REGISTRATION_INTERVAL = 60  # Seconds between re-registration attempts (heartbeat)
+
+# Logging settings
+LOGGING_ENABLED = True
+LOG_LEVEL = "INFO"
+LOG_FILE = "account_manager.log"
