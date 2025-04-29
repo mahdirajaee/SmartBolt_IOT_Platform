@@ -1,0 +1,11 @@
+2025-04-29 17:57:05,511 - resource_catalog - INFO - Starting Resource Catalog service
+[29/Apr/2025:17:57:05] ENGINE Bus STARTING
+[29/Apr/2025:17:57:05] ENGINE Serving on http://0.0.0.0:8080
+[29/Apr/2025:17:57:05] ENGINE Bus STARTED
+[29/Apr/2025:17:57:08] ENGINE Keyboard Interrupt: shutting down bus
+[29/Apr/2025:17:57:08] ENGINE Bus STOPPING
+[29/Apr/2025:17:57:09] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[29/Apr/2025:17:57:09] ENGINE Bus STOPPED
+[29/Apr/2025:17:57:09] ENGINE Bus EXITING
+[29/Apr/2025:17:57:09] ENGINE Bus EXITED
+[29/Apr/2025:17:57:09] ENGINE Waiting for child threads to terminate...

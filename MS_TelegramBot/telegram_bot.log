@@ -236,3 +236,35 @@ telegram.error.Conflict: Conflict: terminated by other getUpdates request; make 
 2025-04-26 22:52:57,033 - cherrypy.error - INFO - [26/Apr/2025:22:52:57] ENGINE Bus STOPPED
 2025-04-26 22:52:57,034 - cherrypy.error - INFO - [26/Apr/2025:22:52:57] ENGINE Bus EXITING
 2025-04-26 22:52:57,034 - cherrypy.error - INFO - [26/Apr/2025:22:52:57] ENGINE Bus EXITED
+2025-04-29 17:55:44,978 - main - INFO - Telegram Bot Service initializing
+2025-04-29 17:55:44,983 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-29 17:55:44,986 - catalog_client - ERROR - Error registering service: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1063c6e10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 17:55:44,987 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-29 17:55:44,988 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10731e850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 17:55:45,418 - telegram_bot - INFO - Telegram bot started
+2025-04-29 17:55:45,419 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Listening for SIGTERM.
+2025-04-29 17:55:45,419 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Listening for SIGHUP.
+2025-04-29 17:55:45,419 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Listening for SIGUSR1.
+2025-04-29 17:55:45,420 - main - INFO - Starting CherryPy server on port 5005
+2025-04-29 17:55:45,420 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Bus STARTING
+2025-04-29 17:55:45,420 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-29 17:55:45,528 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Serving on http://0.0.0.0:5005
+2025-04-29 17:55:45,528 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Bus STARTED
+2025-04-29 17:56:21,028 - main - INFO - Shutdown signal received
+2025-04-29 17:56:21,029 - main - INFO - Stopping Telegram Bot Service
+2025-04-29 17:56:21,029 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-29 17:56:26,142 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-29 17:56:26,142 - telegram_bot - INFO - Telegram bot stopped
+2025-04-29 17:56:26,143 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus STOPPING
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Stopped thread 'Autoreloader'.
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus STOPPED
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus EXITING
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus EXITED
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE SystemExit raised: shutting down bus
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus STOPPING
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE No thread running for None.
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus STOPPED
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus EXITING
+2025-04-29 17:56:26,633 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus EXITED

@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.user-info {
+    background-color: #2c3e50;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: right;
+}
+
+h1, h2, h3, h4 {
+    color: #2c3e50;
+}
+
+.logout-btn {
+    float: right;
+    color: white;
+    background-color: #e74c3c;
+    padding: 0.3rem 0.8rem;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+.dashboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+.dashboard-column {
+    flex: 1;
+    min-width: 300px;
+    padding: 1rem;
+}
+
+.sector-info, .device-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border-left: 4px solid #3498db;
+}
+
+.sensor-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.sensor-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 1rem);
+    min-width: 250px;
+    margin-bottom: 1rem;
+}
+
+.insights-container {
+    margin-top: 1rem;
+}
+
+.insight-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-column {
+        flex: 100%;
+    }
+    
+    .sensor-card {
+        width: 100%;
+    }
+} 
