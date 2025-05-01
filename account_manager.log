@@ -1,0 +1,29 @@
+2025-04-29 18:05:19,201 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 18:05:19,201 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 18:05:19,207 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10602ad10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 18:05:19,207 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10602ad10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 18:05:19,207 - registration - INFO - Registration service started in background
+2025-04-29 18:05:19,207 - registration - INFO - Registration service started in background
+2025-04-29 18:05:19,207 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 18:05:19,207 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 18:05:19,207 - account_manager - ERROR - Error loading users: 'utf-8' codec can't decode byte 0xba in position 99: invalid start byte
+2025-04-29 18:05:19,207 - cherrypy.error - INFO - [29/Apr/2025:18:05:19] ENGINE Bus STARTING
+2025-04-29 18:05:19,208 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1072f5f90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 18:05:19,208 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1072f5f90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 18:05:19,314 - cherrypy.error - INFO - [29/Apr/2025:18:05:19] ENGINE Serving on http://0.0.0.0:8000
+2025-04-29 18:05:19,314 - cherrypy.error - INFO - [29/Apr/2025:18:05:19] ENGINE Bus STARTED
+2025-04-29 18:05:21,066 - account_manager - INFO - Received signal 2, shutting down...
+2025-04-29 18:05:21,069 - registration - ERROR - Network error during status update: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1072d80d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 18:05:21,069 - registration - ERROR - Network error during status update: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1072d80d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 18:05:21,070 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE Bus STOPPING
+2025-04-29 18:05:21,332 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+2025-04-29 18:05:21,332 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE Bus STOPPED
+2025-04-29 18:05:21,332 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE Bus EXITING
+2025-04-29 18:05:21,332 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE Bus EXITED
+2025-04-29 18:05:21,332 - account_manager - INFO - API server stopped
+2025-04-29 18:05:21,333 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE SystemExit raised: shutting down bus
+2025-04-29 18:05:21,333 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE Bus STOPPING
+2025-04-29 18:05:21,333 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) already shut down
+2025-04-29 18:05:21,333 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE Bus STOPPED
+2025-04-29 18:05:21,333 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE Bus EXITING
+2025-04-29 18:05:21,333 - cherrypy.error - INFO - [29/Apr/2025:18:05:21] ENGINE Bus EXITED
