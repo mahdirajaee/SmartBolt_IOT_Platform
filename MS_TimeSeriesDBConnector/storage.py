@@ -3,6 +3,9 @@ import json
 import logging
 import sqlite3
 import datetime
+from datetime import datetime, timezone
+import time
+import pytz
 from abc import ABC, abstractmethod
 
 import config
@@ -52,248 +55,248 @@ class TimeSeriesStorage(ABC):
         pass
 
 # class SQLiteStorage(TimeSeriesStorage):
-    """SQLite implementation of time series data storage"""
+    # """SQLite implementation of time series data storage"""
     
-    def __init__(self, db_file=None):
-        if db_file is None:
-            db_file = config.SQLITE_DB_FILE
+    # def __init__(self, db_file=None):
+    #     if db_file is None:
+    #         db_file = config.SQLITE_DB_FILE
             
-        self.db_file = db_file
-        self._initialize_db()
+    #     self.db_file = db_file
+    #     self._initialize_db()
     
-    def _initialize_db(self):
-        """Initialize the SQLite database with required tables"""
-        try:
-            conn = sqlite3.connect(self.db_file)
-            cursor = conn.cursor()
+    # def _initialize_db(self):
+    #     """Initialize the SQLite database with required tables"""
+    #     try:
+    #         conn = sqlite3.connect(self.db_file)
+    #         cursor = conn.cursor()
             
-            # Create sensor readings table
-            cursor.execute('''
-                CREATE TABLE IF NOT EXISTS sensor_readings (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    timestamp TEXT NOT NULL,
-                    device_id TEXT NOT NULL,
-                    sensor_type TEXT NOT NULL,
-                    value REAL NOT NULL,
-                    unit TEXT,
-                    metadata TEXT
-                )
-            ''')
+    #         # Create sensor readings table
+    #         cursor.execute('''
+    #             CREATE TABLE IF NOT EXISTS sensor_readings (
+    #                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #                 timestamp TEXT NOT NULL,
+    #                 device_id TEXT NOT NULL,
+    #                 sensor_type TEXT NOT NULL,
+    #                 value REAL NOT NULL,
+    #                 unit TEXT,
+    #                 metadata TEXT
+    #             )
+    #         ''')
             
-            # Create valve states table
-            cursor.execute('''
-                CREATE TABLE IF NOT EXISTS valve_states (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    timestamp TEXT NOT NULL,
-                    sector_id TEXT NOT NULL,
-                    state TEXT NOT NULL,
-                    metadata TEXT
-                )
-            ''')
+    #         # Create valve states table
+    #         cursor.execute('''
+    #             CREATE TABLE IF NOT EXISTS valve_states (
+    #                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #                 timestamp TEXT NOT NULL,
+    #                 sector_id TEXT NOT NULL,
+    #                 state TEXT NOT NULL,
+    #                 metadata TEXT
+    #             )
+    #         ''')
             
-            # Create index on timestamp and device_id for faster queries
-            cursor.execute('CREATE INDEX IF NOT EXISTS idx_sensor_timestamp_device ON sensor_readings(timestamp, device_id)')
-            cursor.execute('CREATE INDEX IF NOT EXISTS idx_valve_timestamp_sector ON valve_states(timestamp, sector_id)')
+    #         # Create index on timestamp and device_id for faster queries
+    #         cursor.execute('CREATE INDEX IF NOT EXISTS idx_sensor_timestamp_device ON sensor_readings(timestamp, device_id)')
+    #         cursor.execute('CREATE INDEX IF NOT EXISTS idx_valve_timestamp_sector ON valve_states(timestamp, sector_id)')
             
-            conn.commit()
-            logger.info("SQLite database initialized")
-        except sqlite3.Error as e:
-            logger.error(f"Database initialization error: {e}")
-        finally:
-            if conn:
-                conn.close()
+    #         conn.commit()
+    #         logger.info("SQLite database initialized")
+    #     except sqlite3.Error as e:
+    #         logger.error(f"Database initialization error: {e}")
+    #     finally:
+    #         if conn:
+    #             conn.close()
     
-    def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit, metadata=None):
-        """Store a single sensor reading in SQLite"""
-        try:
-            conn = sqlite3.connect(self.db_file)
-            cursor = conn.cursor()
+    # def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit, metadata=None):
+    #     """Store a single sensor reading in SQLite"""
+    #     try:
+    #         conn = sqlite3.connect(self.db_file)
+    #         cursor = conn.cursor()
             
-            # Convert metadata to JSON string if provided
-            metadata_str = None
-            if metadata:
-                metadata_str = json.dumps(metadata)
+    #         # Convert metadata to JSON string if provided
+    #         metadata_str = None
+    #         if metadata:
+    #             metadata_str = json.dumps(metadata)
             
-            cursor.execute(
-                '''INSERT INTO sensor_readings 
-                   (timestamp, device_id, sensor_type, value, unit, metadata) 
-                   VALUES (?, ?, ?, ?, ?, ?)''',
-                (timestamp.isoformat() if isinstance(timestamp, datetime.datetime) else timestamp, 
-                 str(device_id), sensor_type, value, unit, metadata_str)
-            )
+    #         cursor.execute(
+    #             '''INSERT INTO sensor_readings 
+    #                (timestamp, device_id, sensor_type, value, unit, metadata) 
+    #                VALUES (?, ?, ?, ?, ?, ?)''',
+    #             (timestamp.isoformat() if isinstance(timestamp, datetime.datetime) else timestamp, 
+    #              str(device_id), sensor_type, value, unit, metadata_str)
+    #         )
             
-            conn.commit()
-            return True
-        except sqlite3.Error as e:
-            logger.error(f"Error storing sensor data: {e}")
-            return False
-        finally:
-            if conn:
-                conn.close()
+    #         conn.commit()
+    #         return True
+    #     except sqlite3.Error as e:
+    #         logger.error(f"Error storing sensor data: {e}")
+    #         return False
+    #     finally:
+    #         if conn:
+    #             conn.close()
     
-    def store_sensor_data_batch(self, readings):
-        """Store multiple sensor readings in a batch"""
-        try:
-            conn = sqlite3.connect(self.db_file)
-            cursor = conn.cursor()
+    # def store_sensor_data_batch(self, readings):
+    #     """Store multiple sensor readings in a batch"""
+    #     try:
+    #         conn = sqlite3.connect(self.db_file)
+    #         cursor = conn.cursor()
             
-            data_to_insert = []
-            for reading in readings:
-                # Convert metadata to JSON string if provided
-                metadata_str = None
-                if 'metadata' in reading and reading['metadata']:
-                    metadata_str = json.dumps(reading['metadata'])
+    #         data_to_insert = []
+    #         for reading in readings:
+    #             # Convert metadata to JSON string if provided
+    #             metadata_str = None
+    #             if 'metadata' in reading and reading['metadata']:
+    #                 metadata_str = json.dumps(reading['metadata'])
                     
-                timestamp = reading['timestamp']
-                if isinstance(timestamp, datetime.datetime):
-                    timestamp = timestamp.isoformat()
+    #             timestamp = reading['timestamp']
+    #             if isinstance(timestamp, datetime.datetime):
+    #                 timestamp = timestamp.isoformat()
                     
-                data_to_insert.append((
-                    timestamp,
-                    str(reading['device_id']),
-                    reading['sensor_type'],
-                    reading['value'],
-                    reading.get('unit', None),
-                    metadata_str
-                ))
+    #             data_to_insert.append((
+    #                 timestamp,
+    #                 str(reading['device_id']),
+    #                 reading['sensor_type'],
+    #                 reading['value'],
+    #                 reading.get('unit', None),
+    #                 metadata_str
+    #             ))
             
-            cursor.executemany(
-                '''INSERT INTO sensor_readings 
-                   (timestamp, device_id, sensor_type, value, unit, metadata) 
-                   VALUES (?, ?, ?, ?, ?, ?)''',
-                data_to_insert
-            )
+    #         cursor.executemany(
+    #             '''INSERT INTO sensor_readings 
+    #                (timestamp, device_id, sensor_type, value, unit, metadata) 
+    #                VALUES (?, ?, ?, ?, ?, ?)''',
+    #             data_to_insert
+    #         )
             
-            conn.commit()
-            return True
-        except sqlite3.Error as e:
-            logger.error(f"Error storing batch sensor data: {e}")
-            return False
-        finally:
-            if conn:
-                conn.close()
+    #         conn.commit()
+    #         return True
+    #     except sqlite3.Error as e:
+    #         logger.error(f"Error storing batch sensor data: {e}")
+    #         return False
+    #     finally:
+    #         if conn:
+    #             conn.close()
                 
-    def store_valve_state(self, timestamp, sector_id, state, metadata=None):
-        """Store a valve state change in SQLite"""
-        try:
-            conn = sqlite3.connect(self.db_file)
-            cursor = conn.cursor()
+    # def store_valve_state(self, timestamp, sector_id, state, metadata=None):
+    #     """Store a valve state change in SQLite"""
+    #     try:
+    #         conn = sqlite3.connect(self.db_file)
+    #         cursor = conn.cursor()
             
-            # Convert metadata to JSON string if provided
-            metadata_str = None
-            if metadata:
-                metadata_str = json.dumps(metadata)
+    #         # Convert metadata to JSON string if provided
+    #         metadata_str = None
+    #         if metadata:
+    #             metadata_str = json.dumps(metadata)
             
-            cursor.execute(
-                '''INSERT INTO valve_states 
-                   (timestamp, sector_id, state, metadata) 
-                   VALUES (?, ?, ?, ?)''',
-                (timestamp.isoformat() if isinstance(timestamp, datetime.datetime) else timestamp, 
-                 sector_id, state, metadata_str)
-            )
+    #         cursor.execute(
+    #             '''INSERT INTO valve_states 
+    #                (timestamp, sector_id, state, metadata) 
+    #                VALUES (?, ?, ?, ?)''',
+    #             (timestamp.isoformat() if isinstance(timestamp, datetime.datetime) else timestamp, 
+    #              sector_id, state, metadata_str)
+    #         )
             
-            conn.commit()
-            return True
-        except sqlite3.Error as e:
-            logger.error(f"Error storing valve state: {e}")
-            return False
-        finally:
-            if conn:
-                conn.close()
+    #         conn.commit()
+    #         return True
+    #     except sqlite3.Error as e:
+    #         logger.error(f"Error storing valve state: {e}")
+    #         return False
+    #     finally:
+    #         if conn:
+    #             conn.close()
     
-    def get_sensor_data(self, device_id, sensor_type, start_time, end_time):
-        """Retrieve sensor data for a specific device and sensor type within a time range"""
-        try:
-            conn = sqlite3.connect(self.db_file)
-            conn.row_factory = sqlite3.Row  # Enable row factory to return dictionaries
-            cursor = conn.cursor()
+    # def get_sensor_data(self, device_id, sensor_type, start_time, end_time):
+    #     """Retrieve sensor data for a specific device and sensor type within a time range"""
+    #     try:
+    #         conn = sqlite3.connect(self.db_file)
+    #         conn.row_factory = sqlite3.Row  # Enable row factory to return dictionaries
+    #         cursor = conn.cursor()
             
-            # Convert datetime objects to ISO format strings if needed
-            if isinstance(start_time, datetime.datetime):
-                start_time = start_time.isoformat()
-            if isinstance(end_time, datetime.datetime):
-                end_time = end_time.isoformat()
+    #         # Convert datetime objects to ISO format strings if needed
+    #         if isinstance(start_time, datetime.datetime):
+    #             start_time = start_time.isoformat()
+    #         if isinstance(end_time, datetime.datetime):
+    #             end_time = end_time.isoformat()
             
-            cursor.execute(
-                '''SELECT timestamp, device_id, sensor_type, value, unit, metadata 
-                   FROM sensor_readings 
-                   WHERE device_id = ? AND sensor_type = ? AND timestamp BETWEEN ? AND ? 
-                   ORDER BY timestamp''',
-                (str(device_id), sensor_type, start_time, end_time)
-            )
+    #         cursor.execute(
+    #             '''SELECT timestamp, device_id, sensor_type, value, unit, metadata 
+    #                FROM sensor_readings 
+    #                WHERE device_id = ? AND sensor_type = ? AND timestamp BETWEEN ? AND ? 
+    #                ORDER BY timestamp''',
+    #             (str(device_id), sensor_type, start_time, end_time)
+    #         )
             
-            rows = cursor.fetchall()
+    #         rows = cursor.fetchall()
             
-            # Convert rows to list of dictionaries
-            result = []
-            for row in rows:
-                item = {key: row[key] for key in row.keys()}
+    #         # Convert rows to list of dictionaries
+    #         result = []
+    #         for row in rows:
+    #             item = {key: row[key] for key in row.keys()}
                 
-                # Parse metadata JSON if present
-                if item['metadata']:
-                    try:
-                        item['metadata'] = json.loads(item['metadata'])
-                    except json.JSONDecodeError:
-                        pass  # Keep as string if not valid JSON
+    #             # Parse metadata JSON if present
+    #             if item['metadata']:
+    #                 try:
+    #                     item['metadata'] = json.loads(item['metadata'])
+    #                 except json.JSONDecodeError:
+    #                     pass  # Keep as string if not valid JSON
                         
-                result.append(item)
+    #             result.append(item)
                 
-            return result
-        except sqlite3.Error as e:
-            logger.error(f"Error retrieving sensor data: {e}")
-            return []
-        finally:
-            if conn:
-                conn.close()
+    #         return result
+    #     except sqlite3.Error as e:
+    #         logger.error(f"Error retrieving sensor data: {e}")
+    #         return []
+    #     finally:
+    #         if conn:
+    #             conn.close()
     
-    def get_valve_states(self, sector_id, start_time, end_time):
-        """Retrieve valve state changes for a specific sector within a time range"""
-        try:
-            conn = sqlite3.connect(self.db_file)
-            conn.row_factory = sqlite3.Row  # Enable row factory to return dictionaries
-            cursor = conn.cursor()
+    # def get_valve_states(self, sector_id, start_time, end_time):
+    #     """Retrieve valve state changes for a specific sector within a time range"""
+    #     try:
+    #         conn = sqlite3.connect(self.db_file)
+    #         conn.row_factory = sqlite3.Row  # Enable row factory to return dictionaries
+    #         cursor = conn.cursor()
             
-            # Convert datetime objects to ISO format strings if needed
-            if isinstance(start_time, datetime.datetime):
-                start_time = start_time.isoformat()
-            if isinstance(end_time, datetime.datetime):
-                end_time = end_time.isoformat()
+    #         # Convert datetime objects to ISO format strings if needed
+    #         if isinstance(start_time, datetime.datetime):
+    #             start_time = start_time.isoformat()
+    #         if isinstance(end_time, datetime.datetime):
+    #             end_time = end_time.isoformat()
             
-            cursor.execute(
-                '''SELECT timestamp, sector_id, state, metadata 
-                   FROM valve_states 
-                   WHERE sector_id = ? AND timestamp BETWEEN ? AND ? 
-                   ORDER BY timestamp''',
-                (sector_id, start_time, end_time)
-            )
+    #         cursor.execute(
+    #             '''SELECT timestamp, sector_id, state, metadata 
+    #                FROM valve_states 
+    #                WHERE sector_id = ? AND timestamp BETWEEN ? AND ? 
+    #                ORDER BY timestamp''',
+    #             (sector_id, start_time, end_time)
+    #         )
             
-            rows = cursor.fetchall()
+    #         rows = cursor.fetchall()
             
-            # Convert rows to list of dictionaries
-            result = []
-            for row in rows:
-                item = {key: row[key] for key in row.keys()}
+    #         # Convert rows to list of dictionaries
+    #         result = []
+    #         for row in rows:
+    #             item = {key: row[key] for key in row.keys()}
                 
-                # Parse metadata JSON if present
-                if item['metadata']:
-                    try:
-                        item['metadata'] = json.loads(item['metadata'])
-                    except json.JSONDecodeError:
-                        pass  # Keep as string if not valid JSON
+    #             # Parse metadata JSON if present
+    #             if item['metadata']:
+    #                 try:
+    #                     item['metadata'] = json.loads(item['metadata'])
+    #                 except json.JSONDecodeError:
+    #                     pass  # Keep as string if not valid JSON
                         
-                result.append(item)
+    #             result.append(item)
                 
-            return result
-        except sqlite3.Error as e:
-            logger.error(f"Error retrieving valve states: {e}")
-            return []
-        finally:
-            if conn:
-                conn.close()
+    #         return result
+    #     except sqlite3.Error as e:
+    #         logger.error(f"Error retrieving valve states: {e}")
+    #         return []
+    #     finally:
+    #         if conn:
+    #             conn.close()
     
-    def close(self):
-        """Close database connections - nothing to do for SQLite"""
-        pass
+    # def close(self):
+    #     """Close database connections - nothing to do for SQLite"""
+    #     pass
 
 
 class InfluxDBStorage(TimeSeriesStorage):
@@ -330,6 +333,49 @@ class InfluxDBStorage(TimeSeriesStorage):
         except Exception as e:
             logger.error(f"Failed to connect to InfluxDB: {e}")
             self._influxdb_available = False
+
+    # def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit, metadata=None):
+    #     """Store a single sensor reading in InfluxDB v2.x"""
+    #     if not self._influxdb_available:
+    #         return False
+
+    #     try:
+            
+    #         point = (
+    #             self.Point(sensor_type)  # Use sensor_type as measurement
+    #             .tag("device_id", str(device_id))
+    #             .tag("topic", metadata.get("topic", ""))
+    #             .tag("qos", str(metadata.get("qos", "")))
+    #             .tag("device_name", metadata.get("device_name", ""))
+    #             .tag("sector_id", metadata.get("sector_id", ""))
+    #             .tag("sector_name", metadata.get("sector_name", ""))
+    #             .tag("valve_state", metadata.get("valve_state", ""))
+    #             .field("value", float(value))
+    #         )
+
+    #         # Store unit as tag (optional: change to .field if preferred)
+    #         if unit:
+    #             point.tag("unit", unit)
+            
+    #         if timestamp and isinstance(timestamp, datetime):
+    #             # Ensure timestamp is timezone-aware
+    #             if timestamp.tzinfo is None:
+    #                 timestamp = timestamp.replace(tzinfo=timezone.utc)
+    #         else:
+    #             # Get current UTC time as timezone-aware datetime
+    #             timestamp = datetime.now(timezone.utc)
+            
+    #         point = point.time(timestamp, self.WritePrecision.NS)
+
+    #         print(f"##########  sensor section Point: {point.to_line_protocol()}")
+    #         logger.debug(f"Writing point to InfluxDB: {point.to_line_protocol()}")
+    #         self.write_api.write(bucket=config.INFLUXDB_BUCKET, org=config.INFLUXDB_ORG, record=point)
+
+    #         return True
+    #     except Exception as e:
+    #         logger.error(f"Error storing sensor data in InfluxDB: {e}")
+    #         return False
+
     
     def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit, metadata=None):
         """Store a single sensor reading in InfluxDB v2.x"""
@@ -358,9 +404,14 @@ class InfluxDBStorage(TimeSeriesStorage):
                         point = point.field(key, json.dumps(val))
             
             # Set timestamp
-            if isinstance(timestamp, str):
-                timestamp = self.parser.parse(timestamp)
-            if isinstance(timestamp, datetime.datetime):
+            if timestamp and isinstance(timestamp, datetime):
+                # Ensure timestamp is timezone-aware
+                if timestamp.tzinfo is None:
+                    timestamp = timestamp.replace(tzinfo=timezone.utc)
+                else:
+                    # Get current UTC time as timezone-aware datetime
+                    timestamp = datetime.now(timezone.utc)
+                
                 point = point.time(timestamp, self.WritePrecision.NS)
             
             # Write to InfluxDB
@@ -446,10 +497,15 @@ class InfluxDBStorage(TimeSeriesStorage):
                         point = point.field(key, json.dumps(val))
             
             # Set timestamp
-            if isinstance(timestamp, str):
-                timestamp = self.parser.parse(timestamp)
-            if isinstance(timestamp, datetime.datetime):
-                point = point.time(timestamp, self.WritePrecision.NS)
+            if timestamp and isinstance(timestamp, datetime):
+                # Ensure timestamp is timezone-aware
+                if timestamp.tzinfo is None:
+                    timestamp = timestamp.replace(tzinfo=timezone.utc)
+            else:
+                # Get current UTC time as timezone-aware datetime
+                timestamp = datetime.now(timezone.utc)
+        
+            point = point.time(timestamp, self.WritePrecision.NS)
             
             # Write to InfluxDB
             self.write_api.write(
@@ -464,6 +520,7 @@ class InfluxDBStorage(TimeSeriesStorage):
     
     def get_sensor_data(self, device_id, sensor_type, start_time, end_time):
         """Retrieve sensor data for a specific device and sensor type within a time range"""
+        
         if not self._influxdb_available:
             return []
             
@@ -486,7 +543,7 @@ class InfluxDBStorage(TimeSeriesStorage):
                     |> filter(fn: (r) => r._measurement == "{sensor_type}")
                     |> filter(fn: (r) => r.device_id == "{device_id}")
             '''
-            
+            print(f"@@@@@@@@///////////>>>>>>>>>>>>> {query}")
             # Execute query
             tables = self.query_api.query(query, org=config.INFLUXDB_ORG)
             

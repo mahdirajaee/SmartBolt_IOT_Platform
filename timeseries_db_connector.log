@@ -105,246 +105,83 @@ cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8000 not free on 0.0.0.0.
 2025-04-27 21:24:32,070 - cherrypy.error - INFO - [27/Apr/2025:21:24:32] ENGINE Bus EXITING
 2025-04-27 21:24:32,070 - cherrypy.error - INFO - [27/Apr/2025:21:24:32] ENGINE Bus EXITED
 2025-04-27 21:24:32,070 - timeseries_connector - INFO - API server stopped
-2025-04-29 17:35:42,024 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:35:42,024 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:35:42,030 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1069f0b10>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:35:42,030 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1069f0b10>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:35:42,030 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:35:42,030 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:35:42,030 - registration - INFO - Registration service started in background
-2025-04-29 17:35:42,030 - registration - INFO - Registration service started in background
-2025-04-29 17:35:42,031 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:35:42,031 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:35:42,031 - timeseries_connector - INFO - Starting Time Series DB Connector
-2025-04-29 17:35:42,031 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
-2025-04-29 17:35:42,035 - mqtt_client - INFO - MQTT client started
-2025-04-29 17:35:42,035 - timeseries_connector - INFO - Connected to message broker
-2025-04-29 17:35:42,035 - mqtt_client - WARNING - Not connected to broker, queuing subscription to sensor/readings
-2025-04-29 17:35:42,035 - timeseries_connector - INFO - Subscribed to sensor data topic: sensor/readings
-2025-04-29 17:35:42,035 - mqtt_client - WARNING - Not connected to broker, queuing subscription to valve/status
-2025-04-29 17:35:42,035 - timeseries_connector - INFO - Subscribed to valve status topic: valve/status
-2025-04-29 17:35:42,035 - mqtt_client - WARNING - Not connected to broker, queuing subscription to system/events
-2025-04-29 17:35:42,035 - timeseries_connector - INFO - Subscribed to system events topic: system/events
-2025-04-29 17:35:42,035 - timeseries_connector - INFO - Time Series DB Connector started successfully
-2025-04-29 17:35:42,036 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:35:42,036 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:35:42,036 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1069f1010>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:35:42,036 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1069f1010>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:35:42,036 - cherrypy.error - INFO - [29/Apr/2025:17:35:42] ENGINE Bus STARTING
-2025-04-29 17:35:42,037 - mqtt_client - INFO - Connected to MQTT broker as timeseries_connector_1745940942
-2025-04-29 17:35:43,097 - cherrypy.error - ERROR - [29/Apr/2025:17:35:43] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x104fbad90>>
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 122, in free
-    Checker(timeout=0.1).assert_free(host, port)
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 71, in assert_free
-    list(itertools.starmap(self._connect, info))
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 87, in _connect
-    raise PortNotFree(tmpl.format(**locals()))
-portend.PortNotFree: Port 8000 is in use on 0.0.0.0.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 230, in publish
-    output.append(listener(*args, **kwargs))
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/_cpserver.py", line 180, in start
-    super(Server, self).start()
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/servers.py", line 177, in start
-    portend.free(*self.bind_addr, timeout=Timeouts.free)
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 126, in free
-    raise Timeout("Port {port} not free on {host}.".format(**locals()))
-portend.Timeout: Port 8000 not free on 0.0.0.0.
-
-2025-04-29 17:35:43,098 - cherrypy.error - ERROR - [29/Apr/2025:17:35:43] ENGINE Shutting down due to error in start listener:
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 268, in start
-    self.publish('start')
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 248, in publish
-    raise exc
-cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8000 not free on 0.0.0.0.')
-
-2025-04-29 17:35:43,098 - cherrypy.error - INFO - [29/Apr/2025:17:35:43] ENGINE Bus STOPPING
-2025-04-29 17:35:43,098 - cherrypy.error - INFO - [29/Apr/2025:17:35:43] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) already shut down
-2025-04-29 17:35:43,098 - cherrypy.error - INFO - [29/Apr/2025:17:35:43] ENGINE Bus STOPPED
-2025-04-29 17:35:43,098 - cherrypy.error - INFO - [29/Apr/2025:17:35:43] ENGINE Bus EXITING
-2025-04-29 17:35:43,098 - cherrypy.error - INFO - [29/Apr/2025:17:35:43] ENGINE Bus EXITED
-2025-04-29 17:35:55,593 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:35:55,593 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:35:55,602 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a338950>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:35:55,602 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a338950>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:35:55,603 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:35:55,603 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:35:55,603 - registration - INFO - Registration service started in background
-2025-04-29 17:35:55,603 - registration - INFO - Registration service started in background
-2025-04-29 17:35:55,603 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:35:55,603 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:35:55,604 - timeseries_connector - INFO - Starting Time Series DB Connector
-2025-04-29 17:35:55,604 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
-2025-04-29 17:35:55,607 - mqtt_client - INFO - MQTT client started
-2025-04-29 17:35:55,607 - timeseries_connector - INFO - Connected to message broker
-2025-04-29 17:35:55,607 - mqtt_client - WARNING - Not connected to broker, queuing subscription to sensor/readings
-2025-04-29 17:35:55,607 - timeseries_connector - INFO - Subscribed to sensor data topic: sensor/readings
-2025-04-29 17:35:55,607 - mqtt_client - WARNING - Not connected to broker, queuing subscription to valve/status
-2025-04-29 17:35:55,607 - timeseries_connector - INFO - Subscribed to valve status topic: valve/status
-2025-04-29 17:35:55,608 - mqtt_client - WARNING - Not connected to broker, queuing subscription to system/events
-2025-04-29 17:35:55,608 - timeseries_connector - INFO - Subscribed to system events topic: system/events
-2025-04-29 17:35:55,608 - timeseries_connector - INFO - Time Series DB Connector started successfully
-2025-04-29 17:35:55,608 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:35:55,608 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:35:55,608 - cherrypy.error - INFO - [29/Apr/2025:17:35:55] ENGINE Bus STARTING
-2025-04-29 17:35:55,609 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a30b590>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:35:55,609 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a30b590>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:35:55,611 - mqtt_client - INFO - Connected to MQTT broker as timeseries_connector_1745940955
-2025-04-29 17:35:56,666 - cherrypy.error - ERROR - [29/Apr/2025:17:35:56] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x10682d2d0>>
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 122, in free
-    Checker(timeout=0.1).assert_free(host, port)
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 71, in assert_free
-    list(itertools.starmap(self._connect, info))
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 87, in _connect
-    raise PortNotFree(tmpl.format(**locals()))
-portend.PortNotFree: Port 8000 is in use on 0.0.0.0.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 230, in publish
-    output.append(listener(*args, **kwargs))
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/_cpserver.py", line 180, in start
-    super(Server, self).start()
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/servers.py", line 177, in start
-    portend.free(*self.bind_addr, timeout=Timeouts.free)
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 126, in free
-    raise Timeout("Port {port} not free on {host}.".format(**locals()))
-portend.Timeout: Port 8000 not free on 0.0.0.0.
-
-2025-04-29 17:35:56,666 - cherrypy.error - ERROR - [29/Apr/2025:17:35:56] ENGINE Shutting down due to error in start listener:
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 268, in start
-    self.publish('start')
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 248, in publish
-    raise exc
-cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8000 not free on 0.0.0.0.')
-
-2025-04-29 17:35:56,666 - cherrypy.error - INFO - [29/Apr/2025:17:35:56] ENGINE Bus STOPPING
-2025-04-29 17:35:56,666 - cherrypy.error - INFO - [29/Apr/2025:17:35:56] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) already shut down
-2025-04-29 17:35:56,666 - cherrypy.error - INFO - [29/Apr/2025:17:35:56] ENGINE Bus STOPPED
-2025-04-29 17:35:56,666 - cherrypy.error - INFO - [29/Apr/2025:17:35:56] ENGINE Bus EXITING
-2025-04-29 17:35:56,666 - cherrypy.error - INFO - [29/Apr/2025:17:35:56] ENGINE Bus EXITED
-2025-04-29 17:49:41,863 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:49:41,863 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:49:41,871 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106ca7d50>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:49:41,871 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106ca7d50>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:49:41,871 - registration - INFO - Registration service started in background
-2025-04-29 17:49:41,871 - registration - INFO - Registration service started in background
-2025-04-29 17:49:41,871 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:49:41,871 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:49:41,871 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:49:41,871 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:49:41,871 - timeseries_connector - INFO - Starting Time Series DB Connector
-2025-04-29 17:49:41,872 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
-2025-04-29 17:49:41,873 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106c8acd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:49:41,873 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106c8acd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:49:41,873 - mqtt_client - INFO - MQTT client started
-2025-04-29 17:49:41,873 - timeseries_connector - INFO - Connected to message broker
-2025-04-29 17:49:41,873 - mqtt_client - WARNING - Not connected to broker, queuing subscription to sensor/readings
-2025-04-29 17:49:41,874 - mqtt_client - INFO - Connected to MQTT broker as timeseries_connector_1745941781
-2025-04-29 17:49:41,874 - timeseries_connector - INFO - Subscribed to sensor data topic: sensor/readings
-2025-04-29 17:49:41,874 - timeseries_connector - INFO - Subscribed to valve status topic: valve/status
-2025-04-29 17:49:41,874 - timeseries_connector - INFO - Subscribed to system events topic: system/events
-2025-04-29 17:49:41,874 - timeseries_connector - INFO - Time Series DB Connector started successfully
-2025-04-29 17:49:41,874 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:49:41,874 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:49:41,876 - cherrypy.error - INFO - [29/Apr/2025:17:49:41] ENGINE Bus STARTING
-2025-04-29 17:49:42,933 - cherrypy.error - ERROR - [29/Apr/2025:17:49:42] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x10252bb50>>
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 122, in free
-    Checker(timeout=0.1).assert_free(host, port)
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 71, in assert_free
-    list(itertools.starmap(self._connect, info))
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 87, in _connect
-    raise PortNotFree(tmpl.format(**locals()))
-portend.PortNotFree: Port 8000 is in use on 0.0.0.0.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 230, in publish
-    output.append(listener(*args, **kwargs))
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/_cpserver.py", line 180, in start
-    super(Server, self).start()
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/servers.py", line 177, in start
-    portend.free(*self.bind_addr, timeout=Timeouts.free)
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 126, in free
-    raise Timeout("Port {port} not free on {host}.".format(**locals()))
-portend.Timeout: Port 8000 not free on 0.0.0.0.
-
-2025-04-29 17:49:42,934 - cherrypy.error - ERROR - [29/Apr/2025:17:49:42] ENGINE Shutting down due to error in start listener:
-Traceback (most recent call last):
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 268, in start
-    self.publish('start')
-  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 248, in publish
-    raise exc
-cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8000 not free on 0.0.0.0.')
-
-2025-04-29 17:49:42,934 - cherrypy.error - INFO - [29/Apr/2025:17:49:42] ENGINE Bus STOPPING
-2025-04-29 17:49:42,934 - cherrypy.error - INFO - [29/Apr/2025:17:49:42] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) already shut down
-2025-04-29 17:49:42,935 - cherrypy.error - INFO - [29/Apr/2025:17:49:42] ENGINE Bus STOPPED
-2025-04-29 17:49:42,935 - cherrypy.error - INFO - [29/Apr/2025:17:49:42] ENGINE Bus EXITING
-2025-04-29 17:49:42,935 - cherrypy.error - INFO - [29/Apr/2025:17:49:42] ENGINE Bus EXITED
-2025-04-29 17:50:11,733 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:50:11,733 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:50:11,740 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104a1c950>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:50:11,740 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104a1c950>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:50:11,740 - registration - INFO - Registration service started in background
-2025-04-29 17:50:11,740 - registration - INFO - Registration service started in background
-2025-04-29 17:50:11,740 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:50:11,740 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:50:11,741 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:50:11,741 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:50:11,741 - timeseries_connector - INFO - Starting Time Series DB Connector
-2025-04-29 17:50:11,741 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
-2025-04-29 17:50:11,744 - mqtt_client - INFO - MQTT client started
-2025-04-29 17:50:11,744 - timeseries_connector - INFO - Connected to message broker
-2025-04-29 17:50:11,745 - mqtt_client - WARNING - Not connected to broker, queuing subscription to sensor/readings
-2025-04-29 17:50:11,745 - timeseries_connector - INFO - Subscribed to sensor data topic: sensor/readings
-2025-04-29 17:50:11,745 - mqtt_client - WARNING - Not connected to broker, queuing subscription to valve/status
-2025-04-29 17:50:11,745 - timeseries_connector - INFO - Subscribed to valve status topic: valve/status
-2025-04-29 17:50:11,745 - mqtt_client - WARNING - Not connected to broker, queuing subscription to system/events
-2025-04-29 17:50:11,746 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1027e1c90>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:50:11,745 - timeseries_connector - INFO - Subscribed to system events topic: system/events
-2025-04-29 17:50:11,746 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1027e1c90>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:50:11,746 - timeseries_connector - INFO - Time Series DB Connector started successfully
-2025-04-29 17:50:11,746 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:50:11,746 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
-2025-04-29 17:50:11,746 - cherrypy.error - INFO - [29/Apr/2025:17:50:11] ENGINE Bus STARTING
-2025-04-29 17:50:11,748 - mqtt_client - INFO - Connected to MQTT broker as timeseries_connector_1745941811
-2025-04-29 17:50:11,851 - cherrypy.error - INFO - [29/Apr/2025:17:50:11] ENGINE Serving on http://0.0.0.0:8084
-2025-04-29 17:50:11,851 - cherrypy.error - INFO - [29/Apr/2025:17:50:11] ENGINE Bus STARTED
-2025-04-29 17:50:11,852 - timeseries_connector - INFO - API server started on http://0.0.0.0:8084
-2025-04-29 17:51:11,753 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:51:11,753 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:51:11,761 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104323f10>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:51:11,761 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104323f10>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:52:11,769 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:52:11,769 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
-2025-04-29 17:52:11,779 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104a49090>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:52:11,779 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104a49090>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:52:58,491 - timeseries_connector - INFO - Received signal 2, shutting down...
-2025-04-29 17:52:58,502 - registration - ERROR - Network error during status update: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104a4b410>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:52:58,502 - registration - ERROR - Network error during status update: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104a4b410>: Failed to establish a new connection: [Errno 61] Connection refused'))
-2025-04-29 17:52:58,503 - timeseries_connector - INFO - Stopping Time Series DB Connector
-2025-04-29 17:52:58,855 - mqtt_client - INFO - Disconnected from MQTT broker
-2025-04-29 17:52:58,855 - mqtt_client - INFO - MQTT client stopped
-2025-04-29 17:52:58,856 - timeseries_storage - INFO - InfluxDB connection closed
-2025-04-29 17:52:58,856 - timeseries_storage - INFO - InfluxDB connection closed
-2025-04-29 17:52:58,856 - timeseries_connector - INFO - Time Series DB Connector stopped
-2025-04-29 17:52:58,857 - cherrypy.error - INFO - [29/Apr/2025:17:52:58] ENGINE Bus STOPPING
-2025-04-29 17:52:59,217 - cherrypy.error - INFO - [29/Apr/2025:17:52:59] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8084)) shut down
-2025-04-29 17:52:59,217 - cherrypy.error - INFO - [29/Apr/2025:17:52:59] ENGINE Bus STOPPED
-2025-04-29 17:52:59,217 - cherrypy.error - INFO - [29/Apr/2025:17:52:59] ENGINE Bus EXITING
-2025-04-29 17:52:59,217 - cherrypy.error - INFO - [29/Apr/2025:17:52:59] ENGINE Bus EXITED
-2025-04-29 17:52:59,217 - timeseries_connector - INFO - API server stopped
+2025-04-29 13:02:51,370 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 13:02:51,370 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 13:02:53,695 - registration - INFO - Registration successful
+2025-04-29 13:02:53,695 - registration - INFO - Registration successful
+2025-04-29 13:02:53,695 - registration - INFO - Registration service started in background
+2025-04-29 13:02:53,695 - registration - INFO - Registration service started in background
+2025-04-29 13:02:53,711 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 13:02:53,711 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-04-29 13:02:53,711 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 13:02:53,711 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-04-29 13:02:53,711 - timeseries_connector - INFO - Starting Time Series DB Connector
+2025-04-29 13:02:53,711 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
+2025-04-29 13:02:53,727 - mqtt_client - INFO - Connected to MQTT broker as timeseries_connector_1745924573
+2025-04-29 13:02:53,732 - mqtt_client - INFO - MQTT client started
+2025-04-29 13:02:53,732 - timeseries_connector - INFO - Connected to message broker
+2025-04-29 13:02:53,734 - timeseries_connector - INFO - Subscribed to sensor data topic: sensor/readings
+2025-04-29 13:02:53,737 - timeseries_connector - INFO - Subscribed to valve status topic: valve/status
+2025-04-29 13:02:53,739 - timeseries_connector - INFO - Subscribed to system events topic: system/events
+2025-04-29 13:02:53,739 - timeseries_connector - INFO - Time Series DB Connector started successfully
+2025-04-29 13:02:53,745 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-04-29 13:02:53,745 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-04-29 13:02:53,746 - cherrypy.error - INFO - [29/Apr/2025:13:02:53] ENGINE Bus STARTING
+2025-04-29 13:02:53,963 - cherrypy.error - INFO - [29/Apr/2025:13:02:53] ENGINE Serving on http://0.0.0.0:8000
+2025-04-29 13:02:53,963 - cherrypy.error - INFO - [29/Apr/2025:13:02:53] ENGINE Bus STARTED
+2025-04-29 13:02:53,963 - timeseries_connector - INFO - API server started on http://0.0.0.0:8000
+2025-04-29 13:02:56,000 - registration - INFO - Registration successful
+2025-04-29 13:02:56,000 - registration - INFO - Registration successful
+2025-04-29 13:03:05,768 - timeseries_connector - INFO - Received signal 2, shutting down...
+2025-04-29 13:03:08,059 - timeseries_connector - INFO - Stopping Time Series DB Connector
+2025-04-29 13:03:08,099 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-29 13:03:08,099 - mqtt_client - INFO - MQTT client stopped
+2025-04-29 13:03:08,099 - timeseries_storage - INFO - InfluxDB connection closed
+2025-04-29 13:03:08,099 - timeseries_storage - INFO - InfluxDB connection closed
+2025-04-29 13:03:08,099 - timeseries_connector - INFO - Time Series DB Connector stopped
+2025-04-29 13:03:08,105 - cherrypy.error - INFO - [29/Apr/2025:13:03:08] ENGINE Bus STOPPING
+2025-04-29 13:03:08,261 - cherrypy.error - INFO - [29/Apr/2025:13:03:08] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+2025-04-29 13:03:08,264 - cherrypy.error - INFO - [29/Apr/2025:13:03:08] ENGINE Bus STOPPED
+2025-04-29 13:03:08,265 - cherrypy.error - INFO - [29/Apr/2025:13:03:08] ENGINE Bus EXITING
+2025-04-29 13:03:08,265 - cherrypy.error - INFO - [29/Apr/2025:13:03:08] ENGINE Bus EXITED
+2025-04-29 13:03:08,265 - timeseries_connector - INFO - API server stopped
+2025-04-29 14:54:01,849 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 14:54:01,849 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 14:54:04,198 - registration - INFO - Registration successful
+2025-04-29 14:54:04,198 - registration - INFO - Registration successful
+2025-04-29 14:54:04,200 - registration - INFO - Registration service started in background
+2025-04-29 14:54:04,200 - registration - INFO - Registration service started in background
+2025-04-29 14:54:04,201 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 14:54:04,201 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-04-29 14:54:04,201 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-29 14:54:04,201 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-04-29 14:54:04,202 - timeseries_connector - INFO - Starting Time Series DB Connector
+2025-04-29 14:54:04,204 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
+2025-04-29 14:54:04,208 - mqtt_client - INFO - Connected to MQTT broker as timeseries_connector_1745931244
+2025-04-29 14:54:04,208 - mqtt_client - INFO - MQTT client started
+2025-04-29 14:54:04,208 - timeseries_connector - INFO - Connected to message broker
+2025-04-29 14:54:04,209 - timeseries_connector - INFO - Subscribed to sensor data topic: sensor/readings
+2025-04-29 14:54:04,209 - timeseries_connector - INFO - Subscribed to valve status topic: valve/status
+2025-04-29 14:54:04,210 - timeseries_connector - INFO - Subscribed to system events topic: system/events
+2025-04-29 14:54:04,210 - timeseries_connector - INFO - Time Series DB Connector started successfully
+2025-04-29 14:54:04,212 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-04-29 14:54:04,212 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-04-29 14:54:04,212 - cherrypy.error - INFO - [29/Apr/2025:14:54:04] ENGINE Bus STARTING
+2025-04-29 14:54:04,456 - cherrypy.error - INFO - [29/Apr/2025:14:54:04] ENGINE Serving on http://0.0.0.0:8000
+2025-04-29 14:54:04,456 - cherrypy.error - INFO - [29/Apr/2025:14:54:04] ENGINE Bus STARTED
+2025-04-29 14:54:04,456 - timeseries_connector - INFO - API server started on http://0.0.0.0:8000
+2025-04-29 14:54:06,554 - registration - INFO - Registration successful
+2025-04-29 14:54:06,554 - registration - INFO - Registration successful
+2025-04-29 14:54:14,198 - timeseries_connector - INFO - Received signal 2, shutting down...
+2025-04-29 14:54:16,457 - timeseries_connector - INFO - Stopping Time Series DB Connector
+2025-04-29 14:54:17,448 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-29 14:54:17,449 - mqtt_client - INFO - MQTT client stopped
+2025-04-29 14:54:17,449 - timeseries_storage - INFO - InfluxDB connection closed
+2025-04-29 14:54:17,449 - timeseries_storage - INFO - InfluxDB connection closed
+2025-04-29 14:54:17,449 - timeseries_connector - INFO - Time Series DB Connector stopped
+2025-04-29 14:54:17,450 - cherrypy.error - INFO - [29/Apr/2025:14:54:17] ENGINE Bus STOPPING
+2025-04-29 14:54:17,649 - cherrypy.error - INFO - [29/Apr/2025:14:54:17] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8000)) shut down
+2025-04-29 14:54:17,649 - cherrypy.error - INFO - [29/Apr/2025:14:54:17] ENGINE Bus STOPPED
+2025-04-29 14:54:17,649 - cherrypy.error - INFO - [29/Apr/2025:14:54:17] ENGINE Bus EXITING
+2025-04-29 14:54:17,649 - cherrypy.error - INFO - [29/Apr/2025:14:54:17] ENGINE Bus EXITED
+2025-04-29 14:54:17,649 - timeseries_connector - INFO - API server stopped

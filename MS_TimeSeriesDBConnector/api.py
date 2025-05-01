@@ -179,24 +179,54 @@ class TimeSeriesAPI:
             # For InfluxDB, we need a different approach to get unique device IDs
             if config.STORAGE_TYPE.lower() == "influxdb":
                 try:
-                    from influxdb import InfluxDBClient
+                    from influxdb_client import InfluxDBClient
                     
-                    client = InfluxDBClient(
-                        host=config.INFLUXDB_HOST, 
-                        port=config.INFLUXDB_PORT,
-                        username=config.INFLUXDB_USER,
-                        password=config.INFLUXDB_PASSWORD,
-                        database=config.INFLUXDB_DATABASE
-                    )
+                    try:
+                        client = InfluxDBClient(
+                            url=f"http://{config.INFLUXDB_HOST}:{config.INFLUXDB_PORT}",
+                            token=config.INFLUXDB_TOKEN,
+                            org=config.INFLUXDB_ORG
+                        )
+                        # Optional: check connection
+                        health = client.health()
+                        if health.status != "pass":
+                            raise Exception("InfluxDB connection unhealthy")
+                    except Exception as e:
+                        print(f"Failed to connect to InfluxDB: {e}")
                     
+                    self.query_api = client.query_api()
                     # Get unique device_ids from both temperature and pressure measurements
-                    query = 'SHOW TAG VALUES FROM "temperature" WITH KEY = "device_id"'
-                    result = client.query(query)
-                    temp_devices = [item['value'] for item in list(result.get_points())]
-                    
-                    query = 'SHOW TAG VALUES FROM "pressure" WITH KEY = "device_id"'
-                    result = client.query(query)
-                    pressure_devices = [item['value'] for item in list(result.get_points())]
+                    query_temp = f'''
+                            from(bucket: "{config.INFLUXDB_BUCKET}")
+                            |> range(start: -100y)
+                            |> filter(fn: (r) => r["_measurement"] == "temperature")
+                            |> map(fn: (r) => ({{ r with _value: string(v: r._value) }}))
+                            |> group(columns: ["device_id"])
+                            |> distinct(column: "device_id")
+                    '''
+                    query_pressure = f'''
+                            from(bucket: "{config.INFLUXDB_BUCKET}")
+                            |> range(start: -100y)
+                            |> filter(fn: (r) => r._measurement == "pressure")
+                            |> map(fn: (r) => ({{ r with _value: string(v: r._value) }}))
+                            |> group(columns: ["device_id"])
+                            |> distinct(column: "device_id")
+                    '''
+                    # Fetch device IDs for both temperature and pressure
+                    result_temp = self.query_api.query(org=config.INFLUXDB_ORG, query=query_temp)
+                    result_pressure = self.query_api.query(org=config.INFLUXDB_ORG, query=query_pressure)
+                    # Extract device IDs from query results
+                    temp_devices = []
+                    pressure_devices = []
+                    # Extract temperature device IDs
+                    for table in result_temp:
+                        for record in table.records:
+                            temp_devices.append(record.get_value())
+
+                    # Extract pressure device IDs
+                    for table in result_pressure:
+                        for record in table.records:
+                            pressure_devices.append(record.get_value())
                     
                     # Combine and remove duplicates
                     all_devices = list(set(temp_devices + pressure_devices))
@@ -222,23 +252,45 @@ class TimeSeriesAPI:
             # For InfluxDB, we need a different approach to get unique sector IDs
             if config.STORAGE_TYPE.lower() == "influxdb":
                 try:
-                    from influxdb import InfluxDBClient
+                    from influxdb_client import InfluxDBClient
                     
-                    client = InfluxDBClient(
-                        host=config.INFLUXDB_HOST, 
-                        port=config.INFLUXDB_PORT,
-                        username=config.INFLUXDB_USER,
-                        password=config.INFLUXDB_PASSWORD,
-                        database=config.INFLUXDB_DATABASE
-                    )
-                    
+                    try:
+                        client = InfluxDBClient(
+                            url=f"http://{config.INFLUXDB_HOST}:{config.INFLUXDB_PORT}",
+                            token=config.INFLUXDB_TOKEN,
+                            org=config.INFLUXDB_ORG
+                        )
+                        # Optional: check connection
+                        health = client.health()
+                        if health.status != "pass":
+                            raise Exception("InfluxDB connection unhealthy")
+                    except Exception as e:
+                        print(f"Failed to connect to InfluxDB: {e}")
+                    self.query_api = client.query_api()
                     # Get unique sector_ids from valve_state measurement
-                    query = 'SHOW TAG VALUES FROM "valve_state" WITH KEY = "sector_id"'
-                    result = client.query(query)
-                    sectors = [item['value'] for item in list(result.get_points())]
+                    query = f'''
+                            from(bucket: "{config.INFLUXDB_BUCKET}")
+                            |> range(start: -100y)
+                            |> filter(fn: (r) => r["_measurement"] == "valve_state")
+                            |> map(fn: (r) => ({{ r with _value: string(v: r._value) }}))
+                            |> group(columns: ["sector_id"])
+                            |> distinct(column: "sector_id")
+                    '''
+                    print (f"Querying InfluxDB for sector IDs: {query}")
+                    # Fetch sector IDs
+                    result = self.query_api.query(org=config.INFLUXDB_ORG, query=query)
+                    # Extract sector IDs from query results
+                    sectors = []
+                    for table in result:
+                        for record in table.records:
+                            sectors.append(record.get_value())
+                    # Remove duplicates
+                    sectors = list(set(sectors))
                     sectors.sort()
+                    # Get the number of unique sectors
+                    num_sectors = len(sectors)
                     
-                    return {"sectors": sectors}
+                    return {"num_sectors": num_sectors, "sectors": sectors}
                 except Exception as e:
                     logger.error(f"Error getting sector IDs from InfluxDB: {e}")
                     return {"error": str(e)}

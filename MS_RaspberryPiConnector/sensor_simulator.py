@@ -6,6 +6,7 @@ import json
 import logging
 import requests
 from datetime import datetime
+import math
 import config
 from storage import StorageManager
 
@@ -31,9 +32,10 @@ class SensorSimulator:
     def __init__(self):
         self.last_reading_time = None
         self.storage = StorageManager()
+        self.phase = 0.0
         
         if config.USE_MQTT:
-            self.mqtt_client = mqtt.Client(config.MQTT_CLIENT_ID)
+            self.mqtt_client = mqtt.Client(client_id=config.MQTT_CLIENT_ID, protocol=mqtt.MQTTv311)
             if config.MQTT_USERNAME and config.MQTT_PASSWORD:
                 self.mqtt_client.username_pw_set(config.MQTT_USERNAME, config.MQTT_PASSWORD)
             
@@ -58,24 +60,36 @@ class SensorSimulator:
         logger.warning(f"MQTT connection lost with code {rc}")
         
     def generate_temperature(self):
-        if config.RANDOM_VARIATION:
-            variation = random.uniform(-config.TEMP_VARIATION, config.TEMP_VARIATION)
-            temperature = config.TEMP_BASE_VALUE + variation
-        else:
-            temperature = config.TEMP_BASE_VALUE
+        # if config.RANDOM_VARIATION:
+        #     variation = random.uniform(-config.TEMP_VARIATION, config.TEMP_VARIATION)
+        #     temperature = config.TEMP_BASE_VALUE + variation
+        # else:
+        #     temperature = config.TEMP_BASE_VALUE
             
+        # temperature = max(config.TEMP_MIN, min(config.TEMP_MAX, temperature))
+        # return int(temperature)
+        wave = math.sin(self.phase) * config.TEMP_VARIATION
+        noise = random.uniform(-1,1)
+        temperature = config.TEMP_BASE_VALUE + wave + noise
         temperature = max(config.TEMP_MIN, min(config.TEMP_MAX, temperature))
-        return int(temperature)
-    
+        self.phase += 0.1
+        return round(temperature,2)
     def generate_pressure(self):
-        if config.RANDOM_VARIATION:
-            variation = random.uniform(-config.PRESSURE_VARIATION, config.PRESSURE_VARIATION)
-            pressure = config.PRESSURE_BASE_VALUE + variation
-        else:
-            pressure = config.PRESSURE_BASE_VALUE
+        # if config.RANDOM_VARIATION:
+        #     variation = random.uniform(-config.PRESSURE_VARIATION, config.PRESSURE_VARIATION)
+        #     pressure = config.PRESSURE_BASE_VALUE + variation
+        # else:
+        #     pressure = config.PRESSURE_BASE_VALUE
             
+        # pressure = max(config.PRESSURE_MIN, min(config.PRESSURE_MAX, pressure))
+        # return int(pressure)
+        wave = math.sin(self.phase) * config.PRESSURE_VARIATION
+        noise = random.uniform(-1,1)
+        pressure = config.PRESSURE_BASE_VALUE + wave + noise
         pressure = max(config.PRESSURE_MIN, min(config.PRESSURE_MAX, pressure))
-        return int(pressure)
+        self.phase += 0.1
+        return round(pressure,2)
+
     
     def get_sensor_readings(self, device_id=None):
         timestamp = datetime.now().isoformat()
