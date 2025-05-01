@@ -7,6 +7,14 @@
       "end_device_id": 10,
       "device_count": 2,
       "valve_state": "closed"
+    },
+    {
+      "sector_id": "B",
+      "name": "Sector B",
+      "start_device_id": 11,
+      "end_device_id": 20,
+      "device_count": 2,
+      "valve_state": "open"
     }
   ],
   "devices": [
@@ -16,8 +24,8 @@
       "name": "Device 001",
       "status": "active",
       "readings": {
-        "temperature": 26,
-        "pressure": 1011
+        "temperature": 24.38,
+        "pressure": 1006.49
       }
     },
     {
@@ -26,8 +34,28 @@
       "name": "Device 010",
       "status": "active",
       "readings": {
-        "temperature": 23,
-        "pressure": 1005
+        "temperature": 23.25,
+        "pressure": 1005.34
+      }
+    },
+    {
+      "device_id": 11,
+      "sector_id": "B",
+      "name": "Device 011",
+      "status": "inactive",
+      "readings": {
+        "temperature": 22.3,
+        "pressure": 1003.64
+      }
+    },
+    {
+      "device_id": 20,
+      "sector_id": "B",
+      "name": "Device 020",
+      "status": "active",
+      "readings": {
+        "temperature": 23.1,
+        "pressure": 1003.78
       }
     }
   ]

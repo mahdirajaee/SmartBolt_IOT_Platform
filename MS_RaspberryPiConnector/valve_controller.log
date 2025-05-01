@@ -93,3 +93,64 @@
 2025-04-28 18:45:21,348 - valve_controller - INFO - Connecting to message broker at localhost:1883
 2025-04-28 18:45:21,369 - valve_controller - INFO - Subscribed to valve control topic: valve/control
 2025-04-28 18:45:21,369 - valve_controller - INFO - Valve control message handler started
+2025-04-29 12:22:22,938 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 12:22:22,974 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 12:22:22,974 - valve_controller - INFO - Valve control message handler started
+2025-04-29 12:25:33,373 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 12:25:33,389 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 12:25:33,389 - valve_controller - INFO - Valve control message handler started
+2025-04-29 12:25:51,472 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 12:25:51,472 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 12:25:51,472 - valve_controller - INFO - Valve control message handler started
+2025-04-29 12:34:44,218 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 12:34:44,236 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 12:34:44,252 - valve_controller - INFO - Valve control message handler started
+2025-04-29 12:36:33,284 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 12:36:33,302 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 12:36:33,302 - valve_controller - INFO - Valve control message handler started
+2025-04-29 12:46:56,367 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 12:46:56,395 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 12:46:56,395 - valve_controller - INFO - Valve control message handler started
+2025-04-29 12:47:22,617 - valve_controller - INFO - Valve control message handler stopped
+2025-04-29 12:59:06,864 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 12:59:06,877 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 12:59:06,877 - valve_controller - INFO - Valve control message handler started
+2025-04-29 12:59:12,916 - valve_controller - INFO - Valve control message handler stopped
+2025-04-29 12:59:43,465 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 12:59:43,480 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 12:59:43,480 - valve_controller - INFO - Valve control message handler started
+2025-04-29 13:55:35,547 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 13:55:35,547 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 13:55:35,563 - valve_controller - INFO - Valve control message handler started
+2025-04-29 14:16:27,056 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 14:16:27,072 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 14:16:27,073 - valve_controller - INFO - Valve control message handler started
+2025-04-29 19:11:40,478 - valve_controller - INFO - Valve control message handler stopped
+2025-04-29 19:11:55,117 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-29 19:11:55,120 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-29 19:11:55,121 - valve_controller - INFO - Valve control message handler started
+2025-04-30 13:50:21,037 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-30 13:50:21,052 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-30 13:50:21,052 - valve_controller - INFO - Valve control message handler started
+2025-04-30 14:07:06,707 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-04-30 14:07:06,707 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-04-30 14:07:06,707 - valve_controller - INFO - Valve control message handler started
+2025-05-01 07:57:43,152 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-05-01 07:57:43,183 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-05-01 07:57:43,183 - valve_controller - INFO - Valve control message handler started
+2025-05-01 16:15:19,796 - valve_controller - INFO - Valve control message handler stopped
+2025-05-01 16:25:31,018 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-05-01 16:25:31,051 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-05-01 16:25:31,051 - valve_controller - INFO - Valve control message handler started
+2025-05-01 16:25:38,112 - valve_controller - INFO - Valve control message handler stopped
+2025-05-01 16:51:09,778 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-05-01 16:51:09,811 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-05-01 16:51:09,812 - valve_controller - INFO - Valve control message handler started
+2025-05-01 17:03:50,551 - valve_controller - INFO - Valve control message handler stopped
+2025-05-01 17:09:08,871 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-05-01 17:09:08,894 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-05-01 17:09:08,894 - valve_controller - INFO - Valve control message handler started
+2025-05-01 17:14:15,887 - valve_controller - INFO - Valve control message handler stopped
+2025-05-01 17:14:29,089 - valve_controller - INFO - Connecting to message broker at localhost:1883
+2025-05-01 17:14:29,097 - valve_controller - INFO - Subscribed to valve control topic: valve/control
+2025-05-01 17:14:29,097 - valve_controller - INFO - Valve control message handler started
