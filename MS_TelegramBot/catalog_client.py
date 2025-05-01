@@ -15,18 +15,18 @@ class CatalogClient:
     def register_service(self):
         try:
             service_data = {
-                "id": self.service_info["id"],
+                "service_id": self.service_info["id"],
                 "name": self.service_info["name"],
                 "description": self.service_info["description"],
-                "type": self.service_info["type"],
-                "endpoint": f"http://localhost:{self.service_info['port']}",
-                "protocol": "http",
-                "status": "active",
-                "last_seen": int(time.time())
+                "service_type": self.service_info["type"],
+                "endpoints": {
+                    "api": f"http://localhost:{self.service_info['port']}"
+                },
+                "status": "online"
             }
             
             response = requests.post(
-                f"{self.catalog_url}/api/services",
+                f"{self.catalog_url}/register_service",
                 json=service_data
             )
             
@@ -44,12 +44,12 @@ class CatalogClient:
     def update_service_status(self):
         try:
             update_data = {
-                "status": "active",
-                "last_seen": int(time.time())
+                "service_id": self.service_info["id"],
+                "status": "active"
             }
             
-            response = requests.put(
-                f"{self.catalog_url}/api/services/{self.service_info['id']}",
+            response = requests.post(
+                f"{self.catalog_url}/update_service_status",
                 json=update_data
             )
             
@@ -66,7 +66,7 @@ class CatalogClient:
     
     def discover_service(self, service_id):
         try:
-            response = requests.get(f"{self.catalog_url}/api/services/{service_id}")
+            response = requests.get(f"{self.catalog_url}/services/{service_id}")
             
             if response.status_code == 200:
                 service_data = response.json()
@@ -81,7 +81,7 @@ class CatalogClient:
 
     def get_latest_sensor_data(self, sensor_type):
         try:
-            response = requests.get(f"{self.catalog_url}/api/sensors/data/{sensor_type}/latest")
+            response = requests.get(f"{self.catalog_url}/sensors/data/{sensor_type}/latest")
             
             if response.status_code == 200:
                 sensor_data = response.json()

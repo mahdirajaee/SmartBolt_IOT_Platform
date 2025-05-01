@@ -2639,3 +2639,168 @@ cherrypy.process.wspbus.ChannelFailures: Timeout('Port 5004 not free on 0.0.0.0.
 2025-04-27 11:50:27,204 - cherrypy.error - INFO - [27/Apr/2025:11:50:27] ENGINE Bus STOPPED
 2025-04-27 11:50:27,205 - cherrypy.error - INFO - [27/Apr/2025:11:50:27] ENGINE Bus EXITING
 2025-04-27 11:50:27,205 - cherrypy.error - INFO - [27/Apr/2025:11:50:27] ENGINE Waiting for child threads to terminate...
+2025-04-30 13:12:51,348 - rule_engine - INFO - Loaded 2 default rules
+2025-04-30 13:12:51,349 - controlcenter - INFO - Starting Control Center
+2025-04-30 13:12:51,349 - controlcenter - INFO - Registration thread started
+2025-04-30 13:12:51,349 - control_logic - INFO - Starting Control Logic
+2025-04-30 13:12:51,349 - mqtt_handler - ERROR - MQTTClient not available
+2025-04-30 13:12:51,349 - control_logic - ERROR - Failed to connect to MQTT broker, control logic will run with limited functionality
+2025-04-30 13:12:51,349 - controlcenter - ERROR - Failed to start Control Logic - MQTT connection may have failed
+2025-04-30 13:12:51,349 - cherrypy.error - INFO - [30/Apr/2025:13:12:51] ENGINE Listening for SIGTERM.
+2025-04-30 13:12:51,349 - cherrypy.error - INFO - [30/Apr/2025:13:12:51] ENGINE Listening for SIGHUP.
+2025-04-30 13:12:51,349 - cherrypy.error - INFO - [30/Apr/2025:13:12:51] ENGINE Listening for SIGUSR1.
+2025-04-30 13:12:51,349 - cherrypy.error - INFO - [30/Apr/2025:13:12:51] ENGINE Bus STARTING
+2025-04-30 13:12:51,354 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:12:51,358 - registration - INFO - Registration successful
+2025-04-30 13:12:51,456 - cherrypy.error - INFO - [30/Apr/2025:13:12:51] ENGINE Serving on http://0.0.0.0:5009
+2025-04-30 13:12:51,456 - cherrypy.error - INFO - [30/Apr/2025:13:12:51] ENGINE Bus STARTED
+2025-04-30 13:12:51,456 - controlcenter - INFO - CherryPy server started on port 5009
+2025-04-30 13:13:51,380 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:13:51,387 - registration - INFO - Registration successful
+2025-04-30 13:14:51,406 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:14:51,412 - registration - INFO - Registration successful
+2025-04-30 13:15:51,427 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:15:51,432 - registration - INFO - Registration successful
+2025-04-30 13:16:51,451 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:16:51,459 - registration - INFO - Registration successful
+2025-04-30 13:17:51,473 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:17:51,480 - registration - INFO - Registration successful
+2025-04-30 13:18:51,492 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:18:51,495 - registration - INFO - Registration successful
+2025-04-30 13:19:51,512 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:19:51,520 - registration - INFO - Registration successful
+2025-04-30 13:20:51,536 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:20:51,545 - registration - INFO - Registration successful
+2025-04-30 13:21:51,556 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:21:51,558 - registration - INFO - Registration successful
+2025-04-30 13:22:51,578 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:22:51,582 - registration - INFO - Registration successful
+2025-04-30 13:23:51,608 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:23:51,615 - registration - INFO - Registration successful
+2025-04-30 13:24:51,638 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:24:51,645 - registration - INFO - Registration successful
+2025-04-30 13:25:51,667 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:25:51,672 - registration - INFO - Registration successful
+2025-04-30 13:26:51,689 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:26:51,695 - registration - INFO - Registration successful
+2025-04-30 13:27:51,708 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:27:51,711 - registration - INFO - Registration successful
+2025-04-30 13:28:21,011 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Caught signal SIGTERM.
+2025-04-30 13:28:21,012 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Bus STOPPING
+2025-04-30 13:28:21,408 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5009)) shut down
+2025-04-30 13:28:21,408 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Bus STOPPED
+2025-04-30 13:28:21,408 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Bus EXITING
+2025-04-30 13:28:21,408 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Bus EXITED
+2025-04-30 13:28:21,408 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Waiting for child threads to terminate...
+2025-04-30 13:30:39,295 - rule_engine - INFO - Loaded 2 default rules
+2025-04-30 13:30:39,296 - controlcenter - INFO - Starting Control Center
+2025-04-30 13:30:39,296 - controlcenter - INFO - Registration thread started
+2025-04-30 13:30:39,296 - control_logic - INFO - Starting Control Logic
+2025-04-30 13:30:39,296 - mqtt_handler - ERROR - MQTTClient not available
+2025-04-30 13:30:39,296 - control_logic - ERROR - Failed to connect to MQTT broker, control logic will run with limited functionality
+2025-04-30 13:30:39,296 - controlcenter - ERROR - Failed to start Control Logic - MQTT connection may have failed
+2025-04-30 13:30:39,296 - cherrypy.error - INFO - [30/Apr/2025:13:30:39] ENGINE Listening for SIGTERM.
+2025-04-30 13:30:39,296 - cherrypy.error - INFO - [30/Apr/2025:13:30:39] ENGINE Listening for SIGHUP.
+2025-04-30 13:30:39,296 - cherrypy.error - INFO - [30/Apr/2025:13:30:39] ENGINE Listening for SIGUSR1.
+2025-04-30 13:30:39,296 - cherrypy.error - INFO - [30/Apr/2025:13:30:39] ENGINE Bus STARTING
+2025-04-30 13:30:39,299 - registration - ERROR - Resource Catalog at http://localhost:8080 is not reachable: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1064b4850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:30:39,403 - cherrypy.error - INFO - [30/Apr/2025:13:30:39] ENGINE Serving on http://0.0.0.0:5009
+2025-04-30 13:30:39,403 - cherrypy.error - INFO - [30/Apr/2025:13:30:39] ENGINE Bus STARTED
+2025-04-30 13:30:39,403 - controlcenter - INFO - CherryPy server started on port 5009
+2025-04-30 13:31:39,316 - registration - ERROR - Resource Catalog at http://localhost:8080 is not reachable: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10689aa90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:32:39,327 - registration - ERROR - Resource Catalog at http://localhost:8080 is not reachable: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106a88690>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:33:39,350 - registration - ERROR - Resource Catalog at http://localhost:8080 is not reachable: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106a8a210>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:34:39,364 - registration - ERROR - Resource Catalog at http://localhost:8080 is not reachable: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106a8bf90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:35:39,381 - registration - ERROR - Resource Catalog at http://localhost:8080 is not reachable: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106a89c10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:36:39,400 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:36:39,406 - registration - INFO - Registration successful
+2025-04-30 13:37:39,427 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:37:39,437 - registration - INFO - Registration successful
+2025-04-30 13:38:39,453 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:38:39,458 - registration - INFO - Registration successful
+2025-04-30 13:39:32,003 - rule_engine - INFO - Loaded 2 default rules
+2025-04-30 13:39:32,003 - controlcenter - INFO - Starting Control Center
+2025-04-30 13:39:32,003 - controlcenter - INFO - Registration thread started
+2025-04-30 13:39:32,003 - control_logic - INFO - Starting Control Logic
+2025-04-30 13:39:32,004 - mqtt_handler - ERROR - MQTTClient not available
+2025-04-30 13:39:32,004 - control_logic - ERROR - Failed to connect to MQTT broker, control logic will run with limited functionality
+2025-04-30 13:39:32,004 - controlcenter - ERROR - Failed to start Control Logic - MQTT connection may have failed
+2025-04-30 13:39:32,004 - cherrypy.error - INFO - [30/Apr/2025:13:39:32] ENGINE Listening for SIGTERM.
+2025-04-30 13:39:32,004 - cherrypy.error - INFO - [30/Apr/2025:13:39:32] ENGINE Listening for SIGHUP.
+2025-04-30 13:39:32,004 - cherrypy.error - INFO - [30/Apr/2025:13:39:32] ENGINE Listening for SIGUSR1.
+2025-04-30 13:39:32,004 - cherrypy.error - INFO - [30/Apr/2025:13:39:32] ENGINE Bus STARTING
+2025-04-30 13:39:32,010 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:39:32,014 - registration - INFO - Registration successful
+2025-04-30 13:39:32,111 - cherrypy.error - INFO - [30/Apr/2025:13:39:32] ENGINE Serving on http://0.0.0.0:5009
+2025-04-30 13:39:32,111 - cherrypy.error - INFO - [30/Apr/2025:13:39:32] ENGINE Bus STARTED
+2025-04-30 13:39:32,111 - controlcenter - INFO - CherryPy server started on port 5009
+2025-04-30 13:40:32,030 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:40:32,037 - registration - INFO - Registration successful
+2025-04-30 13:41:32,049 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:41:32,058 - registration - INFO - Registration successful
+2025-04-30 13:42:32,068 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:42:32,076 - registration - INFO - Registration successful
+2025-04-30 13:43:32,101 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:43:32,108 - registration - INFO - Registration successful
+2025-04-30 13:44:32,127 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:44:32,142 - registration - INFO - Registration successful
+2025-04-30 13:45:32,157 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:45:32,165 - registration - INFO - Registration successful
+2025-04-30 13:46:32,182 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:46:32,188 - registration - INFO - Registration successful
+2025-04-30 13:47:32,210 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:47:32,220 - registration - INFO - Registration successful
+2025-04-30 13:48:32,243 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:48:32,253 - registration - INFO - Registration successful
+2025-04-30 13:49:32,266 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:49:32,270 - registration - INFO - Registration successful
+2025-04-30 13:50:32,285 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:50:32,293 - registration - INFO - Registration successful
+2025-04-30 13:50:43,360 - cherrypy.error - INFO - [30/Apr/2025:13:50:43] ENGINE Keyboard Interrupt: shutting down bus
+2025-04-30 13:50:43,361 - cherrypy.error - INFO - [30/Apr/2025:13:50:43] ENGINE Bus STOPPING
+2025-04-30 13:50:43,519 - cherrypy.error - INFO - [30/Apr/2025:13:50:43] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5009)) shut down
+2025-04-30 13:50:43,519 - cherrypy.error - INFO - [30/Apr/2025:13:50:43] ENGINE Bus STOPPED
+2025-04-30 13:50:43,519 - cherrypy.error - INFO - [30/Apr/2025:13:50:43] ENGINE Bus EXITING
+2025-04-30 13:50:43,520 - cherrypy.error - INFO - [30/Apr/2025:13:50:43] ENGINE Bus EXITED
+2025-04-30 13:50:43,520 - cherrypy.error - INFO - [30/Apr/2025:13:50:43] ENGINE Waiting for child threads to terminate...
+2025-04-30 13:56:09,290 - rule_engine - INFO - Loaded 2 default rules
+2025-04-30 13:56:09,290 - controlcenter - INFO - Starting Control Center
+2025-04-30 13:56:09,291 - controlcenter - INFO - Registration thread started
+2025-04-30 13:56:09,291 - control_logic - INFO - Starting Control Logic
+2025-04-30 13:56:09,291 - mqtt_handler - ERROR - MQTTClient not available
+2025-04-30 13:56:09,291 - control_logic - ERROR - Failed to connect to MQTT broker, control logic will run with limited functionality
+2025-04-30 13:56:09,291 - controlcenter - ERROR - Failed to start Control Logic - MQTT connection may have failed
+2025-04-30 13:56:09,291 - cherrypy.error - INFO - [30/Apr/2025:13:56:09] ENGINE Listening for SIGTERM.
+2025-04-30 13:56:09,291 - cherrypy.error - INFO - [30/Apr/2025:13:56:09] ENGINE Listening for SIGHUP.
+2025-04-30 13:56:09,291 - cherrypy.error - INFO - [30/Apr/2025:13:56:09] ENGINE Listening for SIGUSR1.
+2025-04-30 13:56:09,291 - cherrypy.error - INFO - [30/Apr/2025:13:56:09] ENGINE Bus STARTING
+2025-04-30 13:56:09,295 - registration - ERROR - Resource Catalog at http://localhost:8080 is not reachable: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103641e10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:56:09,398 - cherrypy.error - INFO - [30/Apr/2025:13:56:09] ENGINE Serving on http://0.0.0.0:5009
+2025-04-30 13:56:09,398 - cherrypy.error - INFO - [30/Apr/2025:13:56:09] ENGINE Bus STARTED
+2025-04-30 13:56:09,398 - controlcenter - INFO - CherryPy server started on port 5009
+2025-04-30 13:57:09,326 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:57:09,334 - registration - INFO - Registration successful
+2025-04-30 13:58:09,353 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:58:09,361 - registration - INFO - Registration successful
+2025-04-30 13:59:09,381 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 13:59:09,388 - registration - INFO - Registration successful
+2025-04-30 14:00:09,410 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:00:09,419 - registration - INFO - Registration successful
+2025-04-30 14:01:09,436 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:01:09,444 - registration - INFO - Registration successful
+2025-04-30 14:02:09,466 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:02:09,474 - registration - INFO - Registration successful
+2025-04-30 14:03:09,491 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:03:09,497 - registration - INFO - Registration successful
+2025-04-30 14:04:09,517 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:04:09,531 - registration - INFO - Registration successful
+2025-04-30 14:05:09,554 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:05:09,560 - registration - INFO - Registration successful
+2025-04-30 14:06:09,584 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:06:09,593 - registration - INFO - Registration successful
+2025-04-30 14:07:09,609 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:07:09,618 - registration - INFO - Registration successful
+2025-04-30 14:08:09,633 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:08:09,645 - registration - INFO - Registration successful
+2025-04-30 14:09:09,655 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-04-30 14:09:09,664 - registration - INFO - Registration successful
