@@ -14,4 +14,7 @@ service_data = {
     },
      ... rest of registration data ...
 }
+- do we need save the valve status in the infuxDB?
+- does sensor data needs to store or register in the catalog? (last value of each sensor or any data)
+- connection between telegrom bot, analytic, and timeseries
 
