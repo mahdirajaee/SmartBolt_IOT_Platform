@@ -15,6 +15,11 @@ SENSOR_DATA_TOPIC = "sensor/readings"
 VALVE_STATUS_TOPIC = "valve/status"
 SYSTEM_EVENTS_TOPIC = "system/events"
 
+
+# API settings
+API_PORT = 8084
+
+
 # Storage settings
 STORAGE_TYPE = "influxdb"  
 SQLITE_DB_FILE = "timeseries_data.db"

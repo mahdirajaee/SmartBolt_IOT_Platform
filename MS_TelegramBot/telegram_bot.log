@@ -236,84 +236,843 @@ telegram.error.Conflict: Conflict: terminated by other getUpdates request; make 
 2025-04-26 22:52:57,033 - cherrypy.error - INFO - [26/Apr/2025:22:52:57] ENGINE Bus STOPPED
 2025-04-26 22:52:57,034 - cherrypy.error - INFO - [26/Apr/2025:22:52:57] ENGINE Bus EXITING
 2025-04-26 22:52:57,034 - cherrypy.error - INFO - [26/Apr/2025:22:52:57] ENGINE Bus EXITED
-2025-04-27 13:13:30,068 - main - INFO - Telegram Bot Service initializing
-2025-04-27 13:13:30,070 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
-2025-04-27 13:13:30,074 - catalog_client - ERROR - Failed to register service: {"status": "404 Not Found", "message": "The path '/api/services' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                                
-2025-04-27 13:13:30,075 - apscheduler.scheduler - INFO - Scheduler started
-2025-04-27 13:13:30,076 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:13:38,247 - telegram_bot - INFO - Telegram bot started
-2025-04-27 13:13:38,250 - cherrypy.error - INFO - [27/Apr/2025:13:13:38] ENGINE Listening for SIGTERM.
-2025-04-27 13:13:38,250 - cherrypy.error - INFO - [27/Apr/2025:13:13:38] ENGINE Listening for SIGHUP.
-2025-04-27 13:13:38,250 - cherrypy.error - INFO - [27/Apr/2025:13:13:38] ENGINE Listening for SIGUSR1.
-2025-04-27 13:13:38,251 - main - INFO - Starting CherryPy server on port 5005
-2025-04-27 13:13:38,251 - cherrypy.error - INFO - [27/Apr/2025:13:13:38] ENGINE Bus STARTING
-2025-04-27 13:13:38,252 - cherrypy.error - INFO - [27/Apr/2025:13:13:38] ENGINE Started monitor thread 'Autoreloader'.
-2025-04-27 13:13:38,363 - cherrypy.error - INFO - [27/Apr/2025:13:13:38] ENGINE Serving on http://0.0.0.0:5005
-2025-04-27 13:13:38,364 - cherrypy.error - INFO - [27/Apr/2025:13:13:38] ENGINE Bus STARTED
-2025-04-27 13:14:30,097 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:15:30,129 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:16:30,155 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:17:30,174 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:18:30,189 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:19:30,200 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:20:30,213 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:21:30,230 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:22:30,247 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:23:30,263 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:24:30,283 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:25:30,302 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:26:30,318 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:27:30,340 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:28:30,368 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:29:30,391 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:30:30,409 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:31:30,428 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:32:30,445 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:33:30,464 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:34:30,486 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:35:30,505 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:36:30,529 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:37:30,547 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:38:30,563 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:39:30,581 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:40:30,607 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:41:30,627 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:42:30,641 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:43:30,624 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:44:30,637 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 13:45:31,352 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:02:00,745 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:03:00,768 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:04:00,788 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:05:00,816 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:06:00,837 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:07:00,856 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:07:57,317 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE Restarting because /Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/paho/mqtt/subscribeoptions.py changed.
-2025-04-27 14:07:57,318 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE Stopped thread 'Autoreloader'.
-2025-04-27 14:07:57,318 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE Bus STOPPING
-2025-04-27 14:07:57,480 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
-2025-04-27 14:07:57,481 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE Bus STOPPED
-2025-04-27 14:07:57,481 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE Bus EXITING
-2025-04-27 14:07:57,481 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE Bus EXITED
-2025-04-27 14:07:57,510 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE Waiting for child threads to terminate...
-2025-04-27 14:07:57,510 - cherrypy.error - INFO - [27/Apr/2025:14:07:57] ENGINE Waiting for thread Bot:7947622045:dispatcher.
-2025-04-27 14:08:00,870 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:09:00,899 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:10:00,931 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:11:00,949 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:12:00,964 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:13:00,984 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:14:00,998 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:15:01,017 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:16:01,036 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
-2025-04-27 14:16:40,787 - main - INFO - Shutdown signal received
-2025-04-27 14:16:40,789 - main - INFO - Stopping Telegram Bot Service
-2025-04-27 14:16:40,791 - apscheduler.scheduler - INFO - Scheduler has been shut down
-2025-04-27 14:16:48,224 - mqtt_client - INFO - Disconnected from MQTT broker
-2025-04-27 14:16:48,225 - telegram_bot - INFO - Telegram bot stopped
-2025-04-27 14:16:48,226 - cherrypy.error - INFO - [27/Apr/2025:14:16:48] ENGINE Bus STOPPING
-2025-04-27 14:16:48,226 - cherrypy.error - INFO - [27/Apr/2025:14:16:48] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
-2025-04-27 14:16:48,226 - cherrypy.error - INFO - [27/Apr/2025:14:16:48] ENGINE No thread running for None.
-2025-04-27 14:16:48,226 - cherrypy.error - INFO - [27/Apr/2025:14:16:48] ENGINE Bus STOPPED
-2025-04-27 14:16:48,226 - cherrypy.error - INFO - [27/Apr/2025:14:16:48] ENGINE Bus EXITING
-2025-04-27 14:16:48,227 - cherrypy.error - INFO - [27/Apr/2025:14:16:48] ENGINE Bus EXITED
+2025-04-29 17:55:44,978 - main - INFO - Telegram Bot Service initializing
+2025-04-29 17:55:44,983 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-29 17:55:44,986 - catalog_client - ERROR - Error registering service: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1063c6e10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 17:55:44,987 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-29 17:55:44,988 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10731e850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-29 17:55:45,418 - telegram_bot - INFO - Telegram bot started
+2025-04-29 17:55:45,419 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Listening for SIGTERM.
+2025-04-29 17:55:45,419 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Listening for SIGHUP.
+2025-04-29 17:55:45,419 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Listening for SIGUSR1.
+2025-04-29 17:55:45,420 - main - INFO - Starting CherryPy server on port 5005
+2025-04-29 17:55:45,420 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Bus STARTING
+2025-04-29 17:55:45,420 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-29 17:55:45,528 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Serving on http://0.0.0.0:5005
+2025-04-29 17:55:45,528 - cherrypy.error - INFO - [29/Apr/2025:17:55:45] ENGINE Bus STARTED
+2025-04-29 17:56:21,028 - main - INFO - Shutdown signal received
+2025-04-29 17:56:21,029 - main - INFO - Stopping Telegram Bot Service
+2025-04-29 17:56:21,029 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-29 17:56:26,142 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-29 17:56:26,142 - telegram_bot - INFO - Telegram bot stopped
+2025-04-29 17:56:26,143 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus STOPPING
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Stopped thread 'Autoreloader'.
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus STOPPED
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus EXITING
+2025-04-29 17:56:26,631 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus EXITED
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE SystemExit raised: shutting down bus
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus STOPPING
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE No thread running for None.
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus STOPPED
+2025-04-29 17:56:26,632 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus EXITING
+2025-04-29 17:56:26,633 - cherrypy.error - INFO - [29/Apr/2025:17:56:26] ENGINE Bus EXITED
+2025-04-30 10:34:17,918 - main - INFO - Telegram Bot Service initializing
+2025-04-30 10:34:17,920 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 10:34:17,923 - catalog_client - ERROR - Error registering service: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103aa1850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:34:17,923 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 10:34:17,924 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ab6450>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:34:21,177 - telegram_bot - INFO - Telegram bot started
+2025-04-30 10:34:21,178 - cherrypy.error - INFO - [30/Apr/2025:10:34:21] ENGINE Listening for SIGTERM.
+2025-04-30 10:34:21,179 - cherrypy.error - INFO - [30/Apr/2025:10:34:21] ENGINE Listening for SIGHUP.
+2025-04-30 10:34:21,179 - cherrypy.error - INFO - [30/Apr/2025:10:34:21] ENGINE Listening for SIGUSR1.
+2025-04-30 10:34:21,180 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 10:34:21,180 - cherrypy.error - INFO - [30/Apr/2025:10:34:21] ENGINE Bus STARTING
+2025-04-30 10:34:21,181 - cherrypy.error - INFO - [30/Apr/2025:10:34:21] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 10:34:21,291 - cherrypy.error - INFO - [30/Apr/2025:10:34:21] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 10:34:21,292 - cherrypy.error - INFO - [30/Apr/2025:10:34:21] ENGINE Bus STARTED
+2025-04-30 10:35:17,937 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abe050>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:36:17,952 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abfdd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:37:17,967 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad6110>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:38:18,001 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae44d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:39:32,033 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae68d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:41:34,259 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad7050>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:42:34,268 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad4c50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:43:34,280 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abf150>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:44:34,293 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7910>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:45:34,307 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae5590>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:46:34,338 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae8cd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:47:34,352 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae6e10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:48:34,365 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abcc50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:49:34,375 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abfe10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:50:34,391 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad5050>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:51:34,404 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad4890>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:52:34,484 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ab4d50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:53:34,499 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abea50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:54:34,510 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad5910>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:55:34,521 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad5f90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:56:34,537 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad5ed0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:57:34,547 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103a92190>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:58:34,561 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abf1d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 10:59:34,576 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ab7590>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:00:34,589 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae6e10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:01:34,609 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103818290>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:02:34,620 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103804f90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:03:34,632 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abf390>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:04:34,640 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abe250>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:05:34,654 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae72d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:06:34,673 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae4f10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:07:34,690 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad7390>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:08:34,711 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abd810>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:09:34,719 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abe850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:10:34,733 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ab5990>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:11:34,754 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad6c90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:12:34,766 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae73d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:13:34,781 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7010>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:14:34,792 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae5d90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:15:34,800 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae75d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:16:34,810 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ab6b90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:17:34,821 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad5090>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:18:34,835 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad7390>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:19:34,845 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abd490>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:27:00,004 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103a91e90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:28:00,033 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad67d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:29:00,046 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad7190>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:30:00,057 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f926d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:31:00,062 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae4e50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:32:00,075 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abd9d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:33:00,088 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102eef310>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:34:00,100 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:35:00,112 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7cd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:36:00,122 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad6490>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:37:00,136 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1038072d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:38:00,151 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abfb10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:39:00,168 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1039e78d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:40:00,181 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1039c6910>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:41:00,189 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad4850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:42:00,207 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad4790>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:43:00,217 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae46d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:44:00,228 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102eef490>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:45:00,241 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f832d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:46:00,247 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad5090>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:47:00,259 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae5d90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:48:00,276 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae4c10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:49:00,285 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103aa1190>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:50:00,295 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abd490>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:51:00,313 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103819b10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:52:00,328 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102b983d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:53:00,340 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad47d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:54:00,351 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae6b10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:55:00,360 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae4990>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:56:00,374 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1037d61d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:57:00,394 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f44bd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:58:00,414 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad69d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 11:59:00,426 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad4550>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:00:00,441 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7e50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:01:00,456 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae52d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:02:00,471 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abdd90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:03:00,485 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f90e90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:04:00,498 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ab4990>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:05:00,509 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7b90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:06:00,523 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae5ed0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:07:00,531 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad40d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:08:00,545 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad64d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:09:00,572 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102fb84d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:10:00,586 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae4590>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:11:00,600 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7490>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:12:00,610 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103a921d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:13:00,622 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad4950>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:14:00,652 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102eeea10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:15:00,670 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abd410>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:16:00,683 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103819a50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:17:00,697 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10203eed0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:18:00,710 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad6110>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:19:00,724 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae5f50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:20:00,737 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7150>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:21:00,761 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abe0d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:22:00,775 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae6490>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:23:00,791 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae6890>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:24:00,805 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad48d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:25:00,823 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103807e50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:26:00,839 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102eee510>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:27:00,856 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f4dc90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:28:00,871 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1011ed7d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:29:00,885 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f80b10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:30:00,897 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad6050>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:31:00,906 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7ed0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:32:00,923 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102edb710>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:34:12,405 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x100fb3910>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:35:12,412 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae7c90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:36:12,420 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f90a50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:37:12,435 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad4050>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:38:12,448 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10203eed0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:39:12,459 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abfdd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:40:12,474 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103aea150>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:41:12,487 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103807990>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:42:12,497 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f82910>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:43:12,506 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad6b50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:44:12,521 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ab7850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:45:12,531 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae5790>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:46:12,541 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae9a10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:47:12,557 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae4210>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:48:12,571 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad4dd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:49:12,585 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad6710>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:50:12,591 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f80e10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:51:12,602 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103abe410>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:52:12,613 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103aea450>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:53:12,618 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102eef290>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:54:12,633 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f46790>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:55:12,645 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad5d50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:56:12,656 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad7c90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:57:12,670 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae6b10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:58:12,685 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103aea110>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 12:59:12,698 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad7b50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:00:12,708 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad6810>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:01:12,722 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f734d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:02:12,745 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f56450>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:03:12,759 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103804f90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:04:12,773 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f0d250>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:05:12,785 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f93590>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:06:12,797 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f2dad0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:07:12,812 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae5350>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:08:12,827 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad7090>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:09:12,839 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102effe50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:10:12,861 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f23510>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:11:12,875 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ad5e90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:12:12,884 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1037f0750>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:13:12,894 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f44bd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:14:12,905 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ab5b90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:15:12,918 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103ae8110>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:16:12,932 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x103805050>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:17:12,944 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f73590>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:18:12,955 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/services/telegram_bot (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102f90c10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:19:12,969 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
+2025-04-30 13:20:12,986 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
+2025-04-30 13:21:13,009 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
+2025-04-30 13:22:13,028 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
+2025-04-30 13:22:51,517 - main - INFO - Shutdown signal received
+2025-04-30 13:22:51,518 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:22:51,521 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-30 13:22:54,106 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-30 13:22:54,107 - telegram_bot - INFO - Telegram bot stopped
+2025-04-30 13:22:54,107 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Bus STOPPING
+2025-04-30 13:22:54,162 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 13:22:54,162 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 13:22:54,162 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Bus STOPPED
+2025-04-30 13:22:54,163 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Bus EXITING
+2025-04-30 13:22:54,163 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Bus EXITED
+2025-04-30 13:22:54,163 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE SystemExit raised: shutting down bus
+2025-04-30 13:22:54,163 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Bus STOPPING
+2025-04-30 13:22:54,163 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 13:22:54,163 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE No thread running for None.
+2025-04-30 13:22:54,164 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Bus STOPPED
+2025-04-30 13:22:54,164 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Bus EXITING
+2025-04-30 13:22:54,164 - cherrypy.error - INFO - [30/Apr/2025:13:22:54] ENGINE Bus EXITED
+2025-04-30 13:25:42,845 - main - INFO - Telegram Bot Service initializing
+2025-04-30 13:25:42,847 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 13:25:42,852 - catalog_client - ERROR - Failed to register service: {"status": "404 Not Found", "message": "The path '/api/services' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                                
+2025-04-30 13:25:42,852 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 13:25:42,854 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
+2025-04-30 13:25:46,067 - telegram_bot - INFO - Telegram bot started
+2025-04-30 13:25:46,067 - cherrypy.error - INFO - [30/Apr/2025:13:25:46] ENGINE Listening for SIGTERM.
+2025-04-30 13:25:46,068 - cherrypy.error - INFO - [30/Apr/2025:13:25:46] ENGINE Listening for SIGHUP.
+2025-04-30 13:25:46,068 - cherrypy.error - INFO - [30/Apr/2025:13:25:46] ENGINE Listening for SIGUSR1.
+2025-04-30 13:25:46,068 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 13:25:46,068 - cherrypy.error - INFO - [30/Apr/2025:13:25:46] ENGINE Bus STARTING
+2025-04-30 13:25:46,068 - cherrypy.error - INFO - [30/Apr/2025:13:25:46] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 13:25:46,177 - cherrypy.error - INFO - [30/Apr/2025:13:25:46] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 13:25:46,178 - cherrypy.error - INFO - [30/Apr/2025:13:25:46] ENGINE Bus STARTED
+2025-04-30 13:25:46,845 - main - INFO - Shutdown signal received
+2025-04-30 13:25:46,845 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:25:46,846 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-30 13:25:56,893 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-30 13:25:56,894 - telegram_bot - INFO - Telegram bot stopped
+2025-04-30 13:25:56,895 - cherrypy.error - INFO - [30/Apr/2025:13:25:56] ENGINE Bus STOPPING
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE Bus STOPPED
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE Bus EXITING
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE Bus EXITED
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE SystemExit raised: shutting down bus
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE Bus STOPPING
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE No thread running for None.
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE Bus STOPPED
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE Bus EXITING
+2025-04-30 13:25:57,203 - cherrypy.error - INFO - [30/Apr/2025:13:25:57] ENGINE Bus EXITED
+2025-04-30 13:26:15,239 - main - INFO - Telegram Bot Service initializing
+2025-04-30 13:26:15,240 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 13:26:15,245 - catalog_client - ERROR - Failed to register service: {"status": "404 Not Found", "message": "The path '/api/services' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                                
+2025-04-30 13:26:15,246 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 13:26:15,247 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/services/telegram_bot' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
+2025-04-30 13:26:15,404 - telegram_bot - INFO - Telegram bot started
+2025-04-30 13:26:15,404 - cherrypy.error - INFO - [30/Apr/2025:13:26:15] ENGINE Listening for SIGTERM.
+2025-04-30 13:26:15,404 - cherrypy.error - INFO - [30/Apr/2025:13:26:15] ENGINE Listening for SIGHUP.
+2025-04-30 13:26:15,404 - cherrypy.error - INFO - [30/Apr/2025:13:26:15] ENGINE Listening for SIGUSR1.
+2025-04-30 13:26:15,404 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 13:26:15,404 - cherrypy.error - INFO - [30/Apr/2025:13:26:15] ENGINE Bus STARTING
+2025-04-30 13:26:15,405 - cherrypy.error - INFO - [30/Apr/2025:13:26:15] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 13:26:15,514 - cherrypy.error - INFO - [30/Apr/2025:13:26:15] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 13:26:15,514 - cherrypy.error - INFO - [30/Apr/2025:13:26:15] ENGINE Bus STARTED
+2025-04-30 13:26:48,350 - main - INFO - Shutdown signal received
+2025-04-30 13:26:48,350 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:26:48,351 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-30 13:26:56,402 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-30 13:26:56,403 - telegram_bot - INFO - Telegram bot stopped
+2025-04-30 13:26:56,404 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Bus STOPPING
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Bus STOPPED
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Bus EXITING
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Bus EXITED
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE SystemExit raised: shutting down bus
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Bus STOPPING
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE No thread running for None.
+2025-04-30 13:26:56,612 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Bus STOPPED
+2025-04-30 13:26:56,613 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Bus EXITING
+2025-04-30 13:26:56,613 - cherrypy.error - INFO - [30/Apr/2025:13:26:56] ENGINE Bus EXITED
+2025-04-30 13:27:44,781 - main - INFO - Telegram Bot Service initializing
+2025-04-30 13:27:44,783 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 13:27:44,789 - catalog_client - ERROR - Failed to register service: {"status": "404 Not Found", "message": "The path '/register_service' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                            
+2025-04-30 13:27:44,790 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 13:27:44,791 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:27:44,918 - telegram_bot - INFO - Telegram bot started
+2025-04-30 13:27:44,918 - cherrypy.error - INFO - [30/Apr/2025:13:27:44] ENGINE Listening for SIGTERM.
+2025-04-30 13:27:44,918 - cherrypy.error - INFO - [30/Apr/2025:13:27:44] ENGINE Listening for SIGHUP.
+2025-04-30 13:27:44,918 - cherrypy.error - INFO - [30/Apr/2025:13:27:44] ENGINE Listening for SIGUSR1.
+2025-04-30 13:27:44,918 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 13:27:44,918 - cherrypy.error - INFO - [30/Apr/2025:13:27:44] ENGINE Bus STARTING
+2025-04-30 13:27:44,918 - cherrypy.error - INFO - [30/Apr/2025:13:27:44] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 13:27:45,026 - cherrypy.error - INFO - [30/Apr/2025:13:27:45] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 13:27:45,026 - cherrypy.error - INFO - [30/Apr/2025:13:27:45] ENGINE Bus STARTED
+2025-04-30 13:28:00,125 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE Restarting because /Users/mehdi/Desktop/29.2/MS_TelegramBot/catalog_client.py changed.
+2025-04-30 13:28:00,126 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 13:28:00,126 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE Bus STOPPING
+2025-04-30 13:28:00,574 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 13:28:00,574 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE Bus STOPPED
+2025-04-30 13:28:00,574 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE Bus EXITING
+2025-04-30 13:28:00,574 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE Bus EXITED
+2025-04-30 13:28:00,664 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE Waiting for child threads to terminate...
+2025-04-30 13:28:00,665 - cherrypy.error - INFO - [30/Apr/2025:13:28:00] ENGINE Waiting for thread Bot:7947622045:dispatcher.
+2025-04-30 13:28:21,011 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Caught signal SIGTERM.
+2025-04-30 13:28:21,011 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Bus STOPPING
+2025-04-30 13:28:21,012 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 13:28:21,012 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE No thread running for None.
+2025-04-30 13:28:21,012 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Bus STOPPED
+2025-04-30 13:28:21,012 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Bus EXITING
+2025-04-30 13:28:21,012 - cherrypy.error - INFO - [30/Apr/2025:13:28:21] ENGINE Bus EXITED
+2025-04-30 13:28:44,806 - catalog_client - ERROR - Failed to update service status: {"status": "error", "message": "Service with ID telegram_bot not found"}
+2025-04-30 13:28:54,692 - main - INFO - Telegram Bot Service initializing
+2025-04-30 13:28:54,694 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 13:28:54,699 - catalog_client - INFO - Service registered successfully with ID: telegram_bot
+2025-04-30 13:28:54,699 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 13:28:54,825 - telegram_bot - INFO - Telegram bot started
+2025-04-30 13:28:54,825 - cherrypy.error - INFO - [30/Apr/2025:13:28:54] ENGINE Listening for SIGTERM.
+2025-04-30 13:28:54,825 - cherrypy.error - INFO - [30/Apr/2025:13:28:54] ENGINE Listening for SIGHUP.
+2025-04-30 13:28:54,825 - cherrypy.error - INFO - [30/Apr/2025:13:28:54] ENGINE Listening for SIGUSR1.
+2025-04-30 13:28:54,825 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 13:28:54,825 - cherrypy.error - INFO - [30/Apr/2025:13:28:54] ENGINE Bus STARTING
+2025-04-30 13:28:54,826 - cherrypy.error - INFO - [30/Apr/2025:13:28:54] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 13:28:54,859 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:28:54,863 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:28:54,933 - cherrypy.error - INFO - [30/Apr/2025:13:28:54] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 13:28:54,933 - cherrypy.error - INFO - [30/Apr/2025:13:28:54] ENGINE Bus STARTED
+2025-04-30 13:28:58,911 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:28:58,912 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:28:59,983 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:28:59,983 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:04,694 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:04,695 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:06,272 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:06,272 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:11,566 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:11,566 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:13,850 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:13,850 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:17,261 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:17,262 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:20,675 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:20,676 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:25,790 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:25,790 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:30,892 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:30,893 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:38,527 - telegram.ext.updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:38,528 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 651, in _network_loop_retry
+    if not action_cb():
+           ^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/updater.py", line 602, in polling_action_cb
+    updates = self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    updates = super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 134, in decorator
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 3140, in get_updates
+    self._post(
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/bot.py", line 299, in _post
+    return self.request.post(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 361, in post
+    result = self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/telegram/utils/request.py", line 283, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-04-30 13:29:42,737 - main - INFO - Shutdown signal received
+2025-04-30 13:29:42,737 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:29:42,737 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-30 13:29:44,817 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104fc7e10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:29:46,893 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-30 13:29:46,893 - telegram_bot - INFO - Telegram bot stopped
+2025-04-30 13:29:46,893 - cherrypy.error - INFO - [30/Apr/2025:13:29:46] ENGINE Bus STOPPING
+2025-04-30 13:29:47,056 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 13:29:47,056 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 13:29:47,056 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE Bus STOPPED
+2025-04-30 13:29:47,056 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE Bus EXITING
+2025-04-30 13:29:47,057 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE Bus EXITED
+2025-04-30 13:29:47,057 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE SystemExit raised: shutting down bus
+2025-04-30 13:29:47,057 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE Bus STOPPING
+2025-04-30 13:29:47,057 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 13:29:47,057 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE No thread running for None.
+2025-04-30 13:29:47,057 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE Bus STOPPED
+2025-04-30 13:29:47,057 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE Bus EXITING
+2025-04-30 13:29:47,057 - cherrypy.error - INFO - [30/Apr/2025:13:29:47] ENGINE Bus EXITED
+2025-04-30 13:29:50,005 - main - INFO - Shutdown signal received
+2025-04-30 13:29:50,005 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:29:50,006 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-30 13:29:55,103 - main - INFO - Shutdown signal received
+2025-04-30 13:29:55,103 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:29:55,596 - main - INFO - Shutdown signal received
+2025-04-30 13:29:55,597 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:29:55,842 - main - INFO - Shutdown signal received
+2025-04-30 13:29:55,842 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:30:17,268 - cherrypy.error - INFO - [30/Apr/2025:13:30:17] ENGINE Caught signal SIGHUP.
+2025-04-30 13:30:17,269 - cherrypy.error - INFO - [30/Apr/2025:13:30:17] ENGINE SIGHUP caught but not daemonized. Exiting.
+2025-04-30 13:30:17,269 - cherrypy.error - INFO - [30/Apr/2025:13:30:17] ENGINE Bus STOPPING
+2025-04-30 13:30:17,270 - cherrypy.error - INFO - [30/Apr/2025:13:30:17] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 13:30:17,270 - cherrypy.error - INFO - [30/Apr/2025:13:30:17] ENGINE No thread running for None.
+2025-04-30 13:30:17,271 - cherrypy.error - INFO - [30/Apr/2025:13:30:17] ENGINE Bus STOPPED
+2025-04-30 13:30:17,271 - cherrypy.error - INFO - [30/Apr/2025:13:30:17] ENGINE Bus EXITING
+2025-04-30 13:30:17,271 - cherrypy.error - INFO - [30/Apr/2025:13:30:17] ENGINE Bus EXITED
+2025-04-30 13:30:44,836 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:31:44,859 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:32:44,884 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:33:44,903 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:34:44,927 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:35:44,960 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:36:44,979 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:37:44,997 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:38:45,014 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:39:45,043 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:40:45,064 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:41:45,076 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:42:45,092 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:43:45,107 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:44:45,181 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:45:45,238 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:46:45,265 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:47:45,286 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:48:45,307 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:49:45,327 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:50:45,351 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:51:45,370 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104f09790>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:52:45,388 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104fc7790>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:53:45,409 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104e1ac50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:54:45,426 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104fffd10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:55:45,446 - catalog_client - ERROR - Error updating service status: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /update_service_status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104ffed10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 13:56:45,466 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:57:45,491 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:57:58,331 - main - INFO - Telegram Bot Service initializing
+2025-04-30 13:57:58,333 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 13:57:58,336 - catalog_client - ERROR - Failed to register service: {"status": "404 Not Found", "message": "The path '/register_service' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                            
+2025-04-30 13:57:58,337 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 13:57:58,338 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:57:58,486 - telegram_bot - INFO - Telegram bot started
+2025-04-30 13:57:58,487 - cherrypy.error - INFO - [30/Apr/2025:13:57:58] ENGINE Listening for SIGTERM.
+2025-04-30 13:57:58,487 - cherrypy.error - INFO - [30/Apr/2025:13:57:58] ENGINE Listening for SIGHUP.
+2025-04-30 13:57:58,487 - cherrypy.error - INFO - [30/Apr/2025:13:57:58] ENGINE Listening for SIGUSR1.
+2025-04-30 13:57:58,487 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 13:57:58,487 - cherrypy.error - INFO - [30/Apr/2025:13:57:58] ENGINE Bus STARTING
+2025-04-30 13:57:58,487 - cherrypy.error - INFO - [30/Apr/2025:13:57:58] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 13:57:58,595 - cherrypy.error - INFO - [30/Apr/2025:13:57:58] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 13:57:58,596 - cherrypy.error - INFO - [30/Apr/2025:13:57:58] ENGINE Bus STARTED
+2025-04-30 13:58:29,567 - main - INFO - Shutdown signal received
+2025-04-30 13:58:29,568 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:58:29,568 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-30 13:58:39,472 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-30 13:58:39,473 - telegram_bot - INFO - Telegram bot stopped
+2025-04-30 13:58:39,474 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Bus STOPPING
+2025-04-30 13:58:39,681 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 13:58:39,681 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 13:58:39,681 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Bus STOPPED
+2025-04-30 13:58:39,682 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Bus EXITING
+2025-04-30 13:58:39,682 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Bus EXITED
+2025-04-30 13:58:39,682 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE SystemExit raised: shutting down bus
+2025-04-30 13:58:39,682 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Bus STOPPING
+2025-04-30 13:58:39,682 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 13:58:39,683 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE No thread running for None.
+2025-04-30 13:58:39,683 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Bus STOPPED
+2025-04-30 13:58:39,683 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Bus EXITING
+2025-04-30 13:58:39,683 - cherrypy.error - INFO - [30/Apr/2025:13:58:39] ENGINE Bus EXITED
+2025-04-30 13:58:45,517 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 13:59:10,603 - main - INFO - Telegram Bot Service initializing
+2025-04-30 13:59:10,604 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 13:59:10,609 - catalog_client - ERROR - Failed to register service: {"status": "404 Not Found", "message": "The path '/api/register_service' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                        
+2025-04-30 13:59:10,610 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 13:59:10,612 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/api/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                   
+2025-04-30 13:59:10,739 - telegram_bot - INFO - Telegram bot started
+2025-04-30 13:59:10,739 - cherrypy.error - INFO - [30/Apr/2025:13:59:10] ENGINE Listening for SIGTERM.
+2025-04-30 13:59:10,739 - cherrypy.error - INFO - [30/Apr/2025:13:59:10] ENGINE Listening for SIGHUP.
+2025-04-30 13:59:10,739 - cherrypy.error - INFO - [30/Apr/2025:13:59:10] ENGINE Listening for SIGUSR1.
+2025-04-30 13:59:10,739 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 13:59:10,739 - cherrypy.error - INFO - [30/Apr/2025:13:59:10] ENGINE Bus STARTING
+2025-04-30 13:59:10,739 - cherrypy.error - INFO - [30/Apr/2025:13:59:10] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 13:59:10,846 - cherrypy.error - INFO - [30/Apr/2025:13:59:10] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 13:59:10,846 - cherrypy.error - INFO - [30/Apr/2025:13:59:10] ENGINE Bus STARTED
+2025-04-30 13:59:17,415 - main - INFO - Shutdown signal received
+2025-04-30 13:59:17,415 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 13:59:17,415 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-30 13:59:21,648 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-30 13:59:21,649 - telegram_bot - INFO - Telegram bot stopped
+2025-04-30 13:59:21,649 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Bus STOPPING
+2025-04-30 13:59:21,878 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 13:59:21,878 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 13:59:21,878 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Bus STOPPED
+2025-04-30 13:59:21,878 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Bus EXITING
+2025-04-30 13:59:21,878 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Bus EXITED
+2025-04-30 13:59:21,879 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE SystemExit raised: shutting down bus
+2025-04-30 13:59:21,879 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Bus STOPPING
+2025-04-30 13:59:21,879 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 13:59:21,879 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE No thread running for None.
+2025-04-30 13:59:21,879 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Bus STOPPED
+2025-04-30 13:59:21,879 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Bus EXITING
+2025-04-30 13:59:21,879 - cherrypy.error - INFO - [30/Apr/2025:13:59:21] ENGINE Bus EXITED
+2025-04-30 13:59:45,552 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:00:17,494 - main - INFO - Telegram Bot Service initializing
+2025-04-30 14:00:17,495 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 14:00:17,500 - catalog_client - ERROR - Failed to register service: {"status": "404 Not Found", "message": "The path '/register_service' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                            
+2025-04-30 14:00:17,501 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 14:00:17,502 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:00:17,626 - telegram_bot - INFO - Telegram bot started
+2025-04-30 14:00:17,627 - cherrypy.error - INFO - [30/Apr/2025:14:00:17] ENGINE Listening for SIGTERM.
+2025-04-30 14:00:17,627 - cherrypy.error - INFO - [30/Apr/2025:14:00:17] ENGINE Listening for SIGHUP.
+2025-04-30 14:00:17,627 - cherrypy.error - INFO - [30/Apr/2025:14:00:17] ENGINE Listening for SIGUSR1.
+2025-04-30 14:00:17,627 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 14:00:17,627 - cherrypy.error - INFO - [30/Apr/2025:14:00:17] ENGINE Bus STARTING
+2025-04-30 14:00:17,627 - cherrypy.error - INFO - [30/Apr/2025:14:00:17] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 14:00:17,732 - cherrypy.error - INFO - [30/Apr/2025:14:00:17] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 14:00:17,733 - cherrypy.error - INFO - [30/Apr/2025:14:00:17] ENGINE Bus STARTED
+2025-04-30 14:00:45,573 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:00:53,590 - main - INFO - Shutdown signal received
+2025-04-30 14:00:53,591 - main - INFO - Stopping Telegram Bot Service
+2025-04-30 14:00:53,591 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-04-30 14:00:58,648 - mqtt_client - INFO - Disconnected from MQTT broker
+2025-04-30 14:00:58,649 - telegram_bot - INFO - Telegram bot stopped
+2025-04-30 14:00:58,649 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Bus STOPPING
+2025-04-30 14:00:58,834 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 14:00:58,834 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 14:00:58,834 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Bus STOPPED
+2025-04-30 14:00:58,834 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Bus EXITING
+2025-04-30 14:00:58,835 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Bus EXITED
+2025-04-30 14:00:58,835 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE SystemExit raised: shutting down bus
+2025-04-30 14:00:58,835 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Bus STOPPING
+2025-04-30 14:00:58,835 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) already shut down
+2025-04-30 14:00:58,835 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE No thread running for None.
+2025-04-30 14:00:58,836 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Bus STOPPED
+2025-04-30 14:00:58,836 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Bus EXITING
+2025-04-30 14:00:58,836 - cherrypy.error - INFO - [30/Apr/2025:14:00:58] ENGINE Bus EXITED
+2025-04-30 14:01:02,349 - main - INFO - Telegram Bot Service initializing
+2025-04-30 14:01:02,351 - mqtt_client - INFO - Connected to MQTT broker at localhost:1883
+2025-04-30 14:01:02,357 - catalog_client - INFO - Service registered successfully with ID: telegram_bot
+2025-04-30 14:01:02,357 - apscheduler.scheduler - INFO - Scheduler started
+2025-04-30 14:01:02,497 - telegram_bot - INFO - Telegram bot started
+2025-04-30 14:01:02,498 - cherrypy.error - INFO - [30/Apr/2025:14:01:02] ENGINE Listening for SIGTERM.
+2025-04-30 14:01:02,498 - cherrypy.error - INFO - [30/Apr/2025:14:01:02] ENGINE Listening for SIGHUP.
+2025-04-30 14:01:02,498 - cherrypy.error - INFO - [30/Apr/2025:14:01:02] ENGINE Listening for SIGUSR1.
+2025-04-30 14:01:02,498 - main - INFO - Starting CherryPy server on port 5005
+2025-04-30 14:01:02,498 - cherrypy.error - INFO - [30/Apr/2025:14:01:02] ENGINE Bus STARTING
+2025-04-30 14:01:02,498 - cherrypy.error - INFO - [30/Apr/2025:14:01:02] ENGINE Started monitor thread 'Autoreloader'.
+2025-04-30 14:01:02,606 - cherrypy.error - INFO - [30/Apr/2025:14:01:02] ENGINE Serving on http://0.0.0.0:5005
+2025-04-30 14:01:02,607 - cherrypy.error - INFO - [30/Apr/2025:14:01:02] ENGINE Bus STARTED
+2025-04-30 14:01:27,814 - cherrypy.error - INFO - [30/Apr/2025:14:01:27] ENGINE Restarting because /Users/mehdi/Desktop/29.2/MS_TelegramBot/catalog_client.py changed.
+2025-04-30 14:01:27,815 - cherrypy.error - INFO - [30/Apr/2025:14:01:27] ENGINE Stopped thread 'Autoreloader'.
+2025-04-30 14:01:27,815 - cherrypy.error - INFO - [30/Apr/2025:14:01:27] ENGINE Bus STOPPING
+2025-04-30 14:01:28,166 - cherrypy.error - INFO - [30/Apr/2025:14:01:28] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5005)) shut down
+2025-04-30 14:01:28,167 - cherrypy.error - INFO - [30/Apr/2025:14:01:28] ENGINE Bus STOPPED
+2025-04-30 14:01:28,167 - cherrypy.error - INFO - [30/Apr/2025:14:01:28] ENGINE Bus EXITING
+2025-04-30 14:01:28,167 - cherrypy.error - INFO - [30/Apr/2025:14:01:28] ENGINE Bus EXITED
+2025-04-30 14:01:28,243 - cherrypy.error - INFO - [30/Apr/2025:14:01:28] ENGINE Waiting for child threads to terminate...
+2025-04-30 14:01:28,243 - cherrypy.error - INFO - [30/Apr/2025:14:01:28] ENGINE Waiting for thread Bot:7947622045:dispatcher.
+2025-04-30 14:01:45,597 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:02:45,612 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:03:45,651 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:04:45,683 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:05:45,708 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:05:49,672 - telegram_bot - ERROR - Error during authentication: HTTPConnectionPool(host='localhost', port=5002): Max retries exceeded with url: /api/auth/login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x107b0ed50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 14:06:36,359 - telegram_bot - ERROR - Error during authentication: HTTPConnectionPool(host='localhost', port=5002): Max retries exceeded with url: /api/auth/login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x107aff210>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 14:06:45,739 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:07:21,560 - telegram_bot - ERROR - Error during authentication: HTTPConnectionPool(host='localhost', port=5002): Max retries exceeded with url: /api/auth/login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x107ae0490>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 14:07:45,767 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
+2025-04-30 14:08:32,140 - telegram_bot - ERROR - Error during authentication: HTTPConnectionPool(host='localhost', port=5002): Max retries exceeded with url: /api/auth/login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x107ab5190>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-30 14:08:45,785 - catalog_client - ERROR - Failed to update service status: {"status": "404 Not Found", "message": "The path '/update_service_status' was not found."}                                                                                                                                                                                                                                                                                                                                                                                                                                       
