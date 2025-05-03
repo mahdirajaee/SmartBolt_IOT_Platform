@@ -185,7 +185,8 @@ class TimeSeriesAPI:
                         client = InfluxDBClient(
                             url=f"http://{config.INFLUXDB_HOST}:{config.INFLUXDB_PORT}",
                             token=config.INFLUXDB_TOKEN,
-                            org=config.INFLUXDB_ORG
+                            org=config.INFLUXDB_ORG,
+                            timeout=30000
                         )
                         # Optional: check connection
                         health = client.health()
@@ -198,7 +199,7 @@ class TimeSeriesAPI:
                     # Get unique device_ids from both temperature and pressure measurements
                     query_temp = f'''
                             from(bucket: "{config.INFLUXDB_BUCKET}")
-                            |> range(start: -100y)
+                            |> range(start: -30d)
                             |> filter(fn: (r) => r["_measurement"] == "temperature")
                             |> map(fn: (r) => ({{ r with _value: string(v: r._value) }}))
                             |> group(columns: ["device_id"])
@@ -206,7 +207,7 @@ class TimeSeriesAPI:
                     '''
                     query_pressure = f'''
                             from(bucket: "{config.INFLUXDB_BUCKET}")
-                            |> range(start: -100y)
+                            |> range(start: -30d)
                             |> filter(fn: (r) => r._measurement == "pressure")
                             |> map(fn: (r) => ({{ r with _value: string(v: r._value) }}))
                             |> group(columns: ["device_id"])
@@ -231,8 +232,8 @@ class TimeSeriesAPI:
                     # Combine and remove duplicates
                     all_devices = list(set(temp_devices + pressure_devices))
                     all_devices.sort()
-                    
-                    return {"devices": all_devices}
+                    num_devices = len(all_devices)
+                    return {"num_devices": num_devices,"devices": all_devices}
                 except Exception as e:
                     logger.error(f"Error getting device IDs from InfluxDB: {e}")
                     return {"error": str(e)}
@@ -258,7 +259,8 @@ class TimeSeriesAPI:
                         client = InfluxDBClient(
                             url=f"http://{config.INFLUXDB_HOST}:{config.INFLUXDB_PORT}",
                             token=config.INFLUXDB_TOKEN,
-                            org=config.INFLUXDB_ORG
+                            org=config.INFLUXDB_ORG,
+                            timeout=30000
                         )
                         # Optional: check connection
                         health = client.health()
@@ -270,7 +272,7 @@ class TimeSeriesAPI:
                     # Get unique sector_ids from valve_state measurement
                     query = f'''
                             from(bucket: "{config.INFLUXDB_BUCKET}")
-                            |> range(start: -100y)
+                            |> range(start: -30d)
                             |> filter(fn: (r) => r["_measurement"] == "valve_state")
                             |> map(fn: (r) => ({{ r with _value: string(v: r._value) }}))
                             |> group(columns: ["sector_id"])
@@ -329,5 +331,5 @@ def start_api(host='0.0.0.0', port=8000):
 
 
 if __name__ == '__main__':
-    print(f"Starting Time Series API on http://0.0.0.0:8000")
+    print(f"Starting Time Series API on http://0.0.0.0:{config.API_PORT}")
     start_api()
