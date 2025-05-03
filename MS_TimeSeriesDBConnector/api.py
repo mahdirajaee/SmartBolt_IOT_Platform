@@ -278,7 +278,6 @@ class TimeSeriesAPI:
                             |> group(columns: ["sector_id"])
                             |> distinct(column: "sector_id")
                     '''
-                    print (f"Querying InfluxDB for sector IDs: {query}")
                     # Fetch sector IDs
                     result = self.query_api.query(org=config.INFLUXDB_ORG, query=query)
                     # Extract sector IDs from query results
