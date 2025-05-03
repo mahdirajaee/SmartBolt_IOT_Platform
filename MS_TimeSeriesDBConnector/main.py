@@ -29,7 +29,7 @@ except ImportError:
     if os.path.exists(alt_broker_path):
         sys.path.insert(0, alt_broker_path)
         try:
-            from client import MQTTClient  # Direct import when path is added
+            from MessageBroker.client import MQTTClient  # Direct import when path is added
         except ImportError:
             print("Error: Could not import message broker client. Please ensure the MessageBroker module is available.")
             print(f"Tried paths: {parent_dir}, {alt_broker_path}")
@@ -122,109 +122,32 @@ class TimeSeriesConnector:
             logger.error(f"Error subscribing to topics: {e}")
             return False
     #------------version 2.0.0------------------ 
-    def process_sensor_data(self, topic, payload, qos):
-        try:
-            if isinstance(payload, bytes):
-                payload = payload.decode('utf-8')
-<<<<<<< HEAD
-
-=======
-                
->>>>>>> 1c835e68a0f15dddf53e0a044c0980a89c1371cf
-            data = json.loads(payload)
-            logger.debug(f"Received sensor data: {data}")
-
-            timestamp = data.get('timestamp', datetime.now().isoformat())
-            device_id = data.get('device_id', 'unknown')
-            readings = data.get('readings', {})
-<<<<<<< HEAD
-
-            device_info = data.get('device_info', {})
-            sector_info = data.get('sector_info', {})
-
-            # Prepare common metadata/tags
-=======
->>>>>>> 1c835e68a0f15dddf53e0a044c0980a89c1371cf
-            metadata = {
-                "topic": topic,
-                "qos": qos,
-                "device_id": device_id,
-                "device_name": device_info.get("name", "unknown"),
-                "sector_id": device_info.get("sector_id", "unknown"),
-                "sector_name": sector_info.get("name", "unknown"),
-                "valve_state": sector_info.get("valve_state", "unknown")
-            }
-<<<<<<< HEAD
-
-            # Process and store each sensor reading
-=======
-            
-            if 'device_info' in data:
-                metadata['device_info'] = data['device_info']
-            if 'sector_info' in data:
-                metadata['sector_info'] = data['sector_info']
-            
->>>>>>> 1c835e68a0f15dddf53e0a044c0980a89c1371cf
-            for sensor_type, reading in readings.items():
-                if isinstance(reading, dict):
-                    value = reading.get('value')
-                    unit = reading.get('unit')
-                else:
-                    value = reading
-                    unit = None
-<<<<<<< HEAD
-
-=======
-                
->>>>>>> 1c835e68a0f15dddf53e0a044c0980a89c1371cf
-                if value is not None:
-                    success = self.storage.store_sensor_data(
-                        timestamp=timestamp,
-                        device_id=device_id,
-                        sensor_type=sensor_type,
-                        value=float(value),
-                        unit=unit,
-                        metadata=metadata
-                    )
-                    if success:
-                        logger.debug(f"Stored {sensor_type} reading: {value} {unit or ''} for device {device_id}")
-                        print(f"Stored {sensor_type} reading: {value} {unit or ''} for device {device_id}")
-                    else:
-                        logger.warning(f"Failed to store {sensor_type} reading for device {device_id}")
-
-        except json.JSONDecodeError:
-            logger.error(f"Invalid JSON in sensor data message: {payload}")
-        except Exception as e:
-            logger.error(f"Error processing sensor data: {e}")
-
-    #------------version 1.0.0------------------
     # def process_sensor_data(self, topic, payload, qos):
-    #     """Process sensor data received from the message broker"""
     #     try:
-    #         # Convert payload from bytes to string if necessary
     #         if isinstance(payload, bytes):
     #             payload = payload.decode('utf-8')
-                
-    #         # Parse the JSON message
     #         data = json.loads(payload)
     #         logger.debug(f"Received sensor data: {data}")
-            
+
     #         timestamp = data.get('timestamp', datetime.now().isoformat())
     #         device_id = data.get('device_id', 'unknown')
     #         readings = data.get('readings', {})
-    #         # Create metadata from the message
+
+    #         device_info = data.get('device_info', {})
+    #         sector_info = data.get('sector_info', {})
+
+    #         # Prepare common metadata/tags
     #         metadata = {
     #             "topic": topic,
-    #             "qos": qos
+    #             "qos": qos,
+    #             "device_id": device_id,
+    #             "device_name": device_info.get("name", "unknown"),
+    #             "sector_id": device_info.get("sector_id", "unknown"),
+    #             "sector_name": sector_info.get("name", "unknown"),
+    #             "valve_state": sector_info.get("valve_state", "unknown")
     #         }
-            
-    #         # Add any device info or sector info to metadata
-    #         if 'device_info' in data:
-    #             metadata['device_info'] = data['device_info']
-    #         if 'sector_info' in data:
-    #             metadata['sector_info'] = data['sector_info']
-            
-    #         # Process each sensor reading
+
+    #         # Process and store each sensor reading
     #         for sensor_type, reading in readings.items():
     #             if isinstance(reading, dict):
     #                 value = reading.get('value')
@@ -232,8 +155,6 @@ class TimeSeriesConnector:
     #             else:
     #                 value = reading
     #                 unit = None
-                
-    #             # Store in time series database
     #             if value is not None:
     #                 success = self.storage.store_sensor_data(
     #                     timestamp=timestamp,
@@ -243,28 +164,88 @@ class TimeSeriesConnector:
     #                     unit=unit,
     #                     metadata=metadata
     #                 )
-                    
     #                 if success:
-    #                     logger.debug(f"Stored {sensor_type} reading: {value}{' '+unit if unit else ''} for device {device_id}")
-    #                     print(f"Stored {sensor_type} reading: {value}{' '+unit if unit else ''} for device {device_id}")
+    #                     logger.debug(f"Stored {sensor_type} reading: {value} {unit or ''} for device {device_id}")
+    #                     print(f"Stored {sensor_type} reading: {value} {unit or ''} for device {device_id}")
     #                 else:
     #                     logger.warning(f"Failed to store {sensor_type} reading for device {device_id}")
-            
+
     #     except json.JSONDecodeError:
     #         logger.error(f"Invalid JSON in sensor data message: {payload}")
     #     except Exception as e:
     #         logger.error(f"Error processing sensor data: {e}")
+
+    #------------version 1.0.0------------------
+    def process_sensor_data(self, topic, payload, qos):
+        """Process sensor data received from the message broker"""
+        try:
+            # Convert payload from bytes to string if necessary
+            if isinstance(payload, bytes):
+                payload = payload.decode('utf-8')
+                
+            # Parse the JSON message
+            data = json.loads(payload)
+            logger.debug(f"Received sensor data: {data}")
+            
+            timestamp = data.get('timestamp', datetime.now().isoformat())
+            device_id = data.get('device_id', 'unknown')
+            # valve_state = data['sector_info']['valve_state']
+            # sector_id = data['sector_info']['sector_id']
+            # if valve_state == "open":
+            #     valve_staus = 1
+            # else:
+            #     valve_staus = 0 
+            readings = data.get('readings', {})
+            # # Create metadata from the message
+            # metadata = {
+            #     "topic": topic,
+            #     "qos": qos
+            # }
+            
+            # # Add any device info or sector info to metadata
+            # if 'device_info' in data:
+            #     metadata['device_info'] = data['device_info']
+            # if 'sector_info' in data:
+            #     metadata['sector_info'] = data['sector_info']
+            
+            # Process each sensor reading
+            for sensor_type, reading in readings.items():
+                if isinstance(reading, dict):
+                    value = reading.get('value')
+                    unit = reading.get('unit')
+                else:
+                    value = reading
+                    unit = None
+                
+                # Store in time series database
+                if value is not None:
+                    success = self.storage.store_sensor_data(
+                        timestamp=timestamp,
+                        device_id=device_id,
+                        sensor_type=sensor_type,
+                        value=float(value),
+                        unit=unit,
+                        # valve_state=valve_staus,
+                        # sector_id=sector_id
+                    )
+                    
+                    if success:
+                        logger.debug(f"Stored {sensor_type} reading: {value}{' '+unit if unit else ''} for device {device_id}")
+                        print(f"Stored {sensor_type} reading: {value}{' '+unit if unit else ''} for device {device_id}")
+                    else:
+                        logger.warning(f"Failed to store {sensor_type} reading for device {device_id}")
+            
+        except json.JSONDecodeError:
+            logger.error(f"Invalid JSON in sensor data message: {payload}")
+        except Exception as e:
+            logger.error(f"Error processing sensor data: {e}")
     
     def process_valve_status(self, topic, payload, qos):
         try:
             if isinstance(payload, bytes):
                 payload = payload.decode('utf-8')
-<<<<<<< HEAD
             # print (f"@@@@@@@------- payload --------@@@@@@@@ {payload}")
             # Parse the JSON message
-=======
-                
->>>>>>> 1c835e68a0f15dddf53e0a044c0980a89c1371cf
             data = json.loads(payload)
             logger.debug(f"Received valve status: {data}")
             
@@ -276,17 +257,16 @@ class TimeSeriesConnector:
                 logger.warning("Missing sector_id or valve_state in valve status message")
                 return
             
-            metadata = {
-                "topic": topic,
-                "qos": qos,
-                "last_action": data.get('last_action')
-            }
+            # metadata = {
+            #     "topic": topic,
+            #     "qos": qos,
+            #     "last_action": data.get('last_action')
+            # }
             
             success = self.storage.store_valve_state(
                 timestamp=timestamp,
                 sector_id=sector_id,
-                state=valve_state,
-                metadata=metadata
+                state=valve_state
             )
             
             if success:
