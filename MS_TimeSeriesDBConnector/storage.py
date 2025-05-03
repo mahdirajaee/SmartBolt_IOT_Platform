@@ -377,7 +377,7 @@ class InfluxDBStorage(TimeSeriesStorage):
     #         return False
 
     
-    def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit, metadata=None):
+    def store_sensor_data(self, timestamp, device_id, sensor_type, value, unit): #metadata=None):
         """Store a single sensor reading in InfluxDB v2.x"""
         if not self._influxdb_available:
             return False   
@@ -388,20 +388,23 @@ class InfluxDBStorage(TimeSeriesStorage):
             
             # Add tags
             point = point.tag("device_id", str(device_id))
-            
+            point = point.tag("unit", unit)
+            # point = point.tag("valve_status", valve_state)
+            # point = point.tag("sector_id", sector_id)
+
             # Add fields
             point = point.field("value", float(value))
-            if unit:
-                point = point.field("unit", unit)
+            
+            
                 
-            # Add metadata as tags/fields
-            if metadata:
-                for key, val in metadata.items():
-                    if isinstance(val, (int, float, bool, str)):
-                        point = point.tag(key, str(val))
-                    else:
-                        # Store complex objects as JSON string in fields
-                        point = point.field(key, json.dumps(val))
+            # # Add metadata as tags/fields
+            # if metadata:
+            #     for key, val in metadata.items():
+            #         if isinstance(val, (int, float, bool, str)):
+            #             point = point.tag(key, str(val))
+            #         else:
+            #             # Store complex objects as JSON string in fields
+            #             point = point.field(key, json.dumps(val))
             
             # Set timestamp
             if timestamp and isinstance(timestamp, datetime):
@@ -484,17 +487,21 @@ class InfluxDBStorage(TimeSeriesStorage):
             
             # Add tags
             point = point.tag("sector_id", sector_id)
-            
+            # point = point.tag("state_str", state)  
             # Add fields
-            point = point.field("state", state)
+            if state == "open":
+                point = point.field("state", 1)
+            elif state == "closed":
+                point = point.field("state", 0)
+            # point = point.field("state", state)
             
-            # Add metadata as tags/fields
-            if metadata:
-                for key, val in metadata.items():
-                    if isinstance(val, (int, float, bool, str)):
-                        point = point.tag(key, str(val))
-                    else:
-                        point = point.field(key, json.dumps(val))
+            # # Add metadata as tags/fields
+            # if metadata:
+            #     for key, val in metadata.items():
+            #         if isinstance(val, (int, float, bool, str)):
+            #             point = point.tag(key, str(val))
+            #         else:
+            #             point = point.field(key, json.dumps(val))
             
             # Set timestamp
             if timestamp and isinstance(timestamp, datetime):
