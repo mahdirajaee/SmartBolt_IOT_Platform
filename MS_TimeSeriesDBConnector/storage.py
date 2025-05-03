@@ -533,16 +533,16 @@ class InfluxDBStorage(TimeSeriesStorage):
             
         try:
             # Format time ranges for InfluxDB Flux query
-            if isinstance(start_time, datetime.datetime):
+            if isinstance(start_time, datetime):
                 start_time_str = start_time.strftime('%Y-%m-%dT%H:%M:%SZ')
             else:
                 start_time_str = start_time
                 
-            if isinstance(end_time, datetime.datetime):
+            if isinstance(end_time, datetime):
                 end_time_str = end_time.strftime('%Y-%m-%dT%H:%M:%SZ')
             else:
                 end_time_str = end_time
-            
+
             # Create Flux query
             query = f'''
                 from(bucket: "{config.INFLUXDB_BUCKET}")
@@ -550,7 +550,6 @@ class InfluxDBStorage(TimeSeriesStorage):
                     |> filter(fn: (r) => r._measurement == "{sensor_type}")
                     |> filter(fn: (r) => r.device_id == "{device_id}")
             '''
-            print(f"@@@@@@@@///////////>>>>>>>>>>>>> {query}")
             # Execute query
             tables = self.query_api.query(query, org=config.INFLUXDB_ORG)
             
@@ -568,7 +567,10 @@ class InfluxDBStorage(TimeSeriesStorage):
                     # Add other fields
                     for key, value in record.values.items():
                         if key not in ("_time", "_value", "_field", "_measurement", "device_id"):
-                            item[key] = value
+                            if isinstance(value, datetime):
+                                item[key] = value.isoformat()
+                            else:
+                                item[key] = value
                     
                     data.append(item)
                     
@@ -584,12 +586,12 @@ class InfluxDBStorage(TimeSeriesStorage):
             
         try:
             # Format time ranges for InfluxDB Flux query
-            if isinstance(start_time, datetime.datetime):
+            if isinstance(start_time, datetime):
                 start_time_str = start_time.strftime('%Y-%m-%dT%H:%M:%SZ')
             else:
                 start_time_str = start_time
                 
-            if isinstance(end_time, datetime.datetime):
+            if isinstance(end_time, datetime):
                 end_time_str = end_time.strftime('%Y-%m-%dT%H:%M:%SZ')
             else:
                 end_time_str = end_time
@@ -614,11 +616,17 @@ class InfluxDBStorage(TimeSeriesStorage):
                         "sector_id": record.values.get("sector_id"),
                         "state": record.get_value()
                     }
-                    
+                    if item["state"] == 1:
+                        item["state"] = "open"
+                    elif item["state"] == 0:
+                        item["state"] = "closed"
                     # Add other fields
                     for key, value in record.values.items():
                         if key not in ("_time", "_value", "_field", "_measurement", "sector_id"):
-                            item[key] = value
+                            if isinstance(value, datetime):
+                                item[key] = value.isoformat()
+                            else:
+                                item[key] = value
                     
                     data.append(item)
                     
