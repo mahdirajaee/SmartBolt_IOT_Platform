@@ -11,4 +11,18 @@ __pycache__/
 # Ignore VS Code settings (optional)
 .vscode/
 .DS_Store
+# Ignore log files
+*.log
 
+# Ignore temporary files
+*.tmp
+*.swp
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+
+# Ignore system-specific files
+Thumbs.db
+ehthumbs.db
+desktop.ini

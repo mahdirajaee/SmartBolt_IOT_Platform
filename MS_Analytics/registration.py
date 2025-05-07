@@ -53,8 +53,8 @@ def register_with_catalog():
             "description": config.SERVICE_DESCRIPTION,
             "service_type": config.SERVICE_TYPE,
             "endpoints": {
-                "api": f"http://{local_ip}:{port}/api",
-                "alerts": f"http://{local_ip}:{port}/api/alerts"
+                "api": f"http://localhost:{port}/api",
+                "alerts": f"http://localhost:{port}/api/alerts"
             },
             "required_inputs": {
                 "sensor_data": "Historical temperature and pressure data"

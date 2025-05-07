@@ -19,6 +19,8 @@ API_PORT = 5004  # Added API port configuration
 # Time Series DB connection settings
 # These will be dynamically fetched from Resource Catalog
 TIMESERIES_DB_API_URL = None  # Will be populated from Resource Catalog
+DEVICE_ID = os.environ.get("DEVICE_ID", "1")
+SENSOR_TYPE = os.environ.get("SENSOR_TYPE", "pressure")  # Default sensor type
 
 # Message Broker settings
 # These will be dynamically fetched from Resource Catalog

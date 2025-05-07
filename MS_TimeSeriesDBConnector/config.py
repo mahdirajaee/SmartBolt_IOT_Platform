@@ -19,7 +19,6 @@ SYSTEM_EVENTS_TOPIC = "system/events"
 # API settings
 API_PORT = 8084
 
-
 # Storage settings
 STORAGE_TYPE = "influxdb"  
 SQLITE_DB_FILE = "timeseries_data.db"

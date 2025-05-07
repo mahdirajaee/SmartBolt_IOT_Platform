@@ -42,13 +42,14 @@ def register_with_catalog():
             "service_id": config.SERVICE_ID,
             "name": config.SERVICE_NAME,
             "description": config.SERVICE_DESCRIPTION,
-            "service_type": config.SERVICE_TYPE,
+            "service_type": config.SERVICE_TYPE,      
             "endpoints": {
                 "mqtt": f"mqtt://{config.MQTT_HOST}:{config.MQTT_PORT}",
                 "topics": {
                     "sensor_data": config.SENSOR_DATA_TOPIC,
                     "valve_status": config.VALVE_STATUS_TOPIC
-                }
+                },
+                "api": f"http://localhost:{config.API_PORT}"
             },
             "required_inputs": {
                 "sensor_data": "JSON formatted sensor readings",

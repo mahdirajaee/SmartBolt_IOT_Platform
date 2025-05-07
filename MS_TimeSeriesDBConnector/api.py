@@ -47,6 +47,29 @@ class TimeSeriesAPI:
             }
         }
     
+    """ get all data from the time series database """
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def all_seneor_data(self):
+        """Query all sensor data"""
+        try:
+            
+            # Define a default time range (e.g., last 24 hours)
+            end_time = datetime.datetime.now()
+            start_time = end_time - timedelta(hours=24)
+            # Get all data from storage
+            data = self.storage.get_all_sensor_data(start_time=start_time, end_time=end_time)
+            
+            return {
+                "count": len(data),
+                "data": data
+            }
+            
+        except Exception as e:
+            logger.error(f"Error processing all_sensor_data request: {e}")
+            return {"error": str(e)}
+    """ get all data from the time series database """
+
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def sensor_data(self, device_id=None, sensor_type=None, hours=None, start=None, end=None, limit=None):
@@ -304,7 +327,7 @@ class TimeSeriesAPI:
             return {"error": str(e)}
 
 
-def start_api(host='0.0.0.0', port=8000):
+def start_api(host='0.0.0.0', port=config.API_PORT):
     """Start the API server"""
     # Global configuration for CherryPy
     cherrypy.config.update({
