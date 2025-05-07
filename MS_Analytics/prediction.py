@@ -46,71 +46,190 @@ class PredictionEngine:
         except Exception as e:
             logger.error(f"Error preprocessing data: {e}")
             return None
-    
+    #------------------new version------------------
     def train_models(self, historical_data):
-        """Train prediction models using historical sensor data"""
+        """Train prediction model using historical sensor data for a single sensor type"""
         try:
             df = self.preprocess_data(historical_data)
-            if df is None or df.empty:
-                logger.error("No valid data for training models")
-                return False
+            print(f"@@@@@@@@@@@@@@ Training model... @@@@@@@@@@@@@@@\n{df}")
             
-            # Check if temperature and pressure columns exist
-            if 'temperature' not in df.columns or 'pressure' not in df.columns:
+            if df is None or df.empty:
+                logger.error("No valid data for training model")
+                return False
+
+            # Ensure required columns exist
+            if 'device_id' not in df.columns or 'sensor_type' not in df.columns or 'value' not in df.columns:
                 logger.error(f"Missing required columns in data. Available columns: {df.columns}")
                 return False
-            
-            # Features for prediction (time-based)
+
+            sensor_types = df['sensor_type'].unique()
+            if len(sensor_types) != 1:
+                logger.error(f"Expected exactly one sensor type, found: {sensor_types}")
+                return False
+
+            sensor_type = sensor_types[0]
             X = df[['minutes_elapsed']].values
-            
-            # Train temperature model
-            y_temp = df['temperature'].values
-            self.temp_model = LinearRegression()
-            self.temp_model.fit(X, y_temp)
-            logger.info("Temperature prediction model trained")
-            
-            # Train pressure model
-            y_pressure = df['pressure'].values
-            self.pressure_model = LinearRegression()
-            self.pressure_model.fit(X, y_pressure)
-            logger.info("Pressure prediction model trained")
-            
+            y = df['value'].values
+
+            if sensor_type == 'temperature':
+                self.temp_model = LinearRegression()
+                self.temp_model.fit(X, y)
+                logger.info("Temperature prediction model trained")
+
+            elif sensor_type == 'pressure':
+                self.pressure_model = LinearRegression()
+                self.pressure_model.fit(X, y)
+                logger.info("Pressure prediction model trained")
+
+            else:
+                logger.error(f"Unsupported sensor type: {sensor_type}")
+                return False
+
             return True
+
         except Exception as e:
-            logger.error(f"Error training prediction models: {e}")
+            logger.error(f"Error training prediction model: {e}")
             return False
-    
+
+    #------------------old version------------------
+    # def train_models(self, historical_data):
+    #     """Train prediction models using historical sensor data"""
+    #     try:
+    #         df = self.preprocess_data(historical_data)
+    #         print(f"@@@@@@@@@@@@@@ Training models... @@@@@@@@@@@@@@@{historical_data}")
+    #         if df is None or df.empty:
+    #             logger.error("No valid data for training models")
+    #             return False
+            
+    #         # Check if temperature and pressure columns exist
+    #         # if 'temperature' not in df.columns or 'pressure' not in df.columns:
+    #         if 'device_id' not in df.columns or 'sensor_type' not in df.columns:
+    #             logger.error(f"Missing required columns in data. Available columns: {df.columns}")
+    #             return False
+            
+    #         # Train temperature model
+    #         temp_df = df[df['sensor_type'] == 'temperature']
+    #         if not temp_df.empty:
+    #             X_temp = temp_df[['minutes_elapsed']].values
+    #             y_temp = temp_df['value'].values  # assuming temperature values are in a 'value' column
+    #             self.temp_model = LinearRegression()
+    #             self.temp_model.fit(X_temp, y_temp)
+    #             logger.info("Temperature prediction model trained")
+    #         else:
+    #             logger.warning("No temperature data available to train model")
+
+    #         # Train pressure model
+    #         pressure_df = df[df['sensor_type'] == 'pressure']
+    #         if not pressure_df.empty:
+    #             X_pressure = pressure_df[['minutes_elapsed']].values
+    #             y_pressure = pressure_df['value'].values  # assuming pressure values are in a 'value' column
+    #             self.pressure_model = LinearRegression()
+    #             self.pressure_model.fit(X_pressure, y_pressure)
+    #             logger.info("Pressure prediction model trained")
+    #         else:
+    #             logger.warning("No pressure data available to train model")
+
+            
+            
+            
+            
+    #         # # Features for prediction (time-based)
+    #         # X = df[['minutes_elapsed']].values
+            
+    #         # # Train temperature model
+    #         # y_temp = df['sensor_type'].values
+    #         # if y_temp == 'temperature':
+    #         #     self.temp_model = LinearRegression()
+    #         #     self.temp_model.fit(X, y_temp)
+    #         #     logger.info("Temperature prediction model trained")
+                
+    #         # else:
+    #         #     logger.error("Sensor type is not temperature")
+    #         #     return False
+            
+    #         # # Train pressure model
+    #         # y_pressure = df['sensor_type'].values
+    #         # if y_pressure == 'pressure':
+    #         #     self.pressure_model = LinearRegression()
+    #         #     self.pressure_model.fit(X, y_pressure)
+    #         #     logger.info("Pressure prediction model trained")
+                
+    #         # else:
+    #         #     logger.error("Sensor type is not pressure")
+    #         #     return False
+    #         # self.pressure_model = LinearRegression()
+    #         # self.pressure_model.fit(X, y_pressure)
+    #         # logger.info("Pressure prediction model trained")
+            
+    #         return True
+    #     except Exception as e:
+    #         logger.error(f"Error training prediction models: {e}")
+    #         return False
+    #------------------new version------------------
     def predict_future_values(self, minutes_ahead=30):
-        """Predict temperature and pressure values for the specified time ahead"""
-        if self.temp_model is None or self.pressure_model is None:
+        """Predict temperature and/or pressure values for the specified time ahead"""
+        if self.temp_model is None and self.pressure_model is None:
             logger.error("Models not trained yet")
             return None
-        
+
         try:
-            # Create feature array for future prediction points
-            # For simplicity, we'll predict at 5-minute intervals
+            # Predict at 5-minute intervals
             intervals = range(5, minutes_ahead + 1, 5)
             future_X = np.array(intervals).reshape(-1, 1)
-            
-            # Predict future values
-            future_temp = self.temp_model.predict(future_X)
-            future_pressure = self.pressure_model.predict(future_X)
-            
-            # Create a result DataFrame with predictions
+
+            # Predict only for trained models
+            future_temp = self.temp_model.predict(future_X) if self.temp_model else [None] * len(future_X)
+            future_pressure = self.pressure_model.predict(future_X) if self.pressure_model else [None] * len(future_X)
+
+            now = datetime.datetime.now()
+            forecast_timestamps = [now + datetime.timedelta(minutes=m) for m in intervals]
+
             result = pd.DataFrame({
                 'minutes_ahead': intervals,
                 'forecasted_temperature': future_temp,
-                'forecasted_pressure': future_pressure
+                'forecasted_pressure': future_pressure,
+                'forecast_timestamp': forecast_timestamps
             })
-            
-            # Add forecast timestamps
-            now = datetime.datetime.now()
-            result['forecast_timestamp'] = [now + datetime.timedelta(minutes=m) for m in intervals]
-            
+
             return result
+
         except Exception as e:
             logger.error(f"Error predicting future values: {e}")
             return None
+
+
+    #------------------old version------------------
+    # def predict_future_values(self, minutes_ahead=30):
+    #     """Predict temperature and pressure values for the specified time ahead"""
+    #     if self.temp_model is None or self.pressure_model is None:
+    #         logger.error("Models not trained yet")
+    #         return None
+        
+    #     try:
+    #         # Create feature array for future prediction points
+    #         # For simplicity, we'll predict at 5-minute intervals
+    #         intervals = range(5, minutes_ahead + 1, 5)
+    #         future_X = np.array(intervals).reshape(-1, 1)
+            
+    #         # Predict future values
+    #         future_temp = self.temp_model.predict(future_X)
+    #         future_pressure = self.pressure_model.predict(future_X)
+            
+    #         # Create a result DataFrame with predictions
+    #         result = pd.DataFrame({
+    #             'minutes_ahead': intervals,
+    #             'forecasted_temperature': future_temp,
+    #             'forecasted_pressure': future_pressure
+    #         })
+            
+    #         # Add forecast timestamps
+    #         now = datetime.datetime.now()
+    #         result['forecast_timestamp'] = [now + datetime.timedelta(minutes=m) for m in intervals]
+            
+    #         return result
+    #     except Exception as e:
+    #         logger.error(f"Error predicting future values: {e}")
+    #         return None
     
     def evaluate_risk(self, forecast_data):
         """Evaluate the risk level based on forecasted values"""

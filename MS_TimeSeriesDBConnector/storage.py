@@ -413,7 +413,8 @@ class InfluxDBStorage(TimeSeriesStorage):
                     timestamp = timestamp.replace(tzinfo=timezone.utc)
                 else:
                     # Get current UTC time as timezone-aware datetime
-                    timestamp = datetime.now(timezone.utc)
+                    current_time = datetime.now(timezone.utc)
+                    timestamp = current_time
                 
                 point = point.time(timestamp, self.WritePrecision.NS)
             
@@ -635,6 +636,85 @@ class InfluxDBStorage(TimeSeriesStorage):
             logger.error(f"Error retrieving valve states from InfluxDB: {e}")
             return []
     
+    """ get all sensor data from time series db """
+    def get_all_sensor_data(self, start_time, end_time):
+        """Retrieve all sensor data within a time range"""
+        if not self._influxdb_available:
+            return []
+            
+        try:
+            # Format time ranges for InfluxDB Flux query
+            if isinstance(start_time, datetime):
+                start_time_str = start_time.strftime('%Y-%m-%dT%H:%M:%SZ')
+            else:
+                start_time_str = start_time
+                
+            if isinstance(end_time, datetime):
+                end_time_str = end_time.strftime('%Y-%m-%dT%H:%M:%SZ')
+            else:
+                end_time_str = end_time
+            # Create Flux query dynamically for temperature and pressure
+            query = f'''
+            temp = from(bucket: "{config.INFLUXDB_BUCKET}")
+                |> range(start: {start_time_str}, stop: {end_time_str})
+                |> filter(fn: (r) => 
+                    r["_measurement"] == "temperature" and 
+                    r["_field"] == "value" and
+                    (r["device_id"] == "1" or r["device_id"] == "10" or r["device_id"] == "11" or r["device_id"] == "20") and
+                    r["unit"] == "celsius"
+                )
+                |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+                |> rename(columns: {{_value: "temperature"}})
+
+            press = from(bucket: "{config.INFLUXDB_BUCKET}")
+                |> range(start: {start_time_str}, stop: {end_time_str})
+                |> filter(fn: (r) => 
+                    r["_measurement"] == "pressure" and 
+                    r["_field"] == "value" and
+                    (r["device_id"] == "1" or r["device_id"] == "10" or r["device_id"] == "11" or r["device_id"] == "20") and
+                    r["unit"] == "hPa"
+                )
+                |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+                |> rename(columns: {{_value: "pressure"}})
+
+            join(
+                tables: {{t: temp, p: press}},
+                on: ["_time", "device_id"]
+            )
+            '''
+            print(f"@@@@@@@@@  get_all_sensor_data query: @@@@@@@@@@@@@@@@@ {query}")
+            # Execute query
+            
+            tables = self.query_api.query(query, org=config.INFLUXDB_ORG)
+            print("##########  get_all_sensor_data tables:")
+            # Process results
+            data = []
+            for table in tables:
+                for record in table.records:
+                    item = {
+                        "timestamp": record.get_time().isoformat(),
+                        "device_id": record.values.get("device_id"),
+                        "temperature": record.values.get("temperature"),
+                        "pressure": record.values.get("pressure")
+                    }
+                    # Add other fields
+                    for key, value in record.values.items():
+                        if key not in ("_time", "_value", "_field", "_measurement", "device_id"):
+                            if isinstance(value, datetime):
+                                item[key] = value.isoformat()
+                            else:
+                                item[key] = value
+                    data.append(item)
+            print (f"##########  get_all_sensor_data data: {data}")
+            return data
+            
+        except Exception as e:
+            logger.error(f"Error retrieving all sensor data from InfluxDB: {e}")
+            return []
+
+    """ get all sensor data from time series db """
+
+
     def close(self):
         """Close InfluxDB client connection"""
         if self._influxdb_available:
