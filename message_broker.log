@@ -1,8 +1,0 @@
-2025-04-29 17:57:28,794 - message_broker - INFO - Message store initialized
-2025-04-29 17:57:28,797 - message_broker - INFO - Message broker started
-2025-04-29 17:57:28,798 - message_broker - INFO - Connected to MQTT broker
-2025-04-29 17:57:28,798 - message_broker - INFO - Republished 0 retained messages
-2025-04-29 17:57:37,250 - message_broker - INFO - Shutdown signal received
-2025-04-29 17:57:37,253 - message_broker - INFO - System event received: {'event': 'broker_stop', 'timestamp': '2025-04-29T17:57:37.251416', 'broker_id': 'smart_bolt_message_broker'}
-2025-04-29 17:57:38,256 - message_broker - WARNING - Unexpected disconnection from MQTT broker with code: DisconnectFlags(is_disconnect_packet_from_server=False)
-2025-04-29 17:57:38,256 - message_broker - INFO - Message broker stopped
