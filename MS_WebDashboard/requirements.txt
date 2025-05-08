@@ -1,7 +1,0 @@
-dash==2.9.3
-dash-core-components==2.0.0
-dash-html-components==2.0.0
-flask==2.2.3
-pandas==1.5.3
-plotly==5.14.1
-requests==2.28.2 
