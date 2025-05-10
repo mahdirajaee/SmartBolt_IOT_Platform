@@ -4,150 +4,135 @@ import time
 from tinydb import TinyDB, Query
 from models import Device, Service
 
-# Get the directory where this script is located
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_DB_PATH = os.path.join(BASE_DIR, "catalog_db.json")
 
 class StorageManager:
-    """Handles persistence of device and service data"""
-    
     def __init__(self, db_path=None):
-        # Use the provided db_path or default to ResourceCatalog directory
         if db_path is None or not os.path.isabs(db_path):
             db_path = DEFAULT_DB_PATH
             
-        # Create data directory if it doesn't exist
         os.makedirs(os.path.dirname(db_path) if os.path.dirname(db_path) else '.', exist_ok=True)
-        self.db = TinyDB(db_path)
-        self.devices = self.db.table('devices')
-        self.services = self.db.table('services')
+        self.db_path = db_path
+        self.db = {}
+        self.load_db()
     
-    # Device operations
+    def load_db(self):
+        try:
+            if os.path.exists(self.db_path) and os.path.getsize(self.db_path) > 0:
+                with open(self.db_path, 'r') as file:
+                    self.db = json.load(file)
+            else:
+                self.db = {"devices": {}, "services": {}}
+        except (json.JSONDecodeError, FileNotFoundError):
+            self.db = {"devices": {}, "services": {}}
+        
+    def save_db(self):
+        with open(self.db_path, 'w') as file:
+            json.dump(self.db, file, indent=2)
+    
     def get_all_devices(self):
-        """Retrieve all registered devices"""
-        return [Device.from_dict(device) for device in self.devices.all()]
+        return [Device.from_dict(device) for device in self.db.get("devices", {}).values()]
     
     def get_device(self, device_id):
-        """Get a specific device by ID"""
-        Device_query = Query()
-        result = self.devices.get(Device_query.device_id == device_id)
-        return Device.from_dict(result) if result else None
+        device = self.db.get("devices", {}).get(device_id)
+        return Device.from_dict(device) if device else None
     
     def add_device(self, device):
-        """Add or update a device in the database"""
-        Device_query = Query()
         device_dict = device.to_dict()
+        if "devices" not in self.db:
+            self.db["devices"] = {}
         
-        # Check if device exists and update, or insert new
-        if self.devices.contains(Device_query.device_id == device.device_id):
-            self.devices.update(device_dict, Device_query.device_id == device.device_id)
-        else:
-            self.devices.insert(device_dict)
+        self.db["devices"][device.device_id] = device_dict
+        self.save_db()
         return device
     
     def update_device_status(self, device_id, status, last_update=None):
-        """Update a device's status and last update time"""
-        Device_query = Query()
         last_update = last_update or time.time()
         
-        if self.devices.contains(Device_query.device_id == device_id):
-            self.devices.update({
-                'status': status,
-                'last_update': last_update
-            }, Device_query.device_id == device_id)
+        if device_id in self.db.get("devices", {}):
+            self.db["devices"][device_id]["status"] = status
+            self.db["devices"][device_id]["last_update"] = last_update
+            self.db["devices"][device_id]["last_update_formatted"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(last_update))
+            self.save_db()
             return True
         return False
     
     def delete_device(self, device_id):
-        """Remove a device from the database"""
-        Device_query = Query()
-        return self.devices.remove(Device_query.device_id == device_id)
+        if device_id in self.db.get("devices", {}):
+            del self.db["devices"][device_id]
+            self.save_db()
+            return True
+        return False
     
-    # Service operations
     def get_all_services(self):
-        """Retrieve all registered services"""
-        return [Service.from_dict(service) for service in self.services.all()]
+        return [Service.from_dict(service) for service in self.db.get("services", {}).values()]
     
     def get_service(self, service_id):
-        """Get a specific service by ID"""
-        Service_query = Query()
-        result = self.services.get(Service_query.service_id == service_id)
-        return Service.from_dict(result) if result else None
+        service = self.db.get("services", {}).get(service_id)
+        return Service.from_dict(service) if service else None
     
     def add_service(self, service):
-        """Add or update a service in the database"""
-        Service_query = Query()
         service_dict = service.to_dict()
-        
-        # Check if service exists and update, or insert new
-        if self.services.contains(Service_query.service_id == service.service_id):
-            self.services.update(service_dict, Service_query.service_id == service.service_id)
-        else:
-            self.services.insert(service_dict)
+        if "services" not in self.db:
+            self.db["services"] = {}
+            
+        self.db["services"][service.service_id] = service_dict
+        self.save_db()
         return service
     
     def update_service_status(self, service_id, status, last_update=None):
-        """Update a service's status and last update time"""
-        Service_query = Query()
         last_update = last_update or time.time()
         
-        if self.services.contains(Service_query.service_id == service_id):
-            self.services.update({
-                'status': status,
-                'last_update': last_update
-            }, Service_query.service_id == service_id)
+        if service_id in self.db.get("services", {}):
+            self.db["services"][service_id]["status"] = status
+            self.db["services"][service_id]["last_update"] = last_update
+            self.db["services"][service_id]["last_update_formatted"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(last_update))
+            self.save_db()
             return True
         return False
     
     def delete_service(self, service_id):
-        """Remove a service from the database"""
-        Service_query = Query()
-        return self.services.remove(Service_query.service_id == service_id)
+        if service_id in self.db.get("services", {}):
+            del self.db["services"][service_id]
+            self.save_db()
+            return True
+        return False
     
-    # Advanced queries
     def get_devices_by_type(self, device_type):
-        """Get all devices of a specific type"""
-        Device_query = Query()
-        results = self.devices.search(Device_query.device_type == device_type)
-        return [Device.from_dict(device) for device in results]
+        devices = []
+        for device in self.db.get("devices", {}).values():
+            if device.get("device_type") == device_type:
+                devices.append(Device.from_dict(device))
+        return devices
     
     def get_services_by_type(self, service_type):
-        """Get all services of a specific type"""
-        Service_query = Query()
-        results = self.services.search(Service_query.service_type == service_type)
-        return [Service.from_dict(service) for service in results]
+        services = []
+        for service in self.db.get("services", {}).values():
+            if service.get("service_type") == service_type:
+                services.append(Service.from_dict(service))
+        return services
     
     def get_online_devices(self):
-        """Get all online devices"""
-        Device_query = Query()
-        results = self.devices.search(Device_query.status == 'online')
-        return [Device.from_dict(device) for device in results]
+        devices = []
+        for device in self.db.get("devices", {}).values():
+            if device.get("status") == "online":
+                devices.append(Device.from_dict(device))
+        return devices
     
     def cleanup_stale_entries(self, timeout_seconds=300):
-        """Mark devices/services as offline if they haven't updated within timeout"""
         current_time = time.time()
         timeout_threshold = current_time - timeout_seconds
+        stale_count = 0
         
-        # Query for stale devices
-        Device_query = Query()
-        stale_devices = self.devices.search(
-            (Device_query.status == 'online') & 
-            (Device_query.last_update < timeout_threshold)
-        )
+        for device_id, device in list(self.db.get("devices", {}).items()):
+            if device.get("status") == "online" and device.get("last_update", 0) < timeout_threshold:
+                self.update_device_status(device_id, "offline")
+                stale_count += 1
         
-        # Update stale devices to offline
-        for device in stale_devices:
-            self.update_device_status(device['device_id'], 'offline')
-        
-        # Query for stale services
-        Service_query = Query()
-        stale_services = self.services.search(
-            (Service_query.status == 'online') & 
-            (Service_query.last_update < timeout_threshold)
-        )
-        
-        # Update stale services to offline
-        for service in stale_services:
-            self.update_service_status(service['service_id'], 'offline')
-            
-        return len(stale_devices) + len(stale_services)
+        for service_id, service in list(self.db.get("services", {}).items()):
+            if service.get("status") == "online" and service.get("last_update", 0) < timeout_threshold:
+                self.update_service_status(service_id, "offline")
+                stale_count += 1
+                
+        return stale_count
