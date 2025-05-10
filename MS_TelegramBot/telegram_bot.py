@@ -42,6 +42,8 @@ class TelegramBot:
         self.updater.add_handler(CommandHandler("temperature", self.handle_temperature))
         self.updater.add_handler(CommandHandler("pressure", self.handle_pressure))
         self.updater.add_handler(CommandHandler("actuator", self.handle_actuator))
+        self.updater.add_handler(CommandHandler("status", self.handle_status))
+        self.updater.add_handler(CommandHandler("error", self.handle_error))
         self.updater.add_handler(CallbackQueryHandler(self.handle_callback))
         self.updater.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
 
@@ -157,7 +159,7 @@ class TelegramBot:
         user_id = update.effective_user.id
         
         if len(context.args) != 2:
-            update.message.reply_text(
+            await update.message.reply_text(
                 "❌ *Invalid Login Format*\n\n"
                 "Please use: /login username password\n"
                 "Example: /login john password123",
@@ -189,6 +191,13 @@ class TelegramBot:
                 "Please check your credentials and try again.",
                 parse_mode='Markdown'
             )
+    
+    async def handle_status(self, update: Update, context: CallbackContext):
+        await update.message.reply_text(
+            "✅ *System Status*\n\n"
+            "The bot is running and connected to the server.",
+            parse_mode='Markdown'
+        )
     
     async def handle_logout(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
