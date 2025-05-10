@@ -31,7 +31,9 @@ console.setFormatter(formatter)
 logger.addHandler(console)
 
 class AccountManager:
-    def __init__(self, db_path="users.json"):
+    def __init__(self, db_path=None):
+        if db_path is None:
+            db_path = os.path.join(os.path.dirname(__file__), "users.json")
         self.db_path = db_path
         self.users = self._load_users()
         
@@ -77,7 +79,7 @@ class AccountManager:
             return False
             
         for key, value in data.items():
-            if key != 'password':  # Don't update password this way
+            if key != 'password':  
                 self.users[username][key] = value
                 
         return self._save_users()
@@ -224,7 +226,7 @@ def main():
     
     import argparse
     parser = argparse.ArgumentParser(description='Account Manager')
-    parser.add_argument('--port', type=int, default=8000, help='Port for the API server')
+    parser.add_argument('--port', type=int, default=config.API_PORT, help='Port for the API server')
     args = parser.parse_args()
     
     print("Starting Account Manager service...")
@@ -254,13 +256,13 @@ def main():
             }
         }
         
-        # Create an API instance
+        
         api = AccountManagerAPI()
         
-        # Mount at root path
+        
         cherrypy.tree.mount(api, '/', conf)
         
-        # Mount at auth path
+        
         cherrypy.tree.mount(api, '/auth', conf)
         cherrypy.engine.start()
         print(f"API server running at http://0.0.0.0:{args.port}")

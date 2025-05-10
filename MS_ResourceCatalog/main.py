@@ -54,6 +54,7 @@ def main():
         'server.socket_port': config.get("server", "port"),
         'engine.autoreload.on': False,
         'tools.sessions.on': False,
+        'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
     })
     
     # API endpoint configuration
@@ -68,7 +69,6 @@ def main():
         },
     }
     
-    # Mount API endpoints
     cherrypy.tree.mount(api, '/', conf)
     
     # # Print startup message

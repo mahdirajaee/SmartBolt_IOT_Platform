@@ -4,10 +4,11 @@ import os
 import sys
 import signal
 import logging
-import sqlite3
 import json
 import time
 import threading
+import random
+import string
 from datetime import datetime
 import paho.mqtt.client as mqtt
 import config
@@ -25,161 +26,36 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 console.setFormatter(formatter)
 logger.addHandler(console)
 
-class MessageStore:
-    
-    def __init__(self, db_file=config.PERSISTENCE_FILE):
-        self.db_file = db_file
-        self.initialize_db()
-    
-    def initialize_db(self):
-        try:
-            conn = sqlite3.connect(self.db_file)
-            cursor = conn.cursor()
-            
-            cursor.execute('''
-                CREATE TABLE IF NOT EXISTS messages (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    topic TEXT NOT NULL,
-                    payload TEXT NOT NULL,
-                    qos INTEGER DEFAULT 0,
-                    timestamp TEXT NOT NULL
-                )
-            ''')
-            
-            cursor.execute('''
-                CREATE TABLE IF NOT EXISTS retained_messages (
-                    topic TEXT PRIMARY KEY,
-                    payload TEXT NOT NULL,
-                    qos INTEGER DEFAULT 0,
-                    timestamp TEXT NOT NULL
-                )
-            ''')
-            
-            conn.commit()
-            logger.info("Message store initialized")
-        except sqlite3.Error as e:
-            logger.error(f"Database initialization error: {e}")
-        finally:
-            if conn:
-                conn.close()
-    
-    def store_message(self, topic, payload, qos=0, retained=False):
-        try:
-            conn = sqlite3.connect(self.db_file)
-            cursor = conn.cursor()
-            timestamp = datetime.now().isoformat()
-            
-            if isinstance(payload, (dict, list)):
-                payload = json.dumps(payload)
-                
-            cursor.execute(
-                "INSERT INTO messages (topic, payload, qos, timestamp) VALUES (?, ?, ?, ?)",
-                (topic, payload, qos, timestamp)
-            )
-            
-            if retained:
-                cursor.execute(
-                    "INSERT OR REPLACE INTO retained_messages (topic, payload, qos, timestamp) VALUES (?, ?, ?, ?)",
-                    (topic, payload, qos, timestamp)
-                )
-                
-            conn.commit()
-            return True
-        except sqlite3.Error as e:
-            logger.error(f"Failed to store message: {e}")
-            return False
-        finally:
-            if conn:
-                conn.close()
-    
-    def get_retained_messages(self):
-        try:
-            conn = sqlite3.connect(self.db_file)
-            cursor = conn.cursor()
-            
-            cursor.execute("SELECT topic, payload, qos FROM retained_messages")
-            messages = cursor.fetchall()
-            
-            result = []
-            for topic, payload_str, qos in messages:
-                try:
-                    payload = json.loads(payload_str)
-                except (json.JSONDecodeError, TypeError):
-                    payload = payload_str
-                    
-                result.append({
-                    "topic": topic,
-                    "payload": payload,
-                    "qos": qos
-                })
-                
-            return result
-        except sqlite3.Error as e:
-            logger.error(f"Failed to get retained messages: {e}")
-            return []
-        finally:
-            if conn:
-                conn.close()
-    
-    def get_message_history(self, topic=None, limit=100):
-        try:
-            conn = sqlite3.connect(self.db_file)
-            cursor = conn.cursor()
-            
-            if topic:
-                cursor.execute(
-                    "SELECT id, topic, payload, qos, timestamp FROM messages WHERE topic = ? ORDER BY id DESC LIMIT ?", 
-                    (topic, limit)
-                )
-            else:
-                cursor.execute(
-                    "SELECT id, topic, payload, qos, timestamp FROM messages ORDER BY id DESC LIMIT ?", 
-                    (limit,)
-                )
-                
-            messages = cursor.fetchall()
-            
-            result = []
-            for msg_id, topic, payload_str, qos, timestamp in messages:
-                try:
-                    payload = json.loads(payload_str)
-                except (json.JSONDecodeError, TypeError):
-                    payload = payload_str
-                    
-                result.append({
-                    "id": msg_id,
-                    "topic": topic,
-                    "payload": payload,
-                    "qos": qos,
-                    "timestamp": timestamp
-                })
-                
-            return result
-        except sqlite3.Error as e:
-            logger.error(f"Failed to get message history: {e}")
-            return []
-        finally:
-            if conn:
-                conn.close()
-
-
 class MessageBroker:
     
     def __init__(self):
-        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
-        self.client.client_id = config.MQTT_CLIENT_ID
+        # Use a unique client ID to avoid conflicts
+        unique_id = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id=f"{config.MQTT_CLIENT_ID}_{unique_id}", clean_session=True)
         self.running = False
         
-        self.message_store = None
-        if config.PERSISTENCE_ENABLED:
-            self.message_store = MessageStore()
-        
+        # Set up callbacks
         self.client.on_connect = self.on_connect
-        self.client.on_message = self.on_message
         self.client.on_disconnect = self.on_disconnect
+        self.client.on_message = self.on_message
         
-        if config.MQTT_USERNAME or config.MQTT_PASSWORD:
+        # Set a will message to notify when client disconnects unexpectedly
+        self.client.will_set(
+            config.SYSTEM_EVENTS_TOPIC + "/disconnect", 
+            payload=json.dumps({"client_id": config.MQTT_CLIENT_ID, "event": "unexpected_disconnect"}),
+            qos=1, 
+            retain=False
+        )
+        
+        if config.MQTT_USERNAME and config.MQTT_PASSWORD:
             self.client.username_pw_set(config.MQTT_USERNAME, config.MQTT_PASSWORD)
+        
+        self.handlers = {
+            config.VALVE_CONTROL_TOPIC: self.handle_valve_control,
+            config.VALVE_STATUS_TOPIC: self.handle_valve_status,
+            config.SENSOR_DATA_TOPIC: self.handle_sensor_data,
+            config.SYSTEM_EVENTS_TOPIC: self.handle_system_event
+        }
         
         if config.TLS_ENABLED:
             if os.path.exists(config.TLS_CERT_FILE) and os.path.exists(config.TLS_KEY_FILE):
@@ -193,19 +69,7 @@ class MessageBroker:
     def on_connect(self, client, userdata, flags, rc, properties=None):
         if rc == 0:
             logger.info("Connected to MQTT broker")
-            
             self.client.subscribe("#")
-            
-            if config.PERSISTENCE_ENABLED and self.message_store:
-                retained_messages = self.message_store.get_retained_messages()
-                for msg in retained_messages:
-                    self.client.publish(
-                        msg["topic"], 
-                        msg["payload"] if isinstance(msg["payload"], str) else json.dumps(msg["payload"]),
-                        qos=msg["qos"],
-                        retain=True
-                    )
-                logger.info(f"Republished {len(retained_messages)} retained messages")
         else:
             logger.error(f"Failed to connect to MQTT broker with code: {rc}")
     
@@ -219,101 +83,76 @@ class MessageBroker:
     
     def on_message(self, client, userdata, msg, *args, **kwargs):
         try:
-            logger.debug(f"Message received on {msg.topic}: {msg.payload}")
+            logger.debug(f"Received message on topic {msg.topic}")
             
-            if msg.topic == config.VALVE_CONTROL_TOPIC:
-                self.handle_valve_control(msg)
-            elif msg.topic == config.VALVE_STATUS_TOPIC:
-                self.handle_valve_status(msg)
-            elif msg.topic == config.SENSOR_DATA_TOPIC:
-                self.handle_sensor_data(msg)
-            elif msg.topic == config.SYSTEM_EVENTS_TOPIC:
-                self.handle_system_event(msg)
-            
-            if config.PERSISTENCE_ENABLED and self.message_store:
-                self.message_store.store_message(
-                    msg.topic, 
-                    msg.payload.decode('utf-8'), 
-                    msg.qos,
-                    msg.retain
-                )
+            for topic_pattern, handler in self.handlers.items():
+                if msg.topic == topic_pattern or (
+                    topic_pattern.endswith("/#") and 
+                    msg.topic.startswith(topic_pattern[:-2])
+                ):
+                    handler(msg)
+                    break
+                    
         except Exception as e:
             logger.error(f"Error processing message: {e}")
     
     def handle_valve_control(self, msg):
         try:
             payload = json.loads(msg.payload.decode('utf-8'))
-            logger.info(f"Valve control message received: {payload}")
+            sector_id = payload.get('sector_id')
+            action = payload.get('action')
             
-            ack_topic = f"{config.VALVE_CONTROL_TOPIC}/ack"
-            ack_payload = {
-                "timestamp": datetime.now().isoformat(),
-                "status": "received",
-                "original_message": payload
-            }
-            self.client.publish(
-                ack_topic,
-                json.dumps(ack_payload),
-                qos=1
-            )
+            if not sector_id or not action:
+                logger.error("Invalid valve control message: missing sector_id or action")
+                return
+                
+            logger.info(f"Valve control message received: Sector {sector_id}, Action {action}")
+            
         except json.JSONDecodeError:
-            logger.error(f"Invalid valve control message format: {msg.payload}")
+            logger.error(f"Invalid valve control format: {msg.payload}")
         except Exception as e:
-            logger.error(f"Error handling valve control message: {e}")
+            logger.error(f"Error handling valve control: {e}")
     
     def handle_valve_status(self, msg):
         try:
             payload = json.loads(msg.payload.decode('utf-8'))
-            logger.info(f"Valve status message received: {payload}")
+            sector_id = payload.get('sector_id')
+            state = payload.get('state')
             
-            timestamp = payload.get("timestamp")
-            sector_id = payload.get("sector_id", "unknown")
-            valve_state = payload.get("state", "unknown")
-            
-            logger.info(f"Valve in sector {sector_id} is {valve_state}")
-            
-            if valve_state == "open":
-                logger.info(f"Valve in sector {sector_id} has been opened")
-            elif valve_state == "closed":
-                logger.info(f"Valve in sector {sector_id} has been closed")
-            elif valve_state == "error":
-                logger.warning(f"Valve in sector {sector_id} is reporting an error state")
+            if not sector_id or not state:
+                logger.error("Invalid valve status message: missing sector_id or state")
+                return
                 
+            logger.info(f"Valve status update: Sector {sector_id}, State {state}")
+            
         except json.JSONDecodeError:
-            logger.error(f"Invalid valve status message format: {msg.payload}")
+            logger.error(f"Invalid valve status format: {msg.payload}")
         except Exception as e:
-            logger.error(f"Error handling valve status message: {e}")
+            logger.error(f"Error handling valve status: {e}")
     
     def handle_sensor_data(self, msg):
         try:
             payload = json.loads(msg.payload.decode('utf-8'))
-            logger.info(f"Sensor data message received")
             
-            timestamp = payload.get("timestamp")
-            device_id = payload.get("device_id")
-            readings = payload.get("readings", {})
+            device_id = payload.get('device_id')
+            timestamp = payload.get('timestamp')
+            readings = payload.get('readings', {})
             
-            if "temperature" in readings:
-                temp_value = readings["temperature"].get("value")
-                temp_unit = readings["temperature"].get("unit", "celsius")
-                logger.info(f"Temperature reading from device {device_id}: {temp_value} {temp_unit}")
+            if not device_id or not readings:
+                logger.error("Invalid sensor data: missing device_id or readings")
+                return
                 
-                if temp_value is not None and temp_value > 80:
-                    logger.warning(f"High temperature alert: {temp_value} {temp_unit}")
+            temperature = readings.get('temperature', {}).get('value')
+            pressure = readings.get('pressure', {}).get('value')
             
-            if "pressure" in readings:
-                pressure_value = readings["pressure"].get("value")
-                pressure_unit = readings["pressure"].get("unit", "hPa")
-                logger.info(f"Pressure reading from device {device_id}: {pressure_value} {pressure_unit}")
+            logger.info(f"Sensor data received: Device {device_id}, Temperature {temperature}°C, Pressure {pressure}hPa")
+            
+            sector_id = payload.get('sector_id')
+            if sector_id and temperature and temperature > config.TEMPERATURE_THRESHOLD:
+                logger.warning(f"High temperature detected in Sector {sector_id}: {temperature}°C")
                 
-                if pressure_value is not None and pressure_value > 1100:
-                    logger.warning(f"High pressure alert: {pressure_value} {pressure_unit}")
-            
-            sector_info = payload.get("sector_info", {})
-            if sector_info and "valve_state" in sector_info:
-                valve_state = sector_info["valve_state"]
-                sector_id = sector_info.get("sector_id", "unknown")
-                logger.info(f"Valve status in sector {sector_id}: {valve_state}")
+                valve_state = "closed"
+                timestamp = datetime.now().isoformat()
                 
                 valve_status = {
                     "timestamp": timestamp,
@@ -343,7 +182,9 @@ class MessageBroker:
     
     def connect(self):
         try:
-            self.client.connect(config.MQTT_HOST, config.MQTT_PORT, config.MQTT_KEEPALIVE)
+            # Set the connection retry parameters
+            self.client.reconnect_delay_set(min_delay=1, max_delay=10)
+            self.client.connect_async(config.MQTT_HOST, config.MQTT_PORT, keepalive=30)
             return True
         except Exception as e:
             logger.error(f"Failed to connect to MQTT broker: {e}")
@@ -351,7 +192,7 @@ class MessageBroker:
     
     def start(self):
         if self.running:
-            logger.warning("Message broker already running")
+            logger.warning("Control Center client already running")
             return False
         
         self.running = True
@@ -362,12 +203,12 @@ class MessageBroker:
         
         self.client.loop_start()
         
-        logger.info("Message broker started")
+        logger.info("Control Center MQTT client started")
         
         startup_message = {
-            "event": "broker_start",
+            "event": "control_center_start",
             "timestamp": datetime.now().isoformat(),
-            "broker_id": config.MQTT_CLIENT_ID
+            "client_id": config.MQTT_CLIENT_ID
         }
         self.client.publish(
             config.SYSTEM_EVENTS_TOPIC,
@@ -425,28 +266,30 @@ class MessageBroker:
 
 
 def main():
-  
-    broker = MessageBroker()
+    mqtt_client = MessageBroker()
     
     def signal_handler(sig, frame):
         logger.info("Shutdown signal received")
-        broker.stop()
+        mqtt_client.stop()
         sys.exit(0)
     
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
     
-    if broker.start():
-        print(f"Message broker started on {config.MQTT_HOST}:{config.MQTT_PORT}")
+    if mqtt_client.start():
+        print(f"Control Center connected to MQTT broker at {config.MQTT_HOST}:{config.MQTT_PORT}")
         print("Press Ctrl+C to stop")
         
         try:
-            while broker.running:
-                time.sleep(1)
+            while mqtt_client.running:
+                time.sleep(0.1)  # More frequent checks to maintain connection
+                # Send a ping every 30 seconds to keep connection alive
+                if mqtt_client.running and time.time() % 30 < 0.1:
+                    mqtt_client.client.publish(config.SYSTEM_EVENTS_TOPIC + "/ping", "", qos=0, retain=False)
         except KeyboardInterrupt:
-            broker.stop()
+            mqtt_client.stop()
     else:
-        print("Failed to start message broker")
+        print("Failed to start Control Center")
 
 
 if __name__ == "__main__":

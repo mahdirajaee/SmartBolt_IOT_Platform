@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 
 """
-API for the Smart Bolt Time Series DB Connector
+API for the Smart Bolt Account Manager
 
-This REST API provides endpoints for querying sensor data and valve states
-stored in the time series database.
+This API provides endpoints for user authentication, registration
+and user management for the Smart Bolt IoT Platform.
 """
 
 import json
-import datetime
-from datetime import timedelta
 import logging
+import secrets
+import datetime
 import cherrypy
 import config
-from storage import get_storage
+from datetime import datetime
 
 # Set up logging
-logger = logging.getLogger('timeseries_api')
+logger = logging.getLogger('account_manager_api')
 if config.LOGGING_ENABLED:
     logger.setLevel(getattr(logging, config.LOG_LEVEL))
     handler = logging.FileHandler(config.LOG_FILE)
@@ -26,234 +26,206 @@ if config.LOGGING_ENABLED:
 else:
     logger.addHandler(logging.NullHandler())
 
-class TimeSeriesAPI:
-    """REST API for Smart Bolt Time Series Database"""
+class AccountManager:
+    def __init__(self, db_path=None):
+        import os
+        if db_path is None:
+            db_path = os.path.join(os.path.dirname(__file__), "users.json")
+        self.db_path = db_path
+        self.users = self._load_users()
+        
+    def _load_users(self):
+        import os
+        try:
+            if os.path.exists(self.db_path):
+                with open(self.db_path, 'r') as f:
+                    return json.load(f)
+            return {}
+        except Exception as e:
+            logger.error(f"Error loading users: {e}")
+            return {}
+            
+    def _save_users(self):
+        try:
+            with open(self.db_path, 'w') as f:
+                json.dump(self.users, f, indent=4)
+            return True
+        except Exception as e:
+            logger.error(f"Error saving users: {e}")
+            return False
     
+    def authenticate(self, username, password):
+        if username in self.users and self.users[username]['password'] == password:
+            return True
+        return False
+        
+    def register_user(self, username, password, email, role="user"):
+        if username in self.users:
+            return False
+            
+        self.users[username] = {
+            "password": password,
+            "email": email,
+            "role": role,
+            "created_at": datetime.now().isoformat()
+        }
+        
+        return self._save_users()
+        
+    def update_user(self, username, data):
+        if username not in self.users:
+            return False
+            
+        for key, value in data.items():
+            if key != 'password':  
+                self.users[username][key] = value
+                
+        return self._save_users()
+        
+    def delete_user(self, username):
+        if username not in self.users:
+            return False
+            
+        del self.users[username]
+        return self._save_users()
+        
+    def get_user(self, username):
+        return self.users.get(username)
+        
+    def get_all_users(self):
+        return self.users
+
+class AccountManagerAPI:
     def __init__(self):
-        self.storage = get_storage()
+        self.account_manager = AccountManager()
     
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def index(self):
-        """Root endpoint with API information"""
         return {
-            "name": "Smart Bolt Time Series DB API",
+            "name": "Smart Bolt Account Manager API",
             "version": "1.0",
             "endpoints": {
-                "sensor_data": "/sensor_data?device_id=<id>&sensor_type=<type>&start=<iso_datetime>&end=<iso_datetime>",
-                "valve_states": "/valve_states?sector_id=<id>&start=<iso_datetime>&end=<iso_datetime>",
-                "devices": "/devices",
-                "sectors": "/sectors"
+                "login": "/login",
+                "register": "/register",
+                "update_user": "/update_user",
+                "delete_user": "/delete_user",
+                "get_user": "/get_user?username=<username>",
+                "get_all_users": "/get_all_users"
             }
         }
+        
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def login(self):
+        return self._process_login()
     
     @cherrypy.expose
+    @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def sensor_data(self, device_id=None, sensor_type=None, hours=None, start=None, end=None, limit=None):
-        """Query sensor data"""
-        try:
-            # Input validation
-            if not device_id:
-                return {"error": "device_id parameter is required"}
-            if not sensor_type:
-                return {"error": "sensor_type parameter is required"}
+    def auth_login(self):
+        return self._process_login()
+        
+    def _process_login(self):
+        data = cherrypy.request.json
+        
+        if not data or 'username' not in data or 'password' not in data:
+            cherrypy.response.status = 400
+            return {"success": False, "error": "Missing username or password"}
             
-            # Parse time parameters
-            end_time = datetime.datetime.now()
-            
-            if hours:
-                try:
-                    hours = float(hours)
-                    start_time = end_time - timedelta(hours=hours)
-                except ValueError:
-                    return {"error": f"Invalid hours value: {hours}"}
-            elif start and end:
-                try:
-                    start_time = datetime.datetime.fromisoformat(start.replace('Z', '+00:00'))
-                    end_time = datetime.datetime.fromisoformat(end.replace('Z', '+00:00'))
-                except ValueError:
-                    return {"error": "Invalid datetime format. Use ISO format (YYYY-MM-DDTHH:MM:SS)"}
-            elif start:
-                try:
-                    start_time = datetime.datetime.fromisoformat(start.replace('Z', '+00:00'))
-                except ValueError:
-                    return {"error": "Invalid start datetime format. Use ISO format (YYYY-MM-DDTHH:MM:SS)"}
-            else:
-                # Default to last 24 hours
-                start_time = end_time - timedelta(hours=24)
-            
-            # Get data from storage
-            data = self.storage.get_sensor_data(
-                device_id=device_id,
-                sensor_type=sensor_type,
-                start_time=start_time,
-                end_time=end_time
-            )
-            
-            # Apply limit if specified
-            if limit:
-                try:
-                    limit = int(limit)
-                    data = data[:limit]
-                except ValueError:
-                    return {"error": f"Invalid limit value: {limit}"}
+        if self.account_manager.authenticate(data['username'], data['password']):
+            token = secrets.token_hex(16)
+            user_id = data['username']
+            role = "admin" if data['username'] == "admin" else "user"
             
             return {
-                "device_id": device_id,
-                "sensor_type": sensor_type,
-                "start_time": start_time.isoformat(),
-                "end_time": end_time.isoformat(),
-                "count": len(data),
-                "data": data
+                "success": True, 
+                "user_id": user_id,
+                "username": data['username'],
+                "role": role,
+                "token": token
             }
-            
-        except Exception as e:
-            logger.error(f"Error processing sensor_data request: {e}")
-            return {"error": str(e)}
+        else:
+            cherrypy.response.status = 401
+            return {"success": False, "error": "Invalid credentials"}
+    
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def register(self):
+        data = cherrypy.request.json
+        
+        required_fields = ['username', 'password', 'email']
+        for field in required_fields:
+            if field not in data:
+                cherrypy.response.status = 400
+                return {"success": False, "error": f"Missing required field: {field}"}
+        
+        role = data.get('role', 'user')
+        
+        if self.account_manager.register_user(data['username'], data['password'], data['email'], role):
+            return {"success": True, "username": data['username']}
+        else:
+            cherrypy.response.status = 400
+            return {"success": False, "error": "Username already exists"}
+    
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def update_user(self):
+        data = cherrypy.request.json
+        
+        if 'username' not in data:
+            cherrypy.response.status = 400
+            return {"success": False, "error": "Missing username"}
+        
+        username = data.pop('username')
+        
+        if self.account_manager.update_user(username, data):
+            return {"success": True, "username": username}
+        else:
+            cherrypy.response.status = 404
+            return {"success": False, "error": "User not found"}
+    
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def delete_user(self):
+        data = cherrypy.request.json
+        
+        if 'username' not in data:
+            cherrypy.response.status = 400
+            return {"success": False, "error": "Missing username"}
+        
+        if self.account_manager.delete_user(data['username']):
+            return {"success": True}
+        else:
+            cherrypy.response.status = 404
+            return {"success": False, "error": "User not found"}
     
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def valve_states(self, sector_id=None, hours=None, start=None, end=None, limit=None):
-        """Query valve state changes"""
-        try:
-            # Input validation
-            if not sector_id:
-                return {"error": "sector_id parameter is required"}
-            
-            # Parse time parameters
-            end_time = datetime.datetime.now()
-            
-            if hours:
-                try:
-                    hours = float(hours)
-                    start_time = end_time - timedelta(hours=hours)
-                except ValueError:
-                    return {"error": f"Invalid hours value: {hours}"}
-            elif start and end:
-                try:
-                    start_time = datetime.datetime.fromisoformat(start.replace('Z', '+00:00'))
-                    end_time = datetime.datetime.fromisoformat(end.replace('Z', '+00:00'))
-                except ValueError:
-                    return {"error": "Invalid datetime format. Use ISO format (YYYY-MM-DDTHH:MM:SS)"}
-            elif start:
-                try:
-                    start_time = datetime.datetime.fromisoformat(start.replace('Z', '+00:00'))
-                except ValueError:
-                    return {"error": "Invalid start datetime format. Use ISO format (YYYY-MM-DDTHH:MM:SS)"}
-            else:
-                # Default to last 24 hours
-                start_time = end_time - timedelta(hours=24)
-            
-            # Get data from storage
-            data = self.storage.get_valve_states(
-                sector_id=sector_id,
-                start_time=start_time,
-                end_time=end_time
-            )
-            
-            # Apply limit if specified
-            if limit:
-                try:
-                    limit = int(limit)
-                    data = data[:limit]
-                except ValueError:
-                    return {"error": f"Invalid limit value: {limit}"}
-            
-            return {
-                "sector_id": sector_id,
-                "start_time": start_time.isoformat(),
-                "end_time": end_time.isoformat(),
-                "count": len(data),
-                "data": data
-            }
-            
-        except Exception as e:
-            logger.error(f"Error processing valve_states request: {e}")
-            return {"error": str(e)}
+    def get_user(self, username=None):
+        if not username:
+            cherrypy.response.status = 400
+            return {"success": False, "error": "Missing username"}
+        
+        user = self.account_manager.get_user(username)
+        if user:
+            return {"success": True, "user": user}
+        else:
+            cherrypy.response.status = 404
+            return {"success": False, "error": "User not found"}
     
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def devices(self):
-        """Get unique device IDs that have data in the time series database"""
-        try:
-            # For InfluxDB, we need a different approach to get unique device IDs
-            if config.STORAGE_TYPE.lower() == "influxdb":
-                try:
-                    from influxdb import InfluxDBClient
-                    
-                    client = InfluxDBClient(
-                        host=config.INFLUXDB_HOST, 
-                        port=config.INFLUXDB_PORT,
-                        username=config.INFLUXDB_USER,
-                        password=config.INFLUXDB_PASSWORD,
-                        database=config.INFLUXDB_DATABASE
-                    )
-                    
-                    # Get unique device_ids from both temperature and pressure measurements
-                    query = 'SHOW TAG VALUES FROM "temperature" WITH KEY = "device_id"'
-                    result = client.query(query)
-                    temp_devices = [item['value'] for item in list(result.get_points())]
-                    
-                    query = 'SHOW TAG VALUES FROM "pressure" WITH KEY = "device_id"'
-                    result = client.query(query)
-                    pressure_devices = [item['value'] for item in list(result.get_points())]
-                    
-                    # Combine and remove duplicates
-                    all_devices = list(set(temp_devices + pressure_devices))
-                    all_devices.sort()
-                    
-                    return {"devices": all_devices}
-                except Exception as e:
-                    logger.error(f"Error getting device IDs from InfluxDB: {e}")
-                    return {"error": str(e)}
-            else:
-                # For SQLite and others, we can implement a similar approach
-                # This is a placeholder - actual implementation would depend on storage details
-                return {"error": "Getting device list is only supported for InfluxDB"}
-        except Exception as e:
-            logger.error(f"Error processing devices request: {e}")
-            return {"error": str(e)}
-    
-    @cherrypy.expose
-    @cherrypy.tools.json_out()
-    def sectors(self):
-        """Get unique sector IDs that have valve data in the time series database"""
-        try:
-            # For InfluxDB, we need a different approach to get unique sector IDs
-            if config.STORAGE_TYPE.lower() == "influxdb":
-                try:
-                    from influxdb import InfluxDBClient
-                    
-                    client = InfluxDBClient(
-                        host=config.INFLUXDB_HOST, 
-                        port=config.INFLUXDB_PORT,
-                        username=config.INFLUXDB_USER,
-                        password=config.INFLUXDB_PASSWORD,
-                        database=config.INFLUXDB_DATABASE
-                    )
-                    
-                    # Get unique sector_ids from valve_state measurement
-                    query = 'SHOW TAG VALUES FROM "valve_state" WITH KEY = "sector_id"'
-                    result = client.query(query)
-                    sectors = [item['value'] for item in list(result.get_points())]
-                    sectors.sort()
-                    
-                    return {"sectors": sectors}
-                except Exception as e:
-                    logger.error(f"Error getting sector IDs from InfluxDB: {e}")
-                    return {"error": str(e)}
-            else:
-                # For SQLite and others, we can implement a similar approach
-                # This is a placeholder - actual implementation would depend on storage details
-                return {"error": "Getting sector list is only supported for InfluxDB"}
-        except Exception as e:
-            logger.error(f"Error processing sectors request: {e}")
-            return {"error": str(e)}
+    def get_all_users(self):
+        return {"success": True, "users": self.account_manager.get_all_users()}
 
-
-def start_api(host='0.0.0.0', port=8000):
+def start_api(host='0.0.0.0', port=config.API_PORT):
     """Start the API server"""
-    # Global configuration for CherryPy
+    
     cherrypy.config.update({
         'server.socket_host': host,
         'server.socket_port': port,
@@ -261,10 +233,9 @@ def start_api(host='0.0.0.0', port=8000):
         'log.screen': True
     })
     
-    # Application specific configuration
     conf = {
         '/': {
-            'tools.sessions.on': False,
+            'tools.sessions.on': True,
             'tools.response_headers.on': True,
             'tools.response_headers.headers': [('Content-Type', 'application/json')],
             'tools.encode.on': True,
@@ -272,10 +243,8 @@ def start_api(host='0.0.0.0', port=8000):
         }
     }
     
-    # Start the server
-    cherrypy.quickstart(TimeSeriesAPI(), '/', conf)
-
+    cherrypy.quickstart(AccountManagerAPI(), '/', conf)
 
 if __name__ == '__main__':
-    print(f"Starting Time Series API on http://0.0.0.0:8000")
+    print(f"Starting Account Manager API on http://0.0.0.0:{config.API_PORT}")
     start_api()

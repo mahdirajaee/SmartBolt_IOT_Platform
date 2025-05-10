@@ -83,3 +83,6 @@ secrets.json
 .terraform/
 *.tfstate
 *.tfstate.backup
+
+
+.windsurf/

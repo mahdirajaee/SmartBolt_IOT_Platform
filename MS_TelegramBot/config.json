@@ -10,7 +10,7 @@
         "url": "http://localhost:8080"
     },
     "account_manager": {
-        "url": "http://localhost:8000"
+        "url": "http://localhost:8086"
     },
     "telegram": {
         "bot_token": "7947622045:AAEkAL7ldeK9hipn-m-xj0UXRSjHxEhf6T8"
