@@ -6,7 +6,7 @@ import sys
 import cherrypy
 from telegram_bot import TelegramBot
 
-CONFIG_PATH = "config.json"
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config.json")
 
 def setup_logging(config):
     log_level = getattr(logging, config["logging"]["level"])

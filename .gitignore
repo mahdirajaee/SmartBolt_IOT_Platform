@@ -1,28 +1,95 @@
-# Ignore Firebase credentials
-MS_AccountManager/firebase_credentials.json
 
-# Ignore Python virtual environments
 venv/
+env/
 .env
+.venv
+pyvenv.cfg
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Ignore __pycache__ files
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+.windsurf
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Ignore VS Code settings (optional)
 .vscode/
-.DS_Store
-# Ignore log files
-*.log
+.idea/
+*.sublime-workspace
+*.sublime-project
 
-# Ignore temporary files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 *.tmp
 *.swp
+*.swo
+*~
 
-# Ignore compiled Python files
-*.pyc
-*.pyo
-
-# Ignore system-specific files
 Thumbs.db
 ehthumbs.db
 desktop.ini
+
+node_modules/
+.npm
+.yarn-integrity
+
+mosquitto.db
+data/
+db_data/
+*.db
+*.sqlite3
+*.sqlite
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+credentials.json
+config.json
+secrets.json
+*.pem
+*.key
+*.cert
+
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+.gitignore
+*.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+catalog_db.json
+.gitignore 
+
+

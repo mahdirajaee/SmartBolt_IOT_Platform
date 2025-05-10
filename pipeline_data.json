@@ -16,8 +16,8 @@
       "name": "Device 001",
       "status": "active",
       "readings": {
-        "temperature": 26,
-        "pressure": 1016
+        "temperature": 22.6,
+        "pressure": 1003.01
       }
     },
     {
@@ -26,8 +26,8 @@
       "name": "Device 010",
       "status": "active",
       "readings": {
-        "temperature": 26,
-        "pressure": 1004
+        "temperature": 22.57,
+        "pressure": 1003.0
       }
     }
   ]
