@@ -15,6 +15,7 @@ API_PORT = 5009
 
 MQTT_HOST = "localhost"
 MQTT_PORT = 1883
+MQTT_KEEPALIVE = 60
 MQTT_CLIENT_ID = "control_center_client"
 MQTT_USERNAME = ""
 MQTT_PASSWORD = ""
@@ -47,3 +48,6 @@ TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "control_center.log")
+PERSISTENCE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "message_store.db")
+PERSISTENCE_ENABLED = False
+TLS_ENABLED = False

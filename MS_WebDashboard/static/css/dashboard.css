@@ -1,0 +1,127 @@
+/* Dashboard Styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.card {
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sensor-card {
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 0.5rem;
+    height: 100%;
+}
+
+.reading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.trend {
+    font-size: 1.2rem;
+    height: 1.5rem;
+}
+
+.status-item {
+    margin-bottom: 0.5rem;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+/* Badge status styles */
+.badge-normal {
+    background-color: var(--bs-success);
+}
+
+.badge-warning {
+    background-color: var(--bs-warning);
+    color: #000;
+}
+
+.badge-critical {
+    background-color: var(--bs-danger);
+}
+
+.badge-running {
+    background-color: var(--bs-success);
+}
+
+.badge-error {
+    background-color: var(--bs-danger);
+}
+
+.badge-not_running {
+    background-color: var(--bs-secondary);
+}
+
+.badge-open {
+    background-color: var(--bs-success);
+}
+
+.badge-closed {
+    background-color: var(--bs-danger);
+}
+
+.badge-high {
+    background-color: var(--bs-danger);
+}
+
+.badge-low {
+    background-color: var(--bs-warning);
+    color: #000;
+}
+
+/* Charts */
+canvas {
+    width: 100% !important;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .service-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .reading {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+}

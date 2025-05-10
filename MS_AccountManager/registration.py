@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 import requests
 import logging
@@ -8,7 +7,7 @@ import time
 import socket
 import config
 
-# Set up logging
+
 logger = logging.getLogger('registration')
 if config.LOGGING_ENABLED:
     logger.setLevel(getattr(logging, config.LOG_LEVEL))
@@ -22,7 +21,7 @@ else:
 def get_local_ip():
     """Get the local IP address of this machine"""
     try:
-        # Create a socket connection to an external server to determine local IP
+        
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))  # Connect to Google DNS
         local_ip = s.getsockname()[0]
@@ -30,12 +29,12 @@ def get_local_ip():
         return local_ip
     except Exception as e:
         logger.error(f"Error getting local IP: {e}")
-        return "127.0.0.1"  # Return localhost if unable to determine IP
+        return "127.0.0.1"  
 
 def register_with_catalog():
-    """Register this Time Series DB connector with the Resource Catalog"""
+    """Register this Account Manager service with the Resource Catalog"""
     try:
-        # Prepare service registration details
+        
         local_ip = get_local_ip()
         
         service_data = {
@@ -44,23 +43,21 @@ def register_with_catalog():
             "description": config.SERVICE_DESCRIPTION,
             "service_type": config.SERVICE_TYPE,
             "endpoints": {
-                "mqtt": f"mqtt://{config.MQTT_HOST}:{config.MQTT_PORT}",
-                "topics": {
-                    "sensor_data": config.SENSOR_DATA_TOPIC,
-                    "valve_status": config.VALVE_STATUS_TOPIC
-                }
+                "http": f"http://{local_ip}:{config.API_PORT}/",
+                "auth": f"http://{local_ip}:{config.API_PORT}/auth"
             },
             "required_inputs": {
-                "sensor_data": "JSON formatted sensor readings",
-                "valve_status": "JSON formatted valve state information"
+                "login": "Username and password for authentication",
+                "register": "User registration information"
             },
             "provided_outputs": {
-                "storage": f"Time series data stored in {config.STORAGE_TYPE}"
+                "authentication": "User authentication and authorization services",
+                "user_management": "User account management services"
             },
             "status": "online"
         }
         
-        # Send registration request to Resource Catalog
+        
         catalog_url = f"{config.RESOURCE_CATALOG_URL}/register_service"
         logger.info(f"Registering with Resource Catalog at {catalog_url}")
         
@@ -96,7 +93,7 @@ def update_status(status="online"):
             "status": status
         }
         
-        # Send status update request to Resource Catalog
+        
         catalog_url = f"{config.RESOURCE_CATALOG_URL}/update_service_status"
         
         response = requests.post(
@@ -127,16 +124,16 @@ def registration_worker():
         except Exception as e:
             logger.error(f"Error in registration worker: {e}")
         
-        # Sleep for the configured interval before re-registering
+        
         time.sleep(config.REGISTRATION_INTERVAL)
 
 def start_registration(background=True):
     """Start the registration process with the Resource Catalog"""
-    # First registration attempt
+    
     success = register_with_catalog()
     
     if background:
-        # Start background thread for periodic re-registration (heartbeat)
+        
         registration_thread = threading.Thread(
             target=registration_worker,
             daemon=True

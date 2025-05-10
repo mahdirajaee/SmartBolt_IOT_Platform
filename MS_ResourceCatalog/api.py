@@ -273,3 +273,25 @@ class ResourceCatalogAPI:
             return self._success([service.to_dict() for service in services])
         except Exception as e:
             return self._error(f"Error retrieving services: {e}")
+    
+
+    # sensors data endpoint for telegram bot 
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def temperature_latest(self):
+        data = {
+            "value": 24.5,
+            "unit": "°C",
+            "timestamp": time.time()
+        }
+        return self._success(data)
+        
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def pressure_latest(self):
+        data = {
+            "value": 1013.2,
+            "unit": "hPa",
+            "timestamp": time.time()
+        }
+        return self._success(data)

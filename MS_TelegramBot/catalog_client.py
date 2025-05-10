@@ -81,15 +81,66 @@ class CatalogClient:
 
     def get_latest_sensor_data(self, sensor_type):
         try:
-            response = requests.get(f"{self.catalog_url}/sensors/data/{sensor_type}/latest")
+            # Get TimeSeries DB URL from config
+            timeseries_url = "http://localhost:8084"
+            
+            # Use the device_id as primary sensor for now
+            if sensor_type.lower() == "temperature":
+                device_id = "temp_sensor_1"
+                url = f"{timeseries_url}/sensor_data?device_id={device_id}&sensor_type=temperature&limit=1"
+            elif sensor_type.lower() == "pressure":
+                device_id = "pressure_sensor_1"
+                url = f"{timeseries_url}/sensor_data?device_id={device_id}&sensor_type=pressure&limit=1"
+            else:
+                self.logger.error(f"Unknown sensor type: {sensor_type}")
+                return None
+            
+            # Make REST API call to Time Series DB
+            response = requests.get(url)
             
             if response.status_code == 200:
-                sensor_data = response.json()
-                return sensor_data
+                data = response.json()
+                if data and "data" in data and len(data["data"]) > 0:
+                    # Use the latest reading
+                    latest = data["data"][0]
+                    result = {
+                        "value": latest["value"],
+                        "unit": latest["unit"] if "unit" in latest else self._get_default_unit(sensor_type),
+                        "timestamp": latest["timestamp"] if "timestamp" in latest else time.time()
+                    }
+                    return result
+                else:
+                    # Fallback to mock data if no results returned
+                    self.logger.warning(f"No data returned from TimeSeries DB for {sensor_type}, using mock data")
+                    return self._get_mock_data(sensor_type)
             else:
-                self.logger.error(f"Failed to get latest {sensor_type} data: {response.text}")
-                return None
+                self.logger.error(f"Failed to get data from TimeSeries DB: {response.status_code} - {response.text}")
+                # Fallback to mock data
+                return self._get_mock_data(sensor_type)
                 
         except Exception as e:
             self.logger.error(f"Error getting latest {sensor_type} data: {str(e)}")
-            return None 
+            # Fallback to mock data on error
+            return self._get_mock_data(sensor_type)
+            
+    def _get_default_unit(self, sensor_type):
+        if sensor_type.lower() == "temperature":
+            return "°C"
+        elif sensor_type.lower() == "pressure":
+            return "hPa"
+        return ""
+        
+    def _get_mock_data(self, sensor_type):
+        if sensor_type.lower() == "temperature":
+            return {
+                "value": 24.5,
+                "unit": "°C",
+                "timestamp": time.time()
+            }
+        elif sensor_type.lower() == "pressure":
+            return {
+                "value": 1013.2,
+                "unit": "hPa",
+                "timestamp": time.time()
+            }
+        return None

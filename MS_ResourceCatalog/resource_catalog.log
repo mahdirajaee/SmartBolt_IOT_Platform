@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2025-04-23 15:53:54,817 - resource_catalog - INFO - Starting Resource Catalog service
 [23/Apr/2025:15:53:54] ENGINE Bus STARTING
 [23/Apr/2025:15:53:54] ENGINE Serving on http://0.0.0.0:8080
@@ -2171,3 +2172,260 @@
 [10/May/2025:15:28:44] ENGINE Bus STARTING
 [10/May/2025:15:28:44] ENGINE Serving on http://0.0.0.0:8080
 [10/May/2025:15:28:44] ENGINE Bus STARTED
+=======
+2025-05-09 12:19:41,425 - resource_catalog - INFO - Starting Resource Catalog service
+[09/May/2025:12:19:41] ENGINE Bus STARTING
+[09/May/2025:12:19:42] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x102612490>>
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 122, in free
+    Checker(timeout=0.1).assert_free(host, port)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 71, in assert_free
+    list(itertools.starmap(self._connect, info))
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 87, in _connect
+    raise PortNotFree(tmpl.format(**locals()))
+portend.PortNotFree: Port 8080 is in use on 0.0.0.0.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 230, in publish
+    output.append(listener(*args, **kwargs))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/_cpserver.py", line 180, in start
+    super(Server, self).start()
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/servers.py", line 177, in start
+    portend.free(*self.bind_addr, timeout=Timeouts.free)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 126, in free
+    raise Timeout("Port {port} not free on {host}.".format(**locals()))
+portend.Timeout: Port 8080 not free on 0.0.0.0.
+
+[09/May/2025:12:19:42] ENGINE Shutting down due to error in start listener:
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 268, in start
+    self.publish('start')
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 248, in publish
+    raise exc
+cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8080 not free on 0.0.0.0.')
+
+[09/May/2025:12:19:42] ENGINE Bus STOPPING
+[09/May/2025:12:19:42] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) already shut down
+[09/May/2025:12:19:42] ENGINE Bus STOPPED
+[09/May/2025:12:19:42] ENGINE Bus EXITING
+[09/May/2025:12:19:42] ENGINE Bus EXITED
+2025-05-09 12:20:47,816 - resource_catalog - INFO - Starting Resource Catalog service
+[09/May/2025:12:20:47] ENGINE Bus STARTING
+[09/May/2025:12:20:47] ENGINE Serving on http://0.0.0.0:8080
+[09/May/2025:12:20:47] ENGINE Bus STARTED
+[09/May/2025:12:22:41] ENGINE Keyboard Interrupt: shutting down bus
+[09/May/2025:12:22:41] ENGINE Bus STOPPING
+[09/May/2025:12:22:41] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[09/May/2025:12:22:41] ENGINE Bus STOPPED
+[09/May/2025:12:22:41] ENGINE Bus EXITING
+[09/May/2025:12:22:41] ENGINE Bus EXITED
+[09/May/2025:12:22:41] ENGINE Waiting for child threads to terminate...
+2025-05-09 12:28:20,161 - resource_catalog - INFO - Starting Resource Catalog service
+[09/May/2025:12:28:20] ENGINE Bus STARTING
+[09/May/2025:12:28:20]  Marked 1 stale entries as offline
+[09/May/2025:12:28:20] ENGINE Serving on http://0.0.0.0:8080
+[09/May/2025:12:28:20] ENGINE Bus STARTED
+2025-05-09 12:30:36,581 - resource_catalog - INFO - Starting Resource Catalog service
+[09/May/2025:12:30:36] ENGINE Bus STARTING
+[09/May/2025:12:30:37] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x1064bf6d0>>
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 122, in free
+    Checker(timeout=0.1).assert_free(host, port)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 71, in assert_free
+    list(itertools.starmap(self._connect, info))
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 87, in _connect
+    raise PortNotFree(tmpl.format(**locals()))
+portend.PortNotFree: Port 8080 is in use on 0.0.0.0.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 230, in publish
+    output.append(listener(*args, **kwargs))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/_cpserver.py", line 180, in start
+    super(Server, self).start()
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/servers.py", line 177, in start
+    portend.free(*self.bind_addr, timeout=Timeouts.free)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 126, in free
+    raise Timeout("Port {port} not free on {host}.".format(**locals()))
+portend.Timeout: Port 8080 not free on 0.0.0.0.
+
+[09/May/2025:12:30:37] ENGINE Shutting down due to error in start listener:
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 268, in start
+    self.publish('start')
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 248, in publish
+    raise exc
+cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8080 not free on 0.0.0.0.')
+
+[09/May/2025:12:30:37] ENGINE Bus STOPPING
+[09/May/2025:12:30:37] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) already shut down
+[09/May/2025:12:30:37] ENGINE Bus STOPPED
+[09/May/2025:12:30:37] ENGINE Bus EXITING
+[09/May/2025:12:30:37] ENGINE Bus EXITED
+2025-05-09 12:45:53,463 - resource_catalog - INFO - Starting Resource Catalog service
+[09/May/2025:12:45:53] ENGINE Bus STARTING
+[09/May/2025:12:45:53]  Marked 1 stale entries as offline
+[09/May/2025:12:45:53] ENGINE Serving on http://0.0.0.0:8080
+[09/May/2025:12:45:53] ENGINE Bus STARTED
+2025-05-10 10:47:29,319 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:10:47:29] ENGINE Bus STARTING
+[10/May/2025:10:47:29]  Marked 4 stale entries as offline
+[10/May/2025:10:47:29] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:10:47:29] ENGINE Bus STARTED
+2025-05-10 10:50:20,434 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:10:50:20] ENGINE Bus STARTING
+[10/May/2025:10:50:20] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:10:50:20] ENGINE Bus STARTED
+2025-05-10 11:41:25,519 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:11:41:25] ENGINE Bus STARTING
+[10/May/2025:11:41:25]  Marked 1 stale entries as offline
+[10/May/2025:11:41:25] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:11:41:25] ENGINE Bus STARTED
+[10/May/2025:12:04:27]  Marked 2 stale entries as offline
+[10/May/2025:12:22:11]  Marked 2 stale entries as offline
+2025-05-10 12:34:02,857 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:12:34:02] ENGINE Bus STARTING
+[10/May/2025:12:34:02] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:12:34:02] ENGINE Bus STARTED
+2025-05-10 13:30:41,290 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:13:30:41] ENGINE Bus STARTING
+[10/May/2025:13:30:42] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x1050a8850>>
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 122, in free
+    Checker(timeout=0.1).assert_free(host, port)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 71, in assert_free
+    list(itertools.starmap(self._connect, info))
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 87, in _connect
+    raise PortNotFree(tmpl.format(**locals()))
+portend.PortNotFree: Port 8080 is in use on 0.0.0.0.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 230, in publish
+    output.append(listener(*args, **kwargs))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/_cpserver.py", line 180, in start
+    super(Server, self).start()
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/servers.py", line 177, in start
+    portend.free(*self.bind_addr, timeout=Timeouts.free)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 126, in free
+    raise Timeout("Port {port} not free on {host}.".format(**locals()))
+portend.Timeout: Port 8080 not free on 0.0.0.0.
+
+[10/May/2025:13:30:42] ENGINE Shutting down due to error in start listener:
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 268, in start
+    self.publish('start')
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 248, in publish
+    raise exc
+cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8080 not free on 0.0.0.0.')
+
+[10/May/2025:13:30:42] ENGINE Bus STOPPING
+[10/May/2025:13:30:42] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) already shut down
+[10/May/2025:13:30:42] ENGINE Bus STOPPED
+[10/May/2025:13:30:42] ENGINE Bus EXITING
+[10/May/2025:13:30:42] ENGINE Bus EXITED
+2025-05-10 13:31:58,910 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:13:31:58] ENGINE Bus STARTING
+[10/May/2025:13:31:59] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x106947590>>
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 122, in free
+    Checker(timeout=0.1).assert_free(host, port)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 71, in assert_free
+    list(itertools.starmap(self._connect, info))
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 87, in _connect
+    raise PortNotFree(tmpl.format(**locals()))
+portend.PortNotFree: Port 8080 is in use on 0.0.0.0.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 230, in publish
+    output.append(listener(*args, **kwargs))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/_cpserver.py", line 180, in start
+    super(Server, self).start()
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/servers.py", line 177, in start
+    portend.free(*self.bind_addr, timeout=Timeouts.free)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 126, in free
+    raise Timeout("Port {port} not free on {host}.".format(**locals()))
+portend.Timeout: Port 8080 not free on 0.0.0.0.
+
+[10/May/2025:13:31:59] ENGINE Shutting down due to error in start listener:
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 268, in start
+    self.publish('start')
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 248, in publish
+    raise exc
+cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8080 not free on 0.0.0.0.')
+
+[10/May/2025:13:31:59] ENGINE Bus STOPPING
+[10/May/2025:13:31:59] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) already shut down
+[10/May/2025:13:31:59] ENGINE Bus STOPPED
+[10/May/2025:13:31:59] ENGINE Bus EXITING
+[10/May/2025:13:31:59] ENGINE Bus EXITED
+2025-05-10 13:34:12,508 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:13:34:12] ENGINE Bus STARTING
+[10/May/2025:13:34:13] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x107328f10>>
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 122, in free
+    Checker(timeout=0.1).assert_free(host, port)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 71, in assert_free
+    list(itertools.starmap(self._connect, info))
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 87, in _connect
+    raise PortNotFree(tmpl.format(**locals()))
+portend.PortNotFree: Port 8080 is in use on 0.0.0.0.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 230, in publish
+    output.append(listener(*args, **kwargs))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/_cpserver.py", line 180, in start
+    super(Server, self).start()
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/servers.py", line 177, in start
+    portend.free(*self.bind_addr, timeout=Timeouts.free)
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/portend.py", line 126, in free
+    raise Timeout("Port {port} not free on {host}.".format(**locals()))
+portend.Timeout: Port 8080 not free on 0.0.0.0.
+
+[10/May/2025:13:34:13] ENGINE Shutting down due to error in start listener:
+Traceback (most recent call last):
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 268, in start
+    self.publish('start')
+  File "/Users/mehdi/.pyenv/versions/3.11.8/lib/python3.11/site-packages/cherrypy/process/wspbus.py", line 248, in publish
+    raise exc
+cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8080 not free on 0.0.0.0.')
+
+[10/May/2025:13:34:13] ENGINE Bus STOPPING
+[10/May/2025:13:34:13] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) already shut down
+[10/May/2025:13:34:13] ENGINE Bus STOPPED
+[10/May/2025:13:34:13] ENGINE Bus EXITING
+[10/May/2025:13:34:13] ENGINE Bus EXITED
+2025-05-10 14:57:52,328 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:14:57:52] ENGINE Bus STARTING
+[10/May/2025:14:57:52]  Marked 2 stale entries as offline
+[10/May/2025:14:57:52] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:14:57:52] ENGINE Bus STARTED
+2025-05-10 15:15:19,999 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:15:15:19] ENGINE Bus STARTING
+[10/May/2025:15:15:20]  Marked 3 stale entries as offline
+[10/May/2025:15:15:20] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:15:15:20] ENGINE Bus STARTED
+2025-05-10 15:18:56,285 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:15:18:56] ENGINE Bus STARTING
+[10/May/2025:15:18:56] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:15:18:56] ENGINE Bus STARTED
+[10/May/2025:15:22:56]  Marked 1 stale entries as offline
+2025-05-10 15:30:31,912 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:15:30:31] ENGINE Bus STARTING
+[10/May/2025:15:30:32] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:15:30:32] ENGINE Bus STARTED
+>>>>>>> origin/develop

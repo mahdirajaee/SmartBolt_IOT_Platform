@@ -6,6 +6,7 @@ import signal
 import sys
 import time
 import os
+import secrets
 import cherrypy
 from datetime import datetime
 
@@ -30,7 +31,9 @@ console.setFormatter(formatter)
 logger.addHandler(console)
 
 class AccountManager:
-    def __init__(self, db_path=config.DB_PATH):
+    def __init__(self, db_path=None):
+        if db_path is None:
+            db_path = os.path.join(os.path.dirname(__file__), "users.json")
         self.db_path = db_path
         self.users = self._load_users()
         
@@ -47,7 +50,7 @@ class AccountManager:
     def _save_users(self):
         try:
             with open(self.db_path, 'w') as f:
-                json.dump(self.users, f)
+                json.dump(self.users, f, indent=4)
             return True
         except Exception as e:
             logger.error(f"Error saving users: {e}")
@@ -76,7 +79,7 @@ class AccountManager:
             return False
             
         for key, value in data.items():
-            if key != 'password':  # Don't update password this way
+            if key != 'password':  
                 self.users[username][key] = value
                 
         return self._save_users()
@@ -102,11 +105,20 @@ class AccountManagerAPI:
     @cherrypy.tools.json_out()
     def index(self):
         return {"status": "Account Manager API is running"}
-    
+        
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def login(self):
+        return self._process_login()
+    
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def auth_login(self):
+        return self._process_login()
+        
+    def _process_login(self):
         data = cherrypy.request.json
         
         if not data or 'username' not in data or 'password' not in data:
@@ -114,7 +126,17 @@ class AccountManagerAPI:
             return {"success": False, "error": "Missing username or password"}
             
         if self.account_manager.authenticate(data['username'], data['password']):
-            return {"success": True, "username": data['username']}
+            token = secrets.token_hex(16)
+            user_id = data['username']
+            role = "admin" if data['username'] == "admin" else "user"
+            
+            return {
+                "success": True, 
+                "user_id": user_id,
+                "username": data['username'],
+                "role": role,
+                "token": token
+            }
         else:
             cherrypy.response.status = 401
             return {"success": False, "error": "Invalid credentials"}
@@ -204,7 +226,7 @@ def main():
     
     import argparse
     parser = argparse.ArgumentParser(description='Account Manager')
-    parser.add_argument('--port', type=int, default=8000, help='Port for the API server')
+    parser.add_argument('--port', type=int, default=config.API_PORT, help='Port for the API server')
     args = parser.parse_args()
     
     print("Starting Account Manager service...")
@@ -226,7 +248,7 @@ def main():
         
         conf = {
             '/': {
-                'tools.sessions.on': False,
+                'tools.sessions.on': True,
                 'tools.response_headers.on': True,
                 'tools.response_headers.headers': [('Content-Type', 'application/json')],
                 'tools.encode.on': True,
@@ -234,7 +256,14 @@ def main():
             }
         }
         
-        cherrypy.tree.mount(AccountManagerAPI(), '/', conf)
+        
+        api = AccountManagerAPI()
+        
+        
+        cherrypy.tree.mount(api, '/', conf)
+        
+        
+        cherrypy.tree.mount(api, '/auth', conf)
         cherrypy.engine.start()
         print(f"API server running at http://0.0.0.0:{args.port}")
         
