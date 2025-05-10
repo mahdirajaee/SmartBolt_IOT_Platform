@@ -1,4 +1,3 @@
-MS_AccountManager/firebase_credentials.json
 
 venv/
 env/
@@ -17,6 +16,7 @@ build/
 develop-eggs/
 dist/
 downloads/
+.windsurf
 eggs/
 .eggs/
 lib/
@@ -84,5 +84,12 @@ secrets.json
 *.tfstate
 *.tfstate.backup
 
+.gitignore
+*.DS_Store
+*.sublime-workspace
+*.sublime-project
 
-.windsurf/
+catalog_db.json
+.gitignore 
+
+
