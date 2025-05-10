@@ -5,12 +5,12 @@ import threading
 import time
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import (
-    Updater, CommandHandler, CallbackContext, 
-    MessageHandler, Filters, CallbackQueryHandler
+    ApplicationBuilder, CommandHandler, CallbackContext, 
+    MessageHandler, filters, CallbackQueryHandler
 )
+
 from catalog_client import CatalogClient
 from mqtt_client import MQTTClient
-from account_manager_config import get_account_manager_port
 
 class TelegramBot:
     def __init__(self, config_path="config.json"):
@@ -18,14 +18,7 @@ class TelegramBot:
             self.config = json.load(f)
         
         self.token = self.config["telegram"]["bot_token"]
-        account_manager_port = get_account_manager_port()
-        
-        if "url" in self.config["account_manager"]:
-            base_url = self.config["account_manager"]["url"].split(":")[0] + "://" + self.config["account_manager"]["url"].split("://")[1].split(":")[0]
-        else:
-            base_url = "http://localhost"
-            
-        self.account_manager_url = f"{base_url}:{account_manager_port}"
+        self.account_manager_url = self.config["account_manager"]["url"]
         self.logger = logging.getLogger("telegram_bot")
         
         self.catalog_client = CatalogClient(config_path)
@@ -39,25 +32,46 @@ class TelegramBot:
         self.mqtt_client.connect()
         self.catalog_client.register_service()
 
-        self.updater = Updater(token=self.token, use_context=True)
+        self.updater = ApplicationBuilder().token(self.token).build()
         self.bot = self.updater.bot
-        dispatcher = self.updater.dispatcher
 
-        dispatcher.add_handler(CommandHandler("start", self.handle_start))
-        dispatcher.add_handler(CommandHandler("help", self.handle_help))
-        dispatcher.add_handler(CommandHandler("login", self.handle_login))
-        dispatcher.add_handler(CommandHandler("status", self.handle_status))
-        dispatcher.add_handler(CommandHandler("logout", self.handle_logout))
-        dispatcher.add_handler(CommandHandler("temperature", self.handle_temperature))
-        dispatcher.add_handler(CommandHandler("pressure", self.handle_pressure))
-        dispatcher.add_handler(CommandHandler("actuator", self.handle_actuator))
-        dispatcher.add_handler(CallbackQueryHandler(self.handle_callback))
-        dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, self.handle_message))
-        dispatcher.add_error_handler(self.error_handler)
+        self.updater.add_handler(CommandHandler("start", self.handle_start))
+        self.updater.add_handler(CommandHandler("help", self.handle_help))
+        self.updater.add_handler(CommandHandler("login", self.handle_login))
+        self.updater.add_handler(CommandHandler("logout", self.handle_logout))
+        self.updater.add_handler(CommandHandler("temperature", self.handle_temperature))
+        self.updater.add_handler(CommandHandler("pressure", self.handle_pressure))
+        self.updater.add_handler(CommandHandler("actuator", self.handle_actuator))
+        self.updater.add_handler(CallbackQueryHandler(self.handle_callback))
+        self.updater.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
 
         self.start_heartbeat()
 
-        self.updater.start_polling()
+        self.updater.run_polling()
+        self.logger.info("Telegram bot started")
+        
+        # self.updater = ApplicationBuilder().token(self.token).build()
+        # self.bot = self.updater.bot
+        # dispatcher = self.updater
+        
+        # dispatcher.add_handler(CommandHandler("start", self.handle_start))
+        # dispatcher.add_handler(CommandHandler("help", self.handle_help))
+        # dispatcher.add_handler(CommandHandler("login", self.handle_login))
+        # dispatcher.add_handler(CommandHandler("logout", self.handle_logout))
+        # dispatcher.add_handler(CommandHandler("temperature", self.handle_temperature))
+        # dispatcher.add_handler(CommandHandler("pressure", self.handle_pressure))
+        # dispatcher.add_handler(CommandHandler("actuator", self.handle_actuator))
+        # dispatcher.add_handler(CallbackQueryHandler(self.handle_callback))
+        
+        # dispatcher.add_handler(MessageHandler(
+        #     filters.TEXT & ~filters.COMMAND, 
+        #     self.handle_message
+        # ))
+        
+        # self.start_heartbeat()
+        
+        # self.updater.start_polling()
+        # self.logger.info("Telegram bot started")
         
     def stop(self):
         if self.updater:
@@ -92,8 +106,6 @@ class TelegramBot:
             
             if response.status_code == 200:
                 token_data = response.json()
-                if "token" in token_data and "expires_in" not in token_data:
-                    token_data["expires_in"] = 3600  # Default 1-hour expiration
                 return token_data
             else:
                 self.logger.error(f"Authentication failed: {response.text}")
@@ -103,7 +115,7 @@ class TelegramBot:
             self.logger.error(f"Error during authentication: {str(e)}")
             return None
     
-    def handle_start(self, update: Update, context: CallbackContext):
+    async def handle_start(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
         message = (
             "🔧 *Welcome to Smart Bolt System*\n\n"
@@ -119,9 +131,9 @@ class TelegramBot:
             "Most commands require you to be logged in.\n"
             "Use /login username password to authenticate."
         )
-        update.message.reply_text(message, parse_mode='Markdown')
+        await update.message.reply_text(message, parse_mode='Markdown')
     
-    def handle_help(self, update: Update, context: CallbackContext):
+    async def handle_help(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
         message = (
             "📚 *Smart Bolt System Help*\n\n"
@@ -139,25 +151,9 @@ class TelegramBot:
             "🔒 *Note:* Most commands require authentication.\n"
             "Use /login to authenticate first."
         )
-        update.message.reply_text(message, parse_mode='Markdown')
+        await update.message.reply_text(message, parse_mode='Markdown')
     
-    def handle_status(self, update: Update, context: CallbackContext):
-        """Handle the /status command."""
-        try:
-            # Example status message
-            status_message = "The bot is running and connected to the server."
-            update.message.reply_text(status_message)
-        except Exception as e:
-            self.logger.error(f"Error in /status command: {e}")
-            update.message.reply_text("An error occurred while fetching the status.")
-    
-    def error_handler(self, update, context):
-        """Log the error and send a message to the user."""
-        self.logger.error(f"Update {update} caused error {context.error}")
-        if update and isinstance(update, Update) and update.message:
-            update.message.reply_text("An unexpected error occurred.")
-    
-    def handle_login(self, update: Update, context: CallbackContext):
+    async def handle_login(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
         
         if len(context.args) != 2:
@@ -175,47 +171,47 @@ class TelegramBot:
         token_data = self.authenticate_user(username, password)
         
         if token_data:
-            expires_in = token_data.get("expires_in", 3600)
             self.authenticated_users[user_id] = {
                 "token": token_data["token"],
-                "expires_at": time.time() + expires_in,
+                "expires_at": time.time() + token_data["expires_in"],
                 "username": username
             }
-            update.message.reply_text(
+            await update.message.reply_text(
                 f"✅ *Login Successful*\n\n"
                 f"Welcome, {username}!\n"
-                f"Your session will expire in {expires_in//60} minutes.\n\n"
+                f"Your session will expire in {token_data['expires_in']//60} minutes.\n\n"
                 "Use /help to see available commands.",
                 parse_mode='Markdown'
             )
         else:
-            update.message.reply_text(
+            await update.message.reply_text(
                 "❌ *Login Failed*\n\n"
                 "Please check your credentials and try again.",
                 parse_mode='Markdown'
             )
     
-    def handle_logout(self, update: Update, context: CallbackContext):
+    async def handle_logout(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
+        
         if user_id in self.authenticated_users:
             del self.authenticated_users[user_id]
-            update.message.reply_text(
+            await update.message.reply_text(
                 "👋 *Logged Out Successfully*\n\n"
                 "You have been logged out of the system.",
                 parse_mode='Markdown'
             )
         else:
-            update.message.reply_text(
+            await update.message.reply_text(
                 "ℹ️ *Not Logged In*\n\n"
                 "You are not currently logged in.",
                 parse_mode='Markdown'
             )
     
-    def handle_temperature(self, update: Update, context: CallbackContext):
+    async def handle_temperature(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
         
         if not self.is_authenticated(user_id):
-            update.message.reply_text(
+            await update.message.reply_text(
                 "🔒 *Authentication Required*\n\n"
                 "Please login first using /login username password",
                 parse_mode='Markdown'
@@ -231,19 +227,19 @@ class TelegramBot:
             )
             if 'timestamp' in temp_data:
                 message += f"Time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(temp_data['timestamp']))}"
-            update.message.reply_text(message, parse_mode='Markdown')
+            await update.message.reply_text(message, parse_mode='Markdown')
         else:
-            update.message.reply_text(
+            await update.message.reply_text(
                 "⚠️ *Data Unavailable*\n\n"
                 "Could not retrieve temperature data at this time.",
                 parse_mode='Markdown'
             )
     
-    def handle_pressure(self, update: Update, context: CallbackContext):
+    async def handle_pressure(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
         
         if not self.is_authenticated(user_id):
-            update.message.reply_text(
+            await update.message.reply_text(
                 "🔒 *Authentication Required*\n\n"
                 "Please login first using /login username password",
                 parse_mode='Markdown'
@@ -259,19 +255,19 @@ class TelegramBot:
             )
             if 'timestamp' in pressure_data:
                 message += f"Time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(pressure_data['timestamp']))}"
-            update.message.reply_text(message, parse_mode='Markdown')
+            await update.message.reply_text(message, parse_mode='Markdown')
         else:
-            update.message.reply_text(
+            await update.message.reply_text(
                 "⚠️ *Data Unavailable*\n\n"
                 "Could not retrieve pressure data at this time.",
                 parse_mode='Markdown'
             )
     
-    def handle_actuator(self, update: Update, context: CallbackContext):
+    async def handle_actuator(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
         
         if not self.is_authenticated(user_id):
-            update.message.reply_text(
+            await update.message.reply_text(
                 "🔒 *Authentication Required*\n\n"
                 "Please login first using /login username password",
                 parse_mode='Markdown'
@@ -290,14 +286,14 @@ class TelegramBot:
         ]
         
         reply_markup = InlineKeyboardMarkup(keyboard)
-        update.message.reply_text(
+        await update.message.reply_text(
             "🎛️ *Actuator Control*\n\n"
             "Select the action you want to perform:",
             reply_markup=reply_markup,
             parse_mode='Markdown'
         )
     
-    def handle_callback(self, update: Update, context: CallbackContext):
+    async def handle_callback(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
         query = update.callback_query
         
@@ -342,18 +338,18 @@ class TelegramBot:
                 parse_mode='Markdown'
             )
     
-    def handle_message(self, update: Update, context: CallbackContext):
+    async def handle_message(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
         
         if not self.is_authenticated(user_id):
-            update.message.reply_text(
+            await update.message.reply_text(
                 "🔒 *Authentication Required*\n\n"
                 "Please login first using /login username password",
                 parse_mode='Markdown'
             )
             return
         
-        update.message.reply_text(
+        await update.message.reply_text(
             "📋 *Available Commands*\n\n"
             "• /sensors - View sensor readings\n"
             "• /control - Control system actuators\n"
@@ -361,4 +357,4 @@ class TelegramBot:
             "• /logout - Logout from the system\n\n"
             "Type /help for more information.",
             parse_mode='Markdown'
-        )
+        ) 

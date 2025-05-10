@@ -20,7 +20,7 @@ last_analysis_time = None
 latest_forecast = None
 latest_risk_level = 'NORMAL'
 
-def fetch_sensor_data(device_id,sensor_type,hours=24):
+def fetch_sensor_data(hours=24):
     """Fetch historical sensor data from the time series database"""
     try:
         # If we haven't found the timeseries service from Resource Catalog yet
@@ -32,25 +32,20 @@ def fetch_sensor_data(device_id,sensor_type,hours=24):
             else:
                 logger.error("Failed to discover Time Series DB API URL from Resource Catalog")
                 return None
-        
         # Calculate the time range for the query
         end_time = datetime.datetime.now().isoformat()
         start_time = (datetime.datetime.now() - datetime.timedelta(hours=hours)).isoformat()
         
         # Make the request to the time series DB API
-        url = f"{config.TIMESERIES_DB_API_URL}/sensor_data"
+        url = f"{config.TIMESERIES_DB_API_URL}/all_seneor_data"
         params = {
-            'device_id': device_id,
-            'sensor_type': sensor_type,
             'start': start_time,
             'end': end_time,
-            # 'start': start_time,
-            # 'end': end_time,
             # 'metrics': 'temperature,pressure'
         }
-        
-        response = requests.get(url, params=params, timeout=10)
-        
+        print(f"@@@@ Fetching sensor data from @@@@ {url}/////{params}")
+        response = requests.get(url, params=params, timeout=100)
+        print(f"@@@@########## Fetching sensor data from #############@@@@ {response}")
         if response.status_code == 200:
             data = response.json()
             if 'data' in data and len(data['data']) > 0:
@@ -78,7 +73,7 @@ def run_analysis():
         logger.info("Starting analysis run")
         
         # Fetch historical sensor data
-        sensor_data = fetch_sensor_data(device_id=config.DEVICE_ID,sensor_type=config.SENSOR_TYPE ,hours=config.DATA_HISTORY_HOURS)
+        sensor_data = fetch_sensor_data(hours=config.DATA_HISTORY_HOURS)
         if not sensor_data or len(sensor_data) < 10:  # Need enough data points for prediction
             logger.warning("Insufficient sensor data for analysis")
             return False
@@ -107,7 +102,7 @@ def run_analysis():
         latest_forecast = forecast_with_risk
         latest_risk_level = risk_level
         last_analysis_time = datetime.datetime.now()
-        print(f"%%%%%%%%%%%%%%%% Latest forecast: %%%%%%%%%%%%%%%%%%% {latest_forecast}")
+        
         # Generate and send alerts if needed
         if risk_level != 'NORMAL':
             alert_result = alert_manager.process_alert(forecast_with_risk, risk_level)
@@ -156,6 +151,7 @@ class AnalyticsAPI:
                 "message": "No forecast data available yet"
             }
         
+        # Convert DataFrame to dict for JSON serialization
         df = latest_forecast.copy()
         # Convert any datetime columns to ISO format strings
         df['forecast_timestamp'] = df['forecast_timestamp'].astype(str)
