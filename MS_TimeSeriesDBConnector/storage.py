@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 import time
 import pytz
 from abc import ABC, abstractmethod
+from tzlocal import get_localzone
+from dateutil import parser
 
 import config
 
@@ -52,6 +54,14 @@ class TimeSeriesStorage(ABC):
     @abstractmethod
     def close(self):
         """Close database connections"""
+        pass
+    @abstractmethod
+    def get_all_sensor_data(self, start_time, end_time):
+        """Retrieve all sensor data within a time range"""
+        pass
+    @abstractmethod
+    def localize_and_format(self, dt):
+        """Convert a datetime object to local timezone and format it"""
         pass
 
 # class SQLiteStorage(TimeSeriesStorage):
@@ -313,7 +323,8 @@ class InfluxDBStorage(TimeSeriesStorage):
             self.client = InfluxDBClient(
                 url=f"http://{config.INFLUXDB_HOST}:{config.INFLUXDB_PORT}",
                 token=config.INFLUXDB_TOKEN,
-                org=config.INFLUXDB_ORG
+                org=config.INFLUXDB_ORG,
+                timeout=60_000
             )
             
             # Initialize write and query APIs
@@ -526,6 +537,16 @@ class InfluxDBStorage(TimeSeriesStorage):
             logger.error(f"Error storing valve state in InfluxDB: {e}")
             return False
     
+    def localize_and_format(self, dt):
+        local_tz = get_localzone()
+        if dt is None:
+            return None
+        
+        if dt.tzinfo is not None:
+            return dt.strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            return dt.astimezone(local_tz).strftime("%Y-%m-%d %H:%M:%S")
+    
     def get_sensor_data(self, device_id, sensor_type, start_time, end_time):
         """Retrieve sensor data for a specific device and sensor type within a time range"""
         
@@ -558,8 +579,9 @@ class InfluxDBStorage(TimeSeriesStorage):
             data = []
             for table in tables:
                 for record in table.records:
+                    timestamp = self.localize_and_format(record.get_time())
                     item = {
-                        "timestamp": record.get_time().isoformat(),
+                        "timestamp": timestamp,
                         "device_id": record.values.get("device_id"),
                         "sensor_type": sensor_type,
                         "value": record.get_value()
@@ -569,9 +591,20 @@ class InfluxDBStorage(TimeSeriesStorage):
                     for key, value in record.values.items():
                         if key not in ("_time", "_value", "_field", "_measurement", "device_id"):
                             if isinstance(value, datetime):
-                                item[key] = value.isoformat()
+                                item[key] = self.localize_and_format(value)
+                            elif isinstance(value, str):
+                                try:
+                                    parsed = parser.isoparse(value)
+                                    item[key] = self.localize_and_format(parsed)
+                                except Exception:
+                                    item[key] = value
                             else:
                                 item[key] = value
+                            
+                            # if isinstance(value, datetime):
+                            #     item[key] = value.isoformat()
+                            # else:
+                            #     item[key] = value
                     
                     data.append(item)
                     
@@ -655,38 +688,39 @@ class InfluxDBStorage(TimeSeriesStorage):
                 end_time_str = end_time
             # Create Flux query dynamically for temperature and pressure
             query = f'''
-            temp = from(bucket: "{config.INFLUXDB_BUCKET}")
-                |> range(start: {start_time_str}, stop: {end_time_str})
-                |> filter(fn: (r) => 
-                    r["_measurement"] == "temperature" and 
-                    r["_field"] == "value" and
-                    (r["device_id"] == "1" or r["device_id"] == "10" or r["device_id"] == "11" or r["device_id"] == "20") and
-                    r["unit"] == "celsius"
-                )
-                |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-                |> rename(columns: {{_value: "temperature"}})
+                    temp = from(bucket: "{config.INFLUXDB_BUCKET}")
+                    |> range(start: {start_time_str}, stop: {end_time_str})
+                    |> filter(fn: (r) => 
+                        r["_measurement"] == "temperature" and 
+                        r["_field"] == "value" and
+                        r["unit"] == "celsius"
+                    )
+                    |> aggregateWindow(every: 5s, fn: mean, createEmpty: false)
+                    |> rename(columns: {{_value: "temperature"}})
 
-            press = from(bucket: "{config.INFLUXDB_BUCKET}")
-                |> range(start: {start_time_str}, stop: {end_time_str})
-                |> filter(fn: (r) => 
-                    r["_measurement"] == "pressure" and 
-                    r["_field"] == "value" and
-                    (r["device_id"] == "1" or r["device_id"] == "10" or r["device_id"] == "11" or r["device_id"] == "20") and
-                    r["unit"] == "hPa"
-                )
-                |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-                |> rename(columns: {{_value: "pressure"}})
+                    press = from(bucket: "{config.INFLUXDB_BUCKET}")
+                    |> range(start: {start_time_str}, stop: {end_time_str})
+                    |> filter(fn: (r) => 
+                        r["_measurement"] == "pressure" and 
+                        r["_field"] == "value" and
+                        r["unit"] == "hPa"
+                    )
+                    |> aggregateWindow(every: 5s, fn: mean, createEmpty: false)
+                    |> rename(columns: {{_value: "pressure"}})
 
-            join(
-                tables: {{t: temp, p: press}},
-                on: ["_time", "device_id"]
-            )
-            '''
-            print(f"@@@@@@@@@  get_all_sensor_data query: @@@@@@@@@@@@@@@@@ {query}")
+                    join(
+                    tables: {{t: temp, p: press}},
+                    on: ["_time", "device_id"]
+                    )
+                    '''
+            print (f"Query: {query}")
             # Execute query
-            
-            tables = self.query_api.query(query, org=config.INFLUXDB_ORG)
-            print("##########  get_all_sensor_data tables:")
+            try:
+                tables = self.query_api.query(query, org=config.INFLUXDB_ORG)
+                print(f"Query executed successfully. Tables: {tables}")
+            except Exception as e:
+                print(f"Error executing query: {e}")
+                logger.error(f"Error executing query: {e}")
             # Process results
             data = []
             for table in tables:
@@ -705,7 +739,6 @@ class InfluxDBStorage(TimeSeriesStorage):
                             else:
                                 item[key] = value
                     data.append(item)
-            print (f"##########  get_all_sensor_data data: {data}")
             return data
             
         except Exception as e:

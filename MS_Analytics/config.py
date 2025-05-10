@@ -37,10 +37,16 @@ ANALYSIS_FREQUENCY_SECONDS = 60  # How often to run analysis
 DATA_HISTORY_HOURS = 24  # How much historical data to use for predictions
 
 # Safety thresholds
-TEMPERATURE_MAX_THRESHOLD = 80.0  # degrees Celsius
-TEMPERATURE_WARNING_THRESHOLD = 70.0  # degrees Celsius
-PRESSURE_MAX_THRESHOLD = 150.0  # PSI
-PRESSURE_WARNING_THRESHOLD = 130.0  # PSI
+TEMPERATURE_WARNING_THRESHOLD = 26.5
+TEMPERATURE_MAX_THRESHOLD = 28.0
+
+PRESSURE_WARNING_THRESHOLD = 102.0 #1020.0
+PRESSURE_MAX_THRESHOLD = 103.0 #1030.0
+# TEMPERATURE_MAX_THRESHOLD = 80.0  # degrees Celsius
+# TEMPERATURE_WARNING_THRESHOLD = 70.0  # degrees Celsius
+# PRESSURE_MAX_THRESHOLD = 150.0  # PSI
+# PRESSURE_WARNING_THRESHOLD = 130.0  # PSI
+
 
 # Alert settings
 ALERT_LEVELS = {
@@ -50,7 +56,7 @@ ALERT_LEVELS = {
 }
 
 # Notification endpoints (to be implemented later)
-TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "7947622045:AAEkAL7ldeK9hipn-m-xj0UXRSjHxEhf6T8")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 DASHBOARD_API_URL = os.environ.get("DASHBOARD_API_URL", "http://localhost:3000/api/alerts")
 

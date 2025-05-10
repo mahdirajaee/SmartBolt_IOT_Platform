@@ -6,7 +6,7 @@ import time
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import (
     ApplicationBuilder, CommandHandler, CallbackContext, 
-    MessageHandler, filters, CallbackQueryHandler,ContextTypes
+    MessageHandler, filters, CallbackQueryHandler,ContextTypes,Application
 )
 
 from catalog_client import CatalogClient
@@ -44,9 +44,11 @@ class TelegramBot:
         self.updater.add_handler(CommandHandler("pressure", self.handle_pressure))
         self.updater.add_handler(CommandHandler("actuator", self.handle_actuator))
         self.updater.add_handler(CallbackQueryHandler(self.handle_callback))
+        self.updater.add_handler(CommandHandler("error", self.error_handler))
         self.updater.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
 
         self.start_heartbeat()
+        self.updater.add_error_handler(self.error_handler)
 
         self.updater.run_polling()
         self.logger.info("Telegram bot started")
@@ -116,7 +118,7 @@ class TelegramBot:
             self.logger.error(f"Error during authentication: {str(e)}")
             return None
     
-    async def handle_start(self, update: Update, context: CallbackContext):
+    async def handle_start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         message = (
             "🔧 *Welcome to Smart Bolt System*\n\n"
@@ -134,7 +136,7 @@ class TelegramBot:
         )
         await update.message.reply_text(message, parse_mode='Markdown')
     
-    async def handle_help(self, update: Update, context: CallbackContext):
+    async def handle_help(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         message = (
             "📚 *Smart Bolt System Help*\n\n"
@@ -163,20 +165,26 @@ class TelegramBot:
         except Exception as e:
             self.logger.error(f"Error in /status command: {e}")
             await update.message.reply_text("An error occurred while fetching the status.")
+
+            
+    async def error_handler(self, update: Update, context: CallbackContext):
+        logging.error(msg="Exception caught:", exc_info=context.error)
+        self.updater.add_error_handler(self.error_handler)
+
+
+    # async def error_handler(self, update: object, context: ContextTypes.DEFAULT_TYPE):
+    #     """Log the error and send a message to the user."""
+    #     self.logger.error(f"Update {update} caused error {context.error}")
+    #     if update and isinstance(update, Update) and update.message:
+    #         await update.message.reply_text("An unexpected error occurred.")
     
-    async def error_handler(self, update: object, context: ContextTypes.DEFAULT_TYPE):
-        """Log the error and send a message to the user."""
-        self.logger.error(f"Update {update} caused error {context.error}")
-        if update and isinstance(update, Update) and update.message:
-            await update.message.reply_text("An unexpected error occurred.")
     
     
-    
-    async def handle_login(self, update: Update, context: CallbackContext):
+    async def handle_login(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         
         if len(context.args) != 2:
-            update.message.reply_text(
+            await update.message.reply_text(
                 "❌ *Invalid Login Format*\n\n"
                 "Please use: /login username password\n"
                 "Example: /login john password123",
@@ -209,7 +217,7 @@ class TelegramBot:
                 parse_mode='Markdown'
             )
     
-    async def handle_logout(self, update: Update, context: CallbackContext):
+    async def handle_logout(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         
         if user_id in self.authenticated_users:
@@ -226,7 +234,7 @@ class TelegramBot:
                 parse_mode='Markdown'
             )
     
-    async def handle_temperature(self, update: Update, context: CallbackContext):
+    async def handle_temperature(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         
         if not self.is_authenticated(user_id):
@@ -254,7 +262,7 @@ class TelegramBot:
                 parse_mode='Markdown'
             )
     
-    async def handle_pressure(self, update: Update, context: CallbackContext):
+    async def handle_pressure(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         
         if not self.is_authenticated(user_id):
@@ -282,7 +290,7 @@ class TelegramBot:
                 parse_mode='Markdown'
             )
     
-    async def handle_actuator(self, update: Update, context: CallbackContext):
+    async def handle_actuator(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         
         if not self.is_authenticated(user_id):
@@ -312,7 +320,7 @@ class TelegramBot:
             parse_mode='Markdown'
         )
     
-    async def handle_callback(self, update: Update, context: CallbackContext):
+    async def handle_callback(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         query = update.callback_query
         
@@ -357,7 +365,7 @@ class TelegramBot:
                 parse_mode='Markdown'
             )
     
-    async def handle_message(self, update: Update, context: CallbackContext):
+    async def handle_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         
         if not self.is_authenticated(user_id):

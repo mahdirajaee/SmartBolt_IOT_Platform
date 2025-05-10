@@ -185,3 +185,28 @@ cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8000 not free on 0.0.0.0.
 2025-04-29 14:54:17,649 - cherrypy.error - INFO - [29/Apr/2025:14:54:17] ENGINE Bus EXITING
 2025-04-29 14:54:17,649 - cherrypy.error - INFO - [29/Apr/2025:14:54:17] ENGINE Bus EXITED
 2025-04-29 14:54:17,649 - timeseries_connector - INFO - API server stopped
+2025-05-07 21:24:27,084 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-05-07 21:24:27,084 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-05-07 21:24:31,217 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F554BED0D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-07 21:24:31,217 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F554BED0D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-07 21:24:31,217 - registration - INFO - Registration service started in background
+2025-05-07 21:24:31,217 - registration - INFO - Registration service started in background
+2025-05-07 21:24:31,217 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-05-07 21:24:31,217 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-05-07 21:24:31,217 - timeseries_storage - INFO - Connected to InfluxDB v2.x at localhost:8086
+2025-05-07 21:24:31,217 - registration - INFO - Registering with Resource Catalog at http://localhost:8080/register_service
+2025-05-07 21:24:31,217 - timeseries_connector - INFO - Starting Time Series DB Connector
+2025-05-07 21:24:31,217 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
+2025-05-07 21:24:35,298 - mqtt_client - ERROR - Failed to connect to MQTT broker: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-07 21:24:35,298 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F554BD9810>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-07 21:24:35,298 - timeseries_connector - ERROR - Failed to connect to message broker at localhost:1883
+2025-05-07 21:24:35,298 - registration - ERROR - Network error during registration: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /register_service (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001F554BD9810>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-05-07 21:24:35,298 - timeseries_connector - INFO - Retrying connection to broker (1/5)...
+2025-05-07 21:24:40,302 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
+2025-05-07 21:24:44,430 - mqtt_client - ERROR - Failed to connect to MQTT broker: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-07 21:24:44,430 - timeseries_connector - ERROR - Failed to connect to message broker at localhost:1883
+2025-05-07 21:24:44,430 - timeseries_connector - INFO - Retrying connection to broker (2/5)...
+2025-05-07 21:24:49,433 - timeseries_connector - INFO - Connecting to message broker at localhost:1883
+2025-05-07 21:24:53,505 - mqtt_client - ERROR - Failed to connect to MQTT broker: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-07 21:24:53,505 - timeseries_connector - ERROR - Failed to connect to message broker at localhost:1883
+2025-05-07 21:24:53,505 - timeseries_connector - INFO - Retrying connection to broker (3/5)...

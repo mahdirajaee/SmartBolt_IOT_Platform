@@ -13,10 +13,14 @@ __pycache__/
 .DS_Store
 # Ignore log files
 *.log
+*.log.*
 
 # Ignore temporary files
 *.tmp
 *.swp
+
+#ignore db files
+*.db
 
 # Ignore compiled Python files
 *.pyc

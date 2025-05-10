@@ -164,9 +164,9 @@ class AlertManager:
         """Send alert to Telegram Bot"""
         if not alert:
             return False
-            
+        print (f"------>>>> Sending alert to Telegram: <<<<-------{config.TELEGRAM_BOT_TOKEN} ^^^^^ {config.TELEGRAM_CHAT_ID}")
         try:
-            if not config.TELEGRAM_BOT_TOKEN or not config.TELEGRAM_CHAT_ID:
+            if not config.TELEGRAM_BOT_TOKEN: #or not config.TELEGRAM_CHAT_ID:
                 logger.info("Telegram credentials not configured, skipping Telegram notification")
                 return False
                 
@@ -175,7 +175,7 @@ class AlertManager:
             
             # Telegram Bot API endpoint
             url = f"https://api.telegram.org/bot{config.TELEGRAM_BOT_TOKEN}/sendMessage"
-            
+            print (f"------>>>> Sending alert to Telegram: <<<<------- {url} {message}")
             # Send the message
             response = requests.post(
                 url,
@@ -191,7 +191,7 @@ class AlertManager:
                 logger.info("Alert sent to Telegram successfully")
                 return True
             else:
-                logger.error(f"Failed to send alert to Telegram. Status code: {response.status_code}")
+                logger.error(f"Failed to send alert to Telegram. Status code: {response.status_code} Response: {response.text}")
                 return False
                 
         except Exception as e:

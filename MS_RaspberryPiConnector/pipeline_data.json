@@ -24,8 +24,8 @@
       "name": "Device 001",
       "status": "active",
       "readings": {
-        "temperature": 25.6,
-        "pressure": 1018.52
+        "temperature": 27.67,
+        "pressure": 1022.65
       }
     },
     {
@@ -34,28 +34,18 @@
       "name": "Device 010",
       "status": "active",
       "readings": {
-<<<<<<< HEAD
-        "temperature": 23.67,
-        "pressure": 1004.25
-=======
-        "temperature": 22.97,
-        "pressure": 1003.35
->>>>>>> d7ce27b40411c1914cf0a1687765c3846af4ebd5
+        "temperature": 26.67,
+        "pressure": 1022.31
       }
     },
     {
       "device_id": 11,
       "sector_id": "B",
       "name": "Device 011",
-      "status": "inactive",
+      "status": "active",
       "readings": {
-<<<<<<< HEAD
-        "temperature": 22.67,
-        "pressure": 1003.74
-=======
-        "temperature": 22.66,
-        "pressure": 1004.52
->>>>>>> d7ce27b40411c1914cf0a1687765c3846af4ebd5
+        "temperature": 26.79,
+        "pressure": 1022.95
       }
     },
     {
@@ -64,13 +54,8 @@
       "name": "Device 020",
       "status": "active",
       "readings": {
-<<<<<<< HEAD
-        "temperature": 23.83,
-        "pressure": 1003.22
-=======
-        "temperature": 24.2,
-        "pressure": 1003.92
->>>>>>> d7ce27b40411c1914cf0a1687765c3846af4ebd5
+        "temperature": 27.67,
+        "pressure": 1022.15
       }
     }
   ]

@@ -42,6 +42,7 @@ class TimeSeriesAPI:
             "endpoints": {
                 "sensor_data": "/sensor_data?device_id=<id>&sensor_type=<type>&start=<iso_datetime>&end=<iso_datetime>",
                 "valve_states": "/valve_states?sector_id=<id>&start=<iso_datetime>&end=<iso_datetime>",
+                "all_sensor_data": "/all_sensor_data?hours=<number_of_hours>&start=<iso_datetime>&end=<iso_datetime>",
                 "devices": "/devices",
                 "sectors": "/sectors"
             }
@@ -50,13 +51,34 @@ class TimeSeriesAPI:
     """ get all data from the time series database """
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def all_seneor_data(self):
+    def all_seneor_data(self,hours=None, start=None, end=None):
         """Query all sensor data"""
         try:
+            # if not hours:
+            #     return {"error": "hours parameter is required"}
             
             # Define a default time range (e.g., last 24 hours)
             end_time = datetime.datetime.now()
-            start_time = end_time - timedelta(hours=24)
+            if hours:
+                try:
+                    hours = float(hours)
+                    start_time = end_time - timedelta(hours=hours)
+                except ValueError:
+                    return {"error": f"Invalid hours value: {hours}"}
+            elif start and end:
+                try:
+                    start_time = datetime.datetime.fromisoformat(start.replace('Z', '+00:00'))
+                    end_time = datetime.datetime.fromisoformat(end.replace('Z', '+00:00'))
+                except ValueError:
+                    return {"error": "Invalid datetime format. Use ISO format (YYYY-MM-DDTHH:MM:SS)"}
+            elif start:
+                try:
+                    start_time = datetime.datetime.fromisoformat(start.replace('Z', '+00:00'))
+                except ValueError:
+                    return {"error": "Invalid start datetime format. Use ISO format (YYYY-MM-DDTHH:MM:SS)"}
+            else:
+                # Default to last 24 hours
+                start_time = end_time - timedelta(hours=24)
             # Get all data from storage
             data = self.storage.get_all_sensor_data(start_time=start_time, end_time=end_time)
             
