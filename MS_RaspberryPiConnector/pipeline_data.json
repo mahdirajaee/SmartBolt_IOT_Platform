@@ -24,13 +24,8 @@
       "name": "Device 001",
       "status": "active",
       "readings": {
-<<<<<<< HEAD
-        "temperature": 22.81,
-        "pressure": 1003.9
-=======
-        "temperature": 23.4,
-        "pressure": 1003.4
->>>>>>> d7ce27b40411c1914cf0a1687765c3846af4ebd5
+        "temperature": 25.6,
+        "pressure": 1018.52
       }
     },
     {
