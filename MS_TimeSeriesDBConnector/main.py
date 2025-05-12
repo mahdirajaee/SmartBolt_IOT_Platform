@@ -178,6 +178,7 @@ class TimeSeriesConnector:
     #------------version 1.0.0------------------
     def process_sensor_data(self, topic, payload, qos):
         """Process sensor data received from the message broker"""
+        # print (f"@@@@@@@------- payload --------@@@@@@@@ {payload}")
         try:
             # Convert payload from bytes to string if necessary
             if isinstance(payload, bytes):

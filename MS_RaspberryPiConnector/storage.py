@@ -11,10 +11,13 @@ class StorageManager:
         self.load_data()
     
     def load_data(self):
+        # print (f"@@@@@ Loading data: @@@@@ {self.data_file}")
         try:
             if os.path.exists(self.data_file):
+                
                 with open(self.data_file, 'r') as f:
                     data = json.load(f)
+                    # print (f"@@@@@ Loading data: @@@@@ {data}")
                 
                 for sector_data in data.get('sectors', []):
                     sector = Sector(
@@ -23,7 +26,7 @@ class StorageManager:
                         sector_data['start_device_id'],
                         sector_data['end_device_id']
                     )
-                    
+                    #print (f"@@@@@ Loading sector: @@@@@ {sector.to_dict()}")
                     # Load valve state if available
                     if 'valve_state' in sector_data:
                         sector.valve.state = sector_data['valve_state']
@@ -48,6 +51,7 @@ class StorageManager:
                 
         except Exception as e:
             logging.error(f"Error loading data: {e}")
+            print(f"Error loading data: {e}")
             self._initialize_default_data()
     
     def _initialize_default_data(self):

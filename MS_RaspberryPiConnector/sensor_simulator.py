@@ -33,7 +33,6 @@ class SensorSimulator:
         self.last_reading_time = None
         self.storage = StorageManager()
         self.phase = 0.0
-        
         if config.USE_MQTT:
             self.mqtt_client = mqtt.Client(client_id=config.MQTT_CLIENT_ID, protocol=mqtt.MQTTv311)
             if config.MQTT_USERNAME and config.MQTT_PASSWORD:
@@ -58,39 +57,66 @@ class SensorSimulator:
     
     def _on_mqtt_disconnect(self, client, userdata, rc):
         logger.warning(f"MQTT connection lost with code {rc}")
-        
-    def generate_temperature(self):
-        # if config.RANDOM_VARIATION:
-        #     variation = random.uniform(-config.TEMP_VARIATION, config.TEMP_VARIATION)
-        #     temperature = config.TEMP_BASE_VALUE + variation
-        # else:
-        #     temperature = config.TEMP_BASE_VALUE
+
+    """ old version of sensor data generation """   
+    # def generate_temperature(self):
+    #     # if config.RANDOM_VARIATION:
+    #     #     variation = random.uniform(-config.TEMP_VARIATION, config.TEMP_VARIATION)
+    #     #     temperature = config.TEMP_BASE_VALUE + variation
+    #     # else:
+    #     #     temperature = config.TEMP_BASE_VALUE
             
-        # temperature = max(config.TEMP_MIN, min(config.TEMP_MAX, temperature))
-        # return int(temperature)
+    #     # temperature = max(config.TEMP_MIN, min(config.TEMP_MAX, temperature))
+    #     # return int(temperature)
+    #     wave = math.sin(self.phase) * config.TEMP_VARIATION
+    #     noise = random.uniform(-1,1)
+    #     temperature = config.TEMP_BASE_VALUE + wave + noise
+    #     temperature = max(config.TEMP_MIN, min(config.TEMP_MAX, temperature))
+    #     self.phase += 0.1
+    #     return round(temperature,2)
+    # def generate_pressure(self):
+    #     # if config.RANDOM_VARIATION:
+    #     #     variation = random.uniform(-config.PRESSURE_VARIATION, config.PRESSURE_VARIATION)
+    #     #     pressure = config.PRESSURE_BASE_VALUE + variation
+    #     # else:
+    #     #     pressure = config.PRESSURE_BASE_VALUE
+            
+    #     # pressure = max(config.PRESSURE_MIN, min(config.PRESSURE_MAX, pressure))
+    #     # return int(pressure)
+    #     wave = math.sin(self.phase) * config.PRESSURE_VARIATION
+    #     noise = random.uniform(-1,1)
+    #     pressure = config.PRESSURE_BASE_VALUE + wave + noise
+    #     pressure = max(config.PRESSURE_MIN, min(config.PRESSURE_MAX, pressure))
+    #     self.phase += 0.1
+    #     return round(pressure,2)
+
+    """ New version of sensor data generation """
+    def generate_temperature(self):
         wave = math.sin(self.phase) * config.TEMP_VARIATION
-        noise = random.uniform(-1,1)
+        noise = random.uniform(-1, 1)
         temperature = config.TEMP_BASE_VALUE + wave + noise
+
+        if random.random() < config.ANOMALY_PROBABILITY:
+            temperature += config.TEMP_ANOMALY_SHIFT
+            print("High temperature anomaly injected:", round(temperature, 2))
+
         temperature = max(config.TEMP_MIN, min(config.TEMP_MAX, temperature))
         self.phase += 0.1
-        return round(temperature,2)
+        return round(temperature, 2)
+
     def generate_pressure(self):
-        # if config.RANDOM_VARIATION:
-        #     variation = random.uniform(-config.PRESSURE_VARIATION, config.PRESSURE_VARIATION)
-        #     pressure = config.PRESSURE_BASE_VALUE + variation
-        # else:
-        #     pressure = config.PRESSURE_BASE_VALUE
-            
-        # pressure = max(config.PRESSURE_MIN, min(config.PRESSURE_MAX, pressure))
-        # return int(pressure)
         wave = math.sin(self.phase) * config.PRESSURE_VARIATION
-        noise = random.uniform(-1,1)
+        noise = random.uniform(-1, 1)
         pressure = config.PRESSURE_BASE_VALUE + wave + noise
+
+        if random.random() < config.ANOMALY_PROBABILITY:
+            pressure += config.PRESSURE_ANOMALY_SHIFT
+            print("High pressure anomaly injected:", round(pressure, 2))
+
         pressure = max(config.PRESSURE_MIN, min(config.PRESSURE_MAX, pressure))
         self.phase += 0.1
-        return round(pressure,2)
+        return round(pressure, 2)
 
-    
     def get_sensor_readings(self, device_id=None):
         timestamp = datetime.now().isoformat()
         temperature = self.generate_temperature()

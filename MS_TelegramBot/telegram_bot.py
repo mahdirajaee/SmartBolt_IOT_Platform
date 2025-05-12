@@ -6,7 +6,7 @@ import time
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import (
     ApplicationBuilder, CommandHandler, CallbackContext, 
-    MessageHandler, filters, CallbackQueryHandler
+    MessageHandler, filters, CallbackQueryHandler, ContextTypes
 )
 
 from catalog_client import CatalogClient
@@ -43,7 +43,7 @@ class TelegramBot:
         self.updater.add_handler(CommandHandler("pressure", self.handle_pressure))
         self.updater.add_handler(CommandHandler("actuator", self.handle_actuator))
         self.updater.add_handler(CommandHandler("status", self.handle_status))
-        self.updater.add_handler(CommandHandler("error", self.handle_error))
+        self.updater.add_handler(CommandHandler("error", self.error_handler))
         self.updater.add_handler(CallbackQueryHandler(self.handle_callback))
         self.updater.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
 
@@ -154,6 +154,12 @@ class TelegramBot:
             "Use /login to authenticate first."
         )
         await update.message.reply_text(message, parse_mode='Markdown')
+    
+    async def error_handler(self, update: object, context: ContextTypes.DEFAULT_TYPE):
+        """Log the error and send a message to the user."""
+        self.logger.error(f"Update {update} caused error {context.error}")
+        if update and isinstance(update, Update) and update.message:
+            await update.message.reply_text("An unexpected error occurred.")
     
     async def handle_login(self, update: Update, context: CallbackContext):
         user_id = update.effective_user.id
