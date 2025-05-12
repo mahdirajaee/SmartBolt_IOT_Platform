@@ -43,9 +43,9 @@ def fetch_sensor_data(hours=24):
             'end': end_time,
             # 'metrics': 'temperature,pressure'
         }
-        print(f"@@@@ Fetching sensor data from @@@@ {url}/////{params}")
+        # print(f"@@@@ Fetching sensor data from @@@@ {url}/////{params}")
         response = requests.get(url, params=params, timeout=100)
-        print(f"@@@@########## Fetching sensor data from #############@@@@ {response}")
+        # print(f"@@@@########## Fetching sensor data from #############@@@@ {response}")
         if response.status_code == 200:
             data = response.json()
             if 'data' in data and len(data['data']) > 0:

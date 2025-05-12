@@ -24,8 +24,8 @@
       "name": "Device 001",
       "status": "active",
       "readings": {
-        "temperature": 27.67,
-        "pressure": 1022.65
+        "temperature": 37.84,
+        "pressure": 1053.13
       }
     },
     {
@@ -34,8 +34,8 @@
       "name": "Device 010",
       "status": "active",
       "readings": {
-        "temperature": 26.67,
-        "pressure": 1022.31
+        "temperature": 38.49,
+        "pressure": 1055.44
       }
     },
     {
@@ -44,8 +44,8 @@
       "name": "Device 011",
       "status": "active",
       "readings": {
-        "temperature": 26.79,
-        "pressure": 1022.95
+        "temperature": 39.17,
+        "pressure": 1006.5
       }
     },
     {
@@ -54,8 +54,8 @@
       "name": "Device 020",
       "status": "active",
       "readings": {
-        "temperature": 27.67,
-        "pressure": 1022.15
+        "temperature": 39.65,
+        "pressure": 1008.15
       }
     }
   ]

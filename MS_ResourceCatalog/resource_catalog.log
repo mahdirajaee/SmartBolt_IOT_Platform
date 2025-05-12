@@ -2429,3 +2429,30 @@ cherrypy.process.wspbus.ChannelFailures: Timeout('Port 8080 not free on 0.0.0.0.
 [10/May/2025:15:30:32] ENGINE Serving on http://0.0.0.0:8080
 [10/May/2025:15:30:32] ENGINE Bus STARTED
 >>>>>>> origin/develop
+2025-05-10 20:32:59,704 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:20:32:59] ENGINE Bus STARTING
+[10/May/2025:20:33:00] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:20:33:00] ENGINE Bus STARTED
+[10/May/2025:20:57:00]  Marked 1 stale entries as offline
+2025-05-10 21:03:01,897 - resource_catalog - INFO - Starting Resource Catalog service
+[10/May/2025:21:03:02] ENGINE Bus STARTING
+[10/May/2025:21:03:02] ENGINE Serving on http://0.0.0.0:8080
+[10/May/2025:21:03:02] ENGINE Bus STARTED
+2025-05-11 10:30:20,657 - resource_catalog - INFO - Starting Resource Catalog service
+[11/May/2025:10:30:20] ENGINE Bus STARTING
+[11/May/2025:10:30:20]  Marked 1 stale entries as offline
+[11/May/2025:10:30:20] ENGINE Serving on http://0.0.0.0:8080
+[11/May/2025:10:30:20] ENGINE Bus STARTED
+2025-05-11 17:44:43,618 - resource_catalog - INFO - Starting Resource Catalog service
+[11/May/2025:17:44:43] ENGINE Bus STARTING
+[11/May/2025:17:44:43]  Marked 1 stale entries as offline
+[11/May/2025:17:44:43] ENGINE Serving on http://0.0.0.0:8080
+[11/May/2025:17:44:43] ENGINE Bus STARTED
+2025-05-12 08:21:37,321 - resource_catalog - INFO - Starting Resource Catalog service
+[12/May/2025:08:21:37] ENGINE Bus STARTING
+[12/May/2025:08:21:37]  Marked 2 stale entries as offline
+[12/May/2025:08:21:37] ENGINE Serving on http://0.0.0.0:8080
+[12/May/2025:08:21:37] ENGINE Bus STARTED
+[12/May/2025:13:02:35]  Marked 1 stale entries as offline
+[12/May/2025:13:25:35]  Marked 1 stale entries as offline
+[12/May/2025:13:48:35]  Marked 1 stale entries as offline
